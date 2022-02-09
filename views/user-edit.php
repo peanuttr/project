@@ -18,13 +18,13 @@ if (isset($_GET['id'])) {
     }
 
     // print_r($res);
-    print_r($dep_name);
+    // print_r($dep_name);
 }
 ?>
 <div class="home-section">
     <h1>แก้ไขผู้ใช้งาน</h1>
-    <form action='' method='post'>
-        <input type="hidden" value=<?php echo $_id; ?>>
+    <form action='../assets/includes/adduser.php' method='post'>
+        <input type="hidden" name='id' value=<?php echo $_id; ?>>
         <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
             <div class='col-md-6'>
                 <label>ชื่อผู้ใช้งาน</label>
@@ -40,7 +40,7 @@ if (isset($_GET['id'])) {
         <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
             <div class='col-md-6'>
                 <label>ชื่อ</label>
-                <input type='text' name='fisrtname' class='form-control' placeholder='ชื่อ' value=<?php echo $res['staff_fname']; ?>>
+                <input type='text' name='fisrtname' class='form-control' placeholder='ชื่อ' value=<?php echo $res['staff_firstname']; ?>>
             </div>
         </div>
         <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>

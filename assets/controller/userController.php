@@ -74,7 +74,7 @@ class userController extends db
         while($dep = $stmt->fetch(PDO::FETCH_ASSOC)){
             array_push($depp,['id' => $dep['id'], 'department_name' => $dep['department_name']]);
         }
-        
+
         return json_encode($result);
     }
 
@@ -106,6 +106,13 @@ class userController extends db
         }
         $output .= "</select>";
         return $output;
+    }
+
+    public function updateUser($_id ,$username, $password, $fname, $lname, $telephone, $email, $permission, $department_id){
+        $stmt = $this->connect()->prepare("UPDATE `staffs` SET `username`= '$username', `password`= '$password', `staff_firstname`= '$fname', `staff_lastname`= '$lname', `permission`= '$permission', `telephone`= '$telephone',`email`= '$email',`department_id`= '$department_id' WHERE `id`= '$_id'");
+        if($stmt->execute()){
+            echo "1 record have update";
+        }
     }
 }
 ?>
