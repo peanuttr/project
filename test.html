@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="start-exploding">Start Exploding</button>
+<button id="stop-exploding">Stop Exploding</button>
+<div id="start-fire">Mouseover to start a fire</div>
+<button id="stop-fire">Put fire out</button>
+
+<div id="explosions">Boom</div>
+<div id="fire">I'm burning!</div>
+<script>
+    var explosions=false;
+var fire=false;
+function updateView(){
+    var ex = document.getElementById('explosions');
+    var fi = document.getElementById('fire');
+    if (explosions) ex.style.display = 'block'
+    else ex.style.display = 'none'
+    if (fire) fi.style.display = 'block'
+    else fi.style.display = 'none'
+}
+
+document.getElementById('start-exploding').addEventListener('click', function(){
+    explosions = true;
+    updateView();
+});
+document.getElementById('stop-exploding').addEventListener('click', function(){
+    explosions = false;
+    updateView();
+});
+document.getElementById('start-fire').addEventListener('mouseover', function(){
+    fire = true;
+    updateView();
+});
+document.getElementById('stop-fire').addEventListener('click', function(){
+    fire = false;
+    updateView();
+});
+</script>
+</body>
+</html>

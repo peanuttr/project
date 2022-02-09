@@ -1,0 +1,22 @@
+<?php
+
+// require_once "./Strawberry.php";
+
+// $strawberry = new Strawberry("Strawberry", "red");
+// $strawberry->message();
+// $strawberry->intro();
+
+require_once "./api/controller/userController.php";
+
+$userController = new userController();
+$userController->getUserAll();
+
+
+
+
+//  require_once "./api/config/db.php";
+
+// $db = new db;
+// $db->connect();
+
+?>
