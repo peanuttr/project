@@ -1,9 +1,11 @@
 <?php
-include_once "./masterpage.php";
+include_once "../layout/masterpage.php";
+require "../../assets/config/db.php";
+$db = new db();
 ?>
 <div class="home-section">
     <h1>เพิ่มผู้ใช้งาน</h1>
-    <form method="post" action="../assets/includes/adduser.php">
+    <form method="post" action="../../assets/db/user/add-user-and-edit.php">
         <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
             <div class='col-md-6'>
                 <label>ชื่อผู้ใช้งาน</label>
@@ -55,9 +57,20 @@ include_once "./masterpage.php";
         <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
             <div class='col-md-6'>
                 <label>หน่วยงาน</label>
-                <div id="dep">
-
-                </div>
+                <?php
+                $stmt = $db->connect()->prepare("SELECT * FROM department");
+                $stmt->execute();
+                $output = " ";
+                $output .= "<select class='form-select' name='department_id'>";
+                $output .= "<option selected>เลือก หน่วยงาน </option>";
+                while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $depId = $result['id'];
+                    $depName = $result['department_name'];
+                    $output .= "<option value='$depId'>$depName</option>";
+                }
+                $output .= "</select>";
+                echo $output;
+                ?>
             </div>
         </div>
         <div class='row' style='margin: 10px 0 10px 20rem; width:50%;'>

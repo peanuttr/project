@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title> Assetment </title>
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- Boxiocns CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -16,8 +16,8 @@
     <div class="logo-details">
       <!-- <i class='bx bxl-c-plus-plus'></i> -->
       <!-- <div class="logo_name"></div> -->
-      <a href="./masterpage.php" class="logo">
-        <img class="banner" src="../assets/image/logo.png">
+      <a href="../layout/masterpage.php" class="logo">
+        <img class="banner" src="../../assets/image/logo.png">
       </a>
     </div>
     <ul class="nav-links">
@@ -49,12 +49,12 @@
         </ul>
       </li>
       <li>
-        <a href="./user-management.php">
+        <a href="../user/user-management.php">
           <i class='bx bx-info-square'></i>
           <span class="link_name">จัดการผู้ใช้งาน</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="./user-management.php">จัดการผู้ใช้งาน</a></li>
+          <li><a class="link_name" href="../user/user-management.php">จัดการผู้ใช้งาน</a></li>
         </ul>
       </li>
       <li>
@@ -101,6 +101,6 @@
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="../assets/js/script.js"></script>
+<script src="../../assets/js/script.js"></script>
 
 </html>

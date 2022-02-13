@@ -1,6 +1,6 @@
 <?php
-include "../assets/config/db.php";
-include_once "./masterpage.php";
+include "../../assets/config/db.php";
+include_once "../layout/masterpage.php";
 
 if (isset($_GET['id'])) {
     $_id = $_GET['id'];
@@ -16,14 +16,11 @@ if (isset($_GET['id'])) {
     while ($dep = $stmt->fetch(PDO::FETCH_ASSOC)) {
         array_push($dep_name, ['id' => $dep['id'], 'department_name' => $dep['department_name']]);
     }
-
-    // print_r($res);
-    // print_r($dep_name);
 }
 ?>
 <div class="home-section">
     <h1>แก้ไขผู้ใช้งาน</h1>
-    <form action='../assets/includes/adduser.php' method='post'>
+    <form action='../../assets/db/user/add-user-and-edit.php' method='post'>
         <input type="hidden" name='id' value=<?php echo $_id; ?>>
         <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
             <div class='col-md-6'>
