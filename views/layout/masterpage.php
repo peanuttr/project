@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title> Assetment </title>
   <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- Boxiocns CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -50,11 +51,20 @@
       </li>
       <li>
         <a href="../user/user-management.php">
-          <i class='bx bx-info-square'></i>
+          <i class='bi bi-person-workspace'></i>
           <span class="link_name">จัดการผู้ใช้งาน</span>
         </a>
         <ul class="sub-menu blank">
           <li><a class="link_name" href="../user/user-management.php">จัดการผู้ใช้งาน</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="../personnel/personnel-management.php">
+          <i class='bi bi-person-fill'></i>
+          <span class="link_name">จัดการบุคลากร</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="../personnel/personnel-management.php">จัดการบุคลากร</a></li>
         </ul>
       </li>
       <li>

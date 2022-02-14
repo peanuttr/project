@@ -3,4 +3,4 @@
 
 // $userController = new userController();
 // echo $userController->getUserAll();
-header("location: ./assets/includes/user/load.php");
+header("location: ./views/login/login.php");

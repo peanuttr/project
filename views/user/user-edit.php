@@ -81,38 +81,38 @@ if (isset($_GET['id'])) {
             <div class='col-md-6'>
                 <label>หน่วยงาน</label>
                 <select class='form-select' name='department_id'>
-                <?php
-                if ($res['department_id'] == $dep_name[0]['id']) {
-                    echo "<option value='" . $res['department_id'] . "' selected>" . $res['department_name'] . "</option>";
-                    echo "<option value='" . $dep_name[1]['id'] . "' >" . $dep_name[1]['department_name'] . "</option>";
-                    echo "<option value='" . $dep_name[2]['id'] . "' >" . $dep_name[2]['department_name'] . "</option>";
-                    echo "<option value='" . $dep_name[3]['id'] . "' >" . $dep_name[3]['department_name'] . "</option>";
-                } else if ($res['department_id'] == $dep_name[1]['id']) {
-                    echo "<option value='" . $res['department_id'] . "' selected>" . $res['department_name'] . "</option>";
-                    echo "<option value='" . $dep_name[0]['id'] . "' >" . $dep_name[0]['department_name'] . "</option>";
-                    echo "<option value='" . $dep_name[2]['id'] . "' >" . $dep_name[2]['department_name'] . "</option>";
-                    echo "<option value='" . $dep_name[3]['id'] . "' >" . $dep_name[3]['department_name'] . "</option>";
-                } else if ($res['department_id'] == $dep_name[2]['id']) {
-                    echo "<option value='" . $res['department_id'] . "' selected>" . $res['department_name'] . "</option>";
-                    echo "<option value='" . $dep_name[0]['id'] . "' >" . $dep_name[0]['department_name'] . "</option>";
-                    echo "<option value='" . $dep_name[1]['id'] . "' >" . $dep_name[1]['department_name'] . "</option>";
-                    echo "<option value='" . $dep_name[3]['id'] . "' >" . $dep_name[3]['department_name'] . "</option>";
-                } else if ($res['department_id'] == $dep_name[3]['id']) {
-                    echo "<option value='" . $res['department_id'] . "' selected>" . $res['department_name'] . "</option>";
-                    echo "<option value='" . $dep_name[0]['id'] . "' >" . $dep_name[0]['department_name'] . "</option>";
-                    echo "<option value='" . $dep_name[1]['id'] . "' >" . $dep_name[1]['department_name'] . "</option>";
-                    echo "<option value='" . $dep_name[2]['id'] . "' >" . $dep_name[2]['department_name'] . "</option>";
-                }
-                ?>
+                    <?php
+                    if ($res['department_id'] == $dep_name[0]['id']) {
+                        echo "<option value='" . $res['department_id'] . "' selected>" . $res['department_name'] . "</option>";
+                        echo "<option value='" . $dep_name[1]['id'] . "' >" . $dep_name[1]['department_name'] . "</option>";
+                        echo "<option value='" . $dep_name[2]['id'] . "' >" . $dep_name[2]['department_name'] . "</option>";
+                        echo "<option value='" . $dep_name[3]['id'] . "' >" . $dep_name[3]['department_name'] . "</option>";
+                    } else if ($res['department_id'] == $dep_name[1]['id']) {
+                        echo "<option value='" . $res['department_id'] . "' selected>" . $res['department_name'] . "</option>";
+                        echo "<option value='" . $dep_name[0]['id'] . "' >" . $dep_name[0]['department_name'] . "</option>";
+                        echo "<option value='" . $dep_name[2]['id'] . "' >" . $dep_name[2]['department_name'] . "</option>";
+                        echo "<option value='" . $dep_name[3]['id'] . "' >" . $dep_name[3]['department_name'] . "</option>";
+                    } else if ($res['department_id'] == $dep_name[2]['id']) {
+                        echo "<option value='" . $res['department_id'] . "' selected>" . $res['department_name'] . "</option>";
+                        echo "<option value='" . $dep_name[0]['id'] . "' >" . $dep_name[0]['department_name'] . "</option>";
+                        echo "<option value='" . $dep_name[1]['id'] . "' >" . $dep_name[1]['department_name'] . "</option>";
+                        echo "<option value='" . $dep_name[3]['id'] . "' >" . $dep_name[3]['department_name'] . "</option>";
+                    } else if ($res['department_id'] == $dep_name[3]['id']) {
+                        echo "<option value='" . $res['department_id'] . "' selected>" . $res['department_name'] . "</option>";
+                        echo "<option value='" . $dep_name[0]['id'] . "' >" . $dep_name[0]['department_name'] . "</option>";
+                        echo "<option value='" . $dep_name[1]['id'] . "' >" . $dep_name[1]['department_name'] . "</option>";
+                        echo "<option value='" . $dep_name[2]['id'] . "' >" . $dep_name[2]['department_name'] . "</option>";
+                    }
+                    ?>
                 </select>
             </div>
         </div>
         <div class='row' style='margin: 10px 0 10px 20rem; width:50%;'>
             <div class='col' style='margin-left: 42%;'>
-                <input type='submit' class='btn btn-success ' name='submit' value='บันทึก'>
+                <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
             </div>
             <div class='col' style='margin-right: 37%;'>
-                <a class='btn btn-danger'> <span>กลับ</span> </a>
+                <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
             </div>
         </div>
     </form>

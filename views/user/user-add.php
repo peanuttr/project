@@ -78,7 +78,7 @@ $db = new db();
                 <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
             </div>
             <div class='col' style='margin-right: 37%;'>
-                <a class='btn btn-sm btn-danger'> <span>กลับ</span> </a>
+                <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
             </div>
         </div>
     </form>

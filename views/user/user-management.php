@@ -42,13 +42,18 @@ include_once "../layout/masterpage.php";
 </div>
 <script>
     function removeUser(id) {
-        $.ajax({
-            url: '../../assets/db/user/del-user.php',
-            type: 'POST',
-            data: {id: id },
-            success: function(data){
-                window.location.href = "./user-management.php";
-            }
-        })
+        var result = confirm("Want to delete?");
+        if (result) {
+            $.ajax({
+                url: '../../assets/db/user/del-user.php',
+                type: 'POST',
+                data: {
+                    id: id
+                },
+                success: function(data) {
+                    window.location.href = "./user-management.php";
+                }
+            })
+        }
     }
 </script>

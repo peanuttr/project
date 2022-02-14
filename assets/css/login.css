@@ -1,0 +1,113 @@
+.login {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("../image/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login-middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.login-inner {
+  margin-left: auto;
+  margin-right: auto;
+  width: 632px;
+  height: 728px;
+  margin-bottom: 100px;
+  background: #ffffffe5;
+  border-radius: 25px;
+}
+
+.login-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 50px;
+}
+
+.login-input-form {
+  margin-left: 146px;
+}
+
+.login-title {
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+}
+
+.login-title-div {
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+
+.login-input {
+  width: 342px;
+  height: 44px;
+  background: #ffffff;
+  opacity: 0.6;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 8px;
+  text-indent: 25px;
+}
+
+.login-textfield-div {
+  margin-top: 15px;
+}
+
+.login-suggest-text {
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  color: #ff2424;
+}
+
+.login-suggest-text-div {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.login-button {
+  width: 343px;
+  height: 49px;
+  background: #df222d;
+  border-radius: 8px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: Kanit;
+}
+
+.login-reset-password-text {
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  text-decoration-line: underline;
+  color: #0094ff;
+}
+
+.login-forgot-password-text {
+  font-family: Kanit;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 21px;
+  color: #161616;
+}
+
+.login-reset-password-div {
+  margin-top: 15px;
+}
