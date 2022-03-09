@@ -18,36 +18,36 @@
     <div class="logo-details">
       <!-- <i class='bx bxl-c-plus-plus'></i> -->
       <!-- <div class="logo_name"></div> -->
-      <a href="../layout/masterpage.php" class="logo">
+      <a href="../dashboard/dashboard.php" class="logo">
         <img class="banner" src="../../assets/image/logo.png">
       </a>
     </div>
     <ul class="nav-links">
       <li>
-        <a href="#">
+        <a href="../dashboard/dashboard.php">
           <i class='bx bx-grid-alt'></i>
           <span class="link_name">รายงานครุภัณฑ์</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">รายงานครุภัณฑ์</a></li>
+          <li><a class="link_name" href="../dashboard/dashboard.php">รายงานครุภัณฑ์</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">
+        <a href="../borrow-return/borrow-return.php">
           <i class='bx bx-transfer-alt'></i>
           <span class="link_name">ยืม - คืน ครุภัณฑ์</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">ยืม - คืน ครุภัณฑ์</a></li>
+          <li><a class="link_name" href="../borrow-return/borrow-return.php">ยืม - คืน ครุภัณฑ์</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">
+        <a href="../sale-assetments/sale-assetment.php">
           <i class='bx bx-cart-alt'></i>
           <span class="link_name">จำหน่ายครุภัณฑ์</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">จำหน่ายครุภัณฑ์</a></li>
+          <li><a class="link_name" href="../sale-assetments/sale-assetment.php">จำหน่ายครุภัณฑ์</a></li>
         </ul>
       </li>
       <li>
@@ -69,37 +69,37 @@
         </ul>
       </li>
       <li>
-        <a href="#">
+        <a href="../assetments/asset-management.php">
           <i class='bx bx-tv'></i>
           <span class="link_name">จัดการข้อมูลครุภัณฑ์</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">จัดการข้อมูลครุภัณฑ์</a></li>
+          <li><a class="link_name" href="../assetments/asset-management.php">จัดการข้อมูลครุภัณฑ์</a></li>
         </ul>
       </li>
       <li>
         <div class="iocn-link">
-          <a href="#">
+          <a>
             <i class='bx bx-collection'></i>
             <span class="link_name">จัดการข้อมูลทั่วไป</span>
           </a>
           <i class='bx bxs-chevron-down arrow'></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">จัดการข้อมูลทั่วไป</a></li>
-          <li><a href="#">จัดการข้อมูลหน่วยนับ</a></li>
-          <li><a href="#">จัดการข้อมูลหน่วยงาน</a></li>
-          <li><a href="#">จัดการข้อมูลแหล่งเงิน</a></li>
-          <li><a href="#">จัดการข้อมูลประเภทครุภัณฑ์</a></li>
+          <li><a class="link_name" >จัดการข้อมูลทั่วไป</a></li>
+          <li><a href="../unit/unit.php">จัดการข้อมูลหน่วยนับ</a></li>
+          <li><a href="../department/department.php">จัดการข้อมูลหน่วยงาน</a></li>
+          <li><a href="../money-source/money-source.php">จัดการข้อมูลแหล่งเงิน</a></li>
+          <li><a href="../assetments-type/assetments-type.php">จัดการข้อมูลประเภทครุภัณฑ์</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">
+        <a href="../repair-assetments/repair-assetments.php">
           <i class='bx bx-cog'></i>
           <span class="link_name">แจ้งซ่อมครุภัณฑ์</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">แจ้งซ่อมครุภัณฑ์</a></li>
+          <li><a class="link_name" href="../repair-assetments/repair-assetments.php">แจ้งซ่อมครุภัณฑ์</a></li>
         </ul>
       </li>
       <li>
