@@ -2,8 +2,8 @@
 include_once "../layout/masterpage.php";
 ?>
 <div class="home-section">
-    <h1> การจัดการหน่วยนับ </h1>
-    <a class='button-17' href='./unit-add.php'> <span>เพิ่มหน่วยนับ</span> </a>
+    <h1> การจัดการหน่วยงาน </h1>
+    <a class='button-17' href='./unit-add.php'> <span>เพิ่มหน่วยงาน</span> </a>
     <table id="myTable" style="font-size:14px; width: 100%; text-align:center; border:1px;" class="table table-striped">
         <thead>
             <tr>
@@ -43,22 +43,20 @@ include_once "../layout/masterpage.php";
 </div>
 <script>
     $(document).ready(function() {
-        $('#myTable').DataTable({
-            "lengthMenu": [ 5,10 ]
-        });
+        $('#myTable').DataTable();
     });
 
     function removeUser(id) {
         var result = confirm("Want to delete?");
         if (result) {
             $.ajax({
-                url: '../../assets/db/unit/del-unit.php',
+                url: '../../assets/db/personnel/del-personnel.php',
                 type: 'POST',
                 data: {
                     id: id
                 },
                 success: function(data) {
-                    window.location.href = "./unit-management.php";
+                    window.location.href = "./personnel-management.php";
                 }
             })
         }
