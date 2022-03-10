@@ -68,12 +68,12 @@
         </ul>
       </li>
       <li>
-        <a href="#">
+        <a href="../asset-detail/asset-management.php">
           <i class='bx bx-tv'></i>
           <span class="link_name">จัดการข้อมูลครุภัณฑ์</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">จัดการข้อมูลครุภัณฑ์</a></li>
+          <li><a class="link_name" href="../asset-detail/asset-management.php">จัดการข้อมูลครุภัณฑ์</a></li>
         </ul>
       </li>
       <li>
