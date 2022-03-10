@@ -3,12 +3,12 @@ include_once "../layout/masterpage.php";
 ?>
 <div class="home-section">
     <h1> การจัดการหน่วยงาน </h1>
-    <a class='button-17' href='./unit-add.php'> <span>เพิ่มหน่วยงาน</span> </a>
+    <a class='button-17' href='./department-add.php'> <span>เพิ่มหน่วยงาน</span> </a>
     <table id="myTable" style="font-size:14px; width: 100%; text-align:center; border:1px;" class="table table-striped">
         <thead>
             <tr>
                 <th>ลำดับ</th>
-                <th>ชื่อหน่วยนับ</th>
+                <th>ชื่อหน่วยงาน</th>
                 <th>action</th>
             </tr>
         </thead>
@@ -16,16 +16,16 @@ include_once "../layout/masterpage.php";
             <?php
             require "../../assets/config/db.php";
             $db = new db();
-            $stmt = $db->connect()->prepare("SELECT * FROM unit");
+            $stmt = $db->connect()->prepare("SELECT * FROM department");
             $stmt->execute();
             $number = 1;
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             ?>
             <tr>
                 <td><?php echo $number ?></td>
-                <td><?php echo $result['unit_name']; ?></td>
+                <td><?php echo $result['department_name']; ?></td>
                 <td>
-                <a href='./unit-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-success'>
+                <a href='./department-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-success'>
                 <i class='bx bx-edit'></i>
                 </a> / 
                 <a class='del btn btn-sm btn-danger' onclick="removeUser('<?php echo $result['id']; ?>')">
@@ -50,13 +50,13 @@ include_once "../layout/masterpage.php";
         var result = confirm("Want to delete?");
         if (result) {
             $.ajax({
-                url: '../../assets/db/personnel/del-personnel.php',
+                url: '../../assets/db/department/del-department.php',
                 type: 'POST',
                 data: {
                     id: id
                 },
                 success: function(data) {
-                    window.location.href = "./personnel-management.php";
+                    window.location.href = "./department-management.php";
                 }
             })
         }
