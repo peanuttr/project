@@ -69,12 +69,12 @@
         </ul>
       </li>
       <li>
-        <a href="../assetments/asset-management.php">
+        <a href="../asset-detail/asset-management.php">
           <i class='bx bx-tv'></i>
           <span class="link_name">จัดการข้อมูลครุภัณฑ์</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="../assetments/asset-management.php">จัดการข้อมูลครุภัณฑ์</a></li>
+          <li><a class="link_name" href="../asset-detail/asset-management.php">จัดการข้อมูลครุภัณฑ์</a></li>
         </ul>
       </li>
       <li>
@@ -86,7 +86,7 @@
           <i class='bx bxs-chevron-down arrow'></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" >จัดการข้อมูลทั่วไป</a></li>
+          <li><a class="link_name">จัดการข้อมูลทั่วไป</a></li>
           <li><a href="../unit/unit.php">จัดการข้อมูลหน่วยนับ</a></li>
           <li><a href="../department/department.php">จัดการข้อมูลหน่วยงาน</a></li>
           <li><a href="../money-source/money-source.php">จัดการข้อมูลแหล่งเงิน</a></li>
