@@ -4,6 +4,7 @@ require "../../assets/config/db.php";
 $db = new db();
 ?>
 <div class="home-section">
+    <br>
     <h1>เพิ่มบุคลากร</h1>
     <form method="post" action="../../assets/db/personnel/add-personnel-and-edit.php">
         <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
@@ -36,8 +37,8 @@ $db = new db();
                 <label>สถานะ</label>
                 <select class='form-select' name='status'>
                     <option selected>เลือก Role </option>
-                    <option value='working'>ทำงานอยู่</option>
-                    <option value='resign'>ลาออก</option>
+                    <option value='ทำงานอยู่'>ทำงานอยู่</option>
+                    <option value='ลาออก'>ลาออก</option>
                 </select>
             </div>
         </div>

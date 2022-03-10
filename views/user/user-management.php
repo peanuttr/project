@@ -7,6 +7,7 @@ include_once "../layout/masterpage.php";
     <table id="myTable" style="font-size:14px; width: 100%; text-align:center; border:1px;" class="table table-striped">
         <thead>
             <tr>
+                <th>ลำดับ</th>
                 <th>ชื่อ</th>
                 <th>นามสกุล</th>
                 <th>หน่วยงาน</th>
@@ -19,9 +20,11 @@ include_once "../layout/masterpage.php";
             $db = new db();
             $stmt = $db->connect()->prepare("SELECT s.*,d.department_name FROM staffs AS s JOIN department AS d ON d.id = s.department_id");
             $stmt->execute();
+            $number = 1;
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
             ?>
             <tr>
+                <td><?php echo $number ?></td>
                 <td><?php echo $result['staff_firstname']; ?></td>
                 <td><?php echo $result['staff_lastname']; ?></td>
                 <td><?php echo $result['department_name']; ?></td>
@@ -34,7 +37,10 @@ include_once "../layout/masterpage.php";
             </a>
                 </td>
             </tr>
-            <?php } ?>
+            <?php 
+            $number+=1;
+           }
+            ?>
         </tbody>
     </table>
 </div>

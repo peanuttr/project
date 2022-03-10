@@ -19,7 +19,8 @@ if (isset($_GET['id'])) {
 }
 ?>
 <div class="home-section">
-    <h1>แก้ไขผู้ใช้งาน</h1>
+    <br>
+    <h1>แก้ไขบุคลากร</h1>
     <form action='../../assets/db/personnel/add-personnel-and-edit.php' method='post'>
         <input type="hidden" name='id' value=<?php echo $_id; ?>>
         <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
@@ -52,7 +53,7 @@ if (isset($_GET['id'])) {
                 <label>สถานะ</label>
                 <select class='form-select' name='status'>
                     <?php
-                    $option = array("working", "resign");
+                    $option = array("ทำงานอยู่", "ลาออก");
                     if ($res['status'] == $option[0]) {
                         echo "<option value='" . $res['status'] . "' selected> ทำงานอยู่ </option>";
                         echo "<option value='" . $option[1] . "' > ลาออก </option>";
