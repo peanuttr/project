@@ -52,7 +52,9 @@ include_once "../layout/masterpage.php";
 </div>
 <script>
     $(document).ready(function() {
-        $('#myTable').DataTable();
+        $('#myTable').DataTable({
+            "lengthMenu": [ 5,10 ]
+        });
     });
 
     function removeUser(id) {
