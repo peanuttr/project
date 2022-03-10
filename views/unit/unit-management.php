@@ -50,13 +50,13 @@ include_once "../layout/masterpage.php";
         var result = confirm("Want to delete?");
         if (result) {
             $.ajax({
-                url: '../../assets/db/personnel/del-personnel.php',
+                url: '../../assets/db/unit/del-unit.php',
                 type: 'POST',
                 data: {
                     id: id
                 },
                 success: function(data) {
-                    window.location.href = "./personnel-management.php";
+                    window.location.href = "./unit-management.php";
                 }
             })
         }
