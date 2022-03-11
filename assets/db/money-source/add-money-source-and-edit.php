@@ -12,10 +12,10 @@ if (is_null($_POST['id'])) {
     }
 } else {
     $_id = $_POST['id'];
-    $unitNameEdit = $_POST['unitName'];
+    $moneySourceNameEdit = $_POST['moneySourceName'];
 
-    $stmt = $db->connect()->prepare("UPDATE `unit` SET `unit_name`= '$unitNameEdit' WHERE `id`= '$_id'");
+    $stmt = $db->connect()->prepare("UPDATE `money_source` SET `money_source_name`= '$moneySourceNameEdit' WHERE `id`= '$_id'");
     if ($stmt->execute()) {
-        header("location: ../../../../../project/views/unit/unit-management.php");
+        header("location: ../../../../../project/views/money-source/money-source-management.php");
     }
 }
