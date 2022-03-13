@@ -16,7 +16,7 @@ include_once "../layout/masterpage.php";
             <?php
             require "../../assets/config/db.php";
             $db = new db();
-            $stmt = $db->connect()->prepare("SELECT * FROM unit");
+            $stmt = $db->fetchData("SELECT * FROM unit");
             $stmt->execute();
             $number = 1;
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {

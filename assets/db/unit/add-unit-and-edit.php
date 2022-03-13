@@ -6,7 +6,7 @@ if (is_null($_POST['id'])) {
 
     echo "unitName:$unitName";
 
-    $stmt = $db->connect()->prepare("INSERT INTO `unit`(`unit_name`) VALUES ('$unitName')");
+    $stmt = $db->insertData("INSERT INTO `unit`(`unit_name`) VALUES ('$unitName')");
     if ($stmt->execute()) {
         header("location: ../../../../../project/views/unit/unit-management.php");
     }
@@ -14,7 +14,7 @@ if (is_null($_POST['id'])) {
     $_id = $_POST['id'];
     $unitNameEdit = $_POST['unitName'];
 
-    $stmt = $db->connect()->prepare("UPDATE `unit` SET `unit_name`= '$unitNameEdit' WHERE `id`= '$_id'");
+    $stmt = $db->updateData("UPDATE `unit` SET `unit_name`= '$unitNameEdit' WHERE `id`= '$_id'");
     if ($stmt->execute()) {
         header("location: ../../../../../project/views/unit/unit-management.php");
     }

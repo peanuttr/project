@@ -24,6 +24,7 @@ include_once "../layout/masterpage.php";
             require "../../assets/config/db.php";
             $db = new db();
             $data = $db->fetchData("SELECT s.*,d.department_name FROM staffs AS s JOIN department AS d ON d.id = s.department_id");
+            $data->execute();
             $number = 1;
             foreach ($data->fetchAll() as $result) {
             ?>

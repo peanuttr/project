@@ -6,7 +6,7 @@ if (is_null($_POST['id'])) {
 
     echo "moneySourceName:$moneySourceName";
 
-    $stmt = $db->connect()->prepare("INSERT INTO `money_source`(`money_source_name`) VALUES ('$moneySourceName')");
+    $stmt = $db->insertData("INSERT INTO `money_source`(`money_source_name`) VALUES ('$moneySourceName')");
     if ($stmt->execute()) {
         header("location: ../../../../../project/views/money-source/money-source-management.php");
     }
@@ -14,7 +14,7 @@ if (is_null($_POST['id'])) {
     $_id = $_POST['id'];
     $moneySourceNameEdit = $_POST['moneySourceName'];
 
-    $stmt = $db->connect()->prepare("UPDATE `money_source` SET `money_source_name`= '$moneySourceNameEdit' WHERE `id`= '$_id'");
+    $stmt = $db->updateData("UPDATE `money_source` SET `money_source_name`= '$moneySourceNameEdit' WHERE `id`= '$_id'");
     if ($stmt->execute()) {
         header("location: ../../../../../project/views/money-source/money-source-management.php");
     }

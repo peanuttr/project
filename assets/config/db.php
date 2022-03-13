@@ -21,7 +21,6 @@ class db
 
 	public function fetchData($sql){
 		$stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
         return $stmt;
 	}
 
@@ -35,7 +34,7 @@ class db
         return $stmt;
 	}
 
-	public function DeleteData($sql){
+	public function deleteData($sql){
 		$stmt = $this->connect()->prepare($sql);
         return $stmt;
 	}

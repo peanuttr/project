@@ -5,7 +5,7 @@ include_once "../layout/masterpage.php";
 if (isset($_GET['id'])) {
     $_id = $_GET['id'];
     $db = new db();
-    $stmt = $db->connect()->prepare("SELECT * FROM department WHERE id = $_id");
+    $stmt = $db->fetchData("SELECT * FROM department WHERE id = $_id");
     $stmt->execute();
     $res = $stmt->fetch(PDO::FETCH_ASSOC);
 }
