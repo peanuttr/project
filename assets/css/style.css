@@ -21,7 +21,7 @@ body{
 }
 .sidebar.close{
   width: 78px;
-  opacity: 1;
+  /* opacity: 1; */
 }
 .sidebar .logo-details{
   height: 60px;
@@ -372,4 +372,20 @@ i.bx.bx-trash{
 .del:hover{
   cursor: pointer;
   filter: brightness(85%);
+}
+
+#myTable{
+  font-size:14px; 
+  width: 100%; 
+  /* text-align:center;  */
+  border:1px;
+}
+
+.home-content {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.close{
+  opacity: 1 !important;
 }

@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <div class="sidebar close">
+  <div id="side-bar" class="sidebar close">
     <div class="logo-details">
       <!-- <i class='bx bxl-c-plus-plus'></i> -->
       <!-- <div class="logo_name"></div> -->
