@@ -1,6 +1,14 @@
 <?php
-// require_once "../assets/controller/userController.php";
+require "./assets/db/user/user.php";
 
-// $userController = new userController();
-// echo $userController->getUserAll();
-header("location: ./views/login/login.php");
+$user = new user;
+$data = $user->getAll();
+
+foreach ($data as $result) {
+    echo $result['staff_firstname'];
+    echo $result['staff_lastname'];
+    echo $result['department_name'];
+}
+// print_r($data);
+// echo $data;
+// header("location: ./views/login/login.php");

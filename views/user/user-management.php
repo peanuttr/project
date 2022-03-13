@@ -16,30 +16,34 @@ include_once "../layout/masterpage.php";
         </thead>
         <tbody>
             <?php
+            // require "../../assets/config/db.php";
+            // $db = new db();
+            // $stmt = $db->connect()->query("SELECT s.*,d.department_name FROM staffs AS s JOIN department AS d ON d.id = s.department_id");
+            // $number = 1;
+            // foreach ($stmt->fetchAll() as $result) {
             require "../../assets/config/db.php";
             $db = new db();
-            $stmt = $db->connect()->prepare("SELECT s.*,d.department_name FROM staffs AS s JOIN department AS d ON d.id = s.department_id");
-            $stmt->execute();
+            $data = $db->fetchData("SELECT s.*,d.department_name FROM staffs AS s JOIN department AS d ON d.id = s.department_id");
             $number = 1;
-            while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            foreach ($data->fetchAll() as $result) {
             ?>
-            <tr>
-                <td><?php echo $number ?></td>
-                <td><?php echo $result['staff_firstname']; ?></td>
-                <td><?php echo $result['staff_lastname']; ?></td>
-                <td><?php echo $result['department_name']; ?></td>
-                <td>
-                <a href='./user-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-success'>
-                <i class='bx bx-edit'></i>
-                </a> / 
-                <a class='del btn btn-sm btn-danger' onclick="removeUser('<?php echo $result['id']; ?>')">
-                <i class='bx bx-trash' ></i>
-            </a>
-                </td>
-            </tr>
-            <?php 
-            $number+=1;
-           }
+                <tr>
+                    <td><?php echo $number ?></td>
+                    <td><?php echo $result['staff_firstname']; ?></td>
+                    <td><?php echo $result['staff_lastname']; ?></td>
+                    <td><?php echo $result['department_name']; ?></td>
+                    <td>
+                        <a href='./user-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-success'>
+                            <i class='bx bx-edit'></i>
+                        </a> /
+                        <a class='del btn btn-sm btn-danger' onclick="removeUser('<?php echo $result['id']; ?>')">
+                            <i class='bx bx-trash'></i>
+                        </a>
+                    </td>
+                </tr>
+            <?php
+                $number += 1;
+            }
             ?>
         </tbody>
     </table>
@@ -47,7 +51,7 @@ include_once "../layout/masterpage.php";
 <script>
     $(document).ready(function() {
         $('#myTable').DataTable({
-            "lengthMenu": [ 5,10 ]
+            "lengthMenu": [5, 10]
         });
     });
 
