@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
     $user = $_POST['username'];
     $pass = $_POST['password'];
     $db = new db();
-    $stmt = $db->fetchData("SELECT * FROM `staffs` WHERE `username` = '$user' AND `password` = '$pass'");
+    $stmt = $db->sqlQuery("SELECT * FROM `staffs` WHERE `username` = '$user' AND `password` = '$pass'");
     $stmt->execute();
     $res = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!empty($res['username'])) {

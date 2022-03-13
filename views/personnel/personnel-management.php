@@ -21,7 +21,7 @@ include_once "../layout/masterpage.php";
             <?php
             require "../../assets/config/db.php";
             $db = new db();
-            $stmt = $db->fetchData("SELECT p.*,d.department_name FROM personnels AS p JOIN department AS d ON d.id = p.department_id");
+            $stmt = $db->sqlQuery("SELECT p.*,d.department_name FROM personnels AS p JOIN department AS d ON d.id = p.department_id");
             $stmt->execute();
             $number = 1;
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {

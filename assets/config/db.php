@@ -18,23 +18,8 @@ class db
 			echo "Connection failed: " . $e->getMessage();
 		}
 	}
-
-	public function fetchData($sql){
-		$stmt = $this->connect()->prepare($sql);
-        return $stmt;
-	}
-
-	public function insertData($sql){
-		$stmt = $this->connect()->prepare($sql);
-        return $stmt;
-	}
-
-	public function updateData($sql){
-		$stmt = $this->connect()->prepare($sql);
-        return $stmt;
-	}
-
-	public function deleteData($sql){
+	
+	public function sqlQuery($sql){
 		$stmt = $this->connect()->prepare($sql);
         return $stmt;
 	}

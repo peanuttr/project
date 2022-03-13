@@ -22,7 +22,7 @@ include_once "../layout/masterpage.php";
     <?php
             require "../../assets/config/db.php";
             $db = new db();
-            $stmt = $db->fetchData("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name FROM `assets` AS a 
+            $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name FROM `assets` AS a 
             JOIN `assets_types` as t ON a.assets_types_id = t.id 
             JOIN `unit` as u ON a.unit_id = u.id 
             JOIN `department` as d ON a.department_id = d.id 

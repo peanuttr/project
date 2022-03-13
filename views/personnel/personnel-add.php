@@ -46,7 +46,7 @@ $db = new db();
             <div class='col-md-6'>
                 <label>หน่วยงาน</label>
                 <?php
-                $stmt = $db->fetchData("SELECT * FROM department");
+                $stmt = $db->sqlQuery("SELECT * FROM department");
                 $stmt->execute();
                 $output = " ";
                 $output .= "<select class='form-select' name='department_id'>";

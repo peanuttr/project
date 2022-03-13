@@ -25,7 +25,7 @@ if (is_null($_POST['id'])) {
     //     header("location: ../../../../../project/views/user/user-management.php");
     // }
 
-    $data =  $db->insertData("INSERT INTO `staffs`(`username`, `password`, `staff_firstname`, `staff_lastname`, `permission`, `telephone`, `email`, `department_id`) VALUES ('$username','$password','$fisrtname','$lastname','$permission','$telephone','$email','$department_id')");
+    $data =  $db->sqlQuery("INSERT INTO `staffs`(`username`, `password`, `staff_firstname`, `staff_lastname`, `permission`, `telephone`, `email`, `department_id`) VALUES ('$username','$password','$fisrtname','$lastname','$permission','$telephone','$email','$department_id')");
     if ($data->execute()) {
         header("location: ../../../../../project/views/user/user-management.php");
     }
@@ -44,7 +44,7 @@ if (is_null($_POST['id'])) {
     // if ($stmt->execute()) {
     //     header("location: ../../../../../project/views/user/user-management.php");
     // }
-    $data =  $db->updateData("UPDATE `staffs` SET `username`= '$username', `password`= '$password', `staff_firstname`= '$fname', `staff_lastname`= '$lname', `permission`= '$permission', `telephone`= '$telephone',`email`= '$email',`department_id`= '$department_id' WHERE `id`= '$_id'");
+    $data =  $db->sqlQuery("UPDATE `staffs` SET `username`= '$username', `password`= '$password', `staff_firstname`= '$fname', `staff_lastname`= '$lname', `permission`= '$permission', `telephone`= '$telephone',`email`= '$email',`department_id`= '$department_id' WHERE `id`= '$_id'");
     if ($data->execute()) {
         header("location: ../../../../../project/views/user/user-management.php");
     }

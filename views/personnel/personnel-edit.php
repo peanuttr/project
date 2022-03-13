@@ -5,13 +5,13 @@ include_once "../layout/masterpage.php";
 if (isset($_GET['id'])) {
     $_id = $_GET['id'];
     $db = new db();
-    $stmt = $db->fetchData("SELECT p.*,d.department_name FROM personnels AS p JOIN department AS d ON d.id = p.department_id  WHERE p.id = $_id");
+    $stmt = $db->sqlQuery("SELECT p.*,d.department_name FROM personnels AS p JOIN department AS d ON d.id = p.department_id  WHERE p.id = $_id");
     $stmt->execute();
 
     $res = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $dep_name = array();
-    $stmt = $db->fetchData("SELECT * FROM department");
+    $stmt = $db->sqlQuery("SELECT * FROM department");
     $stmt->execute();
     while ($dep = $stmt->fetch(PDO::FETCH_ASSOC)) {
         array_push($dep_name, ['id' => $dep['id'], 'department_name' => $dep['department_name']]);

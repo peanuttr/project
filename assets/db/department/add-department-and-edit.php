@@ -6,7 +6,7 @@ if (is_null($_POST['id'])) {
 
     echo "departmentName:$departmentName";
 
-    $stmt = $db->insertData("INSERT INTO `department`(`department_name`) VALUES ('$departmentName')");
+    $stmt = $db->sqlQuery("INSERT INTO `department`(`department_name`) VALUES ('$departmentName')");
     if ($stmt->execute()) {
         header("location: ../../../../../project/views/department/department-management.php");
     }
@@ -14,7 +14,7 @@ if (is_null($_POST['id'])) {
     $_id = $_POST['id'];
     $departmentNameEdit = $_POST['departmentName'];
 
-    $stmt = $db->updateData("UPDATE `department` SET `department_name`= '$departmentNameEdit' WHERE `id`= '$_id'");
+    $stmt = $db->sqlQuery("UPDATE `department` SET `department_name`= '$departmentNameEdit' WHERE `id`= '$_id'");
     if ($stmt->execute()) {
         header("location: ../../../../../project/views/department/department-management.php");
     }

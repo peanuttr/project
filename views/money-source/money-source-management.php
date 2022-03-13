@@ -16,7 +16,7 @@ include_once "../layout/masterpage.php";
             <?php
             require "../../assets/config/db.php";
             $db = new db();
-            $stmt = $db->fetchData("SELECT * FROM money_source");
+            $stmt = $db->sqlQuery("SELECT * FROM money_source");
             $stmt->execute();
             $number = 1;
             while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {

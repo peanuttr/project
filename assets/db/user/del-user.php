@@ -8,7 +8,7 @@ if(isset($_POST['id'])){
     // if ($stmt->execute()) {
     //     header("location: ../../../../../project/views/user/user-management.php");
     // }
-    $data = $db->deleteData("DELETE FROM staffs WHERE id = $_id");
+    $data = $db->sqlQuery("DELETE FROM staffs WHERE id = $_id");
     if ($data->execute()) {
         header("location: ../../../../../project/views/user/user-management.php");
     }
