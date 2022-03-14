@@ -4,7 +4,7 @@ require "../../assets/config/db.php";
 $db = new db();
 ?>
 <div class="home-section">
-    <br>
+    <div class="home-content">
     <h1>เพิ่มแหล่งเงิน</h1>
     <form method="post" action="../../assets/db/money-source/add-money-source-and-edit.php">
         <div class="container">
@@ -24,4 +24,6 @@ $db = new db();
         </div>
         </div>
     </form>
+    </div>
+    
 </div>
