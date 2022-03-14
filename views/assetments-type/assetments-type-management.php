@@ -2,6 +2,7 @@
 include_once "../layout/masterpage.php";
 ?>
 <div class="home-section">
+    <div class="home-content">
     <h1> การจัดการประเภทครุภัณฑ์ </h1>
     <a class='button-17' href='./assetments-type-add.php'> <span>เพิ่มประเภทครุภัณฑ์</span> </a>
     <table id="myTable" style="font-size:14px; width: 100%; text-align:center; border:1px;" class="table table-striped">
@@ -40,6 +41,8 @@ include_once "../layout/masterpage.php";
          ?>
         </tbody>
     </table>
+    </div>
+    
 </div>
 <script>
     $(document).ready(function() {

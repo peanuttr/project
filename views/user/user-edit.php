@@ -19,6 +19,7 @@ if (isset($_GET['id'])) {
 }
 ?>
 <div class="home-section">
+    <div class="home-content">
     <h1>แก้ไขผู้ใช้งาน</h1>
     <form action='../../assets/db/user/add-user-and-edit.php' method='post'>
         <input type="hidden" name='id' value=<?php echo $_id; ?>>
@@ -116,4 +117,5 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </form>
+    </div>
 </div>

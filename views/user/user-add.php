@@ -4,6 +4,7 @@ require "../../assets/config/db.php";
 $db = new db();
 ?>
 <div class="home-section">
+    <div class="home-content">
     <h1>เพิ่มผู้ใช้งาน</h1>
     <form method="post" action="../../assets/db/user/add-user-and-edit.php">
         <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
@@ -82,4 +83,5 @@ $db = new db();
             </div>
         </div>
     </form>
+    </div>
 </div>

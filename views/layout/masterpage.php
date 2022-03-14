@@ -105,6 +105,9 @@
       <li>
       </li>
     </ul>
+    <div class="user-detail">
+      <h3>user</h3>
+    </div>
   </div>
   <div class="home-section top-nav">
     <i class='bx bx-menu'></i>

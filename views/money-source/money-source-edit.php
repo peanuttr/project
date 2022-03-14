@@ -11,7 +11,7 @@ if (isset($_GET['id'])) {
 }
 ?>
 <div class="home-section">
-    <br>
+    <div class="home-content">
     <h1>แก้ไขแหล่งเงิน</h1>
     <form action='../../assets/db/money-source/add-money-source-and-edit.php' method='post'>
         <input type="hidden" name='id' value=<?php echo $_id; ?>>
@@ -31,4 +31,6 @@ if (isset($_GET['id'])) {
             </div>
         </div>
     </form>
+    </div>
+    
 </div>
