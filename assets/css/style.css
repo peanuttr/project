@@ -389,3 +389,12 @@ i.bx.bx-trash{
 .close{
   opacity: 1 !important;
 }
+
+.user-detail{
+  color: #fff;
+  display: flex;
+  position: absolute;
+  top: 18%;
+  right: 2%;
+  z-index: 99999;
+}
