@@ -22,8 +22,7 @@ include_once "../layout/masterpage.php";
                         $asset_number = "";
                         foreach ($stmt->fetchAll() as $res) {
                         ?>
-                            <option value="<?php $asset_number = $res['assets_number'];
-                                            echo $asset_number; ?>" />
+                            <option value="<?php echo $res['assets_number']; ?>" />
                         <?php
                         }
                         ?>
@@ -38,7 +37,7 @@ include_once "../layout/masterpage.php";
                         JOIN `assets_types` as t ON a.assets_types_id = t.id 
                         JOIN `unit` as u ON a.unit_id = u.id 
                         JOIN `department` as d ON a.department_id = d.id 
-                        JOIN `money_source` as m ON a.money_source_id = m.id WHERE a.assets_number = '$asset_number'");
+                        JOIN `money_source` as m ON a.money_source_id = m.id WHERE a.assets_number = '$res[assets_number]'");
                         $stmt->execute();
                         foreach ($stmt->fetchAll() as $res) {
                         ?>
