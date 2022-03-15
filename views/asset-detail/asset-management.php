@@ -71,7 +71,6 @@ include_once "../layout/masterpage.php";
         alert( 'You clicked on '+data[1]+'\'s row' );
     } );
 
-    });
     function removeAsset(id) {
         var result = confirm("Want to delete?");
         if (result) {
@@ -87,4 +86,5 @@ include_once "../layout/masterpage.php";
             })
         }
     }
+    });
 </script>
