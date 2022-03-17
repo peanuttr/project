@@ -15,10 +15,10 @@ $db = new db();
                     </div>
                 </div>
                 <div class='row flex justify-content-center mt-2'>
-                    <div class='col-1 d-flex justify-content-start' style=''>
+                    <div class='col-1 d-flex justify-content-start'>
                         <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
                     </div>
-                    <div class='col-1 d-flex justity-content-end' style=''>
+                    <div class='col-1 d-flex justity-content-end'>
                         <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
                     </div>
                 </div>

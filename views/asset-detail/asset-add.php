@@ -176,6 +176,58 @@ $db = new db();
                 </div>
             </div>
         </form>
+        </div>
+        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
+            <div class='col-md-6'>
+                <label>รายละเอียด</label>
+                <input type='text' name='telephone' class='form-control' placeholder='เบอร์มือถือ'>
+            </div>
+
+        </div>
+        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
+            <div class='col-md-6'>
+                <label>ปีงบประมาณ</label>
+                <input type='text' name='email' class='form-control' placeholder='E-Mail'>
+            </div>
+        </div>
+        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
+            <div class='col-md-6'>
+                <label>สถานะ</label>
+                <select class='form-select' name='status'>
+                    <option selected>เลือก Role </option>
+                    <option value='working'>ทำงานอยู่</option>
+                    <option value='resign'>ลาออก</option>
+                </select>
+            </div>
+        </div>
+        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
+            <div class='col-md-6'>
+                <label>หน่วยงาน</label>
+                <?php
+                $stmt = $db->sqlQuery("SELECT * FROM department");
+                $stmt->execute();
+                $output = " ";
+                $output .= "<select class='form-select' name='department_id'>";
+                $output .= "<option selected>เลือก หน่วยงาน </option>";
+                while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $depId = $result['id'];
+                    $depName = $result['department_name'];
+                    $output .= "<option value='$depId'>$depName</option>";
+                }
+                $output .= "</select>";
+                echo $output;
+                ?>
+            </div>
+        </div>
+        <div class='row flex justify-content-center mt-2'>
+            <div class='col-1 d-flex justify-content-start' >
+                <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
+            </div>
+            <div class='col-1 d-flex justity-content-end' >
+                <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
+            </div>
+        </div>
+    </form>
     </div>
 </div>
 

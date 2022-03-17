@@ -94,7 +94,7 @@
         </ul>
       </li>
       <li>
-        <a href="../repair-assetments/repair-assetments.php">
+        <a href="../repair-assetments/repair-assetments-add.php">
           <i class='bx bx-cog'></i>
           <span class="link_name">แจ้งซ่อมครุภัณฑ์</span>
         </a>

@@ -20,91 +20,82 @@ if (isset($_GET['id'])) {
 ?>
 <div class="home-section">
     <div class="home-content">
-    <h1>แก้ไขบุคลากร</h1>
-    <form action='../../assets/db/personnel/add-personnel-and-edit.php' method='post'>
-        <input type="hidden" name='id' value=<?php echo $_id; ?>>
-        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-            <div class='col-md-6'>
-                <label>ชื่อ</label>
-                <input type='text' name='fisrtname' class='form-control' placeholder='ชื่อ' value=<?php echo $res['personnel_firstname']; ?>>
+        <h1>แก้ไขบุคลากร</h1>
+        <form action='../../assets/db/personnel/add-personnel-and-edit.php' method='post'>
+            <input type="hidden" name='id' value=<?php echo $_id; ?>>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
+                    <label>ชื่อ</label>
+                    <input type='text' name='fisrtname' class='form-control' placeholder='ชื่อ' value=<?php echo $res['personnel_firstname']; ?>>
+                </div>
             </div>
-        </div>
-        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-            <div class='col-md-6'>
-                <label>นามสกุล</label>
-                <input type='text' name='lastname' class='form-control' placeholder='นามสกุล' value=<?php echo $res['personnel_lastname']; ?>>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
+                    <label>นามสกุล</label>
+                    <input type='text' name='lastname' class='form-control' placeholder='นามสกุล' value=<?php echo $res['personnel_lastname']; ?>>
+                </div>
             </div>
-        </div>
-        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-            <div class='col-md-6'>
-                <label>เบอร์มือถือ</label>
-                <input type='text' name='telephone' class='form-control' placeholder='เบอร์มือถือ' value=<?php echo $res['telephone_number']; ?>>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
+                    <label>เบอร์มือถือ</label>
+                    <input type='text' name='telephone' class='form-control' placeholder='เบอร์มือถือ' value=<?php echo $res['telephone_number']; ?>>
+                </div>
             </div>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
+                    <label>อีเมล์</label>
+                    <input type='text' name='email' class='form-control' placeholder='E-Mail' value=<?php echo $res['email']; ?>>
+                </div>
+            </div>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
+                    <label>สถานะ</label>
+                        <?php
+                        $status = array("ทำงานอยู่", "ลาออก");
+                        echo " <select class='form-control' name='status'>";
+                        echo " <option selected> " .$res['status'] ." </option> ";
+                        for ($i = 0; $i < count($status); $i++) {
+                            if (strcmp($res['status'], $status[$i]) == 0) {
 
-        </div>
-        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-            <div class='col-md-6'>
-                <label>อีเมล์</label>
-                <input type='text' name='email' class='form-control' placeholder='E-Mail' value=<?php echo $res['email']; ?>>
-            </div>
-        </div>
-        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-            <div class='col-md-6'>
-                <label>สถานะ</label>
-                <select class='form-control' name='status'>
-                    <?php
-                    $option = array("ทำงานอยู่", "ลาออก");
-                    if ($res['status'] == $option[0]) {
-                        echo "<option value='" . $res['status'] . "' selected> ทำงานอยู่ </option>";
-                        echo "<option value='" . $option[1] . "' > ลาออก </option>";
-                    } else if ($res['status'] == $option[1]) {
-                        echo "<option value='" . $res['status'] . "' selected> ลาออก </option>";
-                        echo "<option value='" . $option[0] . "' > ทำงานอยู่ </option>";
-                    }
-                    ?>
-                </select>
-            </div>
+                            } else {
+                                echo "<option value='$status[$i]'>$status[$i]</option>";
+                            }
+                        }
+                        echo "</select>";
+                        ?>
+                </div>
 
-        </div>
-        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-            <div class='col-md-6'>
-                <label>หน่วยงาน</label>
-                <select class='form-control' name='department_id'>
+            </div>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
+                    <label>หน่วยงาน</label>
                     <?php
-                    if ($res['department_id'] == $dep_name[0]['id']) {
-                        echo "<option value='" . $res['department_id'] . "' selected>" . $res['department_name'] . "</option>";
-                        echo "<option value='" . $dep_name[1]['id'] . "' >" . $dep_name[1]['department_name'] . "</option>";
-                        echo "<option value='" . $dep_name[2]['id'] . "' >" . $dep_name[2]['department_name'] . "</option>";
-                        echo "<option value='" . $dep_name[3]['id'] . "' >" . $dep_name[3]['department_name'] . "</option>";
-                    } else if ($res['department_id'] == $dep_name[1]['id']) {
-                        echo "<option value='" . $res['department_id'] . "' selected>" . $res['department_name'] . "</option>";
-                        echo "<option value='" . $dep_name[0]['id'] . "' >" . $dep_name[0]['department_name'] . "</option>";
-                        echo "<option value='" . $dep_name[2]['id'] . "' >" . $dep_name[2]['department_name'] . "</option>";
-                        echo "<option value='" . $dep_name[3]['id'] . "' >" . $dep_name[3]['department_name'] . "</option>";
-                    } else if ($res['department_id'] == $dep_name[2]['id']) {
-                        echo "<option value='" . $res['department_id'] . "' selected>" . $res['department_name'] . "</option>";
-                        echo "<option value='" . $dep_name[0]['id'] . "' >" . $dep_name[0]['department_name'] . "</option>";
-                        echo "<option value='" . $dep_name[1]['id'] . "' >" . $dep_name[1]['department_name'] . "</option>";
-                        echo "<option value='" . $dep_name[3]['id'] . "' >" . $dep_name[3]['department_name'] . "</option>";
-                    } else if ($res['department_id'] == $dep_name[3]['id']) {
-                        echo "<option value='" . $res['department_id'] . "' selected>" . $res['department_name'] . "</option>";
-                        echo "<option value='" . $dep_name[0]['id'] . "' >" . $dep_name[0]['department_name'] . "</option>";
-                        echo "<option value='" . $dep_name[1]['id'] . "' >" . $dep_name[1]['department_name'] . "</option>";
-                        echo "<option value='" . $dep_name[2]['id'] . "' >" . $dep_name[2]['department_name'] . "</option>";
-                    }
-                    ?>
-                </select>
+                        $stmt = $db->sqlQuery("SELECT * FROM department");
+                        $stmt->execute();
+                        echo "<select class='form-control' name='departmentId'>";
+                        echo "<option value=". $res['department_id']." selected> " . $res['department_name'] . "</option>";
+                        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            $depId = $result['id'];
+                            $depName = $result['department_name'];
+                            if (strcmp($res['department_name'], $depName) == 0) {
+                                
+                            } else {
+                                echo "<option value='$depId'>$depName</option>";
+                            }
+                        }
+                        echo "</select>"
+                        ?>
+                </div>
             </div>
-        </div>
-        <div class='row' style='margin: 10px 0 10px 20rem; width:50%;'>
-            <div class='col' style='margin-left: 42%;'>
-                <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
+            <div class='row flex justify-content-center mt-2'>
+                <div class='col-1 d-flex justify-content-start'>
+                    <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
+                </div>
+                <div class='col-1 d-flex justity-content-end'>
+                    <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
+                </div>
             </div>
-            <div class='col' style='margin-right: 37%;'>
-                <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
-            </div>
-        </div>
-    </form>
+        </form>
     </div>
-    
+
 </div>

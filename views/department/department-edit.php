@@ -21,12 +21,12 @@ if (isset($_GET['id'])) {
                 <input type='text' name='departmentName' class='form-control' placeholder='ชื่อหน่วยงาน' value=<?php echo $res['department_name']; ?>>
             </div>
         </div>
-        <div class='row' style='margin: 10px 0 10px 20rem; width:50%;'>
-            <div class='col' style='margin-left: 42%;'>
-                <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
-            </div>
-            <div class='col' style='margin-right: 37%;'>
+        <div class='row flex justify-content-center mt-2'>
+            <div class='col-1 d-flex justify-content-start' >
                 <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
+            </div>
+            <div class='col-1 d-flex justity-content-end' >
+                <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
             </div>
         </div>
     </form>

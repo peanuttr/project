@@ -79,7 +79,7 @@ if (isset($_GET['id'])) {
                         $stmt->execute();
                         $output = " ";
                         $output .= "<select class='form-control' name='moneySourceId'>";
-                        $output .= "<option selected> " . $res['money_source_name'] . " </option>";
+                        $output .= "<option value=".$res['money_source_id']." selected> " . $res['money_source_name'] . " </option>";
                         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             $moneySourceId = $result['id'];
                             $moneySourceName = $result['money_source_name'];
@@ -99,7 +99,7 @@ if (isset($_GET['id'])) {
                         $stmt = $db->sqlQuery("SELECT * FROM department");
                         $stmt->execute();
                         echo "<select class='form-control' name='departmentId'>";
-                        echo "<option selected> " . $res['department_name'] . "</option>";
+                        echo "<option value=".$res['department_id']." selected> " . $res['department_name'] . "</option>";
                         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             $depId = $result['id'];
                             $depName = $result['department_name'];
@@ -136,7 +136,7 @@ if (isset($_GET['id'])) {
                         $stmt = $db->sqlQuery("SELECT * FROM assets_types");
                         $stmt->execute();
                         echo "<select class='form-control' name='assetTypeId'>";
-                        echo "<option selected> " . $res['assets_types_name'] . "</option>";
+                        echo "<option value=".$res['assets_types_id']." selected> " . $res['assets_types_name'] . "</option>";
                         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             $assetTypeId = $result['id'];
                             $assetTypeName = $result['assets_types_name'];
@@ -158,7 +158,7 @@ if (isset($_GET['id'])) {
                         $stmt->execute();
                         $output = " ";
                         $output .= "<select class='form-control' name='unitId'>";
-                        $output .= "<option selected> " . $res['unit_name'] . " </option>";
+                        $output .= "<option value=".$res['unit_id']." selected> " . $res['unit_name'] . " </option>";
                         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             $unitId = $result['id'];
                             $unitName = $result['unit_name'];

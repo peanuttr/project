@@ -37,7 +37,7 @@ include_once "../layout/masterpage.php";
                 <td><?php echo $result['assets_number']; ?></td>
                 <td><?php echo $result['asset_name']; ?></td>
                 <td><?php echo $result['unit_name']; ?></td>
-                <td><?php echo $result['place_name']; ?></td>
+                <td><?php echo "-"; ?></td>
                 <td><?php echo $result['status']; ?></td>
                 <td><?php echo $result['qr-code']; ?></td>
                 <td><img src="<?php echo $result['image']; ?>" width="50px" alt=""></td>
@@ -71,7 +71,6 @@ include_once "../layout/masterpage.php";
     //     alert( 'You clicked on '+data[1]+'\'s row' );
     // } );
 
-    });
     function removeAsset(id) {
         var result = confirm("Want to delete?");
         if (result) {
@@ -87,4 +86,5 @@ include_once "../layout/masterpage.php";
             })
         }
     }
+    });
 </script>
