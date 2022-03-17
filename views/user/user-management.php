@@ -12,16 +12,13 @@ include_once "../layout/masterpage.php";
                     <th>ชื่อ</th>
                     <th>นามสกุล</th>
                     <th>หน่วยงาน</th>
+                    <th>สิทธิ์การใช้งาน</th>
                     <th>action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                // require "../../assets/config/db.php";
-                // $db = new db();
-                // $stmt = $db->connect()->query("SELECT s.*,d.department_name FROM staffs AS s JOIN department AS d ON d.id = s.department_id");
-                // $number = 1;
-                // foreach ($stmt->fetchAll() as $result) {
+                
                 require "../../assets/config/db.php";
                 $db = new db();
                 $data = $db->sqlQuery("SELECT s.*,d.department_name FROM staffs AS s JOIN department AS d ON d.id = s.department_id");
@@ -34,6 +31,12 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $result['staff_firstname']; ?></td>
                         <td><?php echo $result['staff_lastname']; ?></td>
                         <td><?php echo $result['department_name']; ?></td>
+                        <?php if ($result['permission'] == "staff") {
+                            echo "<td>เจ้าหน้าที่</td>";
+                        } else {
+                            echo "<td>ผู้บริหาร</td>";
+                        } 
+                        ?>
                         <td>
                             <a href='./user-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-success'>
                                 <i class='bx bx-edit'></i>

@@ -16,13 +16,13 @@ if (isset($_GET['id'])) {
         <form action='../../assets/db/money-source/add-money-source-and-edit.php' method='post'>
             <input type="hidden" name='id' value=<?php echo $_id; ?>>
             <div class="container">
-                <div class='row flex justify-content-center' style=''>
+                <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ชื่อแหล่งเงิน</label>
                         <input type='text' name='moneySourceName' class='form-control' placeholder='ชื่อแหล่งเงิน' value=<?php echo $res['money_source_name']; ?>>
                     </div>
                 </div>
-                <div class='row flex justify-content-center mt-2'>
+                <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
                     <div class='col-1 d-flex justify-content-start'>
                         <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
                     </div>

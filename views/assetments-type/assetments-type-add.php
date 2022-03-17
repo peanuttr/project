@@ -8,14 +8,14 @@ $db = new db();
         <h1>เพิ่มประเภทครุภัณฑ์</h1>
         <form method="post" action="../../assets/db/assetment-type/add-assetment-type-and-edit.php">
             <div class="container">
-                <div class='row flex justify-content-center' style=''>
+                <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ชื่อประเภทครุภัณฑ์</label>
                         <input type='text' name='assetmentTypeName' class='form-control' placeholder='ชื่อประเภทครุภัณฑ์'>
                     </div>
                 </div>
-                <div class='row flex justify-content-center mt-2'>
-                    <div class='col-1 d-flex justify-content-start'>
+                <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
+                    <div class='col-1 d-flex justify-content-start' style=''>
                         <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
                     </div>
                     <div class='col-1 d-flex justity-content-end'>

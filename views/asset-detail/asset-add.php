@@ -8,7 +8,7 @@ $db = new db();
         <h1>เพิ่มครุภัณฑ์</h1>
         <form method="post" action="../../assets/db/asset-detail/add-asset-detail-and-edit.php">
             <div class="form-insert-asset">
-                <div class='row flex justify-content-center' style=''>
+                <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>เลขครุภัณฑ์</label>
                         <input type='text' name='assetNumber' class='form-control' placeholder='เลขครุภัณฑ์'>
@@ -18,7 +18,7 @@ $db = new db();
                         <input type='text' name='assetName' class='form-control' placeholder='ชื่อครุภัณฑ์'>
                     </div>
                 </div>
-                <div class='row flex justify-content-center' style=''>
+                <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>รายละเอียด</label>
                         <input type='text' name='assetDetail' class='form-control' placeholder='รายละเอียด'>
@@ -28,7 +28,7 @@ $db = new db();
                         <input type="date" name="dateAdmit" id="startdate" class="form-control" placeholder="dd-mm-yyyy">
                     </div>
                 </div>
-                <div class='row flex justify-content-center' style=''>
+                <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>มูลค่าครุภัณฑ์</label>
                         <input type="text" name="assetValue" class="form-control" placeholder="มูลค่าครุภัณฑ์">
@@ -38,7 +38,7 @@ $db = new db();
                         <input type="text" name="deliveryNumber" class="form-control" placeholder="เลขที่ใบส่งของ">
                     </div>
                 </div>
-                <div class='row flex justify-content-center' style=''>
+                <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ผู้ขาย</label>
                         <input type="text" name="seller" class="form-control" placeholder="ผู้ขาย">
@@ -48,7 +48,7 @@ $db = new db();
                         <input type="text" name="serialNumber" class="form-control" placeholder="หมายเลขซีเรียล">
                     </div>
                 </div>
-                <div class='row flex justify-content-center' style=''>
+                <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>วันหมดประกัน</label>
                         <input type="date" name="expirationDate" class="form-control" placeholder="วันหมดประกัน">
@@ -58,7 +58,7 @@ $db = new db();
                         <input type="text" name="address" class="form-control" placeholder="ที่อยู่">
                     </div>
                 </div>
-                <div class='row flex justify-content-center' style=''>
+                <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>แหล่งเงิน</label>
                         <?php
@@ -94,7 +94,7 @@ $db = new db();
                         ?>
                     </div>
                 </div>
-                <div class='row flex justify-content-center' style=''>
+                <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>สถานะ</label>
                         <select class='form-control' name='yearBudget'>
@@ -128,7 +128,7 @@ $db = new db();
                         ?>
                     </div>
                 </div>
-                <div class='row flex justify-content-center' style=''>
+                <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>หน่วยนับ</label>
                         <?php
@@ -157,7 +157,7 @@ $db = new db();
                         </select>
                     </div>
                 </div>
-                <div class='row flex justify-content-center' style=''>
+                <div class='row flex justify-content-center'>
                     <div class='col-12 width-50 flex justify-center'>
                         <div class="form-group">
                             <label for="exampleFormControlFile1">รูปภาพ</label>
@@ -171,63 +171,11 @@ $db = new db();
                 <div class='col-1 d-flex justify-content-start' style=''>
                     <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
                 </div>
-                <div class='col-1 d-flex justity-content-end' style=''>
+                <div class='col-1 d-flex justity-content-end'>
                     <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
                 </div>
             </div>
         </form>
-        </div>
-        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-            <div class='col-md-6'>
-                <label>รายละเอียด</label>
-                <input type='text' name='telephone' class='form-control' placeholder='เบอร์มือถือ'>
-            </div>
-
-        </div>
-        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-            <div class='col-md-6'>
-                <label>ปีงบประมาณ</label>
-                <input type='text' name='email' class='form-control' placeholder='E-Mail'>
-            </div>
-        </div>
-        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-            <div class='col-md-6'>
-                <label>สถานะ</label>
-                <select class='form-select' name='status'>
-                    <option selected>เลือก Role </option>
-                    <option value='working'>ทำงานอยู่</option>
-                    <option value='resign'>ลาออก</option>
-                </select>
-            </div>
-        </div>
-        <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-            <div class='col-md-6'>
-                <label>หน่วยงาน</label>
-                <?php
-                $stmt = $db->sqlQuery("SELECT * FROM department");
-                $stmt->execute();
-                $output = " ";
-                $output .= "<select class='form-select' name='department_id'>";
-                $output .= "<option selected>เลือก หน่วยงาน </option>";
-                while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $depId = $result['id'];
-                    $depName = $result['department_name'];
-                    $output .= "<option value='$depId'>$depName</option>";
-                }
-                $output .= "</select>";
-                echo $output;
-                ?>
-            </div>
-        </div>
-        <div class='row flex justify-content-center mt-2'>
-            <div class='col-1 d-flex justify-content-start' >
-                <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
-            </div>
-            <div class='col-1 d-flex justity-content-end' >
-                <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
-            </div>
-        </div>
-    </form>
     </div>
 </div>
 

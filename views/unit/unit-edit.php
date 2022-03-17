@@ -15,13 +15,13 @@ if (isset($_GET['id'])) {
         <h1>แก้ไขหน่วยนับ</h1>
         <form action='../../assets/db/unit/add-unit-and-edit.php' method='post'>
             <input type="hidden" name='id' value=<?php echo $_id; ?>>
-            <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-                <div class='col-md-6'>
+            <div class='row flex justify-content-center'>
+                    <div class='col-6 width-50 flex justify-center'>
                     <label>ชื่อหน่วยนับ</label>
                     <input type='text' name='unitName' class='form-control' placeholder='ชื่อหน่วยนับ' value=<?php echo $res['unit_name']; ?>>
                 </div>
             </div>
-            <div class='row flex justify-content-center mt-2'>
+            <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
                 <div class='col-1 d-flex justify-content-start'>
                     <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
                 </div>

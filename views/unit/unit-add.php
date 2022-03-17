@@ -7,13 +7,13 @@ $db = new db();
     <div class="home-content">
         <h1>เพิ่มหน่วยนับ</h1>
         <form method="post" action="../../assets/db/unit/add-unit-and-edit.php">
-            <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-                <div class='col-md-6'>
+            <div class='row flex justify-content-center'>
+                <div class='col-6 width-50 flex justify-center'>
                     <label>ชื่อหน่วยนับ</label>
                     <input type='text' name='unitName' class='form-control' placeholder='ชื่อหน่วยนับ'>
                 </div>
             </div>
-            <div class='row flex justify-content-center mt-2'>
+            <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
                 <div class='col-1 d-flex justify-content-start'>
                     <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
                 </div>

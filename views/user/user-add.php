@@ -7,47 +7,47 @@ $db = new db();
     <div class="home-content">
         <h1>เพิ่มผู้ใช้งาน</h1>
         <form method="post" action="../../assets/db/user/add-user-and-edit.php">
-            <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-                <div class='col-md-6'>
+        <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
                     <label>ชื่อผู้ใช้งาน</label>
                     <input type='text' name='username' class='form-control' placeholder='ชื่อผู้ใช้งาน'>
                 </div>
             </div>
-            <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-                <div class='col-md-6'>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
                     <label>รหัสผ่าน</label>
                     <input type='password' name='password' class='form-control' placeholder='รหัสผ่าน'>
                 </div>
             </div>
-            <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-                <div class='col-md-6'>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
                     <label>ชื่อ</label>
                     <input type='text' name='fisrtname' class='form-control' placeholder='ชื่อ'>
                 </div>
             </div>
-            <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-                <div class='col-md-6'>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
                     <label>นามสกุล</label>
                     <input type='text' name='lastname' class='form-control' placeholder='นามสกุล'>
                 </div>
             </div>
-            <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-                <div class='col-md-6'>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
                     <label>เบอร์มือถือ</label>
                     <input type='text' name='telephone' class='form-control' placeholder='เบอร์มือถือ'>
                 </div>
 
             </div>
-            <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-                <div class='col-md-6'>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
                     <label>อีเมล์</label>
                     <input type='text' name='email' class='form-control' placeholder='E-Mail'>
                 </div>
             </div>
-            <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-                <div class='col-md-6'>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
                     <label>สิทธิ์การใช้งาน</label>
-                    <select class='form-select' name='permission'>
+                    <select class='form-control' name='permission'>
                         <option selected>เลือก Role </option>
                         <option value='staff'>เจ้าหน้าที่</option>
                         <option value='ceo'>ผู้บริหาร</option>
@@ -55,14 +55,14 @@ $db = new db();
                 </div>
 
             </div>
-            <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
-                <div class='col-md-6'>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
                     <label>หน่วยงาน</label>
                     <?php
                     $stmt = $db->sqlQuery("SELECT * FROM department");
                     $stmt->execute();
                     $output = " ";
-                    $output .= "<select class='form-select' name='department_id'>";
+                    $output .= "<select class='form-control' name='department_id'>";
                     $output .= "<option selected>เลือก หน่วยงาน </option>";
                     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $depId = $result['id'];
