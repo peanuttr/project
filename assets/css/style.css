@@ -386,6 +386,7 @@ i.bx.bx-trash{
   margin: 0 auto;
 }
 
+
 .close{
   opacity: 1 !important;
 }
@@ -397,4 +398,9 @@ i.bx.bx-trash{
   top: 18%;
   right: 2%;
   z-index: 99999;
+}
+
+.form-insert-asset {
+  overflow: scroll;
+  height: 500px;
 }

@@ -51,7 +51,7 @@ if (isset($_GET['id'])) {
         <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
             <div class='col-md-6'>
                 <label>สถานะ</label>
-                <select class='form-select' name='status'>
+                <select class='form-control' name='status'>
                     <?php
                     $option = array("ทำงานอยู่", "ลาออก");
                     if ($res['status'] == $option[0]) {
@@ -69,7 +69,7 @@ if (isset($_GET['id'])) {
         <div class='row' style='margin: 10px 0 10px 39rem; width:50%;'>
             <div class='col-md-6'>
                 <label>หน่วยงาน</label>
-                <select class='form-select' name='department_id'>
+                <select class='form-control' name='department_id'>
                     <?php
                     if ($res['department_id'] == $dep_name[0]['id']) {
                         echo "<option value='" . $res['department_id'] . "' selected>" . $res['department_name'] . "</option>";

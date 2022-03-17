@@ -66,10 +66,10 @@ include_once "../layout/masterpage.php";
             "lengthMenu": [ 5,10 ]
         });
 
-        $('#myTable tbody').on('click', 'tr', function () {
-        var data = table.row( this ).data();
-        alert( 'You clicked on '+data[1]+'\'s row' );
-    } );
+    //     $('#myTable tbody').on('click', 'tr', function () {
+    //     var data = table.row( this ).data();
+    //     alert( 'You clicked on '+data[1]+'\'s row' );
+    // } );
 
     });
     function removeAsset(id) {
