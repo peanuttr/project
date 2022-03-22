@@ -52,7 +52,7 @@ foreach ($stmt->fetchAll() as $res) {
             <div class="row">
                 <div class="col-6">
                     <label>วันที่แจ้ง</label>
-                    <input type="date" name="date" class="form-control">
+                    <input type="text" id="reportDate" name="date" class="form-control">
                 </div>
                 <div class="col-6">
                     <div>
@@ -102,6 +102,12 @@ foreach ($stmt->fetchAll() as $res) {
                     return;
                 }
             });
+        });
+
+        $("#reportDate").datepicker({
+            language: 'th-th',
+            format: 'dd/mm/yyyy',
+            autoclose: true,
         });
 
     });

@@ -17,9 +17,10 @@ if (is_null($_POST['id'])) {
     $money_source_id = $_POST['moneySourceId'];
     $assets_types_id = $_POST['assetTypeId'];
     $unit_id = $_POST['unitId'];
+    $image = null;
 
     if (isset($_FILES['image'])) {
-        $target_dir = "../../uploads/";
+        $target_dir = "../../../assets/uploads/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -50,12 +51,12 @@ if (is_null($_POST['id'])) {
             }
         }
     }
-    // $stmt = $db->sqlQuery("INSERT INTO `assets`(`assets_number`, `asset_name`, `detail`, `year_of_budget`, `value_asset`, `seller_name`, `status`, `number_delivery`, `serial_number`, `date_admit`, `expiration_date`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`,`image`) 
-    // VALUES ('$assets_number','$name','$detail','$year_of_budget','$value_assets','$seller','$status','$delivery_number','$serial_number','$date_admit','$expiration_date','$assets_types_id','$unit_id','$department_id','$money_source_id','$image')");
-    // if ($stmt->execute()) {
-    //     //   echo "<script type='text/javascript'>alert('$image');</script>";
-    //     header("location: ../../../../../project/views/asset-detail/asset-management.php");
-    // }
+    $stmt = $db->sqlQuery("INSERT INTO `assets`(`assets_number`, `asset_name`, `detail`, `year_of_budget`, `value_asset`, `seller_name`, `status`, `number_delivery`, `serial_number`, `date_admit`, `expiration_date`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`,`image`) 
+    VALUES ('$assets_number','$name','$detail','$year_of_budget','$value_assets','$seller','$status','$delivery_number','$serial_number','$date_admit','$expiration_date','$assets_types_id','$unit_id','$department_id','$money_source_id','$image')");
+    if ($stmt->execute()) {
+        //   echo "<script type='text/javascript'>alert('$image');</script>";
+        header("location: ../../../../../project/views/asset-detail/asset-management.php");
+    }
 } else {
     $_id = $_POST['id'];
     $assets_number = $_POST['assets_number'];
@@ -73,10 +74,10 @@ if (is_null($_POST['id'])) {
     $money_source_id = $_POST['money_source_id'];
     $assets_types_id = $_POST['assets_types_id'];
     $unit_id = $_POST['unit_id'];
-    $image;
+    $image = null;
 
     if (isset($_FILES['image'])) {
-        $target_dir = "../../../assets/uploads";
+        $target_dir = "../../../assets/uploads/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
