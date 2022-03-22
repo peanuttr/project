@@ -25,7 +25,7 @@ $db = new db();
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>วันที่เข้ารับ</label>
-                        <input type="date" name="dateAdmit" id="startdate" class="form-control" placeholder="dd-mm-yyyy">
+                        <input type="text" name="dateAdmit" id="startdate" class="form-control" placeholder="dd-mm-yyyy">
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
@@ -51,7 +51,7 @@ $db = new db();
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>วันหมดประกัน</label>
-                        <input type="date" name="expirationDate" class="form-control" placeholder="วันหมดประกัน">
+                        <input type="text" name="expirationDate" id="endDate" class="form-control" placeholder="dd-mm-yyyy">
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ที่อยู่</label>
@@ -180,13 +180,25 @@ $db = new db();
 </div>
 
 <script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#preview').attr('src', e.target.result);
+    $(document).ready(function() {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
             }
-            reader.readAsDataURL(input.files[0]);
         }
-    }
+        $("#startdate").datepicker({
+            language: 'th-th',
+            format: 'dd/mm/yyyy',
+            autoclose: true,
+        });
+        $("#endDate").datepicker({
+            language: 'th-th',
+            format: 'dd/mm/yyyy',
+            autoclose: true,
+        });
+    })
 </script>

@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
   <!-- Boxiocns CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="../../assets/bootstrap-datepicker-thai/css/datepicker.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -118,6 +119,9 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../assets/bootstrap-datepicker-thai/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="../../assets/bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js"></script>
+<script type="text/javascript" src="../../assets/bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js"></script>
 <script src="../../assets/js/script.js"></script>
 
 </html>
