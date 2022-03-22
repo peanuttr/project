@@ -34,12 +34,12 @@
         </ul>
       </li>
       <li>
-        <a href="../borrow-return/borrow-return.php">
+        <a href="../borrow-return/borrow-return-management.php">
           <i class='bx bx-transfer-alt'></i>
           <span class="link_name">ยืม - คืน ครุภัณฑ์</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="../borrow-return/borrow-return.php">ยืม - คืน ครุภัณฑ์</a></li>
+          <li><a class="link_name" href="../borrow-return/borrow-return-management.php">ยืม - คืน ครุภัณฑ์</a></li>
         </ul>
       </li>
       <li>
