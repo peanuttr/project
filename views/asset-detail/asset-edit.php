@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
 <div class="home-section">
     <div class="home-content">
         <h1>แก้ครุภัณฑ์</h1>
-        <form action='../../assets/db/asset-detail/add-asset-detail-and-edit.php' method='post'>
+        <form action='../../assets/db/asset-detail/add-asset-detail-and-edit.php' method='post' enctype="multipart/form-data">
             <input type="hidden" name='id' value=<?php echo $_id; ?>>
             <div class="form-insert-asset">
                 <div class='row flex justify-content-center'>
@@ -38,7 +38,7 @@ if (isset($_GET['id'])) {
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>วันที่เข้ารับ</label>
-                        <input type="text" name="dateAdmit" id="startdate" class="form-control" placeholder="dd-mm-yyyy" value=<?php echo $res['date_admit'] ?>>
+                        <input type="text" name="dateAdmit" data-provide="datepicker" data-date-language="th-th" class="form-control" placeholder="dd-mm-yyyy" value=<?php echo DateThai($res['date_admit']) ?>>
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
@@ -64,7 +64,7 @@ if (isset($_GET['id'])) {
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>วันหมดประกัน</label>
-                        <input type="text" name="expirationDate" id="endDate" class="form-control" placeholder="วันหมดประกัน" value=<?php echo $res['expiration_date'] ?>>
+                        <input type="text" name="expirationDate" data-provide="datepicker" data-date-language="th-th" class="form-control" placeholder="วันหมดประกัน" value=<?php echo DateThai($res['expiration_date']) ?>>
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ที่อยู่</label>
@@ -114,18 +114,7 @@ if (isset($_GET['id'])) {
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ปีงบประมาณ</label>
-                        <?php
-                        $year = ["2560", "2561", "2562", "2563", "2564", "2565", "2566", "2567", "2568"];
-                        echo " <select class='form-control' name='yearBudget'>";
-                        echo " <option selected> " . $res['year_of_budget'] . " </option> ";
-                        for ($i = 0; $i < count($year); $i++) {
-                            if (strcmp($res['year_of_budget'], $year[$i]) == 0) {
-                            } else {
-                                echo "<option value='$year[$i]'>$year[$i]</option>";
-                            }
-                        }
-                        echo "</select>";
-                        ?>
+                        <input type="text" name="yearBudget" class="form-control" placeholder="ปีงบประมาณ" value=<?php echo $res['year_of_budget'] ?>>
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ประเภทครุภัณฑ์</label>
@@ -205,9 +194,22 @@ if (isset($_GET['id'])) {
     </div>
 </div>
 
+<?php
+function DateThai($strDate)
+{
+    $strYear = date("Y", strtotime($strDate)) + 543;
+
+    $strMonth = date("m", strtotime($strDate));
+
+    $strDay = date("d", strtotime($strDate));
+
+    $newdate = "$strDay-$strMonth-$strYear";
+
+    return $newdate;
+} ?>
+
 <script>
-    $(document).ready(function() {
-        function readURL(input) {
+    function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
@@ -216,15 +218,4 @@ if (isset($_GET['id'])) {
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        $("#startdate").datepicker({
-            language: 'th-th',
-            format: 'dd/mm/yyyy',
-            autoclose: true,
-        });
-        $("#endDate").datepicker({
-            language: 'th-th',
-            format: 'dd/mm/yyyy',
-            autoclose: true,
-        });
-    })
 </script>

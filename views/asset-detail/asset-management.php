@@ -44,7 +44,7 @@ include_once "../layout/masterpage.php";
                         <td>
                             <a href='./asset-edit.php?id=<?php echo $result['id'] ?>' class='btn btn-sm btn-success'>
                                 <i class='bx bx-edit'></i>
-                            </a> /
+                            </a> 
                             <a class='del btn btn-sm btn-danger' onclick="removeAsset('<?php echo $result['id'] ?>')">
                                 <i class='bx bx-trash'></i>
                             </a>
