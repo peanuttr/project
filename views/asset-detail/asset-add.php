@@ -6,7 +6,7 @@ $db = new db();
 <div class="home-section">
     <div class="home-content">
         <h1>เพิ่มครุภัณฑ์</h1>
-        <form method="post" action="../../assets/db/asset-detail/add-asset-detail-and-edit.php">
+        <form method="post" action="../../assets/db/asset-detail/add-asset-detail-and-edit.php" enctype="multipart/form-data">
             <div class="form-insert-asset">
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
@@ -25,7 +25,7 @@ $db = new db();
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>วันที่เข้ารับ</label>
-                        <input type="text" name="dateAdmit" id="startdate" class="form-control" placeholder="dd-mm-yyyy">
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="dateAdmit" class="form-control" placeholder="dd-mm-yyyy">
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
@@ -51,7 +51,7 @@ $db = new db();
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>วันหมดประกัน</label>
-                        <input type="text" name="expirationDate" id="endDate" class="form-control" placeholder="dd-mm-yyyy">
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="expirationDate"  class="form-control" placeholder="dd-mm-yyyy">
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ที่อยู่</label>
@@ -96,19 +96,8 @@ $db = new db();
                 </div>
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
-                        <label>สถานะ</label>
-                        <select class='form-control' name='yearBudget'>
-                            <option selected>เลือกปีงบประมาณ </option>
-                            <option value='2560'>2560</option>
-                            <option value='2561'>2561</option>
-                            <option value='2562'>2562</option>
-                            <option value='2563'>2563</option>
-                            <option value='2564'>2564</option>
-                            <option value='2565'>2565</option>
-                            <option value='2565'>2566</option>
-                            <option value='2565'>2567</option>
-                            <option value='2565'>2568</option>
-                        </select>
+                        <label>ปีงบประมาณ</label>
+                        <input type="text" name="yearBudget" class="form-control" placeholder="ปีงบประมาณ">
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ประเภทครุภัณฑ์</label>
@@ -180,8 +169,7 @@ $db = new db();
 </div>
 
 <script>
-    $(document).ready(function() {
-        function readURL(input) {
+    function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
@@ -190,15 +178,4 @@ $db = new db();
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        $("#startdate").datepicker({
-            language: 'th-th',
-            format: 'dd/mm/yyyy',
-            autoclose: true,
-        });
-        $("#endDate").datepicker({
-            language: 'th-th',
-            format: 'dd/mm/yyyy',
-            autoclose: true,
-        });
-    })
 </script>
