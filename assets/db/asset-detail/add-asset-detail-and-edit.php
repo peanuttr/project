@@ -29,7 +29,7 @@ if (is_null($_POST['id'])) {
     $newFormatExpirationDate = date("Y-m-d", strtotime($newExpirationDate));
 
     if (isset($_FILES['image'])) {
-        $target_dir = "../../../../Project/assets/uploads/";
+        $target_dir = "../../uploads/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -54,7 +54,7 @@ if (is_null($_POST['id'])) {
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                $image = $target_file;
+                $image = ($_FILES["image"]["name"]);
                 echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
             } else {
                 echo ($target_file);
@@ -63,12 +63,12 @@ if (is_null($_POST['id'])) {
             }
         }
     }
-    // $stmt = $db->sqlQuery("INSERT INTO `assets`(`assets_number`, `asset_name`, `detail`, `year_of_budget`, `value_asset`, `seller_name`, `status`, `number_delivery`, `serial_number`, `date_admit`, `expiration_date`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`,`image`) 
-    // VALUES ('$assets_number','$name','$detail','$year_of_budget','$value_assets','$seller','$status','$delivery_number','$serial_number','$newFormatDateAdmit','$newFormatExpirationDate','$assets_types_id','$unit_id','$department_id','$money_source_id','$image')");
-    // if ($stmt->execute()) {
-    //     //   echo "<script type='text/javascript'>alert('$image');</script>";
-    //     header("location: ../../../../../project/views/asset-detail/asset-management.php");
-    // }
+    $stmt = $db->sqlQuery("INSERT INTO `assets`(`assets_number`, `asset_name`, `detail`, `year_of_budget`, `value_asset`, `seller_name`, `status`, `number_delivery`, `serial_number`, `date_admit`, `expiration_date`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`,`image`) 
+    VALUES ('$assets_number','$name','$detail','$year_of_budget','$value_assets','$seller','$status','$delivery_number','$serial_number','$newFormatDateAdmit','$newFormatExpirationDate','$assets_types_id','$unit_id','$department_id','$money_source_id','$image')");
+    if ($stmt->execute()) {
+        //   echo "<script type='text/javascript'>alert('$image');</script>";
+        header("location: ../../../../../project/views/asset-detail/asset-management.php");
+    }
 
 } else {
     $_id = $_POST['id'];
@@ -100,7 +100,7 @@ if (is_null($_POST['id'])) {
     $newFormatExpirationDate = date("Y-m-d", strtotime($newExpirationDate));
 
     if (isset($_FILES['image'])) {
-        $target_dir = "../../../assets/uploads/";
+        $target_dir = "../../uploads/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -125,7 +125,7 @@ if (is_null($_POST['id'])) {
             // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                $image = $target_file;
+                $image = ($_FILES["image"]["name"]);
                 echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
             } else {
                 echo "Sorry, there was an error uploading your file.";
@@ -133,8 +133,8 @@ if (is_null($_POST['id'])) {
         }
     }
 
-    // $stmt = $db->sqlQuery("UPDATE `assets` SET `assets_number`='$assets_number',`asset_name`='$name',`detail`='$detail',`year_of_budget`='$year_of_budget',`value_asset`='$value_assets',`seller_name`='$seller',`status`='$status',`number_delivery`='$delivery_number',`serial_number`='$serial_number',`date_admit`='$newFormatDateAdmit',`expiration_date`='$newFormatExpirationDate',`assets_types_id`='$assets_types_id',`unit_id`='$unit_id',`department_id`='$department_id',`money_source_id`='$money_source_id',`image` ='$image'  WHERE `id` = '$_id'");
-    // if ($stmt->execute()) {
-    //     header("location: ../../../../../project/views/asset-detail/asset-management.php");
-    // }
+    $stmt = $db->sqlQuery("UPDATE `assets` SET `assets_number`='$assets_number',`asset_name`='$name',`detail`='$detail',`year_of_budget`='$year_of_budget',`value_asset`='$value_assets',`seller_name`='$seller',`status`='$status',`number_delivery`='$delivery_number',`serial_number`='$serial_number',`date_admit`='$newFormatDateAdmit',`expiration_date`='$newFormatExpirationDate',`assets_types_id`='$assets_types_id',`unit_id`='$unit_id',`department_id`='$department_id',`money_source_id`='$money_source_id',`image` ='$image'  WHERE `id` = '$_id'");
+    if ($stmt->execute()) {
+        header("location: ../../../../../project/views/asset-detail/asset-management.php");
+    }
 }

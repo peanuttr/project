@@ -177,7 +177,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group">
                             <label for="exampleFormControlFile1">รูปภาพ</label>
                             <input type="file" class="form-control-file" name="image" onchange="readURL(this);">
-                            <img src="<?php echo $res['image'] ?>" width="50px" height="auto" alt="" srcset="" id="preview">
+                            <img src="<?php echo "../../assets/uploads/", $res['image'] ?>" width="50px" height="auto" alt="" srcset="" id="preview">
                         </div>
                     </div>
                 </div>

@@ -40,7 +40,7 @@ include_once "../layout/masterpage.php";
                         <td><?php echo "-"; ?></td>
                         <td><?php echo $result['status']; ?></td>
                         <td><?php echo $result['qr-code']; ?></td>
-                        <td><img src="<?php echo $result['image']; ?>" width="50px" alt=""></td>
+                        <td><img src="<?php echo "../../assets/uploads/", $result['image']; ?>" width="50px" alt=""></td>
                         <td>
                             <a href='./asset-edit.php?id=<?php echo $result['id'] ?>' class='btn btn-sm btn-success'>
                                 <i class='bx bx-edit'></i>
