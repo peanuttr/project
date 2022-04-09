@@ -80,10 +80,10 @@ foreach ($stmt->fetchAll() as $res) {
                 </div>
             </div>
             <div class='row flex justify-content-center mt-2'>
-                <div class='col-1 d-flex justify-content-start'>
-                    <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
-                </div>
-                <div class='col-1 d-flex justity-content-end'>
+                <!-- <div class='col-1 d-flex justify-content-start'>
+                    <button class='btn btn-sm btn-danger' href="javascript:history.back()">กลับ </button>
+                </div> -->
+                <div class='col-1 d-flex justity-content-center'>
                     <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
                 </div>
             </div>
