@@ -19,37 +19,28 @@ foreach ($stmt->fetchAll() as $res) {
     <div class="home-content">
         <h1>การแจ้งซ่อมครุภัณฑ์</h1>
         <form action="../../assets/db/repair-assetments/add-repair-assetment.php" method="POST">
-            <table width="100%" id="dynamic_field">
-                <tr>
-                    <td>
-                        <div class="col-12">
-                            <label>รหัสครุภัณฑ์</label>
-                            <input type="hidden" name="assets-id" id="assets-id">
-                            <input type="search" list="asset-number" id="assets-number" class="form-control" name="assets-number[]" />
-                            <datalist id="asset-number">
-                                <?php
-                                for ($i = 0; $i < count($assets); $i++) {
-                                ?>
-                                    <option value="<?php echo $assets[$i]['assets_number']; ?>" />
-                                <?php
-                                }
-                                ?>
-                            </datalist>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col-12">
-                            <label>ชื่อครุภัณฑ์</label>
-                            <input type="text" id="assets-name" class="form-control" name="assets-name[]" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col-12" >
-                            <a class="btn btn-primary btn-sm" id="addMore" ><i class="bi bi-plus-circle" style="color: #fff;"></i></a>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="col-6">
+                    <label>รหัสครุภัณฑ์</label>
+                    <input type="hidden" name="assets-id" id="assets-id">
+                    <input type="search" list="asset-number" id="assets-number" class="form-control" name="assets-number" />
+                    <datalist id="asset-number">
+                        <?php
+
+                        for ($i = 0; $i < count($assets); $i++) {
+
+                        ?>
+                            <option value="<?php echo $assets[$i]['assets_number']; ?>" />
+                        <?php
+                        }
+                        ?>
+                    </datalist>
+                </div>
+                <div class="col-6">
+                    <label>ชื่อครุภัณฑ์</label>
+                    <input type="text" id="assets-name" class="form-control" name="assets-name" />
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                     <div>
@@ -101,7 +92,6 @@ foreach ($stmt->fetchAll() as $res) {
 </div>
 <script>
     $(document).ready(function() {
-        i = 1;
         var assetsData = <?php echo json_encode($assets); ?>;
 
         $("#assets-number").on('change', function() {
@@ -119,18 +109,6 @@ foreach ($stmt->fetchAll() as $res) {
             format: 'dd/mm/yyyy',
             autoclose: true,
         });
-
-        $("#addMore").click(function() {
-            i++;
-            $("#dynamic_field").append('<tr id="row' + i + '"><td><div class="col-12"><input type="text" name="assets-number[]" class="form-control mt-2"></div></td><td><div class="col-12"><input type="text" name="assets-name[]" class="form-control mt-2"></div></td><td><div class="col-12"><a class="btn btn-danger btn-sm mt-2 btn_remove" id="' + i + '">X</a></div></td>');
-        })
-
-        $(document).on('click','.btn_remove', function (){
-            let btn_id = $(this).attr('id');
-            $('#row'+btn_id+'').remove();
-        })
-
-
 
     });
 </script>
