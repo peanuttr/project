@@ -122,7 +122,7 @@ foreach ($stmt->fetchAll() as $res) {
 
         $("#addMore").click(function() {
             i++;
-            $("#dynamic_field").append('<tr id="row' + i + '"><td><div class="col-12"><input type="text" name="assets-number[]" class="form-control mt-2"></div></td><td><div class="col-12"><input type="text" name="assets-name[]" class="form-control mt-2"></div></td><td><div class="col-12"><a class="btn btn-danger btn-sm mt-2 btn_remove" id="' + i + '">X</a></div></td>');
+            $("#dynamic_field").append('<tr id="row' + i + '"><td><div class="col-12"><input type="text" name="assets-number[]" class="form-control mt-2"></div></td><td><div class="col-12"><input type="text" name="assets-name[]" class="form-control mt-2"></div></td><td><div class="col-12"><a class="btn btn-danger btn-sm mt-2 btn_remove" style="color:#fff;" id="' + i + '"><i class="bi bi-x-circle"></i></a></div></td>');
         })
 
         $(document).on('click','.btn_remove', function (){
