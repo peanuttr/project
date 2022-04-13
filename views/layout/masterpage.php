@@ -95,18 +95,21 @@
         </ul>
       </li>
       <li>
-        <a href="../repair-assetments/repair-assetments-add.php">
-          <i class='bx bx-cog'></i>
-          <span class="link_name">แจ้งซ่อมครุภัณฑ์</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="../repair-assetments/repair-assetments.php">แจ้งซ่อมครุภัณฑ์</a></li>
+        <div class="iocn-link">
+          <a>
+            <i class='bx bx-wrench'></i>
+            <span class="link_name">การแจ้งซ่อม</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow'></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name">การแจ้งซ่อม</a></li>
+          <li><a href="../repair-assetments/repair-assetments-manage.php">รายการแจ้งซ่อม</a></li>
+          <li><a href="../repair-assetments/repair-assetments-add.php">แจ้งซ่อมครุภัณฑ์</a></li>
         </ul>
       </li>
-      <li>
-      </li>
     </ul>
-    
+
   </div>
   <div class="home-section top-nav">
     <i class='bx bx-menu'></i>

@@ -38,7 +38,6 @@ include_once "../layout/masterpage.php";
                     ?></td>
                     <td>
                         <a class="btn btn-warning">edit</a>
-
                     </td>
                 </tr>
                 <?php
