@@ -24,8 +24,8 @@ foreach ($stmt->fetchAll() as $res) {
                     <td>
                         <div class="col-12">
                             <label>รหัสครุภัณฑ์</label>
-                            <input type="hidden" name="assets-id[]" id="assets-id">
-                            <input type="search" list="asset-number" id="assets-number" class="form-control" name="assets-number[]" />
+                            <input type="hidden" name="assets_id[]" id="assets-id">
+                            <input type="search" list="asset-number" id="assets-number" class="form-control" name="assets_number[]" />
                             <datalist id="asset-number">
                                 <?php
                                 for ($i = 0; $i < count($assets); $i++) {
@@ -40,7 +40,7 @@ foreach ($stmt->fetchAll() as $res) {
                     <td>
                         <div class="col-12">
                             <label>ชื่อครุภัณฑ์</label>
-                            <input type="text" id="assets-name" class="form-control" name="assets-name[]" />
+                            <input type="text" id="assets-name" class="form-control" name="assets_name[]" />
                         </div>
                     </td>
                     <td>
@@ -135,7 +135,7 @@ foreach ($stmt->fetchAll() as $res) {
 
         $("#addMore").click(function() {
             i++;
-            $("#dynamic_field").append('<tr id="row' + i + '"><td><div class="col-12"><input type="hidden" name="assets-id[]" id="assets-id'+i+'" class="hiddenbox"><input type="search" list="asset-number" id="assets-number'+i+'" name="assets-number[]" class="form-control mt-2 mb-2 searchbox"></div></td><td><div class="col-12"><input type="text" id="assets-name'+i+'" name="assets-name[]" class="form-control mt-2 mb-2 resultbox"></div></td><td><div class="col-12"><a class="btn btn-danger btn-sm mt-2 mb-2 btn_remove" style="color:#fff;" id="' + i + '"><i class="bi bi-x-circle"></i></a></div></td>');
+            $("#dynamic_field").append('<tr id="row' + i + '"><td><div class="col-12"><input type="hidden" name="assets_id[]" id="assets-id'+i+'" class="hiddenbox"><input type="search" list="asset-number" id="assets-number'+i+'" name="assets_number[]" class="form-control mt-2 mb-2 searchbox"></div></td><td><div class="col-12"><input type="text" id="assets-name'+i+'" name="assets_name[]" class="form-control mt-2 mb-2 resultbox"></div></td><td><div class="col-12"><a class="btn btn-danger btn-sm mt-2 mb-2 btn_remove" style="color:#fff;" id="' + i + '"><i class="bi bi-x-circle"></i></a></div></td>');
         })
 
         $(document).on('click','.btn_remove', function (){
