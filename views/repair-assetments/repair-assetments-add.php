@@ -16,7 +16,7 @@ foreach ($stmt->fetchAll() as $res) {
 }
 ?>
 <div class="home-section">
-    <div class="home-content">
+    <div class="home-content" style="overflow-y: auto; height:550px;">
         <h1>การแจ้งซ่อมครุภัณฑ์</h1>
         <form action="../../assets/db/repair-assetments/add-repair-assetment.php" method="POST">
             <table width="100%" id="dynamic_field">
@@ -24,7 +24,7 @@ foreach ($stmt->fetchAll() as $res) {
                     <td>
                         <div class="col-12">
                             <label>รหัสครุภัณฑ์</label>
-                            <input type="hidden" name="assets-id" id="assets-id">
+                            <input type="hidden" name="assets-id[]" id="assets-id">
                             <input type="search" list="asset-number" id="assets-number" class="form-control" name="assets-number[]" />
                             <datalist id="asset-number">
                                 <?php
@@ -44,8 +44,8 @@ foreach ($stmt->fetchAll() as $res) {
                         </div>
                     </td>
                     <td>
-                        <div class="col-12" >
-                            <a class="btn btn-primary btn-sm" id="addMore" ><i class="bi bi-plus-circle" style="color: #fff;"></i></a>
+                        <div class="col-12 d-flex mt-5 mb-3">
+                            <a class="btn btn-primary btn-sm" id="addMore"><i class="bi bi-plus-circle" style="color: #fff;"></i></a>
                         </div>
                     </td>
                 </tr>
@@ -101,7 +101,7 @@ foreach ($stmt->fetchAll() as $res) {
 </div>
 <script>
     $(document).ready(function() {
-        i = 1;
+        var i = 0;
         var assetsData = <?php echo json_encode($assets); ?>;
 
         $("#assets-number").on('change', function() {
@@ -114,6 +114,19 @@ foreach ($stmt->fetchAll() as $res) {
             });
         });
 
+        $(document).on('change','.searchbox',function (){
+            let box_id = $(this).attr('id');
+            let result_id = $(".resultbox").attr('id');
+            let hide_id = $(".hiddenbox").attr('id');
+            assetsData.map((data)=>{
+                if($("#"+box_id).val() === data.assets_number){
+                    $("#"+result_id.substr(0,result_id.length-1)+box_id.substr(box_id.length-1)).val(data.assets_name);
+                    $("#"+hide_id.substr(0,hide_id.length-1)+box_id.substr(box_id.length-1)).val(data.id);
+                    return;
+                }
+            })
+        })
+        
         $("#reportDate").datepicker({
             language: 'th-th',
             format: 'dd/mm/yyyy',
@@ -122,15 +135,13 @@ foreach ($stmt->fetchAll() as $res) {
 
         $("#addMore").click(function() {
             i++;
-            $("#dynamic_field").append('<tr id="row' + i + '"><td><div class="col-12"><input type="text" name="assets-number[]" class="form-control mt-2"></div></td><td><div class="col-12"><input type="text" name="assets-name[]" class="form-control mt-2"></div></td><td><div class="col-12"><a class="btn btn-danger btn-sm mt-2 btn_remove" style="color:#fff;" id="' + i + '"><i class="bi bi-x-circle"></i></a></div></td>');
+            $("#dynamic_field").append('<tr id="row' + i + '"><td><div class="col-12"><input type="hidden" name="assets-id[]" id="assets-id'+i+'" class="hiddenbox"><input type="search" list="asset-number" id="assets-number'+i+'" name="assets-number[]" class="form-control mt-2 mb-2 searchbox"></div></td><td><div class="col-12"><input type="text" id="assets-name'+i+'" name="assets-name[]" class="form-control mt-2 mb-2 resultbox"></div></td><td><div class="col-12"><a class="btn btn-danger btn-sm mt-2 mb-2 btn_remove" style="color:#fff;" id="' + i + '"><i class="bi bi-x-circle"></i></a></div></td>');
         })
 
         $(document).on('click','.btn_remove', function (){
             let btn_id = $(this).attr('id');
             $('#row'+btn_id+'').remove();
         })
-
-
 
     });
 </script>
