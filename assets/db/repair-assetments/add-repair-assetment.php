@@ -10,7 +10,11 @@ if(isset($_POST['submit'])){
     $date = $_POST['date'];
     $p_id = $_POST['personnel_id'];
     $detail = $_POST['detail'];
-    $newFormatDate = date("Y-m-d", strtotime($detail));
+    $day = substr($date, 0, 2);
+    $month = substr($date, 3, 2);
+    $year = substr($date, 6) - 543;
+    $newDate = "$day-$month-$year";
+    $newFormatDate = date("Y-m-d", strtotime($newDate));
 
     $stmt = $db->sqlQuery("INSERT INTO `repair_notice`( `detail`, `date_notice`, `status`, `personel_id`,`image`) VALUES ('$detail', '$newFormatDate','1', '$p_id', 'null')");
     if($stmt->execute()){

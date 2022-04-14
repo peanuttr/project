@@ -9,7 +9,7 @@ include_once "../layout/masterpage.php";
                 <tr>
                     <th>เลขที่ใบแจ้งซ่อม</th>
                     <th>ผู้แจ้งซ่อม</th>
-                    <th>ครุภัณฑ์</th>
+                    <th>รายละเอียด</th>
                     <th>วันที่แจ้งซ่อม</th>
                     <th>สถานะแจ้งซ่อม</th>
                     <th>Action</th>
@@ -19,15 +19,15 @@ include_once "../layout/masterpage.php";
                 <?php 
                 require "../../assets/config/db.php";
                 $db = new db();
-                $stmt = $db->sqlQuery("SELECT r.*,p.personnel_firstname FROM repair_notice as r
-                JOIN personnels as p ON p.id = r.personel_id");
+                $stmt = $db->sqlQuery("SELECT r.*,p.personnel_firstname FROM repair_notice as r 
+                JOIN personnels as p ON p.id = r.personel_id ORDER BY r.id ASC ");
                 $stmt->execute();
                 while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
                 ?>
                 <tr>
-                    <td><?php echo"REPAIR".$result['id']; ?></td>
+                    <td><?php echo"REPAIR_".$result['id']; ?></td>
                     <td><?php echo$result['personnel_firstname']; ?></td>
-                    <td><?php echo$result['personnel_firstname']; ?></td>
+                    <td><?php echo$result['detail']; ?></td>
                     <td><?php echo$result['date_notice']; ?></td>
                     <td><?php if($result['status'] == 1){
                         echo "แจ้งซ่อม";
@@ -50,7 +50,10 @@ include_once "../layout/masterpage.php";
 <script>
     $(document).ready(function(){
         var table = $('#myTable').DataTable({
-            "lengthMenu": [ 5,10 ]
+            "lengthMenu": [ 5,10 ],
+            columnDefs: [
+       { type: 'natural', targets: 0 }
+     ]
         });
     })
 </script>
