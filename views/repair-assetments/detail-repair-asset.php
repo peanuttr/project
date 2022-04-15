@@ -12,8 +12,8 @@ if (isset($_GET['id'])) {
     JOIN `personnels` AS p ON r.personel_id = p.id 
     WHERE dr.repair_id = " . $_id);
     $stmt->execute();
-
-    if (!$stmt) {
+    $response = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$response) {
 ?>
         <script>
             window.history.back();
@@ -25,7 +25,6 @@ if (isset($_GET['id'])) {
         <div class="home-content">
             <h1>รายละเอียดการแจ้งซ่อม</h1>
             <?php
-            $response = $stmt->fetch(PDO::FETCH_ASSOC);
             while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
             ?>
             <div class="row form-group">
