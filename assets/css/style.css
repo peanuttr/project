@@ -404,3 +404,7 @@ i.bx.bx-trash{
   overflow: scroll;
   height: 500px;
 }
+
+.text-white{
+  color: #fff;
+}

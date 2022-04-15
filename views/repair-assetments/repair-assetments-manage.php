@@ -16,30 +16,30 @@ include_once "../layout/masterpage.php";
                 </tr>
             </thead>
             <tbody>
-                <?php 
+                <?php
                 require "../../assets/config/db.php";
                 $db = new db();
                 $stmt = $db->sqlQuery("SELECT r.*,p.personnel_firstname FROM repair_notice as r 
                 JOIN personnels as p ON p.id = r.personel_id ORDER BY r.id ASC ");
                 $stmt->execute();
-                while($result = $stmt->fetch(PDO::FETCH_ASSOC)){
+                while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
-                <tr>
-                    <td><?php echo"REPAIR_".$result['id']; ?></td>
-                    <td><?php echo$result['personnel_firstname']; ?></td>
-                    <td><?php echo$result['detail']; ?></td>
-                    <td><?php echo$result['date_notice']; ?></td>
-                    <td><?php if($result['status'] == 1){
-                        echo "แจ้งซ่อม";
-                    }
-                    else{
-                        echo "success";
-                    }
-                    ?></td>
-                    <td>
-                        <a class="btn btn-warning">edit</a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td><?php echo "REPAIR_" . $result['id']; ?></td>
+                        <td><?php echo $result['personnel_firstname']; ?></td>
+                        <td><?php echo $result['detail']; ?></td>
+                        <td><?php echo $result['date_notice']; ?></td>
+                        <td><?php if ($result['status'] == 1) {
+                                echo "แจ้งซ่อม";
+                            } else {
+                                echo "success";
+                            }
+                            ?></td>
+                        <td>
+                            <a class="btn btn-primary btn-sm text-white" href="./detail-repair-asset.php?id=<?php echo $result['id'] ?>">view</a>
+                            <a class="btn btn-sm btn-warning text-white">edit</a>
+                        </td>
+                    </tr>
                 <?php
                 }
                 ?>
@@ -48,12 +48,13 @@ include_once "../layout/masterpage.php";
     </div>
 </div>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         var table = $('#myTable').DataTable({
-            "lengthMenu": [ 5,10 ],
-            columnDefs: [
-       { type: 'natural', targets: 0 }
-     ]
+            "lengthMenu": [5, 10],
+            columnDefs: [{
+                type: 'natural',
+                targets: 0
+            }]
         });
     })
 </script>
