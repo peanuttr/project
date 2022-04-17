@@ -408,3 +408,8 @@ i.bx.bx-trash{
 .text-white{
   color: #fff;
 }
+
+.icon {
+  display: flex;
+  justify-items: end;
+}
