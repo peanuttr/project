@@ -58,9 +58,9 @@ if (isset($_GET['id'])) {
                 <div class='col-1 d-flex justify-content-start'>
                     <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
                 </div>
-                <!-- <div class='col-1 d-flex justity-content-end'>
-                    <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
-                </div> -->
+                <div class='col-1 d-flex justity-content-end'>
+                    <a class='btn btn-sm btn-success' ><span>approve</span><a>
+                </div>
             </div>
         </div>
     </div>
