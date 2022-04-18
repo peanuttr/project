@@ -68,7 +68,7 @@ if (isset($_GET['id'])) {
                     <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
                 </div>
                 <div class='col-1 d-flex justity-content-end'>
-                    <a class='btn btn-sm btn-success'><span>approve</span><a>
+                    <a class='btn btn-sm btn-success' href="../../assets/db/borrow-return/approve-borrow-return.php?id=<?php echo $response['id'] ?>"><span>approve</span><a>
                 </div>
             </div>
         </div>

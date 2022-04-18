@@ -15,6 +15,7 @@ include_once "../layout/masterpage.php";
                     <th>บุคลากร</th>
                     <th>วันที่ยืม</th>
                     <th>วันที่คืน</th>
+                    <th>สถานะ</th>
                     <th>action</th>
                 </tr>
             </thead>
@@ -22,7 +23,7 @@ include_once "../layout/masterpage.php";
                 <?php
                 require "../../assets/config/db.php";
                 $db = new db();
-                $stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,p.personnel_firstname,pl.placename,a.asset_name,br.borrow_date,br.return_date,br.detail
+                $stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,p.personnel_firstname,pl.placename,a.asset_name,br.borrow_date,br.return_date,br.detail,br.status
                 FROM `detail_borrow_and_return` AS brd
                             JOIN `borrow_and_return` as br ON brd.borrow_and_return_id = br.id
                             JOIN `staffs` as s ON br.staff_id = s.id 
@@ -42,6 +43,7 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $result['personnel_firstname']; ?></td>
                         <td><?php echo DateThai($result['borrow_date']) ?></td>
                         <td><?php echo DateThai($result['return_date']) ?></td>
+                        <td><?php echo $result['status']; ?></td>
                         <td>
                             <a class="btn btn-primary btn-sm text-white" href="./detail-borrow-return.php?id=<?php echo $result['id'] ?>">view</a>
                             <a class="btn btn-sm btn-warning text-white">edit</a>
