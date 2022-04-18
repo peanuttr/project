@@ -4,7 +4,7 @@ include_once "../layout/masterpage.php";
 <div class="home-section">
     <div class="home-content">
         <h1> การจำหน่ายครุภัณฑ์ </h1>
-        <a class='button-17' style="left: 81%;" href='./borrow-return-add.php'> <span>เพิ่มการจำหน่ายครุภัณฑ์</span> </a>
+        <a class='button-17' style="left: 81%;" href='./sale-assetment-add.php'> <span>เพิ่มการจำหน่ายครุภัณฑ์</span> </a>
         <table id="myTable" style='font-size:14px; width: 100%; text-align:center; border:1px;' class='table table-striped '>
             <thead>
                 <tr>

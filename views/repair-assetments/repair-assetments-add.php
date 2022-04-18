@@ -30,7 +30,7 @@ foreach ($stmt->fetchAll() as $res) {
                                 <?php
                                 for ($i = 0; $i < count($assets); $i++) {
                                 ?>
-                                    <option value="<?php echo $assets[$i]['assets_number']; ?>" />
+                                    <option value="<?php echo $assets[$i]['assets_number']; ?>" ><?php echo $assets[$i]['assets_name'] ?></option>
                                 <?php
                                 }
                                 ?>
