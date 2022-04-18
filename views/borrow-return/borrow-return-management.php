@@ -43,7 +43,7 @@ include_once "../layout/masterpage.php";
                         <td><?php echo DateThai($result['borrow_date']) ?></td>
                         <td><?php echo DateThai($result['return_date']) ?></td>
                         <td>
-                            <a class="btn btn-primary btn-sm text-white" href="./detail-repair-asset.php?id=<?php echo $result['id'] ?>">view</a>
+                            <a class="btn btn-primary btn-sm text-white" href="./detail-borrow-return.php?id=<?php echo $result['id'] ?>">view</a>
                             <a class="btn btn-sm btn-warning text-white">edit</a>
                         </td>
                     </tr>
