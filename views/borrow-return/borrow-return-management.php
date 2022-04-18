@@ -4,7 +4,6 @@ include_once "../layout/masterpage.php";
 <div class="home-section">
     <div class="home-content">
         <h1> การจัดการยืม-คืนครุภัณฑ์ </h1>
-        <a class='button-17' style="left: 81%;" href='./borrow-return-add.php'> <span>เพิ่มการยืมคืนครุภัณฑ์</span> </a>
         <table id="myTable" style='font-size:14px; width: 100%; text-align:center; border:1px;' class='table table-striped '>
             <thead>
                 <tr>
@@ -23,7 +22,7 @@ include_once "../layout/masterpage.php";
                 <?php
                 require "../../assets/config/db.php";
                 $db = new db();
-                $stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,p.personnel_firstname,pl.placename,a.asset_name,br.borrow_date,br.return_date
+                $stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,p.personnel_firstname,pl.placename,a.asset_name,br.borrow_date,br.return_date,br.detail
                 FROM `detail_borrow_and_return` AS brd
                             JOIN `borrow_and_return` as br ON brd.borrow_and_return_id = br.id
                             JOIN `staffs` as s ON br.staff_id = s.id 
@@ -44,12 +43,8 @@ include_once "../layout/masterpage.php";
                         <td><?php echo DateThai($result['borrow_date']) ?></td>
                         <td><?php echo DateThai($result['return_date']) ?></td>
                         <td>
-                            <a href='./asset-edit.php?id=<?php echo $result['id'] ?>' class='btn btn-sm btn-success'>
-                                <i class='bx bx-edit'></i>
-                            </a> /
-                            <a class='del btn btn-sm btn-danger' onclick="removeAsset('<?php echo $result['id'] ?>')">
-                                <i class='bx bx-trash'></i>
-                            </a>
+                            <a class="btn btn-primary btn-sm text-white" href="./detail-repair-asset.php?id=<?php echo $result['id'] ?>">view</a>
+                            <a class="btn btn-sm btn-warning text-white">edit</a>
                         </td>
                     </tr>
                 <?php

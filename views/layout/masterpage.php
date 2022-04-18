@@ -34,12 +34,17 @@
         </ul>
       </li>
       <li>
-        <a href="../borrow-return/borrow-return-management.php">
-          <i class='bx bx-transfer-alt'></i>
-          <span class="link_name">ยืม - คืน ครุภัณฑ์</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="../borrow-return/borrow-return-management.php">ยืม - คืน ครุภัณฑ์</a></li>
+        <div class="iocn-link">
+          <a>
+            <i class='bi bi-arrow-left-right'></i>
+            <span class="link_name">การยืม - คืนครุภัณฑ์</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow'></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name">การยืม - คืนครุภัณฑ์</a></li>
+          <li><a href="../borrow-return/borrow-return-management.php">รายการยืมครุภัณฑ์</a></li>
+          <li><a href="../borrow-return/borrow-return-add.php">ยืมครุภัณฑ์</a></li>
         </ul>
       </li>
       <li>
