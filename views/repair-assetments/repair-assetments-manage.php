@@ -29,12 +29,16 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $result['personnel_firstname']; ?></td>
                         <td><?php echo $result['detail']; ?></td>
                         <td><?php echo $result['date_notice']; ?></td>
-                        <td><?php if ($result['status'] == 1) {
+                        <td><?php
+                            if ($result['status'] == 1) {
                                 echo "แจ้งซ่อม";
-                            } else {
+                            } else if ($result['status'] == 2) {
+                                echo "ดำเนินการซ่อม";
+                            } else if ($result['status'] == 3) {
                                 echo "success";
                             }
-                            ?></td>
+                            ?>
+                        </td>
                         <td>
                             <a class="btn btn-primary btn-sm text-white" href="./detail-repair-asset.php?id=<?php echo $result['id'] ?>">view</a>
                             <a class="btn btn-sm btn-warning text-white">edit</a>
