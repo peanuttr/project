@@ -97,6 +97,7 @@
           <li><a href="../department/department-management.php">จัดการข้อมูลหน่วยงาน</a></li>
           <li><a href="../money-source/money-source-management.php">จัดการข้อมูลแหล่งเงิน</a></li>
           <li><a href="../assetments-type/assetments-type-management.php">จัดการข้อมูลประเภทครุภัณฑ์</a></li>
+          <li><a href="../place/place-management.php">จัดการข้อมูลสถานที่</a></li>
         </ul>
       </li>
       <li>

@@ -5,11 +5,13 @@ include_once "../layout/masterpage.php";
 if (isset($_GET['id'])) {
     $_id = $_GET['id'];
     $db = new db();
-    $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name FROM `assets` AS a 
+    $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name,p.placename FROM `assets` AS a 
     JOIN `assets_types` as t ON a.assets_types_id = t.id 
     JOIN `unit` as u ON a.unit_id = u.id 
     JOIN `department` as d ON a.department_id = d.id 
-    JOIN `money_source` as m ON a.money_source_id = m.id WHERE a.id = $_id");
+    JOIN `money_source` as m ON a.money_source_id = m.id
+    JOIN `place` as p ON a.place_id = p.id
+    WHERE a.id = $_id");
     $stmt->execute();
 
     $res = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -31,7 +33,7 @@ if (isset($_GET['id'])) {
                         <input type='text' name='assetName' class='form-control' placeholder='ชื่อครุภัณฑ์' value=<?php echo $res['asset_name'] ?>>
                     </div>
                 </div>
-                <div class='row flex justify-content-center' >
+                <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>รายละเอียด</label>
                         <input type='text' name='assetDetail' class='form-control' placeholder='รายละเอียด' value=<?php echo $res['detail'] ?>>
@@ -68,7 +70,23 @@ if (isset($_GET['id'])) {
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ที่อยู่</label>
-                        <input type="text" name="address" class="form-control" placeholder="ที่อยู่" value=<?php echo $res['place_id'] ?>>
+                        <?php
+                        $stmt = $db->sqlQuery("SELECT * FROM place");
+                        $stmt->execute();
+                        $output = " ";
+                        $output .= "<select class='form-control' name='placeId'>";
+                        $output .= "<option value=" . $res['place_id'] . " selected> " . $res['placename'] . " </option>";
+                        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            $placeId = $result['id'];
+                            $placeName = $result['placename'];
+                            if ($res['placename'] == $placeName) {
+                            } else {
+                                $output .= "<option value='$placeId'>$placeName</option>";
+                            }
+                        }
+                        $output .= "</select>";
+                        echo $output;
+                        ?>
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
@@ -210,12 +228,12 @@ function DateThai($strDate)
 
 <script>
     function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#preview').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#preview').attr('src', e.target.result);
             }
+            reader.readAsDataURL(input.files[0]);
         }
+    }
 </script>

@@ -51,11 +51,24 @@ $db = new db();
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>วันหมดประกัน</label>
-                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="expirationDate"  class="form-control" placeholder="dd-mm-yyyy">
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="expirationDate" class="form-control" placeholder="dd-mm-yyyy">
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ที่อยู่</label>
-                        <input type="text" name="address" class="form-control" placeholder="ที่อยู่">
+                        <?php
+                        $stmt = $db->sqlQuery("SELECT * FROM place");
+                        $stmt->execute();
+                        $output = " ";
+                        $output .= "<select class='form-control' name='placeId'>";
+                        $output .= "<option value='-' selected> เลือกที่อยู่ </option>";
+                        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            $placeId = $result['id'];
+                            $placeName = $result['placename'];
+                            $output .= "<option value='$placeId'>$placeName</option>";
+                        }
+                        $output .= "</select>";
+                        echo $output;
+                        ?>
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
@@ -170,12 +183,12 @@ $db = new db();
 
 <script>
     function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#preview').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#preview').attr('src', e.target.result);
             }
+            reader.readAsDataURL(input.files[0]);
         }
+    }
 </script>
