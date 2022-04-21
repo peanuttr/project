@@ -16,6 +16,7 @@ if (is_null($_POST['id'])) {
     $department_id = $_POST['departmentId'];
     $money_source_id = $_POST['moneySourceId'];
     $assets_types_id = $_POST['assetTypeId'];
+    $placeId = $_POST['placeId'];
     $unit_id = $_POST['unitId'];
     $dayAdmit = substr($date_admit, 0, 2);
     $monthAdmit = substr($date_admit, 3, 2);
@@ -63,8 +64,8 @@ if (is_null($_POST['id'])) {
             }
         }
     }
-    $stmt = $db->sqlQuery("INSERT INTO `assets`(`assets_number`, `asset_name`, `detail`, `year_of_budget`, `value_asset`, `seller_name`, `status`, `number_delivery`, `serial_number`, `date_admit`, `expiration_date`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`,`image`) 
-    VALUES ('$assets_number','$name','$detail','$year_of_budget','$value_assets','$seller','$status','$delivery_number','$serial_number','$newFormatDateAdmit','$newFormatExpirationDate','$assets_types_id','$unit_id','$department_id','$money_source_id','$image')");
+    $stmt = $db->sqlQuery("INSERT INTO `assets`(`assets_number`, `asset_name`, `detail`, `year_of_budget`, `value_asset`, `seller_name`, `status`, `number_delivery`, `serial_number`, `date_admit`, `expiration_date`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`,`image`, `place_id`) 
+    VALUES ('$assets_number','$name','$detail','$year_of_budget','$value_assets','$seller','$status','$delivery_number','$serial_number','$newFormatDateAdmit','$newFormatExpirationDate','$assets_types_id','$unit_id','$department_id','$money_source_id','$image', '$placeId')");
     if ($stmt->execute()) {
         //   echo "<script type='text/javascript'>alert('$image');</script>";
         header("location: ../../../../../project/views/asset-detail/asset-management.php");
@@ -87,6 +88,7 @@ if (is_null($_POST['id'])) {
     $money_source_id = $_POST['moneySourceId'];
     $assets_types_id = $_POST['assetTypeId'];
     $unit_id = $_POST['unitId'];
+    $placeId = $_POST['placeId'];
     $image = null;
     $dayAdmit = substr($date_admit, 0, 2);
     $monthAdmit = substr($date_admit, 3, 2);
@@ -133,7 +135,7 @@ if (is_null($_POST['id'])) {
         }
     }
 
-    $stmt = $db->sqlQuery("UPDATE `assets` SET `assets_number`='$assets_number',`asset_name`='$name',`detail`='$detail',`year_of_budget`='$year_of_budget',`value_asset`='$value_assets',`seller_name`='$seller',`status`='$status',`number_delivery`='$delivery_number',`serial_number`='$serial_number',`date_admit`='$newFormatDateAdmit',`expiration_date`='$newFormatExpirationDate',`assets_types_id`='$assets_types_id',`unit_id`='$unit_id',`department_id`='$department_id',`money_source_id`='$money_source_id',`image` ='$image'  WHERE `id` = '$_id'");
+    $stmt = $db->sqlQuery("UPDATE `assets` SET `assets_number`='$assets_number',`asset_name`='$name',`detail`='$detail',`year_of_budget`='$year_of_budget',`value_asset`='$value_assets',`seller_name`='$seller',`status`='$status',`number_delivery`='$delivery_number',`serial_number`='$serial_number',`date_admit`='$newFormatDateAdmit',`expiration_date`='$newFormatExpirationDate',`place_id`='$placeId',`assets_types_id`='$assets_types_id',`unit_id`='$unit_id',`department_id`='$department_id',`money_source_id`='$money_source_id',`image` ='$image'  WHERE `id` = '$_id'");
     if ($stmt->execute()) {
         header("location: ../../../../../project/views/asset-detail/asset-management.php");
     }

@@ -23,11 +23,12 @@ include_once "../layout/masterpage.php";
                 <?php
                 require "../../assets/config/db.php";
                 $db = new db();
-                $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name FROM `assets` AS a 
-            JOIN `assets_types` as t ON a.assets_types_id = t.id 
-            JOIN `unit` as u ON a.unit_id = u.id 
-            JOIN `department` as d ON a.department_id = d.id 
-            JOIN `money_source` as m ON a.money_source_id = m.id");
+                $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name,p.placename FROM `assets` AS a 
+                JOIN `assets_types` as t ON a.assets_types_id = t.id 
+                JOIN `unit` as u ON a.unit_id = u.id 
+                JOIN `department` as d ON a.department_id = d.id 
+                JOIN `money_source` as m ON a.money_source_id = m.id
+                JOIN `place` as p ON a.place_id = p.id");
                 $stmt->execute();
                 $number = 1;
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -37,14 +38,14 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $result['assets_number']; ?></td>
                         <td><?php echo $result['asset_name']; ?></td>
                         <td><?php echo $result['unit_name']; ?></td>
-                        <td><?php echo "-"; ?></td>
+                        <td><?php echo $result['placename'] ; ?></td>
                         <td><?php echo $result['status']; ?></td>
                         <td><?php echo $result['qr-code']; ?></td>
                         <td><img src="<?php echo "../../assets/uploads/", $result['image']; ?>" width="50px" alt=""></td>
                         <td>
                             <a href='./asset-edit.php?id=<?php echo $result['id'] ?>' class='btn btn-sm btn-success'>
                                 <i class='bx bx-edit'></i>
-                            </a> 
+                            </a>
                             <a class='del btn btn-sm btn-danger' onclick="removeAsset('<?php echo $result['id'] ?>')">
                                 <i class='bx bx-trash'></i>
                             </a>
@@ -87,4 +88,3 @@ include_once "../layout/masterpage.php";
         }
     }
 </script>
-
