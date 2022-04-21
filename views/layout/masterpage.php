@@ -132,5 +132,6 @@
 <script type="text/javascript" src="../../assets/bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js"></script>
 <script src="https://cdn.datatables.net/plug-ins/1.11.5/sorting/natural.js"></script>
 <script src="../../assets/js/script.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>

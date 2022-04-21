@@ -68,7 +68,7 @@ if (isset($_GET['id'])) {
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ที่อยู่</label>
-                        <input type="text" name="address" class="form-control" placeholder="ที่อยู่" value=<?php echo $res['detail_borrow_and_return_id'] ?>>
+                        <input type="text" name="address" class="form-control" placeholder="ที่อยู่" value=<?php echo $res['place_id'] ?>>
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>

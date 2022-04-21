@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../../assets/config/db.php";
 include_once "../layout/masterpage.php";
 
@@ -11,9 +12,13 @@ if (isset($_GET['id'])) {
                             JOIN `staffs` as s ON br.staff_id = s.id 
                             JOIN `personnels` as p ON br.personel_id = p.id 
                             JOIN `place` as pl ON brd.place_id = pl.id 
-                            JOIN `assets` as a ON brd.asset_id = a.id");
+                            JOIN `assets` as a ON brd.asset_id = a.id 
+                            WHERE brd.borrow_and_return_id = " . $_id);
     $stmt->execute();
     $response = $stmt->fetch(PDO::FETCH_ASSOC);
+    $_SESSION['asset_id'] = array();
+    $assetId = [];
+    $index = 0;
     if (!$response) {
 ?>
         <script>
@@ -23,9 +28,10 @@ if (isset($_GET['id'])) {
     }
     ?>
     <div class="home-section">
-        <div class="home-content">
+        <div class="home-content" style="overflow-y: auto; height:90%; width:auto">
             <h1>รายละเอียดการแจ้งซ่อม</h1>
             <?php
+            $stmt->execute();
             while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
             ?>
                 <div class="row form-group">
@@ -37,15 +43,22 @@ if (isset($_GET['id'])) {
                     <div class="col-md-6"><?php echo $res['asset_name']; ?></div>
                 </div>
             <?php
+                $assetId[$index] = $res['asset_id'];
+                array_push($_SESSION['asset_id'], $assetId[$index]);
+                $index += 1;
             }
             ?>
             <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">วันที่ยืม :</div>
-                <div class="col-md-6"><?php echo $response['borrow_date']; ?></div>
+                <div class="col-md-6"><?php echo DateThai($response['borrow_date']) ?></div>
             </div>
             <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">วันที่คืน :</div>
-                <div class="col-md-6"><?php echo $response['return_date']; ?></div>
+                <div class="col-md-6"><?php echo DateThai($response['return_date']) ?></div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-5 d-flex justify-content-end">สถานที่ :</div>
+                <div class="col-md-6"><?php echo $response['placename']; ?></div>
             </div>
             <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">รายละเอียด :</div>
@@ -67,12 +80,65 @@ if (isset($_GET['id'])) {
                 <div class='col-1 d-flex justify-content-start'>
                     <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
                 </div>
-                <div class='col-1 d-flex justity-content-end'>
-                    <a class='btn btn-sm btn-success' href="../../assets/db/borrow-return/approve-borrow-return.php?id=<?php echo $response['id'] ?>"><span>approve</span><a>
-                </div>
+                <?php
+                if ($response['status'] == "รออนุมัติ") {
+                    echo "<div class='col-1 d-flex justity-content-end'>";
+                    echo "<a class='btn btn-sm btn-success' onclick='approveBorrow($response[borrow_and_return_id])'><span>อนุมัติ</span></a>";
+                    echo "</div>";
+                } else if ($response['status'] == "ถูกยืม") {
+                    echo "<div class='col-2 d-flex justity-content-end'>";
+                    echo "<a class='btn btn-sm btn-success' onclick='returnAsset($response[borrow_and_return_id])'><span>คืนครุภัณฑ์</span></a>";
+                    echo "</div>";
+                }
+                ?>
             </div>
         </div>
     </div>
 <?php
 }
 ?>
+
+<?php
+function DateThai($strDate)
+{
+    $strYear = date("Y", strtotime($strDate)) + 543;
+
+    $strMonth = date("n", strtotime($strDate));
+
+    $strDay = date("j", strtotime($strDate));
+
+    $strMonthCut = array("", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.");
+
+    $strMonthThai = $strMonthCut[$strMonth];
+
+    return "$strDay $strMonthThai $strYear";
+}
+?>
+
+<script>
+    function approveBorrow(id) {
+        $.ajax({
+            url: '../../assets/db/borrow-return/approve-borrow-return.php',
+            type: 'POST',
+            data: {
+                id: id
+            },
+            success: function(data) {
+                window.location.href = "./borrow-return-management.php";
+            }
+        })
+    }
+
+    function returnAsset(id) {
+        $.ajax({
+            url: '../../assets/db/borrow-return/return-asset.php',
+            type: 'POST',
+            data: {
+                id: id
+            },
+            success: function(data) {
+                window.location.href = "./borrow-return-management.php";
+            }
+        })
+    }
+</script>

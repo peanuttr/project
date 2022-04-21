@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
         foreach ($assets as $resp) {
             $stmt = $db->sqlQuery("INSERT INTO `detail_borrow_and_return`(`asset_id`,`borrow_and_return_id`,`place_id`) VALUES ('" . $resp['id'] . "','" . $res['id'] . "', '$placeId')");
             $stmt->execute();
-            $stmt = $db->sqlQuery("UPDATE `assets` set `place_id`='$placeId' WHERE `id`='". $resp['id'] ."'");
+            $stmt = $db->sqlQuery("UPDATE `assets` set `place_id`='$placeId', `status`='รออนุมัติการยืม' WHERE `id`='". $resp['id'] ."'");
             $stmt->execute();
         }
         header("location: ../../../../../project/views/borrow-return/borrow-return-management.php");
