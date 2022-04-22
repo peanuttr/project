@@ -11,7 +11,6 @@ include_once "../layout/masterpage.php";
                     <th>ลำดับ</th>
                     <th>เลขครุภัณฑ์</th>
                     <th>ชื่อครุภัณฑ์</th>
-                    <th>หน่วยนับ</th>
                     <th>ที่อยู่</th>
                     <th>สถานะ</th>
                     <th>QR-CODE</th>
@@ -37,15 +36,15 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $number ?></td>
                         <td><?php echo $result['assets_number']; ?></td>
                         <td><?php echo $result['asset_name']; ?></td>
-                        <td><?php echo $result['unit_name']; ?></td>
-                        <td><?php echo $result['placename'] ; ?></td>
+                        <td><?php echo $result['placename']; ?></td>
                         <td><?php echo $result['status']; ?></td>
-                        <td><?php echo $result['qr-code']; ?></td>
+                        <td><img src="<?php echo "../../assets/uploads/", $result['image']; ?>" width="50px" alt=""></td>
                         <td><img src="<?php echo "../../assets/uploads/", $result['image']; ?>" width="50px" alt=""></td>
                         <td>
-                            <a href='./asset-edit.php?id=<?php echo $result['id'] ?>' class='btn btn-sm btn-success'>
+                            <a href='./asset-edit.php?id=<?php echo $result['id'] ?>' class='btn btn-sm btn-warning text-white'>
                                 <i class='bx bx-edit'></i>
                             </a>
+                            <a href='./asset-detail.php?id=<?php echo $result['id'] ?>' class='btn btn-sm btn-primary'>รายละเอียด</a>
                             <a class='del btn btn-sm btn-danger' onclick="removeAsset('<?php echo $result['id'] ?>')">
                                 <i class='bx bx-trash'></i>
                             </a>

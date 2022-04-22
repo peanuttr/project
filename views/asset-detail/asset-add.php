@@ -2,6 +2,13 @@
 include_once "../layout/masterpage.php";
 require "../../assets/config/db.php";
 $db = new db();
+
+$stmt = $db->sqlQuery("SELECT * FROM place");
+$stmt->execute();
+$places = array();
+foreach ($stmt->fetchAll() as $res) {
+    array_push($places, $res);
+}
 ?>
 <div class="home-section">
     <div class="home-content">
@@ -11,11 +18,11 @@ $db = new db();
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>เลขครุภัณฑ์</label>
-                        <input type='text' name='assetNumber' class='form-control' placeholder='เลขครุภัณฑ์'>
+                        <input type='text' name='assetNumber' class='form-control' placeholder='เลขครุภัณฑ์' required>
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ชื่อครุภัณฑ์</label>
-                        <input type='text' name='assetName' class='form-control' placeholder='ชื่อครุภัณฑ์'>
+                        <input type='text' name='assetName' class='form-control' placeholder='ชื่อครุภัณฑ์' required>
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
@@ -60,7 +67,7 @@ $db = new db();
                         $stmt->execute();
                         $output = " ";
                         $output .= "<select class='form-control' name='placeId'>";
-                        $output .= "<option value='-' selected> เลือกที่อยู่ </option>";
+                        $output .= "<option selected> เลือกสถานที่ </option>";
                         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             $placeId = $result['id'];
                             $placeName = $result['placename'];
@@ -182,6 +189,10 @@ $db = new db();
 </div>
 
 <script>
+    $(function() {
+        $('.selectpicker').selectpicker();
+    });
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
