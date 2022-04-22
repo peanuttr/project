@@ -38,7 +38,11 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $result['status']; ?></td>
                         <td>
                             <a class="btn btn-primary btn-sm text-white" href="./detail-borrow-return.php?id=<?php echo $result['id'] ?>">view</a>
-                            <a class="btn btn-sm btn-danger text-white" onclick="rejectBorrow('<?php echo $result['id'] ?>')">Reject</a>
+                            <?php
+                            if($result['status'] == 'รออนุมัติ') {
+                                echo "<a class='btn btn-sm btn-danger text-white' onclick='rejectBorrow($result[id])'>Reject</a>";
+                            }
+                            ?>
                         </td>
                     </tr>
                 <?php
