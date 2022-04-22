@@ -5,12 +5,15 @@ include_once "../layout/masterpage.php";
 $db = new db();
 if (isset($_GET['id'])) {
     $_id = $_GET['id'];
-    $stmt = $db->sqlQuery("SELECT a.id,a.assets_number,a.asset_name,r.date_notice,r.detail,r.status,p.personnel_firstname,p.personnel_lastname 
+    $stmt = $db->sqlQuery("SELECT a.id AS asset_id,a.assets_number,a.asset_name,r.date_notice,r.detail,r.status,p.personnel_firstname,p.personnel_lastname 
     FROM `detail_repair_notice` AS dr 
     JOIN `assets` AS a ON dr.asset_id = a.id 
     JOIN `repair_notice` AS r ON dr.repair_id = r.id 
     JOIN `personnels` AS p ON r.personel_id = p.id 
     WHERE dr.repair_id = " . $_id);
+
+    $assets = array();
+
     $stmt->execute();
     $response = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$response) {
@@ -27,6 +30,7 @@ if (isset($_GET['id'])) {
             <?php
             $stmt->execute();
             while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                array_push($assets, ['asset_id' => $res['asset_id']]);
             ?>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end">เลขครุภัณฑ์ : </div>
@@ -50,16 +54,14 @@ if (isset($_GET['id'])) {
             <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">สถานะ :</div>
                 <div class="col-md-6"><?php
-                if($response['status'] == 1){
-                    echo "แจ้งซ่อม";
-                }
-                else if($response['status'] == 2){
-                    echo "ดำเนินการซ่อม"; 
-                }
-                else if($response['status'] == 3){
-                    echo "ซ่อมสำเร็จ"; 
-                }
-                 ?></div>
+                                        if ($response['status'] == 1) {
+                                            echo "แจ้งซ่อม";
+                                        } else if ($response['status'] == 2) {
+                                            echo "ดำเนินการซ่อม";
+                                        } else if ($response['status'] == 3) {
+                                            echo "ซ่อมสำเร็จ";
+                                        }
+                                        ?></div>
             </div>
             <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">ชื่อ-นามสกุลผู้แจ้ง :</div>
@@ -70,13 +72,13 @@ if (isset($_GET['id'])) {
                     <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
                 </div>
                 <?php
-                if($response['status'] == 1){
+                if ($response['status'] == 1) {
                 ?>
-                <div class='col-1 d-flex justity-content-end'>
-                    <a class='btn btn-sm btn-success' onclick="updateStatus('<?php echo $response['id'] ?>','2')"><span>approve</span><a>
-                </div>
+                    <div class='col-1 d-flex justity-content-end'>
+                        <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",2)'><span>approve</span><a>
+                    </div>
                 <?php
-                                }
+                }
                 ?>
             </div>
         </div>
@@ -85,7 +87,18 @@ if (isset($_GET['id'])) {
 }
 ?>
 <script>
-function updateStatus(asset_id, status){
-    console.log(asset_id);
-}
+    function updateStatus( repair_id, status) {
+        console.log("repair id: ", repair_id);
+        console.log("status: ", status);
+        $.ajax({
+            url: "../../assets/db/repair-assetments/edit-repair-assetment.php",
+            type: "POST",
+            data: {
+                id: repair_id,
+            },
+            success: function(data) {
+                window.location.href = "../repair-assetments/repair-assetments-manage.php";
+            }
+        });
+    }
 </script>
