@@ -77,7 +77,16 @@ if (isset($_GET['id'])) {
                 if($response['status'] == 1){
                 ?>
                 <div class='col-1 d-flex justity-content-end'>
-                    <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>","2",<?php echo json_encode($assets) ?>)'><span>approve</span><a>
+                    <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",2,<?php echo json_encode($assets) ?>)'><span>approve</span><a>
+                </div>
+                <?php
+                                }
+                ?>
+                <?php
+                if($response['status'] == 2){
+                ?>
+                <div class='col-1 d-flex justity-content-end'>
+                    <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",3,<?php echo json_encode($assets) ?>)'><span>success</span><a>
                 </div>
                 <?php
                                 }
@@ -90,6 +99,8 @@ if (isset($_GET['id'])) {
 ?>
 <script>
 function updateStatus(repair_id, status, assets){
+    console.log(assets);
+    // window.location.href = '../../assets/db/repair-assetments/edit-repair-assetment.php?assets='+JSON.stringify(assets)
     $.ajax({
         url: '../../assets/db/repair-assetments/edit-repair-assetment.php',
         type: 'POST',
