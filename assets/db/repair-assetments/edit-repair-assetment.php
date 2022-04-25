@@ -2,16 +2,6 @@
 require "../../config/db.php";
 $db = new db();
 
-// if(isset($_GET['assets'])){
-//     // echo $_GET['assets'];
-//     $assets =  json_decode($_GET['assets']);
-//     // echo $assets[0]->id;
-
-//     foreach( $assets as $res){
-//         echo $res->id."<br>";
-//     }
-// }
-
 if(isset($_POST['id'])){
     $id = $_POST['id'];
     $status = $_POST['status'];

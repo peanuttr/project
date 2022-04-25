@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
         array_push($assets,['id' => $_POST['assets_id'][$i], 'assets_number' => $_POST['assets_number'][$i], 'assets_name' => $_POST['assets_name'][$i]]);
     }
     $date = $_POST['date'];
-    $p_id = $_POST['personnel_id'];
+    $s_id = $_POST['staff_id'];
     $detail = $_POST['detail'];
     $day = substr($date, 0, 2);
     $month = substr($date, 3, 2);
@@ -16,17 +16,17 @@ if(isset($_POST['submit'])){
     $newDate = "$day-$month-$year";
     $newFormatDate = date("Y-m-d", strtotime($newDate));
 
-    $stmt = $db->sqlQuery("INSERT INTO `repair_notice`( `detail`, `date_notice`, `status`, `personel_id`,`image`) VALUES ('$detail', '$newFormatDate','1', '$p_id', 'null')");
+    $stmt = $db->sqlQuery("INSERT INTO `sells`( `detail`, `selling_date`, `status`, `staff_id`) VALUES ('$detail', '$newFormatDate','1', '$s_id')");
     if($stmt->execute()){
-        $stmt = $db->sqlQuery("SELECT * FROM `repair_notice` ORDER BY `id` DESC LIMIT 1");
+        $stmt = $db->sqlQuery("SELECT * FROM `sells` ORDER BY `id` DESC LIMIT 1");
         $stmt->execute();
         $res = $stmt->fetch(PDO::FETCH_ASSOC);
         foreach($assets as $resp){
-            $stmt = $db->sqlQuery("INSERT INTO `detail_repair_notice`(`asset_id`,`repair_id`) VALUES ('".$resp['id']."','".$res['id']."')");
+            $stmt = $db->sqlQuery("INSERT INTO `detail_sells`(`asset_id`,`sell_id`) VALUES ('".$resp['id']."','".$res['id']."')");
             $stmt->execute();
-            $stmt = $db->sqlQuery("UPDATE `assets` SET `status`='แจ้งซ่อม' WHERE  `id`=".$resp['id']);
+            $stmt = $db->sqlQuery("UPDATE `assets` SET `status`='แจ้งจำหน่าย' WHERE  `id`=".$resp['id']);
             $stmt->execute();
         }
-        header("location: ../../../../../project/views/repair-assetments/repair-assetments-manage.php");
+        header("location: ../../../../../project/views/sale-assetments/sale-assetment-manage.php");
     }
 }

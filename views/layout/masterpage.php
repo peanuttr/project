@@ -48,12 +48,15 @@
         </ul>
       </li>
       <li>
-        <a href="../sale-assetments/sale-assetment.php">
+        <a>
           <i class='bx bx-cart-alt'></i>
-          <span class="link_name">จำหน่ายครุภัณฑ์</span>
+          <span class="link_name">การจำหน่ายครุภัณฑ์</span>
         </a>
+        <i class='bx bxs-chevron-down arrow'></i>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="../sale-assetments/sale-assetment.php">จำหน่ายครุภัณฑ์</a></li>
+        <li><a class="link_name">การจำหน่ายครุภัณฑ์</a></li>
+          <li><a  href="../sale-assetments/sale-assetment-manage.php">รายการจำหน่ายครุภัณฑ์</a></li>
+          <li><a  href="../sale-assetments/sale-assetment-add.php">จำหน่ายครุภัณฑ์</a></li>
         </ul>
       </li>
       <li>

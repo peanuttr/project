@@ -3,15 +3,15 @@ include_once "../layout/masterpage.php";
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1>การจัดการรายการแจ้งซ่อม</h1>
+        <h1>การจัดการรายการแจ้งจำหน่าย</h1>
         <table id="myTable" style='font-size:14px; width: 100%; text-align:center; border:1px;' class='table table-striped '>
             <thead>
                 <tr>
-                    <th>เลขที่ใบแจ้งซ่อม</th>
-                    <th>ผู้แจ้งซ่อม</th>
+                    <th>เลขที่แจ้งจำหน่าย</th>
+                    <th>ผู้แจ้งจำหน่าย</th>
                     <th>รายละเอียด</th>
-                    <th>วันที่แจ้งซ่อม</th>
-                    <th>สถานะแจ้งซ่อม</th>
+                    <th>วันที่แจ้งจำหน่าย</th>
+                    <th>สถานะแจ้งแจำหน่าย</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -19,21 +19,21 @@ include_once "../layout/masterpage.php";
                 <?php
                 require "../../assets/config/db.php";
                 $db = new db();
-                $stmt = $db->sqlQuery("SELECT r.*,p.personnel_firstname,p.personnel_lastname FROM repair_notice as r 
-                JOIN personnels as p ON p.id = r.personel_id ORDER BY r.id ASC ");
+                $stmt = $db->sqlQuery("SELECT se.*,st.staff_firstname,st.staff_lastname FROM sells as se
+                JOIN staffs as st ON st.id = se.staff_id ORDER BY se.id ASC ");
                 $stmt->execute();
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                     <tr>
-                        <td><?php echo "REPAIR_" . $result['id']; ?></td>
-                        <td><?php echo $result['personnel_firstname']." ".$result['personnel_lastname']; ?></td>
+                        <td><?php echo "SELLING_" . $result['id']; ?></td>
+                        <td><?php echo $result['staff_firstname']." ".$result['staff_lastname']; ?></td>
                         <td><?php echo $result['detail']; ?></td>
-                        <td><?php echo $result['date_notice']; ?></td>
+                        <td><?php echo $result['selling_date']; ?></td>
                         <td><?php
                             if ($result['status'] == 1) {
-                                echo "แจ้งซ่อม";
+                                echo "แจ้งจำหน่าย";
                             } else if ($result['status'] == 2) {
-                                echo "ดำเนินการซ่อม";
+                                echo "ดำเนินการจำหน่าย";
                             } else if ($result['status'] == 3) {
                                 echo "success";
                             }
