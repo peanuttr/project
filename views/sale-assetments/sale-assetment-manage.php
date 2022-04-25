@@ -40,7 +40,7 @@ include_once "../layout/masterpage.php";
                             ?>
                         </td>
                         <td>
-                            <a class="btn btn-primary btn-sm text-white" href="./detail-repair-asset.php?id=<?php echo $result['id'] ?>">view</a>
+                            <a class="btn btn-primary btn-sm text-white" href="./detail-sale-asset.php?id=<?php echo $result['id'] ?>">view</a>
                             <a class="btn btn-sm btn-warning text-white">edit</a>
                         </td>
                     </tr>

@@ -8,7 +8,7 @@ if(isset($_POST['id'])){
     $assets = json_decode($_POST['assets']);
 
 
-    $stmt = $db->sqlQuery("UPDATE `repair_notice` SET `status`='$status' WHERE  `id`='$id'");
+    $stmt = $db->sqlQuery("UPDATE `sells` SET `status`='$status' WHERE  `id`='$id'");
     $stmt->execute();
     if($status == 0){
         foreach( $assets as $res){
@@ -18,7 +18,7 @@ if(isset($_POST['id'])){
     }
     if($status == 2){
         foreach( $assets as $res){
-            $stmt = $db->sqlQuery("UPDATE `assets` SET `status`='ดำเนินการซ่อม' WHERE  `id`='$res->id'");
+            $stmt = $db->sqlQuery("UPDATE `assets` SET `status`='ดำเนินการจำหน่าย' WHERE  `id`='$res->id'");
             $stmt->execute();
         }
     }

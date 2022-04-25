@@ -54,16 +54,14 @@ if (isset($_GET['id'])) {
             <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">สถานะ :</div>
                 <div class="col-md-6"><?php
-                if($response['status'] == 1){
-                    echo "แจ้งซ่อม";
-                }
-                else if($response['status'] == 2){
-                    echo "ดำเนินการซ่อม"; 
-                }
-                else if($response['status'] == 3){
-                    echo "ซ่อมสำเร็จ"; 
-                }
-                 ?></div>
+                                        if ($response['status'] == 1) {
+                                            echo "แจ้งซ่อม";
+                                        } else if ($response['status'] == 2) {
+                                            echo "ดำเนินการซ่อม";
+                                        } else if ($response['status'] == 3) {
+                                            echo "ซ่อมสำเร็จ";
+                                        }
+                                        ?></div>
             </div>
             <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">ชื่อ-นามสกุลผู้แจ้ง :</div>
@@ -74,22 +72,25 @@ if (isset($_GET['id'])) {
                     <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
                 </div>
                 <?php
-                if($response['status'] == 1){
+                if ($response['status'] == 1) {
                 ?>
-                <div class='col-1 d-flex justity-content-end'>
-                    <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",2,<?php echo json_encode($assets) ?>)'><span>approve</span><a>
-                </div>
+                    <div class='col-1 d-flex justity-content-end'>
+                        <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",2,<?php echo json_encode($assets) ?>)'><span>approve</span><a>
+                    </div>
+                    <div class='col-1 d-flex justity-content-end'>
+                        <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",0,<?php echo json_encode($assets) ?>)'><span>reject</span><a>
+                    </div>
                 <?php
-                                }
+                }
                 ?>
                 <?php
-                if($response['status'] == 2){
+                if ($response['status'] == 2) {
                 ?>
-                <div class='col-1 d-flex justity-content-end'>
-                    <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",3,<?php echo json_encode($assets) ?>)'><span>success</span><a>
-                </div>
+                    <div class='col-1 d-flex justity-content-end'>
+                        <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",3,<?php echo json_encode($assets) ?>)'><span>success</span><a>
+                    </div>
                 <?php
-                                }
+                }
                 ?>
             </div>
         </div>
@@ -98,20 +99,20 @@ if (isset($_GET['id'])) {
 }
 ?>
 <script>
-function updateStatus(repair_id, status, assets){
-    console.log(assets);
-    // window.location.href = '../../assets/db/repair-assetments/edit-repair-assetment.php?assets='+JSON.stringify(assets)
-    $.ajax({
-        url: '../../assets/db/repair-assetments/edit-repair-assetment.php',
-        type: 'POST',
-        data: {
-            id: repair_id,
-            status: status,
-            assets: JSON.stringify(assets)
-        },
-        success: function(data){
-            window.location.href = "./repair-assetments-manage.php"
-        }
-    })
-}
+    function updateStatus(repair_id, status, assets) {
+        console.log(assets);
+        // window.location.href = '../../assets/db/repair-assetments/edit-repair-assetment.php?assets='+JSON.stringify(assets)
+        $.ajax({
+            url: '../../assets/db/repair-assetments/edit-repair-assetment.php',
+            type: 'POST',
+            data: {
+                id: repair_id,
+                status: status,
+                assets: JSON.stringify(assets)
+            },
+            success: function(data) {
+                window.location.href = "./repair-assetments-manage.php"
+            }
+        })
+    }
 </script>
