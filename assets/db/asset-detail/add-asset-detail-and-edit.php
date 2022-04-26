@@ -1,7 +1,8 @@
 <?php
+include('../../libs/phpqrcode/qrlib.php'); 
 require "../../config/db.php";
 $db = new db();
-if (is_null($_POST['id'])) {
+if (!isset($_POST['id'])) {
     $assets_number = $_POST['assetNumber'];
     $year_of_budget = $_POST['yearBudget'];
     $name = $_POST['assetName'];
@@ -30,7 +31,7 @@ if (is_null($_POST['id'])) {
     $newFormatExpirationDate = date("Y-m-d", strtotime($newExpirationDate));
 
     if (isset($_FILES['image'])) {
-        $target_dir = "../../uploads/";
+        $target_dir = $_SERVER['DOCUMENT_ROOT']."/project/assets/uploads/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -42,7 +43,7 @@ if (is_null($_POST['id'])) {
             echo "File is not an image.";
             $uploadOk = 0;
         }
-        if ($_FILES["fileToUpload"]["size"] > 500000) {
+        if ($_FILES["image"]["size"] > 500000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }
@@ -54,8 +55,8 @@ if (is_null($_POST['id'])) {
             echo "Sorry, your file was not uploaded.";
             // if everything is ok, try to upload file
         } else {
-            if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                $image = ($_FILES["image"]["name"]);
+            if (@move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                $image = $target_file;
                 echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
             } else {
                 echo ($target_file);
@@ -63,12 +64,18 @@ if (is_null($_POST['id'])) {
                 echo "Sorry, there was an error uploading your file.";
             }
         }
-    }
-    $stmt = $db->sqlQuery("INSERT INTO `assets`(`assets_number`, `asset_name`, `detail`, `year_of_budget`, `value_asset`, `seller_name`, `status`, `number_delivery`, `serial_number`, `date_admit`, `expiration_date`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`,`image`, `place_id`) 
+        $stmt = $db->sqlQuery("INSERT INTO `assets`(`assets_number`, `asset_name`, `detail`, `year_of_budget`, `value_asset`, `seller_name`, `status`, `number_delivery`, `serial_number`, `date_admit`, `expiration_date`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`,`image`, `place_id`) 
     VALUES ('$assets_number','$name','$detail','$year_of_budget','$value_assets','$seller','$status','$delivery_number','$serial_number','$newFormatDateAdmit','$newFormatExpirationDate','$assets_types_id','$unit_id','$department_id','$money_source_id','$image', '$placeId')");
     if ($stmt->execute()) {
         //   echo "<script type='text/javascript'>alert('$image');</script>";
+        $stmt = $db->sqlQuery("SELECT `id` FROM `assets` ORDER BY `id` DESC LIMIT 1");
+        $stmt->execute();
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        QRcode::png("http://localhost/project/views/asset-detail/asset-detail.php?id=".$res['id'],
+        $_SERVER['DOCUMENT_ROOT']."/project/assets/qrcode/".$assets_number.".png",QR_ECLEVEL_M,1);
+        $stmt = $db->sqlQuery("UPDATE `assets` SET `qr-code`=".$_SERVER['DOCUMENT_ROOT']."/project/assets/qrcode/".$assets_number.".png");
         header("location: ../../../../../project/views/asset-detail/asset-management.php");
+    }
     }
 
 } else {
