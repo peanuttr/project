@@ -1,5 +1,5 @@
 <?php
-include('../../libs/phpqrcode/qrlib.php'); 
+include('../../libs/phpqrcode/qrlib.php');
 require "../../config/db.php";
 $db = new db();
 if (!isset($_POST['id'])) {
@@ -29,9 +29,10 @@ if (!isset($_POST['id'])) {
     $newFormatDateAdmit = date("Y-m-d", strtotime($newDateAdmit));
     $newExpirationDate = "$dayExpiration-$monthExpiration-$yearExpiration";
     $newFormatExpirationDate = date("Y-m-d", strtotime($newExpirationDate));
+    $image = null;
 
     if (isset($_FILES['image'])) {
-        $target_dir = $_SERVER['DOCUMENT_ROOT']."/project/assets/uploads/";
+        $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/project/assets/uploads/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -56,28 +57,34 @@ if (!isset($_POST['id'])) {
             // if everything is ok, try to upload file
         } else {
             if (@move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                $image = $target_file;
+                $image = basename($_FILES["image"]["name"]);
                 echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
             } else {
-                echo ($target_file);
+                echo "<br>";
+                echo ($image);
                 echo "<br>";
                 echo "Sorry, there was an error uploading your file.";
             }
         }
-        $stmt = $db->sqlQuery("INSERT INTO `assets`(`assets_number`, `asset_name`, `detail`, `year_of_budget`, `value_asset`, `seller_name`, `status`, `number_delivery`, `serial_number`, `date_admit`, `expiration_date`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`,`image`, `place_id`) 
+        
+    }
+    $stmt = $db->sqlQuery("INSERT INTO `assets`(`assets_number`, `asset_name`, `detail`, `year_of_budget`, `value_asset`, `seller_name`, `status`, `number_delivery`, `serial_number`, `date_admit`, `expiration_date`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`,`image`, `place_id`) 
     VALUES ('$assets_number','$name','$detail','$year_of_budget','$value_assets','$seller','$status','$delivery_number','$serial_number','$newFormatDateAdmit','$newFormatExpirationDate','$assets_types_id','$unit_id','$department_id','$money_source_id','$image', '$placeId')");
-    if ($stmt->execute()) {
-        //   echo "<script type='text/javascript'>alert('$image');</script>";
-        $stmt = $db->sqlQuery("SELECT `id` FROM `assets` ORDER BY `id` DESC LIMIT 1");
-        $stmt->execute();
-        $res = $stmt->fetch(PDO::FETCH_ASSOC);
-        QRcode::png("http://localhost/project/views/asset-detail/asset-detail.php?id=".$res['id'],
-        $_SERVER['DOCUMENT_ROOT']."/project/assets/qrcode/".$assets_number.".png",QR_ECLEVEL_M,1);
-        $stmt = $db->sqlQuery("UPDATE `assets` SET `qr-code`=".$_SERVER['DOCUMENT_ROOT']."/project/assets/qrcode/".$assets_number.".png");
-        header("location: ../../../../../project/views/asset-detail/asset-management.php");
-    }
-    }
-
+        if ($stmt->execute()) {
+            //   echo "<script type='text/javascript'>alert('$image');</script>";
+            $stmt = $db->sqlQuery("SELECT `id` FROM `assets` ORDER BY `id` DESC LIMIT 1");
+            $stmt->execute();
+            $res = $stmt->fetch(PDO::FETCH_ASSOC);
+            QRcode::png(
+                "http://localhost/project/views/asset-detail/asset-detail.php?id=" . $res['id'],
+                $_SERVER['DOCUMENT_ROOT'] . "/project/assets/qrcode/" . $assets_number . ".png",
+                QR_ECLEVEL_M,
+                1
+            );
+            $stmt = $db->sqlQuery("UPDATE `assets` SET `qr-code`='" . $assets_number . ".png'");
+            $stmt->execute();
+            header("location: ../../../../../project/views/asset-detail/asset-management.php");
+        }
 } else {
     $_id = $_POST['id'];
     $assets_number = $_POST['assetNumber'];
@@ -133,7 +140,7 @@ if (!isset($_POST['id'])) {
             echo "Sorry, your file was not uploaded.";
             // if everything is ok, try to upload file
         } else {
-            if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+            if (@move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                 $image = ($_FILES["image"]["name"]);
                 echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
             } else {
