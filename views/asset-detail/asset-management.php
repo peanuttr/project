@@ -38,7 +38,7 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $result['asset_name']; ?></td>
                         <td><?php echo $result['placename']; ?></td>
                         <td><?php echo $result['status']; ?></td>
-                        <td><img src="<?php echo "../../assets/uploads/", $result['image']; ?>" width="50px" alt=""></td>
+                        <td><img src="<?php echo "../../assets/qrcode/", $result['qr-code']; ?>" width="50px" alt=""></td>
                         <td><img src="<?php echo "../../assets/uploads/", $result['image']; ?>" width="50px" alt=""></td>
                         <td>
                             <a href='./asset-edit.php?id=<?php echo $result['id'] ?>' class='btn btn-sm btn-warning text-white'>

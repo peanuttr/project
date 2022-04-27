@@ -57,11 +57,11 @@ if (!isset($_POST['id'])) {
             // if everything is ok, try to upload file
         } else {
             if (@move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                $image = basename($_FILES["image"]["name"]);
+                $image = ($_FILES["image"]["name"]);
                 echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
             } else {
                 echo "<br>";
-                echo ($image);
+                echo ($target_file);
                 echo "<br>";
                 echo "Sorry, there was an error uploading your file.";
             }
@@ -83,7 +83,7 @@ if (!isset($_POST['id'])) {
             );
             $stmt = $db->sqlQuery("UPDATE `assets` SET `qr-code`='" . $assets_number . ".png'");
             $stmt->execute();
-            header("location: ../../../../../project/views/asset-detail/asset-management.php");
+            // header("location: ../../../../../project/views/asset-detail/asset-management.php");
         }
 } else {
     $_id = $_POST['id'];
