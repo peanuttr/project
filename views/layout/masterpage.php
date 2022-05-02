@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (empty($_SESSION['username'])) {
+  header('Location: /project/views/login/login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -46,7 +49,13 @@ session_start();
         </div>
         <ul class="sub-menu">
           <li><a class="link_name">การยืม - คืนครุภัณฑ์</a></li>
-          <li><a href="../borrow-return/borrow-return-management.php">รายการยืมครุภัณฑ์</a></li>
+          <?php
+          if ($_SESSION['status'] == "admin") {
+          ?>
+            <li><a href="../borrow-return/borrow-return-management.php">รายการยืมครุภัณฑ์</a></li>
+          <?php
+          }
+          ?>
           <li><a href="../borrow-return/borrow-return-add.php">ยืมครุภัณฑ์</a></li>
         </ul>
       </li>
@@ -57,29 +66,43 @@ session_start();
         </a>
         <i class='bx bxs-chevron-down arrow'></i>
         <ul class="sub-menu blank">
-        <li><a class="link_name">การจำหน่ายครุภัณฑ์</a></li>
-          <li><a  href="../sale-assetments/sale-assetment-manage.php">รายการจำหน่ายครุภัณฑ์</a></li>
-          <li><a  href="../sale-assetments/sale-assetment-add.php">จำหน่ายครุภัณฑ์</a></li>
+          <li><a class="link_name">การจำหน่ายครุภัณฑ์</a></li>
+          <?php
+          if ($_SESSION['status'] == "admin") {
+
+          ?>
+            <li><a href="../sale-assetments/sale-assetment-manage.php">รายการจำหน่ายครุภัณฑ์</a></li>
+          <?php
+          }
+          ?>
+          <li><a href="../sale-assetments/sale-assetment-add.php">จำหน่ายครุภัณฑ์</a></li>
         </ul>
       </li>
-      <li>
-        <a href="../user/user-management.php">
-          <i class='bi bi-person-workspace'></i>
-          <span class="link_name">จัดการผู้ใช้งาน</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="../user/user-management.php">จัดการผู้ใช้งาน</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="../personnel/personnel-management.php">
-          <i class='bi bi-person-fill'></i>
-          <span class="link_name">จัดการบุคลากร</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="../personnel/personnel-management.php">จัดการบุคลากร</a></li>
-        </ul>
-      </li>
+      <?php
+      if ($_SESSION['status'] == "admin") {
+      ?>
+        <li>
+          <a href="../user/user-management.php">
+            <i class='bi bi-person-workspace'></i>
+            <span class="link_name">จัดการผู้ใช้งาน</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="../user/user-management.php">จัดการผู้ใช้งาน</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../personnel/personnel-management.php">
+            <i class='bi bi-person-fill'></i>
+            <span class="link_name">จัดการบุคลากร</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="../personnel/personnel-management.php">จัดการบุคลากร</a></li>
+          </ul>
+        </li>
+      <?php
+
+      }
+      ?>
       <li>
         <a href="../asset-detail/asset-management.php">
           <i class='bx bx-tv'></i>
@@ -89,23 +112,30 @@ session_start();
           <li><a class="link_name" href="../asset-detail/asset-management.php">จัดการข้อมูลครุภัณฑ์</a></li>
         </ul>
       </li>
-      <li>
-        <div class="iocn-link">
-          <a>
-            <i class='bx bx-collection'></i>
-            <span class="link_name">จัดการข้อมูลทั่วไป</span>
-          </a>
-          <i class='bx bxs-chevron-down arrow'></i>
-        </div>
-        <ul class="sub-menu">
-          <li><a class="link_name">จัดการข้อมูลทั่วไป</a></li>
-          <li><a href="../unit/unit-management.php">จัดการข้อมูลหน่วยนับ</a></li>
-          <li><a href="../department/department-management.php">จัดการข้อมูลหน่วยงาน</a></li>
-          <li><a href="../money-source/money-source-management.php">จัดการข้อมูลแหล่งเงิน</a></li>
-          <li><a href="../assetments-type/assetments-type-management.php">จัดการข้อมูลประเภทครุภัณฑ์</a></li>
-          <li><a href="../place/place-management.php">จัดการข้อมูลสถานที่</a></li>
-        </ul>
-      </li>
+      <?php
+      if ($_SESSION['status'] == "admin") {
+      ?>
+        <li>
+          <div class="iocn-link">
+            <a>
+              <i class='bx bx-collection'></i>
+              <span class="link_name">จัดการข้อมูลทั่วไป</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow'></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name">จัดการข้อมูลทั่วไป</a></li>
+            <li><a href="../unit/unit-management.php">จัดการข้อมูลหน่วยนับ</a></li>
+            <li><a href="../department/department-management.php">จัดการข้อมูลหน่วยงาน</a></li>
+            <li><a href="../money-source/money-source-management.php">จัดการข้อมูลแหล่งเงิน</a></li>
+            <li><a href="../assetments-type/assetments-type-management.php">จัดการข้อมูลประเภทครุภัณฑ์</a></li>
+            <li><a href="../place/place-management.php">จัดการข้อมูลสถานที่</a></li>
+          </ul>
+        </li>
+      <?php
+
+      }
+      ?>
       <li>
         <div class="iocn-link">
           <a>
@@ -117,16 +147,16 @@ session_start();
         <ul class="sub-menu">
           <li><a class="link_name">การแจ้งซ่อม</a></li>
           <?php
-          if($_SESSION['status'] == "admin"){
+          if ($_SESSION['status'] == "admin") {
 
           ?>
-          <li><a href="../repair-assetments/repair-assetments-manage.php">รายการแจ้งซ่อม</a></li>
+            <li><a href="../repair-assetments/repair-assetments-manage.php">รายการแจ้งซ่อม</a></li>
           <?php
           }
-          if($_SESSION['status'] == "staff" || $_SESSION['status'] == "staff" ){
+          if ($_SESSION['status'] == "staff" || $_SESSION['status'] == "staff") {
 
           ?>
-          <li><a href="../repair-assetments/repair-assetments-add.php">แจ้งซ่อมครุภัณฑ์</a></li>
+            <li><a href="../repair-assetments/repair-assetments-add.php">แจ้งซ่อมครุภัณฑ์</a></li>
           <?php
           }
           ?>
