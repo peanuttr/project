@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['username'] = $res['username'];
         $_SESSION['status'] = $res['permission'];
         sleep(3);
-        header('location:/Project/views/layout/masterpage.php');
+        header('location:/Project/views/dashboard/dashboard.php');
     } else {
         sleep(3);
         header('location:/Project/');

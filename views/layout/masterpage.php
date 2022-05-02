@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -113,8 +116,20 @@
         </div>
         <ul class="sub-menu">
           <li><a class="link_name">การแจ้งซ่อม</a></li>
+          <?php
+          if($_SESSION['status'] == "admin"){
+
+          ?>
           <li><a href="../repair-assetments/repair-assetments-manage.php">รายการแจ้งซ่อม</a></li>
+          <?php
+          }
+          if($_SESSION['status'] == "staff" || $_SESSION['status'] == "staff" ){
+
+          ?>
           <li><a href="../repair-assetments/repair-assetments-add.php">แจ้งซ่อมครุภัณฑ์</a></li>
+          <?php
+          }
+          ?>
         </ul>
       </li>
     </ul>
@@ -123,7 +138,7 @@
   <div class="home-section top-nav">
     <i class='bx bx-menu'></i>
     <div class="user-detail">
-      <h3>user</h3>
+      <h3><?php echo $_SESSION['username'] ?></h3>
     </div>
   </div>
 
