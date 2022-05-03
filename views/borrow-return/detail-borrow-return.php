@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "../../assets/config/db.php";
 include_once "../layout/masterpage.php";
 
@@ -29,7 +28,7 @@ if (isset($_GET['id'])) {
     ?>
     <div class="home-section">
         <div class="home-content" style="overflow-y: auto; height:90%; width:auto">
-            <h1>รายละเอียดการแจ้งซ่อม</h1>
+            <h1>รายละเอียดการยืม - คืนครุภัณฑ์</h1>
             <?php
             $stmt->execute();
             while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -85,6 +84,9 @@ if (isset($_GET['id'])) {
                     echo "<div class='col-1 d-flex justity-content-end'>";
                     echo "<a class='btn btn-sm btn-success' onclick='approveBorrow($response[borrow_and_return_id])'><span>อนุมัติ</span></a>";
                     echo "</div>";
+                    echo "<div class='col-1 d-flex justity-content-end'>";
+                    echo "<a class='btn btn-sm btn-danger text-white' onclick='rejectBorrow($response[borrow_and_return_id])'>ไม่อนุมัติ</a>";
+                    echo "</div>";
                 } else if ($response['status'] == "ถูกยืม") {
                     echo "<div class='col-2 d-flex justity-content-end'>";
                     echo "<a class='btn btn-sm btn-success' onclick='returnAsset($response[borrow_and_return_id])'><span>คืนครุภัณฑ์</span></a>";
@@ -132,6 +134,19 @@ function DateThai($strDate)
     function returnAsset(id) {
         $.ajax({
             url: '../../assets/db/borrow-return/return-asset.php',
+            type: 'POST',
+            data: {
+                id: id
+            },
+            success: function(data) {
+                window.location.href = "./borrow-return-management.php";
+            }
+        })
+    }
+
+    function rejectBorrow(id) {
+        $.ajax({
+            url: '../../assets/db/borrow-return/reject-borrow-return.php',
             type: 'POST',
             data: {
                 id: id

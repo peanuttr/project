@@ -3,7 +3,7 @@ include_once "../layout/masterpage.php";
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1>การจัดการรายการแจ้งจำหน่าย</h1>
+        <h1>การจัดการรายการจำหน่ายครุภัรฑ์</h1>
         <table id="myTable" style='font-size:14px; width: 100%; text-align:center; border:1px;' class='table table-striped '>
             <thead>
                 <tr>
@@ -40,8 +40,7 @@ include_once "../layout/masterpage.php";
                             ?>
                         </td>
                         <td>
-                            <a class="btn btn-primary btn-sm text-white" href="./detail-sale-asset.php?id=<?php echo $result['id'] ?>">view</a>
-                            <a class="btn btn-sm btn-warning text-white">edit</a>
+                            <a class="btn btn-primary btn-sm text-white" href="./detail-sale-asset.php?id=<?php echo $result['id'] ?>">รายละเอียด</a>
                         </td>
                     </tr>
                 <?php
