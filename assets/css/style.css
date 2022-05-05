@@ -401,8 +401,9 @@ i.bx.bx-trash{
 }
 
 .form-insert-asset {
-  overflow: scroll;
-  height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 95%;
 }
 
 .text-white{

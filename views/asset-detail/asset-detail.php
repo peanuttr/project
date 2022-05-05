@@ -87,7 +87,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">QR-CODE :</div>
-                    <div class="col-md-6"><img src="<?php echo "../../assets/uploads/", $res['image']; ?>" width="50px" alt=""></div>
+                    <div class="col-md-6"><img src="<?php echo "../../assets/qrcode/", $res['qr-code']; ?>" width="200px" alt=""></div>
                 </div>
             <?php
             }

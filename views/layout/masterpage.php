@@ -31,90 +31,32 @@ if (empty($_SESSION['username'])) {
     </div>
     <ul class="nav-links">
       <li>
-        <a href="../dashboard/dashboard.php">
-          <i class='bx bx-grid-alt'></i>
-          <span class="link_name">รายงานครุภัณฑ์</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="../dashboard/dashboard.php">รายงานครุภัณฑ์</a></li>
-        </ul>
-      </li>
-      <li>
-        <div class="iocn-link">
-          <a>
-            <i class='bi bi-arrow-left-right'></i>
-            <span class="link_name">การยืม - คืนครุภัณฑ์</span>
-          </a>
-          <i class='bx bxs-chevron-down arrow'></i>
-        </div>
-        <ul class="sub-menu">
-          <li><a class="link_name">การยืม - คืนครุภัณฑ์</a></li>
-          <?php
-          if ($_SESSION['status'] == "admin") {
-          ?>
-            <li><a href="../borrow-return/borrow-return-management.php">รายการยืมครุภัณฑ์</a></li>
-          <?php
-          }
-          ?>
-          <li><a href="../borrow-return/borrow-return-add.php">ยืมครุภัณฑ์</a></li>
-        </ul>
-      </li>
-      <li>
-        <a>
-          <i class='bx bx-cart-alt'></i>
-          <span class="link_name">การจำหน่ายครุภัณฑ์</span>
-        </a>
-        <i class='bx bxs-chevron-down arrow'></i>
-        <ul class="sub-menu blank">
-          <li><a class="link_name">การจำหน่ายครุภัณฑ์</a></li>
-          <?php
-          if ($_SESSION['status'] == "admin") {
-
-          ?>
-            <li><a href="../sale-assetments/sale-assetment-manage.php">รายการจำหน่ายครุภัณฑ์</a></li>
-          <?php
-          }
-          ?>
-          <li><a href="../sale-assetments/sale-assetment-add.php">จำหน่ายครุภัณฑ์</a></li>
-        </ul>
-      </li>
-      <?php
-      if ($_SESSION['status'] == "admin") {
-      ?>
-        <li>
-          <a href="../user/user-management.php">
-            <i class='bi bi-person-workspace'></i>
-            <span class="link_name">จัดการผู้ใช้งาน</span>
+        <?php
+        if ($_SESSION['status'] == "admin" || $_SESSION['status'] == "executive") {
+        ?>
+          <a href="../dashboard/dashboard.php">
+            <i class='bx bx-grid-alt'></i>
+            <span class="link_name">รายงานครุภัณฑ์</span>
           </a>
           <ul class="sub-menu blank">
-            <li><a class="link_name" href="../user/user-management.php">จัดการผู้ใช้งาน</a></li>
+            <li><a class="link_name" href="../dashboard/dashboard.php">รายงานครุภัณฑ์</a></li>
           </ul>
-        </li>
-        <li>
-          <a href="../personnel/personnel-management.php">
-            <i class='bi bi-person-fill'></i>
-            <span class="link_name">จัดการบุคลากร</span>
-          </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="../personnel/personnel-management.php">จัดการบุคลากร</a></li>
-          </ul>
-        </li>
-      <?php
-
-      }
-      ?>
-      <li>
-        <a href="../asset-detail/asset-management.php">
-          <i class='bx bx-tv'></i>
-          <span class="link_name">จัดการข้อมูลครุภัณฑ์</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="../asset-detail/asset-management.php">จัดการข้อมูลครุภัณฑ์</a></li>
-        </ul>
+        <?php
+        }
+        ?>
       </li>
       <?php
-      if ($_SESSION['status'] == "admin") {
+      if ($_SESSION['status'] == "staff") {
       ?>
+        <li>
+          <a href="../asset-detail/asset-management.php">
+            <i class='bx bx-tv'></i>
+            <span class="link_name">จัดการข้อมูลครุภัณฑ์</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="../asset-detail/asset-management.php">จัดการข้อมูลครุภัณฑ์</a></li>
+          </ul>
+        </li>
         <li>
           <div class="iocn-link">
             <a>
@@ -133,9 +75,61 @@ if (empty($_SESSION['username'])) {
           </ul>
         </li>
       <?php
-
       }
       ?>
+      <li>
+        <div class="iocn-link">
+          <a>
+            <i class='bi bi-arrow-left-right'></i>
+            <span class="link_name">ยืม - คืนครุภัณฑ์</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow'></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name">ยืม - คืนครุภัณฑ์</a></li>
+          <?php
+          if ($_SESSION['status'] == "admin") {
+          ?>
+            <li><a href="../borrow-return/borrow-return-management.php">รายการยืมครุภัณฑ์</a></li>
+          <?php
+          }
+          ?>
+          <?php
+          if ($_SESSION['status'] == "staff") {
+          ?>
+            <li><a href="../borrow-return/borrow-return-add.php">ยืมครุภัณฑ์</a></li>
+            <li><a href="../borrow-return/return-asset.php">คืนครุภัณฑ์</a></li>
+          <?php
+          }
+          ?>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a>
+            <i class='bx bx-cart-alt'></i>
+            <span class="link_name">จำหน่ายครุภัณฑ์</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow'></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name">จำหน่ายครุภัณฑ์</a></li>
+          <?php
+          if ($_SESSION['status'] == "admin") {
+          ?>
+            <li><a href="../sale-assetments/sale-assetment-manage.php">รายการจำหน่ายครุภัณฑ์</a></li>
+          <?php
+          }
+          ?>
+          <?php
+          if ($_SESSION['status'] == "staff") {
+          ?>
+            <li><a href="../sale-assetments/sale-assetment-add.php">จำหน่ายครุภัณฑ์</a></li>
+          <?php
+          }
+          ?>
+        </ul>
+      </li>
       <li>
         <div class="iocn-link">
           <a>
@@ -153,13 +147,51 @@ if (empty($_SESSION['username'])) {
             <li><a href="../repair-assetments/repair-assetments-manage.php">รายการแจ้งซ่อม</a></li>
           <?php
           }
-          if ($_SESSION['status'] == "staff" || $_SESSION['status'] == "staff") {
-
+          if ($_SESSION['status'] == "staff") {
           ?>
             <li><a href="../repair-assetments/repair-assetments-add.php">แจ้งซ่อมครุภัณฑ์</a></li>
           <?php
           }
           ?>
+        </ul>
+      </li>
+      <?php
+      if ($_SESSION['status'] == "staff") {
+      ?>
+        <li>
+          <a href="../personnel/personnel-management.php">
+            <i class='bi bi-person-fill'></i>
+            <span class="link_name">จัดการบุคลากร</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="../personnel/personnel-management.php">จัดการบุคลากร</a></li>
+          </ul>
+        </li>
+      <?php
+      }
+      ?>
+      <?php
+      if ($_SESSION['status'] == "admin") {
+      ?>
+        <li>
+          <a href="../user/user-management.php">
+            <i class='bi bi-person-workspace'></i>
+            <span class="link_name">จัดการผู้ใช้งาน</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="../user/user-management.php">จัดการผู้ใช้งาน</a></li>
+          </ul>
+        </li>
+      <?php
+      }
+      ?>
+      <li>
+        <a href="../../assets/db/login/logout-db.php">
+          <i class="bi bi-box-arrow-left"></i>
+          <span class="link_name">ออกจากระบบ</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="../../assets/db/login/logout-db.php">ออกจากระบบ</a></li>
         </ul>
       </li>
     </ul>

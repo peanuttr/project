@@ -20,11 +20,11 @@ foreach ($stmt->fetchAll() as $res) {
 
 <div class="home-section">
     <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:90%;">
-        <h1 style="padding-top: 1%;">เพิ่มการยืมครุภัณฑ์</h1>
+        <h1 style="padding-top: 1%;">เพิ่มการคืนครุภัณฑ์</h1>
         <form action="../../assets/db/borrow-return/add-borrow-return-and-edit.php" method="POST">
             <div class="row">
                 <div class="col-3">
-                    <label>ชื่อผู้ยืม</label>
+                    <label>ชื่อผู้คืน</label>
                     <?php
                     $stmt = $db->sqlQuery("SELECT * FROM personnels");
                     $stmt->execute();

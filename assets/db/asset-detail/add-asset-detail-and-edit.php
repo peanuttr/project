@@ -83,7 +83,7 @@ if (!isset($_POST['id'])) {
             );
             $stmt = $db->sqlQuery("UPDATE `assets` SET `qr-code`='" . $assets_number . ".png'");
             $stmt->execute();
-            // header("location: ../../../../../project/views/asset-detail/asset-management.php");
+             header("location: ../../../../../project/views/asset-detail/asset-management.php");
         }
 } else {
     $_id = $_POST['id'];

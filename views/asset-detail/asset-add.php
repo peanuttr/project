@@ -12,7 +12,7 @@ foreach ($stmt->fetchAll() as $res) {
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1>เพิ่มครุภัณฑ์</h1>
+        <h1 style="padding-top: 0.5%">เพิ่มข้อมูลครุภัณฑ์</h1>
         <form method="post" action="../../assets/db/asset-detail/add-asset-detail-and-edit.php" enctype="multipart/form-data">
             <div class="form-insert-asset">
                 <div class='row flex justify-content-center'>
@@ -28,39 +28,37 @@ foreach ($stmt->fetchAll() as $res) {
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>รายละเอียด</label>
-                        <input type='text' name='assetDetail' class='form-control' placeholder='รายละเอียด'>
+                        <textarea name="assetDetail" class="form-control" rows="5"></textarea>
                     </div>
-                    <div class='col-6 width-50 flex justify-center'>
-                        <label>วันที่เข้ารับ</label>
+                    <div class='col-3 width-50 flex justify-center'>
+                        <label>วันที่รับเข้า</label>
                         <input type="text" data-provide="datepicker" data-date-language="th-th" name="dateAdmit" class="form-control" placeholder="dd-mm-yyyy">
-                    </div>
-                </div>
-                <div class='row flex justify-content-center'>
-                    <div class='col-6 width-50 flex justify-center'>
                         <label>มูลค่าครุภัณฑ์</label>
                         <input type="text" name="assetValue" class="form-control" placeholder="มูลค่าครุภัณฑ์">
                     </div>
-                    <div class='col-6 width-50 flex justify-center'>
+                    <div class='col-3 width-50 flex justify-center'>
+                        <label>วันหมดประกัน</label>
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="expirationDate" class="form-control" placeholder="dd-mm-yyyy">
                         <label>เลขที่ใบส่งของ</label>
                         <input type="text" name="deliveryNumber" class="form-control" placeholder="เลขที่ใบส่งของ">
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
-                    <div class='col-6 width-50 flex justify-center'>
-                        <label>ผู้ขาย</label>
-                        <input type="text" name="seller" class="form-control" placeholder="ผู้ขาย">
+                    <div class='col-4 width-50 flex justify-center'>
+                        <label>ชื่อผู้ขาย</label>
+                        <input type="text" name="seller" class="form-control" placeholder="ชื่อผู้ขาย">
                     </div>
-                    <div class='col-6 width-50 flex justify-center'>
+                    <div class='col-4 width-50 flex justify-center'>
                         <label>หมายเลขซีเรียล</label>
                         <input type="text" name="serialNumber" class="form-control" placeholder="หมายเลขซีเรียล">
                     </div>
+                    <div class='col-4 width-50 flex justify-center'>
+                        <label>ปีงบประมาณ</label>
+                        <input type="text" name="yearBudget" class="form-control" placeholder="ปีงบประมาณ">
+                    </div>
                 </div>
                 <div class='row flex justify-content-center'>
-                    <div class='col-6 width-50 flex justify-center'>
-                        <label>วันหมดประกัน</label>
-                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="expirationDate" class="form-control" placeholder="dd-mm-yyyy">
-                    </div>
-                    <div class='col-6 width-50 flex justify-center'>
+                    <div class='col-4 width-50 flex justify-center'>
                         <label>ที่อยู่</label>
                         <?php
                         $stmt = $db->sqlQuery("SELECT * FROM place");
@@ -77,9 +75,7 @@ foreach ($stmt->fetchAll() as $res) {
                         echo $output;
                         ?>
                     </div>
-                </div>
-                <div class='row flex justify-content-center'>
-                    <div class='col-6 width-50 flex justify-center'>
+                    <div class='col-4 width-50 flex justify-center'>
                         <label>แหล่งเงิน</label>
                         <?php
                         $stmt = $db->sqlQuery("SELECT * FROM money_source");
@@ -96,7 +92,7 @@ foreach ($stmt->fetchAll() as $res) {
                         echo $output;
                         ?>
                     </div>
-                    <div class='col-6 width-50 flex justify-center'>
+                    <div class='col-4 width-50 flex justify-center'>
                         <label>หน่วยงาน</label>
                         <?php
                         $stmt = $db->sqlQuery("SELECT * FROM department");
@@ -115,11 +111,10 @@ foreach ($stmt->fetchAll() as $res) {
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
-                    <div class='col-6 width-50 flex justify-center'>
-                        <label>ปีงบประมาณ</label>
-                        <input type="text" name="yearBudget" class="form-control" placeholder="ปีงบประมาณ">
-                    </div>
-                    <div class='col-6 width-50 flex justify-center'>
+
+                </div>
+                <div class='row flex justify-content-center'>
+                    <div class='col-4 width-50 flex justify-center'>
                         <label>ประเภทครุภัณฑ์</label>
                         <?php
                         $stmt = $db->sqlQuery("SELECT * FROM assets_types");
@@ -136,9 +131,7 @@ foreach ($stmt->fetchAll() as $res) {
                         echo $output;
                         ?>
                     </div>
-                </div>
-                <div class='row flex justify-content-center'>
-                    <div class='col-6 width-50 flex justify-center'>
+                    <div class='col-4 width-50 flex justify-center'>
                         <label>หน่วยนับ</label>
                         <?php
                         $stmt = $db->sqlQuery("SELECT * FROM unit");
@@ -155,7 +148,7 @@ foreach ($stmt->fetchAll() as $res) {
                         echo $output;
                         ?>
                     </div>
-                    <div class='col-6 width-50 flex justify-center'>
+                    <div class='col-4 width-50 flex justify-center'>
                         <label>สถานะ</label>
                         <select class='form-control' name='status'>
                             <option selected>เลือก สถานะ </option>
@@ -175,13 +168,13 @@ foreach ($stmt->fetchAll() as $res) {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
-                <div class='col-1 d-flex justify-content-start' style=''>
-                    <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
-                </div>
-                <div class='col-1 d-flex justity-content-end'>
-                    <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
+                <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
+                    <div class='col-1 d-flex justify-content-start' style=''>
+                        <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
+                    </div>
+                    <div class='col-1 d-flex justity-content-end'>
+                        <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
+                    </div>
                 </div>
             </div>
         </form>
