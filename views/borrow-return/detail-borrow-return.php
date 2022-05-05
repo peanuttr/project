@@ -5,7 +5,7 @@ include_once "../layout/masterpage.php";
 $db = new db();
 if (isset($_GET['id'])) {
     $_id = $_GET['id'];
-    $stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,s.staff_lastname,p.personnel_firstname,p.personnel_lastname,pl.placename,a.asset_name,a.assets_number,br.borrow_date,br.return_date,br.detail,br.status
+    $stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,s.staff_lastname,p.personnel_firstname,p.personnel_lastname,pl.placename,a.asset_name,a.assets_number,br.borrow_date,br.return_date,br.detail
                 FROM `detail_borrow_and_return` AS brd
                             JOIN `borrow_and_return` as br ON brd.borrow_and_return_id = br.id
                             JOIN `staffs` as s ON br.staff_id = s.id 
@@ -27,8 +27,8 @@ if (isset($_GET['id'])) {
     }
     ?>
     <div class="home-section">
-        <div class="home-content" style="overflow-y: auto; height:90%; width:auto">
-            <h1>รายละเอียดการยืม - คืนครุภัณฑ์</h1>
+        <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:95%; width:auto">
+            <h1 style="padding-left: 10%; padding-bottom: 2%">รายละเอียดการยืม - คืนครุภัณฑ์</h1>
             <?php
             $stmt->execute();
             while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -40,6 +40,10 @@ if (isset($_GET['id'])) {
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end">ชื่อครุภัณฑ์ :</div>
                     <div class="col-md-6"><?php echo $res['asset_name']; ?></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-5 d-flex justify-content-end">สถานะ :</div>
+                    <div class="col-md-6"><?php echo $res['status']; ?></div>
                 </div>
             <?php
                 $assetId[$index] = $res['asset_id'];
@@ -64,10 +68,6 @@ if (isset($_GET['id'])) {
                 <div class="col-md-6"><?php echo $response['detail']; ?></div>
             </div>
             <div class="row form-group">
-                <div class="col-md-5 d-flex justify-content-end">สถานะ :</div>
-                <div class="col-md-6"><?php echo $response['status']; ?></div>
-            </div>
-            <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">ชื่อ-นามสกุลผู้ยืม :</div>
                 <div class="col-md-6"><?php echo $response['personnel_firstname'] . " " . $response['personnel_lastname']; ?></div>
             </div>
@@ -87,11 +87,7 @@ if (isset($_GET['id'])) {
                     echo "<div class='col-1 d-flex justity-content-end'>";
                     echo "<a class='btn btn-sm btn-danger text-white' onclick='rejectBorrow($response[borrow_and_return_id])'>ไม่อนุมัติ</a>";
                     echo "</div>";
-                } else if ($response['status'] == "ถูกยืม") {
-                    echo "<div class='col-2 d-flex justity-content-end'>";
-                    echo "<a class='btn btn-sm btn-success' onclick='returnAsset($response[borrow_and_return_id])'><span>คืนครุภัณฑ์</span></a>";
-                    echo "</div>";
-                }
+                } 
                 ?>
             </div>
         </div>

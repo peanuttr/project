@@ -12,7 +12,7 @@ if (isset($_GET['id'])) {
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1>แก้ไขหน่วยนับ</h1>
+        <h1>แก้ไขข้อมูลหน่วยนับ</h1>
         <form action='../../assets/db/unit/add-unit-and-edit.php' method='post'>
             <input type="hidden" name='id' value=<?php echo $_id; ?>>
             <div class='row flex justify-content-center'>

@@ -5,7 +5,7 @@ $db = new db();
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1>เพิ่มหน่วยนับ</h1>
+        <h1 style="padding-top: 1%;">เพิ่มข้อมูลหน่วยนับ</h1>
         <form method="post" action="../../assets/db/unit/add-unit-and-edit.php">
             <div class='row flex justify-content-center'>
                 <div class='col-6 width-50 flex justify-center'>

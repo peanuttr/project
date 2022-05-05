@@ -46,14 +46,14 @@ include_once "../layout/masterpage.php";
                             </a>
                             <a href='./asset-detail.php?id=<?php echo $result['id'] ?>' class='btn btn-sm btn-primary'>รายละเอียด</a>
                             <?php
-                            if($_SESSION['status'] == "admin"){
+                            if ($_SESSION['status'] == "admin") {
                             ?>
-                            <a class='del btn btn-sm btn-danger' onclick="removeAsset('<?php echo $result['id'] ?>')">
-                                <i class='bx bx-trash'></i>
-                            </a>
+                                <a class='del btn btn-sm btn-danger' onclick="removeAsset('<?php echo $result['id'] ?>')">
+                                    <i class='bx bx-trash'></i>
+                                </a>
                             <?php
-                                 
-                                }
+
+                            }
                             ?>
                         </td>
                     </tr>
@@ -79,7 +79,7 @@ include_once "../layout/masterpage.php";
     });
 
     function removeAsset(id) {
-        var result = confirm("Want to delete?");
+        var result = confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่");
         if (result) {
             $.ajax({
                 url: '../../assets/db/asset-detail/del-asset.php',

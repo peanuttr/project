@@ -3,7 +3,7 @@ include_once "../layout/masterpage.php";
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1> การจัดการสถานที่ </h1>
+        <h1> จัดการข้อมูลสถานที่ </h1>
         <a class='button-17' href='./place-add.php'> <span>เพิ่มสถานที่</span> </a>
         <table id="myTable" style="font-size:14px; width: 100%; text-align:center; border:1px;" class="table table-striped">
             <thead>
@@ -52,16 +52,16 @@ include_once "../layout/masterpage.php";
     });
 
     function removePlace(id) {
-        var result = confirm("Want to delete?");
+        var result = confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่");
         if (result) {
             $.ajax({
-                url: '../../assets/db/unit/del-unit.php',
+                url: '../../assets/db/place/del-place.php',
                 type: 'POST',
                 data: {
                     id: id
                 },
                 success: function(data) {
-                    window.location.href = "./unit-management.php";
+                    window.location.href = "./place-management.php";
                 }
             })
         }

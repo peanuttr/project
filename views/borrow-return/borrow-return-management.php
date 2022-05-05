@@ -3,7 +3,7 @@ include_once "../layout/masterpage.php";
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1> การจัดการยืม-คืนครุภัณฑ์ </h1>
+        <h1> จัดการข้อมูลการยืม - คืนครุภัณฑ์ </h1>
         <table id="myTable" style='font-size:14px; width: 100%; text-align:center; border:1px;' class='table table-striped '>
             <thead>
                 <tr>
@@ -35,9 +35,18 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $result['detail']; ?></td>
                         <td><?php echo DateThai($result['borrow_date']) ?></td>
                         <td><?php echo DateThai($result['return_date']) ?></td>
-                        <td><?php echo $result['status']; ?></td>
+                        <td><?php echo $result['status'] ?></td>
                         <td>
                             <a class="btn btn-primary btn-sm text-white" href="./detail-borrow-return.php?id=<?php echo $result['id'] ?>">รายละเอียด</a>
+
+                            <?php
+                            if ($result['status'] == 'รออนุมัติ') {
+                            ?>
+                                <a class='del btn btn-sm btn-danger' onclick="removeBorrow('<?php echo $result['id']; ?>')">
+                                    <i class='bx bx-trash'></i>
+                                <?php
+                            }
+                                ?>
                         </td>
                     </tr>
                 <?php
@@ -85,5 +94,21 @@ function DateThai($strDate)
                 window.location.href = "./borrow-return-management.php";
             }
         })
+    }
+
+    function removeBorrow(id) {
+        var result = confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่");
+        if (result) {
+            $.ajax({
+                url: '../../assets/db/borrow-return/del-borrow.php',
+                type: 'POST',
+                data: {
+                    id: id
+                },
+                success: function(data) {
+                    window.location.href = "./borrow-return-management.php";
+                }
+            })
+        }
     }
 </script>

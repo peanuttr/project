@@ -24,14 +24,14 @@ if (isset($_POST['submit'])) {
     $newFormatBorrowDate = date("Y-m-d", strtotime($newBorrowDate));
     $newFormatReturnDate = date("Y-m-d", strtotime($newReturnDate));
 
-    $stmt = $db->sqlQuery("INSERT INTO `borrow_and_return`(`borrow_date`, `return_date`, `staff_id`, `personel_id`, `detail`) VALUES ('$newFormatBorrowDate', '$newFormatReturnDate', '$staffId', '$personnelId', '$detail')");
+    $stmt = $db->sqlQuery("INSERT INTO `borrow_and_return`(`borrow_date`, `return_date`, `staff_id`, `personel_id`, `detail`, `status`) VALUES ('$newFormatBorrowDate', '$newFormatReturnDate', '$staffId', '$personnelId', '$detail', 'รออนุมัติ')");
 
     if ($stmt->execute()) {
         $stmt = $db->sqlQuery("SELECT * FROM `borrow_and_return` ORDER BY `id` DESC LIMIT 1");
         $stmt->execute();
         $res = $stmt->fetch(PDO::FETCH_ASSOC);
         foreach ($assets as $resp) {
-            $stmt = $db->sqlQuery("INSERT INTO `detail_borrow_and_return`(`asset_id`, `borrow_and_return_id`, `place_id`, `status`) VALUES ('" . $resp['id'] . "','" . $res['id'] . "', '$placeId', 'ถูกยืม')");
+            $stmt = $db->sqlQuery("INSERT INTO `detail_borrow_and_return`(`asset_id`, `borrow_and_return_id`, `place_id`, `status`) VALUES ('" . $resp['id'] . "','" . $res['id'] . "', '$placeId', 'รออนุมัติ')");
             $stmt->execute();
             $stmt = $db->sqlQuery("UPDATE `assets` set `place_id`='$placeId', `status`='รออนุมัติการยืม' WHERE `id`='". $resp['id'] ."'");
             $stmt->execute();

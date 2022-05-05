@@ -8,7 +8,7 @@ $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_n
                         JOIN `unit` as u ON a.unit_id = u.id 
                         JOIN `department` as d ON a.department_id = d.id 
                         JOIN `money_source` as m ON a.money_source_id = m.id 
-                        WHERE a.status = 'อยู่ในคลัง'");
+                        WHERE a.status = 'ถูกยืม'");
 $stmt->execute();
 
 $assets = array();
@@ -20,10 +20,10 @@ foreach ($stmt->fetchAll() as $res) {
 
 <div class="home-section">
     <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:90%;">
-        <h1 style="padding-top: 1%;">เพิ่มการคืนครุภัณฑ์</h1>
-        <form action="../../assets/db/borrow-return/add-borrow-return-and-edit.php" method="POST">
+        <h1 style="padding-top: 1%;">เพิ่มข้อมูลการคืนครุภัณฑ์</h1>
+        <form action="../../assets/db/borrow-return/return-asset.php" method="POST">
             <div class="row">
-                <div class="col-3">
+                <div class="col-5">
                     <label>ชื่อผู้คืน</label>
                     <?php
                     $stmt = $db->sqlQuery("SELECT * FROM personnels");
@@ -41,50 +41,7 @@ foreach ($stmt->fetchAll() as $res) {
                     echo $output;
                     ?>
                 </div>
-                <table width="100%" id="dynamic_field">
-                    <tr>
-                        <td>
-                            <div class="col-12">
-                                <label>รหัสครุภัณฑ์</label>
-                                <input type="hidden" name="assets_id[]" id="assets-id">
-                                <input type="search" list="asset-number" id="assets-number" class="form-control" name="assets_number[]" />
-                                <datalist id="asset-number">
-                                    <?php
-                                    for ($i = 0; $i < count($assets); $i++) {
-                                    ?>
-                                        <option value="<?php echo $assets[$i]['assets_number']; ?>"><?php echo $assets[$i]['assets_name'] ?></option>
-                                    <?php
-                                    }
-                                    ?>
-                                </datalist>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="col-12">
-                                <label>ชื่อครุภัณฑ์</label>
-                                <input type="text" id="assets-name" class="form-control" name="assets_name[]" />
-                            </div>
-                        </td>
-                        <td>
-                            <div class="col-12 d-flex mt-5 mb-3">
-                                <a class="btn btn-primary btn-sm" id="addMore"><i class="bi bi-plus-circle" style="color: #fff;"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="row">
-                <div class="col-3">
-                    <label>วันที่ยืมครุภัณฑ์</label>
-                    <input type="text" id="borrowDate" name="borrowDate" class="form-control" placeholder="วว / ดด / ปป">
-                </div>
-                <div class="col-3">
-                    <div>
-                        <label>วันที่คืนครุภัณฑ์</label>
-                        <input type="text" id="returnDate" name="returnDate" class="form-control" placeholder="วว / ดด / ปป">
-                    </div>
-                </div>
-                <div class="col-3">
+                <div class="col-5">
                     <div>
                         <label>ชื่อเจ้าหน้าที่</label>
                     </div>
@@ -105,44 +62,44 @@ foreach ($stmt->fetchAll() as $res) {
                     ?>
                     </select>
                 </div>
-                <div class="col-3">
-                    <div>
-                        <label>สถานที่</label>
-                    </div>
-                    <?php
-                    $stmt = $db->sqlQuery("SELECT * FROM place");
-                    $stmt->execute();
-                    $output = " ";
-                    $output .= "<select class='form-control' name='placeId'>";
-                    $output .= "<option selected> เลือกสถานที่ </option>";
-                    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        $placeId = $result['id'];
-                        $placeName = $result['placename'];
-                        $output .= "<option value='$placeId'>$placeName</option>";
-                    }
-                    $output .= "</select>";
-                    echo $output;
-                    ?>
-                    </select>
-                </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div>
-                        <label>รายละเอียดการยืม</label>
-                    </div>
-                    <textarea name="detail" class="form-control" rows="10"></textarea>
-                </div>
-            </div>
+            <table width="100%" id="dynamic_field">
+                <tr>
+                    <td>
+                        <div class="col-12">
+                            <label>รหัสครุภัณฑ์</label>
+                            <input type="hidden" name="assets_id[]" id="assets-id">
+                            <input type="search" list="asset-number" id="assets-number" class="form-control" name="assets_number[]" />
+                            <datalist id="asset-number">
+                                <?php
+                                for ($i = 0; $i < count($assets); $i++) {
+                                ?>
+                                    <option value="<?php echo $assets[$i]['assets_number']; ?>"><?php echo $assets[$i]['assets_name'] ?></option>
+                                <?php
+                                }
+                                ?>
+                            </datalist>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-12">
+                            <label>ชื่อครุภัณฑ์</label>
+                            <input type="text" id="assets-name" class="form-control" name="assets_name[]" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-12 d-flex mt-5 mb-3">
+                            <a class="btn btn-primary btn-sm" id="addMore"><i class="bi bi-plus-circle" style="color: #fff;"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
             <div class="row">
                 <div class="col-12">
                     <!-- <input type="files" name="img"> -->
                 </div>
             </div>
             <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
-                <div class='col-1 d-flex justify-content-start' style=''>
-                    <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
-                </div>
                 <div class='col-1 d-flex justity-content-end'>
                     <input type='submit' class='btn btn-sm btn-success' name='submit' value='บันทึก'>
                 </div>

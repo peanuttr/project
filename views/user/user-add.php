@@ -5,7 +5,7 @@ $db = new db();
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1>เพิ่มผู้ใช้งาน</h1>
+        <h1 style="padding-top: 1%;">เพิ่มข้อมูลเจ้าหน้าที่</h1>
         <form method="post" action="../../assets/db/user/add-user-and-edit.php">
         <div class='row flex justify-content-center' style='margin-bottom: 5px'>
                 <div class='col-6 width-50 flex justify-center'>
