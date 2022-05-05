@@ -4,6 +4,18 @@ require "../../assets/config/db.php";
 $assets = array();
 
 $db = new db;
+
+if(isset($_GET['id'])){
+    $_id = $_GET['id'];
+    $stmt = $db->sqlQuery("SELECT a.id AS assets_id,a.assets_number,a.asset_name,se.selling_date,se.detail,se.status,se.staff_id,st.staff_firstname,st.staff_lastname 
+    FROM `detail_sells` AS ds JOIN `assets` AS a ON ds.asset_id = a.id 
+    JOIN `sells` AS se ON ds.sell_id = se.id 
+    JOIN `staffs` AS st ON st.id = se.staff_id 
+    WHERE ds.sell_id =" . $_id);
+    $stmt->execute();
+    $response = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name FROM `assets` AS a 
                         JOIN `assets_types` as t ON a.assets_types_id = t.id 
                         JOIN `unit` as u ON a.unit_id = u.id 
@@ -19,13 +31,14 @@ foreach ($stmt->fetchAll() as $res) {
     <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:90%;">
         <h1>เพิ่มการจำหน่ายครุภัณฑ์</h1>
         <form action="../../assets/db/selling/add-sell-assetment.php" method="POST">
+        <input type="hidden" name='id' value=<?php echo $_id; ?>>
             <table width="100%" id="dynamic_field">
                 <tr>
                     <td>
                         <div class="col-12">
                             <label>รหัสครุภัณฑ์</label>
-                            <input type="hidden" name="assets_id[]" id="assets-id">
-                            <input type="search" list="asset-number" id="assets-number" class="form-control" name="assets_number[]" />
+                            <input type="hidden" name="assets_id[]" id="assets-id" value="<?php echo $response['assets_id']; ?>">
+                            <input type="search" list="asset-number" id="assets-number" class="form-control" name="assets_number[]" value="<?php echo $response['assets_number']; ?>"/>
                             <datalist id="asset-number">
                                 <?php
                                 for ($i = 0; $i < count($assets); $i++) {
@@ -40,7 +53,7 @@ foreach ($stmt->fetchAll() as $res) {
                     <td>
                         <div class="col-12">
                             <label>ชื่อครุภัณฑ์</label>
-                            <input type="text" id="assets-name" class="form-control" name="assets_name[]" />
+                            <input type="text" id="assets-name" class="form-control" name="assets_name[]" value="<?php echo $response['asset_name']; ?>" />
                         </div>
                     </td>
                     <td>
@@ -55,29 +68,30 @@ foreach ($stmt->fetchAll() as $res) {
                     <div>
                         <label>รายละเอียดการจำหน่าย/ปัญหา</label>
                     </div>
-                    <textarea name="detail" class="form-control" rows="10"></textarea>
+                    <textarea name="detail" class="form-control" rows="10"><?php echo $response['detail']; ?></textarea>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
                     <label>วันที่แจ้ง</label>
-                    <input type="text" data-provide="datepicker" data-date-language="th-th"  id="reportDate" name="date" class="form-control" placeholder="dd-mm-yyyy">
+                    <input type="text" data-provide="datepicker" data-date-language="th-th"  id="reportDate" name="date" class="form-control" placeholder="dd-mm-yyyy" value="<?php echo $response['selling_date']; ?>">
                 </div>
                 <div class="col-6">
                     <div>
                         <label>ชื่อผู้แจ้ง</label>
                     </div>
                     <select name="staff_id" class="form-control">
-                        <option selected> เลือกผู้แจ้ง </option>
+                        <option selected value="<?php echo $response['staff_id']; ?>"> <?php echo $response['staff_firstname']; ?> </option>
                         <?php
                         $stmt = $db->sqlQuery("SELECT * FROM `staffs`");
                         $stmt->execute();
 
                         foreach ($stmt->fetchAll() as $res) {
-
+                            if($res['id'] != $response['staff_id']){
                         ?>
                             <option value="<?php echo $res['id']; ?>"><?php echo $res['staff_firstname']; ?></option>
                         <?php
+                            }
                         }
                         ?>
                     </select>

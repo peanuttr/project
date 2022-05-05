@@ -41,6 +41,8 @@ include_once "../layout/masterpage.php";
                         </td>
                         <td>
                             <a class="btn btn-primary btn-sm text-white" href="./detail-sale-asset.php?id=<?php echo $result['id'] ?>">รายละเอียด</a>
+                            <a class="btn btn-sm btn-warning text-white" href="./sale-assetment-edit.php?id=<?php echo $result['id'] ?>">edit</a>
+                            <a class="btn btn-primary btn-sm text-white" onclick="deleteSell(<?php echo $result['id'] ?>)">delete</a>
                         </td>
                     </tr>
                 <?php
@@ -60,4 +62,17 @@ include_once "../layout/masterpage.php";
             }]
         });
     })
+
+    function deleteSell(sell_id){
+        $.ajax({
+            url: '../../assets/db/selling/delete-sell-assetment.php',
+            type: 'POST',
+            data: {
+                id: sell_id
+            },
+            success: function(data) {
+                window.location.href = "./sale-assetment-manage.php"
+            }
+        })
+    }
 </script>
