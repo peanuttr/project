@@ -12,6 +12,7 @@ if (isset($_POST['submit'])) {
     if (!empty($res['username'])) {
         $_SESSION['username'] = $res['username'];
         $_SESSION['status'] = $res['permission'];
+        $_SESSION['firstName'] = $res['staff_firstname'];
         sleep(3);
         header('location:/Project/views/dashboard/dashboard.php');
     } else {

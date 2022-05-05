@@ -200,7 +200,7 @@ if (empty($_SESSION['username'])) {
   <div class="home-section top-nav">
     <i class='bx bx-menu'></i>
     <div class="user-detail">
-      <h3><?php echo $_SESSION['username'] ?></h3>
+      <h3><?php echo $_SESSION['firstName'] ?></h3>
     </div>
   </div>
 
