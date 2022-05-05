@@ -70,10 +70,10 @@ if (isset($_GET['id'])) {
                 if ($response['status'] == 1) {
                 ?>
                     <div class='col-1 d-flex justity-content-end'>
-                        <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",2,<?php echo json_encode($assets) ?>)'><span>approve</span><a>
+                        <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",2,<?php echo json_encode($assets) ?>)'><span>อนุมัติ</span><a>
                     </div>
                     <div class='col-1 d-flex justity-content-end'>
-                        <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",0,<?php echo json_encode($assets) ?>)'><span>reject</span><a>
+                        <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",0,<?php echo json_encode($assets) ?>)'><span>ไม่อนุมัติ</span><a>
                     </div>
                 <?php
                 }
@@ -82,7 +82,7 @@ if (isset($_GET['id'])) {
                 if ($response['status'] == 2) {
                 ?>
                     <div class='col-1 d-flex justity-content-end'>
-                        <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",3,<?php echo json_encode($assets) ?>)'><span>success</span><a>
+                        <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",3,<?php echo json_encode($assets) ?>)'><span>จำหน่ายสำเร็จ</span><a>
                     </div>
                 <?php
                 }

@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
 ?>
     <div class="home-section">
         <div class="home-content" style="overflow-y: auto; height:90%; width:auto">
-            <h1>รายละเอียดการแจ้งซ่อม</h1>
+            <h1>รายละเอียดครุภัณฑ์</h1>
             <?php
             $stmt->execute();
             while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
