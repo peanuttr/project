@@ -12,6 +12,7 @@ $db = new db();
                 <div class="card">
                     <div class="card-header">
                         <span>จำนวนครุภัณฑ์</span>
+                        <a href="../../assets/db/report/report.php?name=assets" class="btn btn-primary">export excel</a>
                     </div>
                     <div class="card-body">
                         <h3 class='d-flex justify-content-end'>
