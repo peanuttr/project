@@ -15,8 +15,8 @@ if (isset($_GET['id'])) {
     $stmt->execute();
 ?>
     <div class="home-section">
-        <div class="home-content" style="overflow-y: auto; height:90%; width:auto">
-            <h1>รายละเอียดครุภัณฑ์</h1>
+        <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:93%; width:auto">
+            <h1 style="padding-left: 10%;">รายละเอียดครุภัณฑ์</h1>
             <?php
             $stmt->execute();
             while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -87,7 +87,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">QR-CODE :</div>
-                    <div class="col-md-6"><img src="<?php echo "../../assets/qrcode/", $res['qr-code']; ?>" width="200px" alt=""></div>
+                    <div class="col-md-6"><img src="<?php echo "../../assets/qrcode/", $res['qr-code']; ?>" width="140px" alt=""></div>
                 </div>
             <?php
             }

@@ -5,7 +5,7 @@ $db = new db();
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1>เพิ่มแหล่งเงิน</h1>
+        <h1 style="padding-top: 1%;">เพิ่มข้อมูลแหล่งเงิน</h1>
         <form method="post" action="../../assets/db/money-source/add-money-source-and-edit.php">
             <div class="container">
                 <div class='row flex justify-content-center'>

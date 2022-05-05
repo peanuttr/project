@@ -5,7 +5,7 @@ $db = new db();
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1>เพิ่มประเภทครุภัณฑ์</h1>
+        <h1 style="padding-top: 1%;">เพิ่มข้อมูลประเภทครุภัณฑ์</h1>
         <form method="post" action="../../assets/db/assetment-type/add-assetment-type-and-edit.php">
             <div class="container">
                 <div class='row flex justify-content-center'>

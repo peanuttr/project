@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1>แก้ไขผู้ใช้งาน</h1>
+        <h1 style="padding-top: 1%;">แก้ไขข้อมูลเจ้าหน้าที่</h1>
         <form action='../../assets/db/user/add-user-and-edit.php' method='post'>
             <input type="hidden" name='id' value=<?php echo $_id; ?>>
             <div class='row flex justify-content-center' style='margin-bottom: 5px'>

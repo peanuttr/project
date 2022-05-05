@@ -3,7 +3,7 @@ include_once "../layout/masterpage.php";
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1> การจัดการผู้ใช้งาน </h1>
+        <h1> จัดการข้อมูลเจ้าหน้าที่ </h1>
         <a class='button-17' href='./user-add.php'> <span>เพิ่มเจ้าหน้าที่</span> </a>
         <table id="myTable" class="table table-striped">
             <thead>
@@ -18,7 +18,7 @@ include_once "../layout/masterpage.php";
             </thead>
             <tbody>
                 <?php
-                
+
                 require "../../assets/config/db.php";
                 $db = new db();
                 $data = $db->sqlQuery("SELECT s.*,d.department_name FROM staffs AS s JOIN department AS d ON d.id = s.department_id");
@@ -35,7 +35,7 @@ include_once "../layout/masterpage.php";
                             echo "<td>เจ้าหน้าที่</td>";
                         } else {
                             echo "<td>ผู้บริหาร</td>";
-                        } 
+                        }
                         ?>
                         <td>
                             <a href='./user-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-success'>
@@ -62,7 +62,7 @@ include_once "../layout/masterpage.php";
     });
 
     function removeUser(id) {
-        var result = confirm("Want to delete?");
+        var result = confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่");
         if (result) {
             $.ajax({
                 url: '../../assets/db/user/del-user.php',
