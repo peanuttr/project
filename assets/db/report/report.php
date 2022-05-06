@@ -103,7 +103,7 @@ if (isset($_GET['name'])) {
         </head>
 
         <body>
-            <strong>รายงานการยืมครุภัณฑ์ วันที่ <?php echo date("d/m/Y"); ?> ทั้งหมด <?php echo number_format($num); ?> ชิ้น</strong><br>
+            <strong>รายงานการยืมครุภัณฑ์ วันที่ <?php echo date("d/m/Y"); ?> ทั้งหมด <?php echo number_format($num); ?> รายการ</strong><br>
             <br>
             <div id="SiXhEaD_Excel" align=center x:publishsource="Excel">
                 <table x:str border=1 cellpadding=0 cellspacing=1 width=100% style="border-collapse:collapse">
@@ -175,7 +175,7 @@ if (isset($_GET['name'])) {
         </head>
 
         <body>
-            <strong>รายงานการยืมครุภัณฑ์ วันที่ <?php echo date("d/m/Y"); ?> ทั้งหมด <?php echo number_format($num); ?> ชิ้น</strong><br>
+            <strong>รายงานการยืมครุภัณฑ์ วันที่ <?php echo date("d/m/Y"); ?> ทั้งหมด <?php echo number_format($num); ?> รายการ</strong><br>
             <br>
             <div id="SiXhEaD_Excel" align=center x:publishsource="Excel">
                 <table x:str border=1 cellpadding=0 cellspacing=1 width=100% style="border-collapse:collapse">
@@ -250,7 +250,7 @@ if (isset($_GET['name'])) {
         </head>
 
         <body>
-            <strong>รายงานการยืมครุภัณฑ์ วันที่ <?php echo date("d/m/Y"); ?> ทั้งหมด <?php echo number_format($num); ?> ชิ้น</strong><br>
+            <strong>รายงานการยืมครุภัณฑ์ วันที่ <?php echo date("d/m/Y"); ?> ทั้งหมด <?php echo number_format($num); ?> รายการ</strong><br>
             <br>
             <div id="SiXhEaD_Excel" align=center x:publishsource="Excel">
                 <table x:str border=1 cellpadding=0 cellspacing=1 width=100% style="border-collapse:collapse">
@@ -321,7 +321,7 @@ if (isset($_GET['name'])) {
         </head>
 
         <body>
-            <strong>รายงานการยืมครุภัณฑ์ วันที่ <?php echo date("d/m/Y"); ?> ทั้งหมด <?php echo number_format($num); ?> ชิ้น</strong><br>
+            <strong>รายงานการยืมครุภัณฑ์ วันที่ <?php echo date("d/m/Y"); ?> ทั้งหมด <?php echo number_format($num); ?> ประเภท</strong><br>
             <br>
             <div id="SiXhEaD_Excel" align=center x:publishsource="Excel">
                 <table x:str border=1 cellpadding=0 cellspacing=1 width=100% style="border-collapse:collapse">
