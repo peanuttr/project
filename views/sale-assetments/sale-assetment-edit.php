@@ -36,7 +36,7 @@ foreach ($stmt->fetchAll() as $res) {
 ?>
 <div class="home-section">
     <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:90%;">
-        <h1>แก้ไขข้อการจำหน่ายครุภัณฑ์</h1>
+        <h1>แก้ไขข้อมูลการจำหน่ายครุภัณฑ์</h1>
         <form action="../../assets/db/selling/add-sell-assetment.php" method="POST">
         <input type="hidden" name='id' value=<?php echo $_id; ?>>
         <div class="row">
@@ -64,8 +64,7 @@ foreach ($stmt->fetchAll() as $res) {
                     <label>วันที่แจ้ง</label>
                     <input type="text" data-provide="datepicker" data-date-language="th-th"  id="reportDate" name="date" class="form-control" placeholder="dd-mm-yyyy" value="<?php echo $response['selling_date']; ?>">
                 </div>
-            </div>
-            <table width="100%" id="dynamic_field">
+               <table width="100%" id="dynamic_field">
                 <tr>
                     <td>
                         <div class="col-12">
@@ -95,7 +94,9 @@ foreach ($stmt->fetchAll() as $res) {
                         </div>
                     </td>
                 </tr>
-            </table>
+            </table> 
+            </div>
+            
             <div class="row">
                 <div class="col-12">
                     <div>

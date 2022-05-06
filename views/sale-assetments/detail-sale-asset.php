@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
     ?>
     <div class="home-section">
         <div class="home-content">
-            <h1 style="padding-left: 10%;">รายละเอียดการแจ้งซ่อม</h1>
+            <h1 style="padding-left: 10%;">รายละเอียดการจำหน่าย</h1>
             <?php
             $stmt->execute();
             while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {

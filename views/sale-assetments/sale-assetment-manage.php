@@ -3,7 +3,7 @@ include_once "../layout/masterpage.php";
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1>การจัดการรายการจำหน่ายครุภัรฑ์</h1>
+        <h1>จัดการข้อมูลจำหน่ายครุภัณฑ์</h1>
         <table id="myTable" style='font-size:14px; width: 100%; text-align:center; border:1px;' class='table table-striped '>
             <thead>
                 <tr>
