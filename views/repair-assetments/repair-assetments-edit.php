@@ -17,11 +17,11 @@ if (isset($_GET['id'])) {
     $stmt->execute();
     $response = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    print_r($response);
+    // print_r($response);
 
-    $countId = count($response['assets_id']);
+    // $countId = count($response['assets_id']);
 
-    echo "จำนวน ".count($response['assets_id']);
+    // echo "จำนวน ".count($response['assets_id']);
 }
 $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name FROM `assets` AS a 
                         JOIN `assets_types` as t ON a.assets_types_id = t.id 
