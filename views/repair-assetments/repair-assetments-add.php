@@ -20,13 +20,9 @@ foreach ($stmt->fetchAll() as $res) {
         <h1>การแจ้งซ่อมครุภัณฑ์</h1>
         <form action="../../assets/db/repair-assetments/add-repair-assetment.php" method="POST" enctype="multipart/form-data">
         <div class="row">
-                <div class="col-6">
-                    <label>วันที่แจ้ง</label>
-                    <input type="text" data-provide="datepicker" data-date-language="th-th"  id="reportDate" name="date" class="form-control" placeholder="dd-mm-yyyy">
-                </div>
-                <div class="col-6">
+        <div class="col-3">
                     <div>
-                        <label>ชื่อผู้แจ้ง</label>
+                        <label>ชื่อผู้แจ้งซ่อม</label>
                     </div>
                     <select name="personnel_id" class="form-control">
                         <option selected> เลือกผู้แจ้ง </option>
@@ -37,11 +33,15 @@ foreach ($stmt->fetchAll() as $res) {
                         foreach ($stmt->fetchAll() as $res) {
 
                         ?>
-                            <option value="<?php echo $res['id']; ?>"><?php echo $res['personnel_firstname']; ?></option>
+                            <option value="<?php echo $res['id']; ?>"><?php echo $res['personnel_firstname']." ".$res['personnel_lastname'] ?></option>
                         <?php
                         }
                         ?>
                     </select>
+                </div>
+                <div class="col-2">
+                    <label>วันที่แจ้งซ่อม</label>
+                    <input type="text" data-provide="datepicker" data-date-language="th-th"  id="reportDate" name="date" class="form-control" placeholder="dd-mm-yyyy">
                 </div>
             </div>
             <table width="100%" id="dynamic_field">

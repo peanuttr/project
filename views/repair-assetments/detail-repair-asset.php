@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
     ?>
     <div class="home-section">
         <div class="home-content">
-            <h1>รายละเอียดการแจ้งซ่อม</h1>
+            <h1 style="padding-left: 10%;">รายละเอียดการแจ้งซ่อม</h1>
             <?php
             $stmt->execute();
             while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -44,7 +44,7 @@ if (isset($_GET['id'])) {
             }
             ?>
             <div class="row form-group">
-                <div class="col-md-5 d-flex justify-content-end">วันที่แจ้ง :</div>
+                <div class="col-md-5 d-flex justify-content-end">วันที่แจ้งซ่อม :</div>
                 <div class="col-md-6"><?php echo $response['date_notice']; ?></div>
             </div>
             <div class="row form-group">
@@ -64,7 +64,7 @@ if (isset($_GET['id'])) {
                                         ?></div>
             </div>
             <div class="row form-group">
-                <div class="col-md-5 d-flex justify-content-end">ชื่อ-นามสกุลผู้แจ้ง :</div>
+                <div class="col-md-5 d-flex justify-content-end">ชื่อ-นามสกุลผู้แจ้งซ่อม :</div>
                 <div class="col-md-6"><?php echo $response['personnel_firstname'] . " " . $response['personnel_lastname']; ?></div>
             </div>
             <div class='row flex justify-content-center mt-2' style="padding-top: 20px">

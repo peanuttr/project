@@ -19,6 +19,31 @@ foreach ($stmt->fetchAll() as $res) {
     <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:90%;">
         <h1>เพิ่มการจำหน่ายครุภัณฑ์</h1>
         <form action="../../assets/db/selling/add-sell-assetment.php" method="POST">
+        <div class="row">
+        <div class="col-3">
+                    <div>
+                        <label>ชื่อผู้แจ้งจำหน่าย</label>
+                    </div>
+                    <select name="staff_id" class="form-control">
+                        <option selected> เลือกผู้แจ้ง </option>
+                        <?php
+                        $stmt = $db->sqlQuery("SELECT * FROM `staffs`");
+                        $stmt->execute();
+
+                        foreach ($stmt->fetchAll() as $res) {
+
+                        ?>
+                            <option value="<?php echo $res['id']; ?>"><?php echo $res['staff_firstname']; ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <label>วันที่แจ้งจำหน่าย</label>
+                    <input type="text" data-provide="datepicker" data-date-language="th-th"  id="reportDate" name="date" class="form-control" placeholder="dd-mm-yyyy">
+                </div>
+            </div>
             <table width="100%" id="dynamic_field">
                 <tr>
                     <td>
@@ -58,31 +83,7 @@ foreach ($stmt->fetchAll() as $res) {
                     <textarea name="detail" class="form-control" rows="10"></textarea>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-6">
-                    <label>วันที่แจ้ง</label>
-                    <input type="text" data-provide="datepicker" data-date-language="th-th"  id="reportDate" name="date" class="form-control" placeholder="dd-mm-yyyy">
-                </div>
-                <div class="col-6">
-                    <div>
-                        <label>ชื่อผู้แจ้ง</label>
-                    </div>
-                    <select name="staff_id" class="form-control">
-                        <option selected> เลือกผู้แจ้ง </option>
-                        <?php
-                        $stmt = $db->sqlQuery("SELECT * FROM `staffs`");
-                        $stmt->execute();
-
-                        foreach ($stmt->fetchAll() as $res) {
-
-                        ?>
-                            <option value="<?php echo $res['id']; ?>"><?php echo $res['staff_firstname']; ?></option>
-                        <?php
-                        }
-                        ?>
-                    </select>
-                </div>
-            </div>
+            
             <div class="row">
                 <div class="col-12">
                     <!-- <input type="files" name="img"> -->

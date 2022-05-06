@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
     ?>
     <div class="home-section">
         <div class="home-content">
-            <h1>รายละเอียดการแจ้งซ่อม</h1>
+            <h1 style="padding-left: 10%;">รายละเอียดการแจ้งซ่อม</h1>
             <?php
             $stmt->execute();
             while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -50,11 +50,11 @@ if (isset($_GET['id'])) {
                 <div class="col-md-5 d-flex justify-content-end">สถานะ :</div>
                 <div class="col-md-6"><?php
                                         if ($response['status'] == 1) {
-                                            echo "แจ้งซ่อม";
+                                            echo "แจ้งจำหน่าย";
                                         } else if ($response['status'] == 2) {
-                                            echo "ดำเนินการซ่อม";
+                                            echo "ดำเนินการตำหน่าย";
                                         } else if ($response['status'] == 3) {
-                                            echo "ซ่อมสำเร็จ";
+                                            echo "จำหน่ายสำเร็จ";
                                         }
                                         ?></div>
             </div>

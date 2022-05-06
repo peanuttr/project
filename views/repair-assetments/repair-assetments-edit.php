@@ -33,11 +33,7 @@ foreach ($stmt->fetchAll() as $res) {
         <form action="../../assets/db/repair-assetments/edit-repair-asset.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name='id' value=<?php echo $_id; ?>>
             <div class="row">
-                <div class="col-6">
-                    <label>วันที่แจ้ง</label>
-                    <input type="text" data-provide="datepicker" data-date-language="th-th" id="reportDate" name="date" class="form-control" placeholder="dd-mm-yyyy" value="<?php echo $response['date_notice']; ?>">
-                </div>
-                <div class="col-6">
+            <div class="col-3">
                     <div>
                         <label>ชื่อผู้แจ้ง</label>
                     </div>
@@ -56,6 +52,10 @@ foreach ($stmt->fetchAll() as $res) {
                         }
                         ?>
                     </select>
+                </div>
+                <div class="col-2">
+                    <label>วันที่แจ้ง</label>
+                    <input type="text" data-provide="datepicker" data-date-language="th-th" id="reportDate" name="date" class="form-control" placeholder="dd-mm-yyyy" value="<?php echo $response['date_notice']; ?>">
                 </div>
             </div>
             <table width="100%" id="dynamic_field">

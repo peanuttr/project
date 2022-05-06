@@ -33,6 +33,7 @@ $db = new db();
                 <div class="card">
                     <div class="card-header">
                         <span>จำนวนรายการยืม-คืน</span>
+                        <a href="../../assets/db/report/report.php?name=borrow_and_return" class="btn btn-primary">export excel</a>
                     </div>
                     <div class="card-body">
                         <h3 class='d-flex justify-content-end'>
@@ -53,6 +54,7 @@ $db = new db();
                 <div class="card">
                     <div class="card-header">
                         <span>จำนวนรายการแจ้งซ่อม</span>
+                        <a href="../../assets/db/report/report.php?name=repair_notice" class="btn btn-primary">export excel</a>
                     </div>
                     <div class="card-body">
                         <h3 class='d-flex justify-content-end'>
@@ -73,6 +75,7 @@ $db = new db();
                 <div class="card">
                     <div class="card-header">
                         <span>จำนวนรายการจำหน่าย</span>
+                        <a href="../../assets/db/report/report.php?name=sells" class="btn btn-primary">export excel</a>
                     </div>
                     <div class="card-body">
                         <h3 class='d-flex justify-content-end'>
@@ -96,6 +99,7 @@ $db = new db();
                 <div class="card">
                     <div class="card-header">
                         <span>จำนวนประเภท</span>
+                        <a href="../../assets/db/report/report.php?name=assets_types" class="btn btn-primary">export excel</a>
                     </div>
                     <div class="card-body">
                         <h3 class='d-flex justify-content-end'>

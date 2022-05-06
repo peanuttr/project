@@ -32,6 +32,32 @@ foreach ($stmt->fetchAll() as $res) {
         <h1>เพิ่มการจำหน่ายครุภัณฑ์</h1>
         <form action="../../assets/db/selling/add-sell-assetment.php" method="POST">
         <input type="hidden" name='id' value=<?php echo $_id; ?>>
+        <div class="row">
+        <div class="col-3">
+                    <div>
+                        <label>ชื่อผู้แจ้ง</label>
+                    </div>
+                    <select name="staff_id" class="form-control">
+                        <option selected value="<?php echo $response['staff_id']; ?>"> <?php echo $response['staff_firstname']; ?> </option>
+                        <?php
+                        $stmt = $db->sqlQuery("SELECT * FROM `staffs`");
+                        $stmt->execute();
+
+                        foreach ($stmt->fetchAll() as $res) {
+                            if($res['id'] != $response['staff_id']){
+                        ?>
+                            <option value="<?php echo $res['id']; ?>"><?php echo $res['staff_firstname']; ?></option>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <label>วันที่แจ้ง</label>
+                    <input type="text" data-provide="datepicker" data-date-language="th-th"  id="reportDate" name="date" class="form-control" placeholder="dd-mm-yyyy" value="<?php echo $response['selling_date']; ?>">
+                </div>
+            </div>
             <table width="100%" id="dynamic_field">
                 <tr>
                     <td>
@@ -69,32 +95,6 @@ foreach ($stmt->fetchAll() as $res) {
                         <label>รายละเอียดการจำหน่าย/ปัญหา</label>
                     </div>
                     <textarea name="detail" class="form-control" rows="10"><?php echo $response['detail']; ?></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <label>วันที่แจ้ง</label>
-                    <input type="text" data-provide="datepicker" data-date-language="th-th"  id="reportDate" name="date" class="form-control" placeholder="dd-mm-yyyy" value="<?php echo $response['selling_date']; ?>">
-                </div>
-                <div class="col-6">
-                    <div>
-                        <label>ชื่อผู้แจ้ง</label>
-                    </div>
-                    <select name="staff_id" class="form-control">
-                        <option selected value="<?php echo $response['staff_id']; ?>"> <?php echo $response['staff_firstname']; ?> </option>
-                        <?php
-                        $stmt = $db->sqlQuery("SELECT * FROM `staffs`");
-                        $stmt->execute();
-
-                        foreach ($stmt->fetchAll() as $res) {
-                            if($res['id'] != $response['staff_id']){
-                        ?>
-                            <option value="<?php echo $res['id']; ?>"><?php echo $res['staff_firstname']; ?></option>
-                        <?php
-                            }
-                        }
-                        ?>
-                    </select>
                 </div>
             </div>
             <div class="row">

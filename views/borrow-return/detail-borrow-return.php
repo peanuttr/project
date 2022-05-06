@@ -72,7 +72,7 @@ if (isset($_GET['id'])) {
                 <div class="col-md-6"><?php echo $response['personnel_firstname'] . " " . $response['personnel_lastname']; ?></div>
             </div>
             <div class="row form-group">
-                <div class="col-md-5 d-flex justify-content-end">ชื่อ-นามสกุลผเจ้าหน้าที่ :</div>
+                <div class="col-md-5 d-flex justify-content-end">ชื่อ-นามสกุลเจ้าหน้าที่ :</div>
                 <div class="col-md-6"><?php echo $response['staff_firstname'] . " " . $response['staff_lastname']; ?></div>
             </div>
             <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
