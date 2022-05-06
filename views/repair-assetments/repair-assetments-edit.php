@@ -4,6 +4,7 @@ require "../../assets/config/db.php";
 $assets = array();
 
 $db = new db;
+$countId = null;
 
 if (isset($_GET['id'])) {
     $_id = $_GET['id'];
@@ -15,6 +16,12 @@ if (isset($_GET['id'])) {
     WHERE dr.repair_id = " . $_id);
     $stmt->execute();
     $response = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    print_r($response);
+
+    $countId = count($response['assets_id']);
+
+    echo "จำนวน ".count($response['assets_id']);
 }
 $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name FROM `assets` AS a 
                         JOIN `assets_types` as t ON a.assets_types_id = t.id 
@@ -29,7 +36,7 @@ foreach ($stmt->fetchAll() as $res) {
 ?>
 <div class="home-section">
     <div class="home-content" style="overflow-y: auto; height:90%; overflow-x: hidden;">
-        <h1>การแจ้งซ่อมครุภัณฑ์</h1>
+        <h1>แก้ไขข้อมูลการแจ้งซ่อมครุภัณฑ์</h1>
         <form action="../../assets/db/repair-assetments/edit-repair-asset.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name='id' value=<?php echo $_id; ?>>
             <div class="row">
@@ -143,6 +150,11 @@ foreach ($stmt->fetchAll() as $res) {
                 }
             })
         })
+
+        var countId = <?php echo $countId; ?>
+        for(var i = 0; i < countId; i++){
+            $("#dynamic_field").append('<tr id="row' + i + '"><td><div class="col-12"><input type="hidden" name="assets_id[]" id="assets-id' + i + '" class="hiddenbox" value="<?php echo $response['assets_id']; ?>"><input type="search" list="asset-number" id="assets-number' + i + '" name="assets_number[]" class="form-control mt-2 mb-2 searchbox" value="<?php echo $response['assets_number']; ?>"></div></td><td><div class="col-12"><input type="text" id="assets-name' + i + '" name="assets_name[]" class="form-control mt-2 mb-2 resultbox" value="<?php echo $response['asset_name']; ?>"></div></td><td><div class="col-12"><a class="btn btn-danger btn-sm mt-2 mb-2 btn_remove" style="color:#fff;" id="' + i + '"><i class="bi bi-x-circle"></i></a></div></td>');
+        }
 
         $("#addMore").click(function() {
             i++;

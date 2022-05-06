@@ -17,7 +17,7 @@ foreach ($stmt->fetchAll() as $res) {
 ?>
 <div class="home-section">
     <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:90%;">
-        <h1>เพิ่มการจำหน่ายครุภัณฑ์</h1>
+        <h1>เพิ่มข้อมูลการจำหน่ายครุภัณฑ์</h1>
         <form action="../../assets/db/selling/add-sell-assetment.php" method="POST">
         <div class="row">
         <div class="col-3">
