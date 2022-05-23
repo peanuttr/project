@@ -10,6 +10,12 @@ $db = new db();
             <div class="container">
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
+                        <label>รหัสแหล่งเงิน</label>
+                        <input type='text' name='moneySourceNumber' class='form-control' placeholder='รหัสแหล่งเงิน'>
+                    </div>
+                </div>
+                <div class='row flex justify-content-center'>
+                    <div class='col-6 width-50 flex justify-center'>
                         <label>ชื่อแหล่งเงิน</label>
                         <input type='text' name='moneySourceName' class='form-control' placeholder='ชื่อแหล่งเงิน'>
                     </div>

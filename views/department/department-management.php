@@ -9,6 +9,7 @@ include_once "../layout/masterpage.php";
             <thead>
                 <tr>
                     <th>ลำดับ</th>
+                    <th>รหัสหน่วยงาน</th>
                     <th>ชื่อหน่วยงาน</th>
                     <th>action</th>
                 </tr>
@@ -24,6 +25,7 @@ include_once "../layout/masterpage.php";
                 ?>
                     <tr>
                         <td><?php echo $number ?></td>
+                        <td><?php echo $result['department_number']; ?></td>
                         <td><?php echo $result['department_name']; ?></td>
                         <td>
                             <a href='./department-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-success'>

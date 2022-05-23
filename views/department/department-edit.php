@@ -17,7 +17,13 @@ if (isset($_GET['id'])) {
             <input type="hidden" name='id' value=<?php echo $_id; ?>>
             <div class='row flex justify-content-center'>
                 <div class='col-6 width-50 flex justify-center'>
-                    <label>ชื่อหน่วยงาน</label>
+                    <label>รหัสหน่วยงาน</label>
+                    <input type='text' name='departmentNumber' class='form-control' placeholder='ชื่อหน่วยงาน' value=<?php echo $res['department_number']; ?>>
+                </div>
+            </div>
+            <div class='row flex justify-content-center'>
+                <div class='col-6 width-50 flex justify-center'>
+                    <label style="padding-top: 1%;">ชื่อหน่วยงาน</label>
                     <input type='text' name='departmentName' class='form-control' placeholder='ชื่อหน่วยงาน' value=<?php echo $res['department_name']; ?>>
                 </div>
             </div>

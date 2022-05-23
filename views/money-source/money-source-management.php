@@ -9,6 +9,7 @@ include_once "../layout/masterpage.php";
             <thead>
                 <tr>
                     <th>ลำดับ</th>
+                    <th>รหัสแหล่งเงิน</th>
                     <th>ชื่อแหล่งเงิน</th>
                     <th>action</th>
                 </tr>
@@ -24,6 +25,7 @@ include_once "../layout/masterpage.php";
                 ?>
                     <tr>
                         <td><?php echo $number ?></td>
+                        <td><?php echo $result['money_source_number']; ?></td>
                         <td><?php echo $result['money_source_name']; ?></td>
                         <td>
                             <a href='./money-source-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-success'>

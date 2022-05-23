@@ -9,7 +9,13 @@ $db = new db();
         <form method="post" action="../../assets/db/department/add-department-and-edit.php">
             <div class='row flex justify-content-center'>
                 <div class='col-6 width-50 flex justify-center'>
-                    <label>ชื่อหน่วยงาน</label>
+                    <label>รหัสหน่วยงาน</label>
+                    <input type='text' name='departmentNumber' class='form-control' placeholder='รหัสหน่วยงาน'>
+                </div>
+            </div>
+            <div class='row flex justify-content-center'>
+                <div class='col-6 width-50 flex justify-center'>
+                    <label style="padding-top: 1%;">ชื่อหน่วยงาน</label>
                     <input type='text' name='departmentName' class='form-control' placeholder='ชื่อหน่วยงาน'>
                 </div>
             </div>
