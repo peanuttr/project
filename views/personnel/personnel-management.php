@@ -12,7 +12,9 @@ include_once "../layout/masterpage.php";
                     <th>ชื่อ</th>
                     <th>นามสกุล</th>
                     <th>เบอร์โทรศัพท์</th>
+                    <th>เบอร์ติดต่อภายใน</th>
                     <th>อีเมล</th>
+                    <th>ตำแหน่ง</th>
                     <th>หน่วยงาน</th>
                     <th>สถานะ</th>
                     <th>action</th>
@@ -32,7 +34,9 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $result['personnel_firstname']; ?></td>
                         <td><?php echo $result['personnel_lastname']; ?></td>
                         <td><?php echo $result['telephone_number']; ?></td>
+                        <td><?php echo $result['extension_number']; ?></td>
                         <td><?php echo $result['email']; ?></td>
+                        <td><?php echo $result['job_title']; ?></td>
                         <td><?php echo $result['department_name']; ?></td>
                         <td><?php echo $result['status']; ?></td>
                         <td>

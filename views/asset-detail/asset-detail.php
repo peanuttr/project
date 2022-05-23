@@ -63,7 +63,7 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">มูลค่าครุภัณฑ์ :</div>
-                    <div class="col-md-6"><?php echo number_format($res['value_asset'], 2) , " บาท"; ?></div>
+                    <div class="col-md-6"><?php echo number_format($res['value_asset'], 2), " บาท"; ?></div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">ชื่อผู้ขาย :</div>
@@ -80,6 +80,10 @@ if (isset($_GET['id'])) {
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">วันหมดประกัน :</div>
                     <div class="col-md-6"><?php echo DateThai($res['expiration_date']); ?></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-5 d-flex justify-content-end font-weight-bold">สถานะ :</div>
+                    <div class="col-md-6"><?php echo $res['status']; ?></div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">รูปภาพ :</div>

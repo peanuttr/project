@@ -6,7 +6,7 @@ $db = new db();
 ?>
 <div class="home-section">
     <div class="home-content">
-        <h1>รายการครุภัณฑ์</h1>
+        <h1>รายงานข้อมูลครุภัณฑ์</h1>
         <div class="row form-group">
             <div class="col-md-3">
                 <div class="card">

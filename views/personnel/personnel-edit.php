@@ -37,8 +37,20 @@ if (isset($_GET['id'])) {
             </div>
             <div class='row flex justify-content-center' style='margin-bottom: 5px'>
                 <div class='col-6 width-50 flex justify-center'>
-                    <label>เบอร์มือถือ</label>
-                    <input type='text' name='telephone' class='form-control' placeholder='เบอร์มือถือ' value=<?php echo $res['telephone_number']; ?>>
+                    <label>ตำแหน่ง</label>
+                    <input type='text' name='jobTitle' class='form-control' placeholder='ตำแหน่ง' value=<?php echo $res['job_title']; ?>>
+                </div>
+            </div>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
+                    <label>เบอร์โทรศัพท์</label>
+                    <input type='text' name='telephone' class='form-control' placeholder='เบอร์โทรศัพท์' value=<?php echo $res['telephone_number']; ?>>
+                </div>
+            </div>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
+                    <label>เบอร์โทรติดต่อภายใน</label>
+                    <input type='text' name='extensionNumber' class='form-control' placeholder='เบอร์โทรติดต่อภายใน' value=<?php echo $res['extension_number']; ?>>
                 </div>
             </div>
             <div class='row flex justify-content-center' style='margin-bottom: 5px'>
@@ -50,19 +62,18 @@ if (isset($_GET['id'])) {
             <div class='row flex justify-content-center' style='margin-bottom: 5px'>
                 <div class='col-6 width-50 flex justify-center'>
                     <label>สถานะ</label>
-                        <?php
-                        $status = array("ทำงานอยู่", "ลาออก");
-                        echo " <select class='form-control' name='status'>";
-                        echo " <option selected> " .$res['status'] ." </option> ";
-                        for ($i = 0; $i < count($status); $i++) {
-                            if (strcmp($res['status'], $status[$i]) == 0) {
-
-                            } else {
-                                echo "<option value='$status[$i]'>$status[$i]</option>";
-                            }
+                    <?php
+                    $status = array("ทำงานอยู่", "ลาออก");
+                    echo " <select class='form-control' name='status'>";
+                    echo " <option selected> " . $res['status'] . " </option> ";
+                    for ($i = 0; $i < count($status); $i++) {
+                        if (strcmp($res['status'], $status[$i]) == 0) {
+                        } else {
+                            echo "<option value='$status[$i]'>$status[$i]</option>";
                         }
-                        echo "</select>";
-                        ?>
+                    }
+                    echo "</select>";
+                    ?>
                 </div>
 
             </div>
@@ -70,21 +81,20 @@ if (isset($_GET['id'])) {
                 <div class='col-6 width-50 flex justify-center'>
                     <label>หน่วยงาน</label>
                     <?php
-                        $stmt = $db->sqlQuery("SELECT * FROM department");
-                        $stmt->execute();
-                        echo "<select class='form-control' name='departmentId'>";
-                        echo "<option value=". $res['department_id']." selected> " . $res['department_name'] . "</option>";
-                        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            $depId = $result['id'];
-                            $depName = $result['department_name'];
-                            if (strcmp($res['department_name'], $depName) == 0) {
-                                
-                            } else {
-                                echo "<option value='$depId'>$depName</option>";
-                            }
+                    $stmt = $db->sqlQuery("SELECT * FROM department");
+                    $stmt->execute();
+                    echo "<select class='form-control' name='departmentId'>";
+                    echo "<option value=" . $res['department_id'] . " selected> " . $res['department_name'] . "</option>";
+                    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $depId = $result['id'];
+                        $depName = $result['department_name'];
+                        if (strcmp($res['department_name'], $depName) == 0) {
+                        } else {
+                            echo "<option value='$depId'>$depName</option>";
                         }
-                        echo "</select>"
-                        ?>
+                    }
+                    echo "</select>"
+                    ?>
                 </div>
             </div>
             <div class='row flex justify-content-center mt-2'>

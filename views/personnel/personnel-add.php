@@ -21,8 +21,20 @@ $db = new db();
             </div>
             <div class='row flex justify-content-center' style='margin-bottom: 5px'>
                 <div class='col-6 width-50 flex justify-center'>
-                    <label>เบอร์มือถือ</label>
-                    <input type='text' name='telephone' class='form-control' placeholder='เบอร์มือถือ'>
+                    <label>ตำแหน่ง</label>
+                    <input type='text' name='jobTitle' class='form-control' placeholder='ตำแหน่ง'>
+                </div>
+            </div>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
+                    <label>เบอร์โทรศัพท์</label>
+                    <input type='text' name='telephone' class='form-control' placeholder='เบอร์โทรศัพท์'>
+                </div>
+            </div>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
+                    <label>เบอร์โทรติดต่อภายใน</label>
+                    <input type='text' name='extensionNumber' class='form-control' placeholder='เบอร์โทรติดต่อภายใน'>
                 </div>
             </div>
             <div class='row flex justify-content-center' style='margin-bottom: 10px'>

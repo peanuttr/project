@@ -42,11 +42,15 @@ include_once "../layout/masterpage.php";
                             <?php
                             if ($result['status'] == 'รออนุมัติ') {
                             ?>
+                                <a class='btn btn-sm btn-warning text-white' href='./edit-borrow.php?id=<?php echo $result['id'] ?>'>
+                                    <i class='bx bx-edit'></i>
+                                </a>
                                 <a class='del btn btn-sm btn-danger' onclick="removeBorrow('<?php echo $result['id']; ?>')">
                                     <i class='bx bx-trash'></i>
-                                <?php
+                                </a>
+                            <?php
                             }
-                                ?>
+                            ?>
                         </td>
                     </tr>
                 <?php

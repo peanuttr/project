@@ -62,38 +62,38 @@ foreach ($stmt->fetchAll() as $res) {
                     ?>
                     </select>
                 </div>
+                <table width="100%" id="dynamic_field">
+                    <tr>
+                        <td>
+                            <div class="col-12">
+                                <label>รหัสครุภัณฑ์</label>
+                                <input type="hidden" name="assets_id[]" id="assets-id">
+                                <input type="search" list="asset-number" id="assets-number" class="form-control" name="assets_number[]" />
+                                <datalist id="asset-number">
+                                    <?php
+                                    for ($i = 0; $i < count($assets); $i++) {
+                                    ?>
+                                        <option value="<?php echo $assets[$i]['assets_number']; ?>"><?php echo $assets[$i]['assets_name'] ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </datalist>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col-12">
+                                <label>ชื่อครุภัณฑ์</label>
+                                <input type="text" id="assets-name" class="form-control" name="assets_name[]" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="col-12 d-flex mt-5 mb-3">
+                                <a class="btn btn-primary btn-sm" id="addMore"><i class="bi bi-plus-circle" style="color: #fff;"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <table width="100%" id="dynamic_field">
-                <tr>
-                    <td>
-                        <div class="col-12">
-                            <label>รหัสครุภัณฑ์</label>
-                            <input type="hidden" name="assets_id[]" id="assets-id">
-                            <input type="search" list="asset-number" id="assets-number" class="form-control" name="assets_number[]" />
-                            <datalist id="asset-number">
-                                <?php
-                                for ($i = 0; $i < count($assets); $i++) {
-                                ?>
-                                    <option value="<?php echo $assets[$i]['assets_number']; ?>"><?php echo $assets[$i]['assets_name'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </datalist>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col-12">
-                            <label>ชื่อครุภัณฑ์</label>
-                            <input type="text" id="assets-name" class="form-control" name="assets_name[]" />
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col-12 d-flex mt-5 mb-3">
-                            <a class="btn btn-primary btn-sm" id="addMore"><i class="bi bi-plus-circle" style="color: #fff;"></i></a>
-                        </div>
-                    </td>
-                </tr>
-            </table>
             <div class="row">
                 <div class="col-12">
                     <!-- <input type="files" name="img"> -->
