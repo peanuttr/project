@@ -43,6 +43,7 @@ include_once "../layout/masterpage.php";
                             <a class="btn btn-primary btn-sm text-white" href="./detail-repair-asset.php?id=<?php echo $result['id'] ?>">view</a>
                             <a class="btn btn-sm btn-warning text-white" href="./repair-assetments-edit.php?id=<?php echo $result['id'] ?>">edit</a>
                             <a class="btn btn-primary btn-sm text-white" onclick="deleteRepair(<?php echo $result['id'] ?>)">delete</a>
+                            <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf.php?id=<?php echo $result['id']; ?>">Export PDF</a>
                         </td>
                     </tr>
                 <?php
@@ -75,4 +76,5 @@ include_once "../layout/masterpage.php";
             }
         })
     }
+
 </script>
