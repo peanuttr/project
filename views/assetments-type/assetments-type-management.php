@@ -9,6 +9,7 @@ include_once "../layout/masterpage.php";
             <thead>
                 <tr>
                     <th>ลำดับ</th>
+                    <th>รหัสประเภทครุภัณฑ์</th>
                     <th>ชื่อประเภทครุภัณฑ์</th>
                     <th>action</th>
                 </tr>
@@ -24,6 +25,7 @@ include_once "../layout/masterpage.php";
                 ?>
                     <tr>
                         <td><?php echo $number ?></td>
+                        <td><?php echo $result['assets_types_number']; ?></td>
                         <td><?php echo $result['assets_types_name']; ?></td>
                         <td>
                             <a href='./assetments-type-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-success'>
