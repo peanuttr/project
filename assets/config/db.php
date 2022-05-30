@@ -3,7 +3,7 @@ class db
 {
 	public function connect()
 	{
-		$servername = "localhost";
+		$servername = "192.168.1.104";
 		$username = "root";
 		$password = "12345678";
 
