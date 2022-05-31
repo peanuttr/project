@@ -3,12 +3,17 @@ class db
 {
 	public function connect()
 	{
-		$servername = "192.168.1.104";
-		$username = "root";
-		$password = "12345678";
+		$servername = "us-cdbr-east-05.cleardb.net";
+		$username = "b8fa7680aa3b4b";
+		$password = "97762e27";
+		$databasename = "heroku_2a53a8770fb06e2";
+		// $servername = "localhost";
+		// $username = "root";
+		// $password = "12345678";
+		// $dbname = "assetsmanagement";
 
 		try {
-			$conn = new PDO("mysql:host=$servername;dbname=assetsmanagement", $username, $password);
+			$conn = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
 			// set the PDO error mode to exception
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$conn->exec("set names UTF8");
