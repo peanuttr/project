@@ -45,16 +45,9 @@ include_once "../layout/masterpage.php";
                                 <i class='bx bx-edit'></i>
                             </a>
                             <a href='./asset-detail.php?id=<?php echo $result['id'] ?>' class='btn btn-sm btn-primary'>รายละเอียด</a>
-                            <?php
-                            if ($_SESSION['status'] == "admin") {
-                            ?>
                                 <a class='del btn btn-sm btn-danger' onclick="removeAsset('<?php echo $result['id'] ?>')">
                                     <i class='bx bx-trash'></i>
                                 </a>
-                            <?php
-
-                            }
-                            ?>
                         </td>
                     </tr>
                 <?php

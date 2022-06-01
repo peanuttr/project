@@ -26,19 +26,27 @@ foreach ($stmt->fetchAll() as $res) {
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
-                    <div class='col-6 width-50 flex justify-center'>
+                    <div class='col-3 width-50 flex justify-center'>
                         <label>รายละเอียด</label>
                         <textarea name="assetDetail" class="form-control" rows="5"></textarea>
                     </div>
                     <div class='col-3 width-50 flex justify-center'>
-                        <label>วันที่รับเข้า</label>
-                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="dateAdmit" class="form-control" placeholder="dd-mm-yyyy">
+                        <label>คุณสมบัติ</label>
+                        <textarea name="assetFeature" class="form-control" rows="5"></textarea>
+                    </div>
+                    <div class='col-3 width-50 flex justify-center'>
+                        <label>วันที่ส่งของ</label>
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="dateDelivery" class="form-control" placeholder="dd-mm-yyyy">
+                        <label>วันหมดประกัน</label>
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="expirationDate" class="form-control" placeholder="dd-mm-yyyy">
                         <label>มูลค่าครุภัณฑ์</label>
                         <input type="text" name="assetValue" class="form-control" placeholder="มูลค่าครุภัณฑ์">
                     </div>
                     <div class='col-3 width-50 flex justify-center'>
-                        <label>วันหมดประกัน</label>
-                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="expirationDate" class="form-control" placeholder="dd-mm-yyyy">
+                        <label>วันที่รับเข้าคลัง</label>
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="dateAdmit" class="form-control" placeholder="dd-mm-yyyy">
+                        <label>วันที่เบิก</label>
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="datePickup" class="form-control" placeholder="dd-mm-yyyy">
                         <label>เลขที่ใบส่งของ</label>
                         <input type="text" name="deliveryNumber" class="form-control" placeholder="เลขที่ใบส่งของ">
                     </div>
@@ -111,9 +119,6 @@ foreach ($stmt->fetchAll() as $res) {
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
-
-                </div>
-                <div class='row flex justify-content-center'>
                     <div class='col-4 width-50 flex justify-center'>
                         <label>ประเภทครุภัณฑ์</label>
                         <?php
@@ -157,6 +162,44 @@ foreach ($stmt->fetchAll() as $res) {
                             <option value="อยู่ระหว่างซ่อม">อยู่ระหว่างซ่อม</option>
                             <option value="จำหน่าย">จำหน่าย</option>
                         </select>
+                    </div>
+                </div>
+                <div class='row flex justify-content-center'>
+                    <div class='col-4 width-50 flex justify-center'>
+                        <label>ผู้นำเข้าคลัง</label>
+                        <?php
+                        $stmt = $db->sqlQuery("SELECT * FROM staffs");
+                        $stmt->execute();
+                        $output = " ";
+                        $output .= "<select class='form-control' name='staffId'>";
+                        $output .= "<option selected>เลือกผู้นำเข้าคลัง </option>";
+                        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            $staffId = $result['id'];
+                            $staffFirstName = $result['staff_firstname'];
+                            $staffLastName = $result['staff_lastname'];
+                            $output .= "<option value='$staffId'>$staffFirstName $staffLastName</option>";
+                        }
+                        $output .= "</select>";
+                        echo $output;
+                        ?>
+                    </div>
+                    <div class='col-4 width-50 flex justify-center'>
+                        <label>ผู้เบิก</label>
+                        <?php
+                        $stmt = $db->sqlQuery("SELECT * FROM personnels");
+                        $stmt->execute();
+                        $output = " ";
+                        $output .= "<select class='form-control' name='personnelId'>";
+                        $output .= "<option selected>เลือกผู้เบิก </option>";
+                        while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            $personnelId = $result['id'];
+                            $personnelFirstName = $result['personnel_firstname'];
+                            $personnelLastName = $result['personnel_lastname'];
+                            $output .= "<option value='$personnelId'>$personnelFirstName $personnelLastName</option>";
+                        }
+                        $output .= "</select>";
+                        echo $output;
+                        ?>
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
