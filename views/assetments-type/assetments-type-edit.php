@@ -18,6 +18,12 @@ if (isset($_GET['id'])) {
             <div class="container">
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
+                        <label>รหัสประเภทครุภัณฑ์</label>
+                        <input type='text' name='assetmentTypeNumber' class='form-control' placeholder='รหัสประเภทครุภัณฑ์' value=<?php echo $res['assets_types_number']; ?>>
+                    </div>
+                </div>
+                <div class='row flex justify-content-center'>
+                    <div class='col-6 width-50 flex justify-center'>
                         <label>ชื่อประเภทครุภัณฑ์</label>
                         <input type='text' name='assetmentTypeName' class='form-control' placeholder='ชื่อประเภทครุภัณฑ์' value=<?php echo $res['assets_types_name']; ?>>
                     </div>

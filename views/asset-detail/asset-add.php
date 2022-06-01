@@ -18,11 +18,11 @@ foreach ($stmt->fetchAll() as $res) {
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>เลขครุภัณฑ์</label>
-                        <input type='text' name='assetNumber' class='form-control' placeholder='เลขครุภัณฑ์' required>
+                        <input type='text' name='assetNumber' class='form-control' placeholder='เลขครุภัณฑ์' >
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ชื่อครุภัณฑ์</label>
-                        <input type='text' name='assetName' class='form-control' placeholder='ชื่อครุภัณฑ์' required>
+                        <input type='text' name='assetName' class='form-control' placeholder='ชื่อครุภัณฑ์' >
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
@@ -209,6 +209,12 @@ foreach ($stmt->fetchAll() as $res) {
                             <input type="file" class="form-control-file" name="image" onchange="readURL(this);">
                             <img id="preview" src=" " width="50px" height="auto">
                         </div>
+                    </div>
+                </div>
+                <div class="row flex justify-content-center">
+                    <div class="col-5 width-50 flex justify-center">
+                        <label for="">upload csv</label>
+                        <input type="file" name="upload" id="upload">
                     </div>
                 </div>
                 <div class='row flex justify-content-center mt-2' style="padding-top: 20px">

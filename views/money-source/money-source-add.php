@@ -6,7 +6,7 @@ $db = new db();
 <div class="home-section">
     <div class="home-content">
         <h1 style="padding-top: 1%;">เพิ่มข้อมูลแหล่งเงิน</h1>
-        <form method="post" action="../../assets/db/money-source/add-money-source-and-edit.php">
+        <form method="post" action="../../assets/db/money-source/add-money-source-and-edit.php" enctype="multipart/form-data">
             <div class="container">
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
@@ -18,6 +18,12 @@ $db = new db();
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ชื่อแหล่งเงิน</label>
                         <input type='text' name='moneySourceName' class='form-control' placeholder='ชื่อแหล่งเงิน'>
+                    </div>
+                </div>
+                <div class="row flex justify-content-center">
+                    <div class="col-5 width-50 flex justify-center">
+                        <label for="">upload csv</label>
+                        <input type="file" name="upload" id="upload">
                     </div>
                 </div>
                 <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
