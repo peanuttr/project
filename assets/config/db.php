@@ -3,14 +3,14 @@ class db
 {
 	public function connect()
 	{
-		$servername = "us-cdbr-east-05.cleardb.net";
-		$username = "b8fa7680aa3b4b";
-		$password = "97762e27";
-		$databasename = "heroku_2a53a8770fb06e2";
-		// $servername = "localhost";
-		// $username = "root";
-		// $password = "12345678";
-		// $dbname = "assetsmanagement";
+		// $servername = "us-cdbr-east-05.cleardb.net";
+		// $username = "b8fa7680aa3b4b";
+		// $password = "97762e27";
+		// $databasename = "heroku_2a53a8770fb06e2";
+		$servername = "localhost";
+		$username = "root";
+		$password = "12345678";
+		$databasename = "assetsmanagement";
 
 		try {
 			$conn = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
