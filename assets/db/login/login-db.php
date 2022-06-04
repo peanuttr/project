@@ -13,6 +13,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['username'] = $res['username'];
         $_SESSION['status'] = $res['permission'];
         $_SESSION['firstName'] = $res['staff_firstname'];
+        $_SESSION['userid'] = $res['id'];
         sleep(3);
         header('location:Project/views/dashboard/dashboard.php');
     } else {

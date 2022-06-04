@@ -167,6 +167,15 @@ if (empty($_SESSION['username'])) {
             <li><a class="link_name" href="../personnel/personnel-management.php">จัดการบุคลากร</a></li>
           </ul>
         </li>
+        <li>
+          <a href="../edituser/edituser.php">
+            <i class='bi bi-person-lines-fill'></i>
+            <span class="link_name">แก้ไขข้อมูลผู้ใช้งาน</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="../edituser/edituser.php">แก้ไขข้อมูลผู้ใช้งาน</a></li>
+          </ul>
+        </li>
       <?php
       }
       ?>
