@@ -62,7 +62,7 @@ foreach ($stmt->fetchAll() as $res) {
                 </div>
                 <div class="col-2">
                     <label>วันที่แจ้ง</label>
-                    <input type="text" data-provide="datepicker" data-date-language="th-th" id="reportDate" name="date" class="form-control" placeholder="dd-mm-yyyy" value="<?php echo $response['date_notice']; ?>">
+                    <input type="text" data-provide="datepicker" data-date-language="th-th" id="reportDate" name="date" class="form-control" placeholder="วว/ดด/ปปปป" value="<?php echo $response['date_notice']; ?>">
                 </div>
                 <table width="100%" id="dynamic_field">
                 <tr>

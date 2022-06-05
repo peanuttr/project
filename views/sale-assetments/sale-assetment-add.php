@@ -41,7 +41,7 @@ foreach ($stmt->fetchAll() as $res) {
                 </div>
                 <div class="col-2">
                     <label>วันที่แจ้งจำหน่าย</label>
-                    <input type="text" data-provide="datepicker" data-date-language="th-th"  id="reportDate" name="date" class="form-control" placeholder="dd-mm-yyyy">
+                    <input type="text" data-provide="datepicker" data-date-language="th-th"  id="reportDate" name="date" class="form-control" placeholder="วว/ดด/ปปปป">
                 </div>
                 <table width="100%" id="dynamic_field">
                 <tr>

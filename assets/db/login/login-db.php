@@ -14,9 +14,9 @@ if (isset($_POST['submit'])) {
         $_SESSION['status'] = $res['permission'];
         $_SESSION['firstName'] = $res['staff_firstname'];
         sleep(3);
-        header('location:Project/views/dashboard/dashboard.php');
+        header('location: ../../../../../project/views/dashboard/dashboard.php');
     } else {
         sleep(3);
-        header('location:/');
+        header('location: ../../../../../project/views/login/login.php');
     }
 }

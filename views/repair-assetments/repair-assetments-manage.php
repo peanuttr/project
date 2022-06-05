@@ -26,7 +26,7 @@ include_once "../layout/masterpage.php";
                 ?>
                     <tr>
                         <td><?php echo "REPAIR_" . $result['id']; ?></td>
-                        <td><?php echo $result['personnel_firstname']." ".$result['personnel_lastname']; ?></td>
+                        <td><?php echo $result['personnel_firstname'] . " " . $result['personnel_lastname']; ?></td>
                         <td><?php echo $result['detail']; ?></td>
                         <td><?php echo $result['date_notice']; ?></td>
                         <td><?php
@@ -40,10 +40,16 @@ include_once "../layout/masterpage.php";
                             ?>
                         </td>
                         <td>
-                            <a class="btn btn-primary btn-sm text-white" href="./detail-repair-asset.php?id=<?php echo $result['id'] ?>">view</a>
-                            <a class="btn btn-sm btn-warning text-white" href="./repair-assetments-edit.php?id=<?php echo $result['id'] ?>">edit</a>
-                            <a class="btn btn-primary btn-sm text-white" onclick="deleteRepair(<?php echo $result['id'] ?>)">delete</a>
-                            <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf.php?id=<?php echo $result['id']; ?>">Export PDF</a>
+                            <a class="btn btn-primary btn-sm text-white" href="./detail-repair-asset.php?id=<?php echo $result['id'] ?>">รายละเอียด</a>
+                            <?php
+                            if ($result['status'] == 1) {
+                            ?>
+                                <a class="btn btn-sm btn-warning text-white" href="./repair-assetments-edit.php?id=<?php echo $result['id'] ?>">แก้ไข</a>
+                                <a class="btn btn-danger btn-sm text-white" onclick="deleteRepair(<?php echo $result['id'] ?>)">ลบ</a>
+                            <?php
+                            }
+                            ?>
+                            <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf.php?id=<?php echo $result['id']; ?>">บันทึกเอกสาร</a>
                         </td>
                     </tr>
                 <?php
@@ -64,7 +70,7 @@ include_once "../layout/masterpage.php";
         });
     })
 
-    function deleteRepair(repair_id){
+    function deleteRepair(repair_id) {
         $.ajax({
             url: '../../assets/db/repair-assetments/delete-repair-assetment.php',
             type: 'POST',
@@ -76,5 +82,4 @@ include_once "../layout/masterpage.php";
             }
         })
     }
-
 </script>
