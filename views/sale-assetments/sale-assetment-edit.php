@@ -66,7 +66,7 @@ foreach ($stmt->fetchAll() as $res) {
                 </div>
                 <div class="col-2">
                     <label>วันที่แจ้ง</label>
-                    <input type="text" data-provide="datepicker" data-date-language="th-th"  id="reportDate" name="date" class="form-control" placeholder="วว/ดด/ปปปป" value="<?php echo $response['selling_date']; ?>">
+                    <input type="text" data-provide="datepicker" data-date-language="th-th"  id="reportDate" name="date" class="form-control" placeholder="วว/ดด/ปปปป" value="<?php echo $response[0]['selling_date']; ?>">
                 </div>
                <table width="100%" id="dynamic_field">
                 <tr>
@@ -106,7 +106,7 @@ foreach ($stmt->fetchAll() as $res) {
                     <div>
                         <label>รายละเอียดการจำหน่าย/ปัญหา</label>
                     </div>
-                    <textarea name="detail" class="form-control" rows="10"><?php echo $response['detail']; ?></textarea>
+                    <textarea name="detail" class="form-control" rows="10"><?php echo $response[0]['detail']; ?></textarea>
                 </div>
             </div>
             <div class="row">
