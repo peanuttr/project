@@ -128,11 +128,9 @@ if (isset($_POST['submit'])) {
         $stmt = $db->sqlQuery("SELECT * FROM `repair_notice` ORDER BY `id` DESC LIMIT 1");
         $stmt->execute();
         $res = $stmt->fetch(PDO::FETCH_ASSOC);
-        $i = 0;
         foreach($assets as $resp){
             $stmt = $db->sqlQuery("INSERT INTO `detail_repair_notice`(`asset_id`,`repair_id`,`image`) VALUES ('".$resp['id']."','".$res['id']."','".$resp[0]['img']."')");
             $stmt->execute();
-            $i++;
             $stmt = $db->sqlQuery("UPDATE `assets` SET `status`='แจ้งซ่อม' WHERE  `id`=".$resp['id']);
             $stmt->execute();
             

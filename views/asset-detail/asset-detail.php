@@ -91,7 +91,18 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">QR-CODE :</div>
+                    <?php
+                    if($res['qr-code'] == ""){
+                        ?>
+                        <a href="../../assets/db/asset-detail/generateqrcode.php?id=<?php echo $_id; ?>" class="btn btn-sm btn-primary text-white">สร้าง QR - code</a>
+                        <?php
+                    }
+                    else {
+                        ?>
                     <div class="col-md-6"><img src="<?php echo "../../assets/qrcode/", $res['qr-code']; ?>" width="140px" alt=""></div>
+                        <?php
+                    }
+                    ?>
                 </div>
             <?php
             }

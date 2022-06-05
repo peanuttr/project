@@ -48,7 +48,7 @@ if (isset($_FILES['upload'])) {
         VALUES ('$facultyNumber','$facultyName','$assets_number','$assets_name','$year_of_budget','$value_assets','$seller','$delivery_number','$serial_number','$newDateAdmit','$assets_types_id','$unit_id','$department_id','$money_source_id')");
         $stmt->execute();
         if ($stmt) {
-            header("location: ../../../../../project/views/money-source/money-source-management.php");
+            header("location: ../../../../../project/views/asset-detail/asset-management.php");
         }
     }
 } else {
@@ -149,7 +149,7 @@ if (isset($_FILES['upload'])) {
                 QR_ECLEVEL_M,
                 1
             );
-            $stmt = $db->sqlQuery("UPDATE `assets` SET `qr-code`='" . $assets_number . ".png'");
+            $stmt = $db->sqlQuery("UPDATE `assets` SET `qr-code`='" . $assets_number . ".png' WHERE `id` = ".$res['id']);
             $stmt->execute();
             header("location: ../../../../../project/views/asset-detail/asset-management.php");
         }
