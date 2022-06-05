@@ -38,11 +38,11 @@ if (isset($_GET['id'])) {
                 <div class='row flex justify-content-center'>
                     <div class='col-3 width-50 flex justify-center'>
                         <label>รายละเอียด</label>
-                        <textarea name="assetDetail" class="form-control" rows="5" value=<?php echo $res['detail']; ?>></textarea>
+                        <textarea name="assetDetail" class="form-control" rows="5"> <?php echo $res['detail']; ?></textarea>
                     </div>
                     <div class='col-3 width-50 flex justify-center'>
                         <label>คุณสมบัติ</label>
-                        <textarea name="assetFeature" class="form-control" rows="5" value=<?php echo $res['feature']; ?>></textarea>
+                        <textarea name="assetFeature" class="form-control" rows="5"> <?php echo $res['feature']; ?></textarea>
                     </div>
                     <div class='col-3 width-50 flex justify-center'>
                         <label>วันที่ส่งของ</label>
