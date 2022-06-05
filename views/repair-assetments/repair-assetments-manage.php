@@ -32,10 +32,15 @@ include_once "../layout/masterpage.php";
                         <td><?php
                             if ($result['status'] == 1) {
                                 echo "แจ้งซ่อม";
-                            } else if ($result['status'] == 2) {
+                            } 
+                            else if ($result['status'] == 2) {
                                 echo "ดำเนินการซ่อม";
-                            } else if ($result['status'] == 3) {
-                                echo "success";
+                            } 
+                            else if ($result['status'] == 3) {
+                                echo "ซ่อมสำเร็จ";
+                            }
+                            else if ($result['status'] == 0) {
+                                echo "ไม่อนุมัติ";
                             }
                             ?>
                         </td>
@@ -48,8 +53,12 @@ include_once "../layout/masterpage.php";
                                 <a class="btn btn-danger btn-sm text-white" onclick="deleteRepair(<?php echo $result['id'] ?>)">ลบ</a>
                             <?php
                             }
+                            if($result['status'] == 2 || $result['status'] == 0){
                             ?>
                             <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf.php?id=<?php echo $result['id']; ?>">บันทึกเอกสาร</a>
+                            <?php
+                            }
+                            ?>
                         </td>
                     </tr>
                 <?php

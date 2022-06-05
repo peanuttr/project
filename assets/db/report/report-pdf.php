@@ -6,11 +6,12 @@ $db = new db();
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);
-$pdf->setFont('thsarabunnew001','',16);
+$pdf->setFont('thsarabunnew001', '', 16);
 $pdf->AddPage();
+$dateNow = date('d-m-Y');
 $html = '<p style="text-align:center; font-size:large;">แบบบันทึกการยืมพัสดุ
 </p>
-<p style="text-align:right;">เขียนที่ คณะอุตสาหกรรมเกษตร <br /> วันที่ 27 เดือน พฤษภาคม พ.ศ. 2565</p>
+<p style="text-align:right;">เขียนที่ คณะอุตสาหกรรมเกษตร <br /> '.DateThai($dateNow).'</p>
 <p style="text-align:left;">เรื่อง ขอยืมครุภัณฑ์ <br /> เรียนคณบดีคณะอุตสาหกรรมเกษตร</p>
 <p style="text-align:center; text-indent: 5vh;">ข้าพเจ้า     ตำแหน่ง <br /> 
 สังกัดส่วนงาน(คณะ/วิทยาลัย/สำนัก/สถาบัน) <br />
@@ -43,3 +44,20 @@ $html = '<p style="text-align:center; font-size:large;">แบบบันทึ
 ';
 $pdf->writeHTML($html);
 $pdf->Output();
+
+function DateThai($strDate)
+{
+
+    $strYear = date("Y", strtotime($strDate)) + 543;
+
+    $strMonth = date("n", strtotime($strDate));
+
+    $strDay = date("j", strtotime($strDate));
+
+    $strMonthCut = array("", "มกราคม.", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายม", "กรกฏาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤษจิกายน", "ธันวาคม");
+
+    $strMonthThai = $strMonthCut[$strMonth];
+
+    return "$strDay $strMonthThai $strYear";
+
+}

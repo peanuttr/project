@@ -73,7 +73,7 @@ if (isset($_GET['id'])) {
                         <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",2,<?php echo json_encode($assets) ?>)'><span>อนุมัติ</span><a>
                     </div>
                     <div class='col-1 d-flex justity-content-end'>
-                        <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",0,<?php echo json_encode($assets) ?>)'><span>ไม่อนุมัติ</span><a>
+                        <a class='btn btn-sm btn-danger' onclick='updateStatus("<?php echo $_id ?>",0,<?php echo json_encode($assets) ?>)'><span>ไม่อนุมัติ</span><a>
                     </div>
                 <?php
                 }

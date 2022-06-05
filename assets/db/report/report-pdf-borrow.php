@@ -3,16 +3,17 @@ require '../../libs/TCPDF/tcpdf.php';
 require "../../config/db.php";
 $db = new db();
 
-// $_id = $_GET['id'];
-// $stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,s.staff_lastname,p.personnel_firstname,p.personnel_lastname,pl.placename,a.asset_name,a.assets_number,br.borrow_date,br.return_date,br.detail
-//                 FROM `detail_borrow_and_return` AS brd
-//                             JOIN `borrow_and_return` as br ON brd.borrow_and_return_id = br.id
-//                             JOIN `staffs` as s ON br.staff_id = s.id 
-//                             JOIN `personnels` as p ON br.personel_id = p.id 
-//                             JOIN `place` as pl ON brd.place_id = pl.id 
-//                             JOIN `assets` as a ON brd.asset_id = a.id 
-//                             WHERE brd.borrow_and_return_id = " . $_id);
-// $stmt->execute();
+$_id = $_GET['id'];
+$stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,s.staff_lastname,p.personnel_firstname,p.personnel_lastname,pl.placename,a.asset_name,a.assets_number,br.borrow_date,br.return_date,br.detail
+                FROM `detail_borrow_and_return` AS brd
+                            JOIN `borrow_and_return` as br ON brd.borrow_and_return_id = br.id
+                            JOIN `staffs` as s ON br.staff_id = s.id 
+                            JOIN `personnels` as p ON br.personel_id = p.id 
+                            JOIN `place` as pl ON brd.place_id = pl.id 
+                            JOIN `assets` as a ON brd.asset_id = a.id 
+                            WHERE brd.borrow_and_return_id = " . $_id);
+$stmt->execute();
+$res = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -20,11 +21,15 @@ $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);
 $pdf->setFont('thsarabunnew001', '', 16);
 $pdf->AddPage();
+$dateNow = date('d-m-Y');
+
+
+
 $html = '<p style="text-align:center; font-size:large;">แบบบันทึกการยืมพัสดุ
 </p>
-<p style="text-align:right;">เขียนที่ คณะอุตสาหกรรมเกษตร <br /> วันที่ 27 เดือน พฤษภาคม พ.ศ. 2565</p>
+<p style="text-align:right;">เขียนที่ คณะอุตสาหกรรมเกษตร <br /> '.DateThai($dateNow).'</p>
 <p style="text-align:left;">เรื่อง ขอยืมครุภัณฑ์ <br /> เรียนคณบดีคณะอุตสาหกรรมเกษตร</p>
-<p style="text-align:center; text-indent: 5vh;">ข้าพเจ้า     ตำแหน่ง <br /> 
+<p style="text-align:center; text-indent: 5vh;">ข้าพเจ้า '.$res['personnel_firstname'].' '.$res['personnel_lastname'].'ตำแหน่ง <br /> 
 สังกัดส่วนงาน(คณะ/วิทยาลัย/สำนัก/สถาบัน) <br />
 หน่วยงาน(ภาควิชา/กอง/ศูนย์/กลุ่มงาน) <br />
 ขอยืมทรัพย์สินของทางราชการซึ่งเป็นพัสดุประเภท <br />
@@ -55,3 +60,20 @@ $html = '<p style="text-align:center; font-size:large;">แบบบันทึ
 ';
 $pdf->writeHTML($html);
 $pdf->Output();
+
+function DateThai($strDate)
+{
+
+    $strYear = date("Y", strtotime($strDate)) + 543;
+
+    $strMonth = date("n", strtotime($strDate));
+
+    $strDay = date("j", strtotime($strDate));
+
+    $strMonthCut = array("", "มกราคม.", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายม", "กรกฏาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤษจิกายน", "ธันวาคม");
+
+    $strMonthThai = $strMonthCut[$strMonth];
+
+    return "$strDay $strMonthThai $strYear";
+
+}
