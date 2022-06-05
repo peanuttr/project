@@ -48,6 +48,7 @@ include_once "../layout/masterpage.php";
                                 <a class='del btn btn-sm btn-danger' onclick="removeBorrow('<?php echo $result['id']; ?>')">
                                     <i class='bx bx-trash'></i>
                                 </a>
+                                <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf-borrow.php?id=<?php echo $result['id']; ?>">Export PDF</a>
                             <?php
                             }
                             ?>

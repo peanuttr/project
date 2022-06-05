@@ -167,6 +167,15 @@ if (empty($_SESSION['username'])) {
             <li><a class="link_name" href="../personnel/personnel-management.php">จัดการบุคลากร</a></li>
           </ul>
         </li>
+        <li>
+          <a href="../edituser/edituser.php">
+            <i class='bi bi-person-lines-fill'></i>
+            <span class="link_name">แก้ไขข้อมูลผู้ใช้งาน</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="../edituser/edituser.php">แก้ไขข้อมูลผู้ใช้งาน</a></li>
+          </ul>
+        </li>
       <?php
       }
       ?>
@@ -208,9 +217,9 @@ if (empty($_SESSION['username'])) {
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="../../assets/bootstrap-datepicker-thai/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="../../assets/bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js"></script>
-<script type="text/javascript" src="../../assets/bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js"></script>
+<script type="text/javascript" src="../../assets/libs/bootstrap-datepicker-thai/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="../../assets/libs/bootstrap-datepicker-thai/js/bootstrap-datepicker-thai.js"></script>
+<script type="text/javascript" src="../../assets/libs/bootstrap-datepicker-thai/js/locales/bootstrap-datepicker.th.js"></script>
 <script src="https://cdn.datatables.net/plug-ins/1.11.5/sorting/natural.js"></script>
 <script src="../../assets/js/script.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
