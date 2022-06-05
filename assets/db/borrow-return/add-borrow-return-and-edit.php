@@ -36,8 +36,8 @@ if (isset($_POST['submit'])) {
             $stmt = $db->sqlQuery("UPDATE `assets` set `place_id`='$placeId', `status`='รออนุมัติการยืม' WHERE `id`='". $resp['id'] ."'");
             $stmt->execute();
         }
-        $message = "บันทึกข้อมูลการยืมครุภัณฑ์เรียบร้อย";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        // $message = "บันทึกข้อมูลการยืมครุภัณฑ์เรียบร้อย";
+        // echo "<script type='text/javascript'>alert('$message');</script>";
         header("location: ../../../../../project/views/borrow-return/borrow-return-add.php");
     }
 }
