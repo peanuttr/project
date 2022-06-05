@@ -55,7 +55,7 @@ include_once "../layout/masterpage.php";
                             }
                             if($result['status'] == 2 || $result['status'] == 0){
                             ?>
-                            <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf.php?id=<?php echo $result['id']; ?>">บันทึกเอกสาร</a>
+                            <!-- <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf.php?id=<?php echo $result['id']; ?>">บันทึกเอกสาร</a> -->
                             <?php
                             }
                             ?>
