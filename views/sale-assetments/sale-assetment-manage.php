@@ -11,7 +11,7 @@ include_once "../layout/masterpage.php";
                     <th>ผู้แจ้งจำหน่าย</th>
                     <th>รายละเอียด</th>
                     <th>วันที่แจ้งจำหน่าย</th>
-                    <th>สถานะแจ้งแจำหน่าย</th>
+                    <th>สถานะแจ้งจำหน่าย</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -35,7 +35,7 @@ include_once "../layout/masterpage.php";
                             } else if ($result['status'] == 2) {
                                 echo "ดำเนินการจำหน่าย";
                             } else if ($result['status'] == 3) {
-                                echo "success";
+                                echo "จำหน่ายสำเร็จ";
                             }
                             ?>
                         </td>
