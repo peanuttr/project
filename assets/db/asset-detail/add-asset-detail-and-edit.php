@@ -143,8 +143,10 @@ if (isset($_FILES['upload'])) {
             $stmt = $db->sqlQuery("SELECT `id` FROM `assets` ORDER BY `id` DESC LIMIT 1");
             $stmt->execute();
             $res = $stmt->fetch(PDO::FETCH_ASSOC);
+            // $path = "http://localhost/project/views/asset-detail/asset-detail.php?id=" . $res['id'];
+            $path = "https://php-assets.herokuapp.com/views/asset-detail/asset-detail.php?id=" . $res['id'];
             QRcode::png(
-                "http://localhost/project/views/asset-detail/asset-detail.php?id=" . $res['id'],
+                $path,
                 $_SERVER['DOCUMENT_ROOT'] . "/project/assets/qrcode/" . $assets_number . ".png",
                 QR_ECLEVEL_M,
                 1
@@ -199,7 +201,7 @@ if (isset($_FILES['upload'])) {
         $image = null;
 
         if (isset($_FILES['image'])) {
-            $target_dir = "../../uploads/";
+            $target_dir = $_SERVER['DOCUMENT_ROOT'] . "/project/assets/uploads/";
             $target_file = $target_dir . basename($_FILES["image"]["name"]);
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
