@@ -36,6 +36,8 @@ include_once "../layout/masterpage.php";
                                 echo "ดำเนินการจำหน่าย";
                             } else if ($result['status'] == 3) {
                                 echo "จำหน่ายสำเร็จ";
+                            }else if ($result['status'] == 0) {
+                                echo "ไม่อนุมัติ";
                             }
                             ?>
                         </td>
