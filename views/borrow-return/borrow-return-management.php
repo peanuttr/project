@@ -69,11 +69,10 @@ include_once "../layout/masterpage.php";
                                 <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf-borrow.php?id=<?php echo $result['id']; ?>"><i class="bi bi-printer-fill"></i></a>
                             <?php
                             }
-                            ?>
-                            <?php if ($_SESSION['status'] != "staff") {
+                            if ($_SESSION['status'] != "staff") {
                             ?>
                                 <a class="btn btn-primary btn-sm text-white" href="./detail-borrow-return.php?id=<?php echo $result['id'] ?>"><i class="bi bi-info-square-fill"></i></a>
-                            <?
+                            <?php
                             }
                             ?>
                         </td>

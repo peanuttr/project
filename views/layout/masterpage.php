@@ -25,9 +25,22 @@ if (empty($_SESSION['username'])) {
     <div class="logo-details">
       <!-- <i class='bx bxl-c-plus-plus'></i> -->
       <!-- <div class="logo_name"></div> -->
+      <?php
+      if($_SESSION['status'] == "admin" || $_SESSION['status'] == "executive"){
+      ?>
       <a href="../dashboard/dashboard.php" class="logo">
         <img class="banner" src="../../assets/image/logo.png">
       </a>
+      <?php
+      }
+      else{
+      ?>
+      <a href="../asset-detail/asset-management.php" class="logo">
+        <img class="banner" src="../../assets/image/logo.png">
+      </a>
+      <?php
+      }
+      ?>
     </div>
     <ul class="nav-links">
       <li>
