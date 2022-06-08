@@ -30,7 +30,7 @@ include_once "../layout/masterpage.php";
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                     <tr>
-                        <td><?php echo "BORROW_",$number ?></td>
+                        <td><?php echo "BORROW_", $number ?></td>
                         <td>
                             <?php
                             $stmt2 = $db->sqlQuery("SELECT dbr.*,a.asset_name FROM detail_borrow_and_return as dbr
@@ -52,14 +52,8 @@ include_once "../layout/masterpage.php";
                         <td><?php echo DateThai($result['return_date']) ?></td>
                         <td><?php echo $result['status'] ?></td>
                         <td>
-                        <?php if ($_SESSION['status'] != "staff") {
-                            ?>
-                            <a class="btn btn-primary btn-sm text-white" href="./detail-borrow-return.php?id=<?php echo $result['id'] ?>">รายละเอียด</a>
-                            <?
-                            }
-                            ?>
                             <?php
-                            if ($result['status'] == 'รออนุมัติ' && $_SESSION['status'] != "staff" ) {
+                            if ($result['status'] == 'รออนุมัติ' && $_SESSION['status'] != "staff") {
                             ?>
                                 <a class='btn btn-sm btn-warning text-white' href='./edit-borrow.php?id=<?php echo $result['id'] ?>'>
                                     <i class='bx bx-edit'></i>
@@ -67,12 +61,19 @@ include_once "../layout/masterpage.php";
                                 <a class='del btn btn-sm btn-danger' onclick="removeBorrow('<?php echo $result['id']; ?>')">
                                     <i class='bx bx-trash'></i>
                                 </a>
+
                             <?php
                             }
-                            if ($result['status'] == 'อนุมัติ' && $_SESSION['status'] == "staff") {
+                            if ($result['status'] == 'รออนุมัติ' && $_SESSION['status'] == "staff") {
                             ?>
-                                <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf-borrow.php?id=<?php echo $result['id']; ?>">บันทึกเอกสาร</a>
+                                <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf-borrow.php?id=<?php echo $result['id']; ?>"><i class="bi bi-printer-fill"></i></a>
                             <?php
+                            }
+                            ?>
+                            <?php if ($_SESSION['status'] != "staff") {
+                            ?>
+                                <a class="btn btn-primary btn-sm text-white" href="./detail-borrow-return.php?id=<?php echo $result['id'] ?>"><i class="bi bi-info-square-fill"></i></a>
+                            <?
                             }
                             ?>
                         </td>
