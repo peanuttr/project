@@ -7,8 +7,9 @@ include_once "../layout/masterpage.php";
         <table id="myTable" style='font-size:14px; width: 100%; text-align:center; border:1px;' class='table table-striped '>
             <thead>
                 <tr>
-                    <th>ลำดับ</th>
-                    <th>บุคลากร</th>
+                    <th>เลขที่การยืม</th>
+                    <th>ครุภัณฑ์ที่ยืม</th>
+                    <th>ผู้ยืม</th>
                     <th>เจ้าหน้าที่</th>
                     <th>รายละเอียด</th>
                     <th>วันที่ยืม</th>
@@ -29,7 +30,21 @@ include_once "../layout/masterpage.php";
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                     <tr>
-                        <td><?php echo $number ?></td>
+                        <td><?php echo "BORROW_",$number ?></td>
+                        <td>
+                            <?php
+                            $stmt2 = $db->sqlQuery("SELECT dbr.*,a.asset_name FROM detail_borrow_and_return as dbr
+                                                    JOIN assets as a ON a.id = dbr.asset_id
+                                                    WHERE dbr.borrow_and_return_id = " . $result['id']);
+                            $stmt2->execute();
+                            while ($res = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+                                echo $res['asset_name'];
+                                echo "</br>";
+                            ?>
+                            <?php
+                            }
+                            ?>
+                        </td>
                         <td><?php echo $result['personnel_firstname']; ?></td>
                         <td><?php echo $result['staff_firstname']; ?></td>
                         <td><?php echo $result['detail']; ?></td>
@@ -50,9 +65,9 @@ include_once "../layout/masterpage.php";
                                 </a>
                             <?php
                             }
-                            if($result['status'] == 'อนุมัติ' || $result['status'] == 'ไม่อนุมัติ'){
+                            if ($result['status'] == 'อนุมัติ' || $result['status'] == 'ไม่อนุมัติ') {
                             ?>
-                            <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf-borrow.php?id=<?php echo $result['id']; ?>">บันทึกเอกสาร</a>
+                                <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf-borrow.php?id=<?php echo $result['id']; ?>">บันทึกเอกสาร</a>
                             <?php
                             }
                             ?>
