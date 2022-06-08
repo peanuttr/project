@@ -65,7 +65,7 @@ include_once "../layout/masterpage.php";
                                 </a>
                             <?php
                             }
-                            if ($result['status'] == 'อนุมัติ' || $result['status'] == 'ไม่อนุมัติ') {
+                            if ($result['status'] == 'อนุมัติ' && $_SESSION['status'] == "staff") {
                             ?>
                                 <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf-borrow.php?id=<?php echo $result['id']; ?>">บันทึกเอกสาร</a>
                             <?php

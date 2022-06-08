@@ -43,7 +43,7 @@ include_once "../layout/masterpage.php";
                         </td>
                         <td><?php echo $result['staff_firstname'] . " " . $result['staff_lastname']; ?></td>
                         <td><?php echo $result['detail']; ?></td>
-                        <td><?php echo $result['selling_date']; ?></td>
+                        <td><?php echo DateThai($result['selling_date']); ?></td>
                         <td><?php
                             if ($result['status'] == 1) {
                                 echo "แจ้งจำหน่าย";
@@ -58,8 +58,14 @@ include_once "../layout/masterpage.php";
                         </td>
                         <td>
                             <a class="btn btn-primary btn-sm text-white" href="./detail-sale-asset.php?id=<?php echo $result['id'] ?>">รายละเอียด</a>
-                            <a class="btn btn-sm btn-warning text-white" href="./sale-assetment-edit.php?id=<?php echo $result['id'] ?>">แก้ไข</a>
-                            <a class="btn btn-primary btn-sm text-white" onclick="deleteSell(<?php echo $result['id'] ?>)">ลบ</a>
+                            <?php
+                            if ($result['status'] == 1) {
+                            ?>
+                                <a class="btn btn-sm btn-warning text-white" href="./sale-assetment-edit.php?id=<?php echo $result['id'] ?>"><i class='bx bx-edit'></i></a>
+                                <a class="btn btn-primary btn-sm text-white" onclick="deleteSell(<?php echo $result['id'] ?>)"><i class='bx bx-trash'></i></a>
+                            <?php
+                            }
+                            ?>
                         </td>
                     </tr>
                 <?php
@@ -69,6 +75,22 @@ include_once "../layout/masterpage.php";
         </table>
     </div>
 </div>
+<?php
+function DateThai($strDate)
+{
+    $strYear = date("Y", strtotime($strDate));
+
+    $strMonth = date("n", strtotime($strDate));
+
+    $strDay = date("j", strtotime($strDate));
+
+    $strMonthCut = array("", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.");
+
+    $strMonthThai = $strMonthCut[$strMonth];
+
+    return "$strDay $strMonthThai $strYear";
+}
+?>
 <script>
     $(document).ready(function() {
         var table = $('#myTable').DataTable({

@@ -94,7 +94,7 @@ $db = new db();
             </div>
         </div>
 
-        <div class="row form-group flex justify-content-center">
+        <!-- <div class="row form-group flex justify-content-center">
             <div class="col-md-3 ">
                 <div class="card">
                     <div class="card-header">
@@ -116,6 +116,6 @@ $db = new db();
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

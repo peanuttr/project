@@ -18,12 +18,13 @@ if (isset($_GET['name'])) {
             $num = $res;
         }
 
-        $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name,p.placename FROM `assets` AS a 
+        $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_number,d.department_name,m.money_source_number,m.money_source_name,p.placename,s.staff_firstname FROM `assets` AS a 
     JOIN `assets_types` as t ON a.assets_types_id = t.id 
     JOIN `unit` as u ON a.unit_id = u.id 
     JOIN `department` as d ON a.department_id = d.id 
     JOIN `money_source` as m ON a.money_source_id = m.id
-    JOIN `place` as p ON a.place_id = p.id");
+    JOIN `place` as p ON a.place_id = p.id
+    JOIN `staffs` as s ON s.id = a.staff_id");
         $stmt->execute();
 
 ?>
@@ -43,8 +44,23 @@ if (isset($_GET['name'])) {
             <div id="SiXhEaD_Excel" align=center x:publishsource="Excel">
                 <table x:str border=1 cellpadding=0 cellspacing=1 width=100% style="border-collapse:collapse">
                     <tr>
-                        <td width="94" height="30" align="center" valign="middle"><strong>เลขครุภัณฑ์</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>รหัสคณะ</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>ชื่อคณะ</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>รหัสภาค/กอง</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>ชื่อภาค/กอง</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>รหัสแหล่งเงิน</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>ชื่อแหล่งเงิน</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>ปีงบประมาณ</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>เลขครุภัณฑ์</strong></td>
                         <td width="200" align="center" valign="middle"><strong>ชื่อครุภัณฑ์</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>หน่วยนับ</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>วันที่รับเข้าคลัง</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>มูลค่าครุภัณฑ์</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>ผู้นำเข้าคลัง</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>เลขที่ใบส่งของ</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>วันที่ส่งของ</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>ผู้ขาย</strong></td>
+                        <td width="200" align="center" valign="middle"><strong>หมายเลขซีเรียล</strong></td>
                         <td width="181" align="center" valign="middle"><strong>ที่อยู่</strong></td>
                         <td width="181" align="center" valign="middle"><strong>สถานะ</strong></td>
                     </tr>
@@ -52,8 +68,23 @@ if (isset($_GET['name'])) {
                     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     ?>
                         <tr>
+                            <td align="center" valign="middle"><?php echo $result['faculty_number']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['faculty_name']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['department_number']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['department_name']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['money_source_number']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['money_source_name']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['year_of_budget']; ?></td>
                             <td align="center" valign="middle"><?php echo $result['assets_number']; ?></td>
                             <td align="center" valign="middle"><?php echo $result['asset_name']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['unit_name']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['date_admit']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['value_asset']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['staff_firstname']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['number_delivery']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['date_delivery']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['seller_name']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['serial_number']; ?></td>
                             <td align="center" valign="middle"><?php echo $result['placename']; ?></td>
                             <td align="center" valign="middle"><?php echo $result['status'];; ?></td>
                         </tr>

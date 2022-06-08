@@ -43,7 +43,7 @@ include_once "../layout/masterpage.php";
                         </td>
                         <td><?php echo $result['personnel_firstname'] . " " . $result['personnel_lastname']; ?></td>
                         <td><?php echo $result['detail']; ?></td>
-                        <td><?php echo $result['date_notice']; ?></td>
+                        <td><?php echo DateThai($result['date_notice']); ?></td>
                         <td><?php
                             if ($result['status'] == 1) {
                                 echo "แจ้งซ่อม";
@@ -61,13 +61,13 @@ include_once "../layout/masterpage.php";
                             <?php
                             if ($result['status'] == 1) {
                             ?>
-                                <a class="btn btn-sm btn-warning text-white" href="./repair-assetments-edit.php?id=<?php echo $result['id'] ?>">แก้ไข</a>
-                                <a class="btn btn-danger btn-sm text-white" onclick="deleteRepair(<?php echo $result['id'] ?>)">ลบ</a>
+                                <a class="btn btn-sm btn-warning text-white" href="./repair-assetments-edit.php?id=<?php echo $result['id'] ?>"><i class='bx bx-edit'></i></a>
+                                <a class="btn btn-danger btn-sm text-white" onclick="deleteRepair(<?php echo $result['id'] ?>)"><i class='bx bx-trash'></i></a>
                             <?php
                             }
-                            if ($result['status'] == 2 || $result['status'] == 0) {
+                            if ($result['status'] == 1 && $_SESSION['status'] == "staff") {
                             ?>
-                                <!-- <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf.php?id=<?php echo $result['id']; ?>">บันทึกเอกสาร</a> -->
+                                <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf-repair.php?id=<?php echo $result['id']; ?>">บันทึกเอกสาร</a>
                             <?php
                             }
                             ?>
@@ -80,6 +80,22 @@ include_once "../layout/masterpage.php";
         </table>
     </div>
 </div>
+<?php
+function DateThai($strDate)
+{
+    $strYear = date("Y", strtotime($strDate));
+
+    $strMonth = date("n", strtotime($strDate));
+
+    $strDay = date("j", strtotime($strDate));
+
+    $strMonthCut = array("", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.");
+
+    $strMonthThai = $strMonthCut[$strMonth];
+
+    return "$strDay $strMonthThai $strYear";
+}
+?>
 <script>
     $(document).ready(function() {
         var table = $('#myTable').DataTable({
