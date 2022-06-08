@@ -68,7 +68,7 @@ include_once "../layout/masterpage.php";
                             <?php if ($_SESSION['status'] != "staff") {
                             ?>
                                 <a class="btn btn-primary btn-sm text-white" href="./detail-sale-asset.php?id=<?php echo $result['id'] ?>"><i class="bi bi-info-square-fill"></i></a>
-                            <?
+                            <?php
                             }
                             ?>
                         </td>
