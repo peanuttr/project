@@ -58,8 +58,6 @@ include_once "../layout/masterpage.php";
                             <?
                             }
                             ?>
-                            
-
                             <?php
                             if ($result['status'] == 'รออนุมัติ' && $_SESSION['status'] != "staff" ) {
                             ?>
