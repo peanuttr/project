@@ -10,13 +10,13 @@ $db = new db();
             <div class='row flex justify-content-center'>
                 <div class='col-6 width-50 flex justify-center'>
                     <label>รหัสหน่วยงาน</label>
-                    <input type='text' name='departmentNumber' class='form-control' placeholder='รหัสหน่วยงาน'>
+                    <input type='text' name='departmentNumber' class='form-control' placeholder='รหัสหน่วยงาน' required>
                 </div>
             </div>
             <div class='row flex justify-content-center'>
                 <div class='col-6 width-50 flex justify-center'>
                     <label style="padding-top: 1%;">ชื่อหน่วยงาน</label>
-                    <input type='text' name='departmentName' class='form-control' placeholder='ชื่อหน่วยงาน'>
+                    <input type='text' name='departmentName' class='form-control' placeholder='ชื่อหน่วยงาน' required>
                 </div>
             </div>
             <div class='row flex justify-content-center mt-2' style="padding-top: 20px">

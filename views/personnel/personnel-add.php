@@ -10,37 +10,37 @@ $db = new db();
             <div class='row flex justify-content-center' style='margin-bottom: 5px'>
                 <div class='col-6 width-50 flex justify-center'>
                     <label>ชื่อ</label>
-                    <input type='text' name='fisrtname' class='form-control' placeholder='ชื่อ'>
+                    <input type='text' name='fisrtname' class='form-control' placeholder='ชื่อ' required>
                 </div>
             </div>
             <div class='row flex justify-content-center' style='margin-bottom: 5px'>
                 <div class='col-6 width-50 flex justify-center'>
                     <label>นามสกุล</label>
-                    <input type='text' name='lastname' class='form-control' placeholder='นามสกุล'>
+                    <input type='text' name='lastname' class='form-control' placeholder='นามสกุล' required>
                 </div>
             </div>
             <div class='row flex justify-content-center' style='margin-bottom: 5px'>
                 <div class='col-6 width-50 flex justify-center'>
                     <label>ตำแหน่ง</label>
-                    <input type='text' name='jobTitle' class='form-control' placeholder='ตำแหน่ง'>
+                    <input type='text' name='jobTitle' class='form-control' placeholder='ตำแหน่ง' required>
                 </div>
             </div>
             <div class='row flex justify-content-center' style='margin-bottom: 5px'>
                 <div class='col-6 width-50 flex justify-center'>
                     <label>เบอร์โทรศัพท์</label>
-                    <input type='text' name='telephone' class='form-control' placeholder='เบอร์โทรศัพท์'>
+                    <input type='text' name='telephone' class='form-control' placeholder='เบอร์โทรศัพท์' required>
                 </div>
             </div>
             <div class='row flex justify-content-center' style='margin-bottom: 5px'>
                 <div class='col-6 width-50 flex justify-center'>
                     <label>เบอร์โทรติดต่อภายใน</label>
-                    <input type='text' name='extensionNumber' class='form-control' placeholder='เบอร์โทรติดต่อภายใน'>
+                    <input type='text' name='extensionNumber' class='form-control' placeholder='เบอร์โทรติดต่อภายใน' required>
                 </div>
             </div>
             <div class='row flex justify-content-center' style='margin-bottom: 10px'>
                 <div class='col-6 width-50 flex justify-center'>
                     <label>อีเมล์</label>
-                    <input type='text' name='email' class='form-control' placeholder='E-Mail'>
+                    <input type='text' name='email' class='form-control' placeholder='E-Mail' required>
                 </div>
             </div>
             <div class='row flex justify-content-center' style='margin-bottom: 10px'>
@@ -73,11 +73,11 @@ $db = new db();
                 </div>
             </div>
             <div class="row flex justify-content-center">
-                    <div class="col-5 width-50 flex justify-center">
-                        <label for="">upload csv</label>
-                        <input type="file" name="upload" id="upload">
-                    </div>
+                <div class="col-5 width-50 flex justify-center">
+                    <label for="">upload csv</label>
+                    <input type="file" name="upload" id="upload">
                 </div>
+            </div>
             <div class='row flex justify-content-center mt-2'>
                 <div class='col-1 d-flex justify-content-start'>
                     <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>

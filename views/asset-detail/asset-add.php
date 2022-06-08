@@ -18,11 +18,11 @@ foreach ($stmt->fetchAll() as $res) {
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>เลขครุภัณฑ์</label>
-                        <input type='text' name='assetNumber' class='form-control' placeholder='เลขครุภัณฑ์' >
+                        <input type='text' name='assetNumber' class='form-control' placeholder='เลขครุภัณฑ์' required>
                     </div>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ชื่อครุภัณฑ์</label>
-                        <input type='text' name='assetName' class='form-control' placeholder='ชื่อครุภัณฑ์' >
+                        <input type='text' name='assetName' class='form-control' placeholder='ชื่อครุภัณฑ์' required>
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
@@ -36,25 +36,25 @@ foreach ($stmt->fetchAll() as $res) {
                     </div>
                     <div class='col-3 width-50 flex justify-center'>
                         <label>วันที่ส่งของ</label>
-                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="dateDelivery" class="form-control" placeholder="dd-mm-yyyy">
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="dateDelivery" class="form-control" placeholder="dd-mm-yyyy" required>
                         <label>วันหมดประกัน</label>
-                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="expirationDate" class="form-control" placeholder="dd-mm-yyyy">
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="expirationDate" class="form-control" placeholder="dd-mm-yyyy" required>
                         <label>มูลค่าครุภัณฑ์</label>
                         <input type="text" name="assetValue" class="form-control" placeholder="มูลค่าครุภัณฑ์">
                     </div>
                     <div class='col-3 width-50 flex justify-center'>
                         <label>วันที่รับเข้าคลัง</label>
-                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="dateAdmit" class="form-control" placeholder="dd-mm-yyyy">
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="dateAdmit" class="form-control" placeholder="dd-mm-yyyy" required>
                         <label>วันที่เบิก</label>
-                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="datePickup" class="form-control" placeholder="dd-mm-yyyy">
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="datePickup" class="form-control" placeholder="dd-mm-yyyy" required>
                         <label>เลขที่ใบส่งของ</label>
-                        <input type="text" name="deliveryNumber" class="form-control" placeholder="เลขที่ใบส่งของ">
+                        <input type="text" name="deliveryNumber" class="form-control" placeholder="เลขที่ใบส่งของ" required>
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
                     <div class='col-4 width-50 flex justify-center'>
                         <label>ชื่อผู้ขาย</label>
-                        <input type="text" name="seller" class="form-control" placeholder="ชื่อผู้ขาย">
+                        <input type="text" name="seller" class="form-control" placeholder="ชื่อผู้ขาย" required>
                     </div>
                     <div class='col-4 width-50 flex justify-center'>
                         <label>หมายเลขซีเรียล</label>
@@ -62,7 +62,7 @@ foreach ($stmt->fetchAll() as $res) {
                     </div>
                     <div class='col-4 width-50 flex justify-center'>
                         <label>ปีงบประมาณ</label>
-                        <input type="text" name="yearBudget" class="form-control" placeholder="ปีงบประมาณ">
+                        <input type="text" name="yearBudget" class="form-control" placeholder="ปีงบประมาณ" required>
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>

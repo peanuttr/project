@@ -11,13 +11,13 @@ $db = new db();
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>รหัสประเภทครุภัณฑ์</label>
-                        <input type='text' name='assetmentTypeNumber' class='form-control' placeholder='รหัสประเภทครุภัณฑ์'>
+                        <input type='text' name='assetmentTypeNumber' class='form-control' placeholder='รหัสประเภทครุภัณฑ์' required>
                     </div>
                 </div>
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ชื่อประเภทครุภัณฑ์</label>
-                        <input type='text' name='assetmentTypeName' class='form-control' placeholder='ชื่อประเภทครุภัณฑ์'>
+                        <input type='text' name='assetmentTypeName' class='form-control' placeholder='ชื่อประเภทครุภัณฑ์' required>
                     </div>
                 </div>
                 <div class="row flex justify-content-center">
