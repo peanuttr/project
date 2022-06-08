@@ -5,12 +5,15 @@ include_once "../layout/masterpage.php";
 $db = new db();
 if (isset($_GET['id'])) {
     $_id = $_GET['id'];
-    $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name,p.placename FROM `assets` AS a 
+    $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,d.department_number,m.money_source_name,m.money_source_number,
+                p.placename,pe.personnel_firstname,pe.personnel_lastname,s.staff_firstname,s.staff_lastname FROM `assets` AS a 
                 JOIN `assets_types` as t ON a.assets_types_id = t.id 
                 JOIN `unit` as u ON a.unit_id = u.id 
                 JOIN `department` as d ON a.department_id = d.id 
                 JOIN `money_source` as m ON a.money_source_id = m.id
                 JOIN `place` as p ON a.place_id = p.id
+                JOIN `personnels` as pe ON a.personnel_id = pe.id
+                JOIN `staffs` as s ON a.staff_id = s.id
                 WHERE a.id = "  . $_id);
     $stmt->execute();
 ?>
@@ -21,6 +24,14 @@ if (isset($_GET['id'])) {
             $stmt->execute();
             while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
             ?>
+                <div class="row form-group">
+                    <div class="col-md-5 d-flex justify-content-end font-weight-bold">รหัสคณะ : </div>
+                    <div class="col-md-6"><?php echo $res['faculty_number']; ?></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-5 d-flex justify-content-end font-weight-bold">ชื่อคณะ : </div>
+                    <div class="col-md-6"><?php echo $res['faculty_name']; ?></div>
+                </div>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">เลขครุภัณฑ์ : </div>
                     <div class="col-md-6"><?php echo $res['assets_number']; ?></div>
@@ -46,8 +57,16 @@ if (isset($_GET['id'])) {
                     <div class="col-md-6"><?php echo $res['unit_name']; ?></div>
                 </div>
                 <div class="row form-group">
+                    <div class="col-md-5 d-flex justify-content-end font-weight-bold">รหัสหน่วยงาน :</div>
+                    <div class="col-md-6"><?php echo $res['department_number']; ?></div>
+                </div>
+                <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">หน่วยงาน :</div>
                     <div class="col-md-6"><?php echo $res['department_name']; ?></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-5 d-flex justify-content-end font-weight-bold">รหัสแหล่งเงิน :</div>
+                    <div class="col-md-6"><?php echo $res['money_source_number']; ?></div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">แหล่งเงิน :</div>
@@ -74,6 +93,18 @@ if (isset($_GET['id'])) {
                     <div class="col-md-6"><?php echo $res['number_delivery']; ?></div>
                 </div>
                 <div class="row form-group">
+                    <div class="col-md-5 d-flex justify-content-end font-weight-bold">ผู้เบิก :</div>
+                    <div class="col-md-6"><?php echo $res['staff_firstname'], ' ', $res['staff_lastname']; ?></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-5 d-flex justify-content-end font-weight-bold">ผู้นำเข้าคลัง :</div>
+                    <div class="col-md-6"><?php echo $res['personnel_firstname'], ' ', $res['personnel_lastname']; ?></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-5 d-flex justify-content-end font-weight-bold">วันที่เบิก :</div>
+                    <div class="col-md-6"><?php echo DateThai($res['date_pickup']); ?></div>
+                </div>
+                <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">วันที่รับเข้า :</div>
                     <div class="col-md-6"><?php echo DateThai($res['date_admit']); ?></div>
                 </div>
@@ -92,15 +123,14 @@ if (isset($_GET['id'])) {
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">QR-CODE :</div>
                     <?php
-                    if($res['qr-code'] == ""){
-                        ?>
+                    if ($res['qr-code'] == "") {
+                    ?>
                         <a href="../../assets/db/asset-detail/generateqrcode.php?id=<?php echo $_id; ?>" class="btn btn-sm btn-primary text-white">สร้าง QR - code</a>
-                        <?php
-                    }
-                    else {
-                        ?>
-                    <div class="col-md-6"><img src="<?php echo "../../assets/qrcode/", $res['qr-code']; ?>" width="140px" alt=""></div>
-                        <?php
+                    <?php
+                    } else {
+                    ?>
+                        <div class="col-md-6"><img src="<?php echo "../../assets/qrcode/", $res['qr-code']; ?>" width="140px" alt=""></div>
+                    <?php
                     }
                     ?>
                 </div>
