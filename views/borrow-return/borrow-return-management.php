@@ -53,7 +53,7 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $result['status'] ?></td>
                         <td>
                             <?php
-                            if ($result['status'] == 'รออนุมัติ') {
+                            if ($result['status'] == 'รออนุมัติ' && $_SESSION['status'] != "staff") {
                             ?>
                                 <a class='btn btn-sm btn-warning text-white' href='./edit-borrow.php?id=<?php echo $result['id'] ?>'>
                                     <i class='bx bx-edit'></i>
@@ -70,7 +70,12 @@ include_once "../layout/masterpage.php";
                             <?php
                             }
                             ?>
-                            <a class="btn btn-primary btn-sm text-white" href="./detail-borrow-return.php?id=<?php echo $result['id'] ?>"><i class="bi bi-info-square-fill"></i></a>
+                            <?php if ($_SESSION['status'] != "staff") {
+                            ?>
+                                <a class="btn btn-primary btn-sm text-white" href="./detail-borrow-return.php?id=<?php echo $result['id'] ?>"><i class="bi bi-info-square-fill"></i></a>
+                            <?
+                            }
+                            ?>
                         </td>
                     </tr>
                 <?php

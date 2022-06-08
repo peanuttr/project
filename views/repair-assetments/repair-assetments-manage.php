@@ -58,7 +58,7 @@ include_once "../layout/masterpage.php";
                         </td>
                         <td>
                             <?php
-                            if ($result['status'] == 1) {
+                            if ($result['status'] == 1 && $_SESSION['status'] != "staff") {
                             ?>
                                 <a class="btn btn-sm btn-warning text-white" href="./repair-assetments-edit.php?id=<?php echo $result['id'] ?>"><i class='bx bx-edit'></i></a>
                                 <a class="btn btn-danger btn-sm text-white" onclick="deleteRepair(<?php echo $result['id'] ?>)"><i class='bx bx-trash'></i></a>
@@ -70,7 +70,12 @@ include_once "../layout/masterpage.php";
                             <?php
                             }
                             ?>
-                            <a class="btn btn-primary btn-sm text-white" href="./detail-repair-asset.php?id=<?php echo $result['id'] ?>"><i class="bi bi-info-square-fill"></i></a>
+                            <?php if ($_SESSION['status'] != "staff") {
+                            ?>
+                                <a class="btn btn-primary btn-sm text-white" href="./detail-repair-asset.php?id=<?php echo $result['id'] ?>"><i class="bi bi-info-square-fill"></i></a>
+                            <?
+                            }
+                            ?>
                         </td>
                     </tr>
                 <?php
@@ -109,17 +114,17 @@ function DateThai($strDate)
 
     function deleteRepair(repair_id) {
         var result = confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่");
-        if(result){
+        if (result) {
             $.ajax({
-            url: '../../assets/db/repair-assetments/delete-repair-assetment.php',
-            type: 'POST',
-            data: {
-                id: repair_id
-            },
-            success: function(data) {
-                window.location.href = "./repair-assetments-manage.php"
-            }
-        })
+                url: '../../assets/db/repair-assetments/delete-repair-assetment.php',
+                type: 'POST',
+                data: {
+                    id: repair_id
+                },
+                success: function(data) {
+                    window.location.href = "./repair-assetments-manage.php"
+                }
+            })
         }
     }
 </script>

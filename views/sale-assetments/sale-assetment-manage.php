@@ -58,14 +58,19 @@ include_once "../layout/masterpage.php";
                         </td>
                         <td>
                             <?php
-                            if ($result['status'] == 1) {
+                            if ($result['status'] == 1 && $_SESSION['status'] != "staff") {
                             ?>
                                 <a class="btn btn-sm btn-warning text-white" href="./sale-assetment-edit.php?id=<?php echo $result['id'] ?>"><i class='bx bx-edit'></i></a>
                                 <a class="btn btn-danger btn-sm text-white" onclick="deleteSell(<?php echo $result['id'] ?>)"><i class='bx bx-trash'></i></a>
                             <?php
                             }
                             ?>
-                            <a class="btn btn-primary btn-sm text-white" href="./detail-sale-asset.php?id=<?php echo $result['id'] ?>"><i class="bi bi-info-square-fill"></i></a>
+                            <?php if ($_SESSION['status'] != "staff") {
+                            ?>
+                                <a class="btn btn-primary btn-sm text-white" href="./detail-sale-asset.php?id=<?php echo $result['id'] ?>"><i class="bi bi-info-square-fill"></i></a>
+                            <?
+                            }
+                            ?>
                         </td>
                     </tr>
                 <?php
@@ -104,17 +109,17 @@ function DateThai($strDate)
 
     function deleteSell(sell_id) {
         var result = confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่");
-        if(result){
+        if (result) {
             $.ajax({
-            url: '../../assets/db/selling/delete-sell-assetment.php',
-            type: 'POST',
-            data: {
-                id: sell_id
-            },
-            success: function(data) {
-                window.location.href = "./sale-assetment-manage.php"
-            }
-        })
+                url: '../../assets/db/selling/delete-sell-assetment.php',
+                type: 'POST',
+                data: {
+                    id: sell_id
+                },
+                success: function(data) {
+                    window.location.href = "./sale-assetment-manage.php"
+                }
+            })
         }
     }
 </script>
