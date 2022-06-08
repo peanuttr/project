@@ -37,8 +37,8 @@ $html = '<p style="text-align:center; font-size:large;">แบบบันทึ
 <span style="text-align:center;"> ........ ใช้คงรูป ได้แก่ ................................................................................................ </span> <br />
 <span style="text-align:center;"> ........ ใช้สินเปลือง ได้แก่ ................................................................................................ </span> <br />
 <span style="text-align:left;">เพื่อใช้ในกิจการดังนี้ ' . $res['detail'] . '</span><br />
-<span style="text-align:left;">โดยขอยืมพัสดุที่แจ้งซ่อมเป็นระยะเวลา ' . DateThai($res['borrow_date']) . ' (วัน/เดือน/ปี) </span><br />
-<span style="text-align:left;">กำหนดระยะเวลาคืนพัสดุ ภายใน ' . DateThai($res['return_date']) . ' </span> <br />
+<span style="text-align:left;">โดยขอยืมพัสดุที่แจ้งซ่อมเป็นระยะเวลา ' . DateThai($res['date_notice']) . ' (วัน/เดือน/ปี) </span><br />
+<span style="text-align:left;">กำหนดระยะเวลาคืนพัสดุ ภายใน ................................ </span> <br />
 <b style="text-align:left;">รายละเอียดพัสดุที่แจ้งซ่อม</b> <br />
 <span style="text-align:left;">ชื่อพัสดุ ' . $res['asset_name'] . '</span><br />
 <span style="text-align:left;">ชนิด ' . $res['unit_name'] . ' เครื่อง จำนวน '.$row.' เครื่อง </span> <br>

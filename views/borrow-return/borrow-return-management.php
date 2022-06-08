@@ -52,10 +52,16 @@ include_once "../layout/masterpage.php";
                         <td><?php echo DateThai($result['return_date']) ?></td>
                         <td><?php echo $result['status'] ?></td>
                         <td>
+                        <?php if ($_SESSION['status'] != "staff") {
+                            ?>
                             <a class="btn btn-primary btn-sm text-white" href="./detail-borrow-return.php?id=<?php echo $result['id'] ?>">รายละเอียด</a>
+                            <?
+                            }
+                            ?>
+                            
 
                             <?php
-                            if ($result['status'] == 'รออนุมัติ') {
+                            if ($result['status'] == 'รออนุมัติ' && $_SESSION['status'] != "staff" ) {
                             ?>
                                 <a class='btn btn-sm btn-warning text-white' href='./edit-borrow.php?id=<?php echo $result['id'] ?>'>
                                     <i class='bx bx-edit'></i>

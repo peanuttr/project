@@ -57,9 +57,14 @@ include_once "../layout/masterpage.php";
                             ?>
                         </td>
                         <td>
+                        <?php if ($_SESSION['status'] != "staff") {
+                            ?>
                             <a class="btn btn-primary btn-sm text-white" href="./detail-repair-asset.php?id=<?php echo $result['id'] ?>">รายละเอียด</a>
+                            <?
+                            }
+                            ?>
                             <?php
-                            if ($result['status'] == 1) {
+                            if ($result['status'] == 1 && $_SESSION['status'] != "staff") {
                             ?>
                                 <a class="btn btn-sm btn-warning text-white" href="./repair-assetments-edit.php?id=<?php echo $result['id'] ?>"><i class='bx bx-edit'></i></a>
                                 <a class="btn btn-danger btn-sm text-white" onclick="deleteRepair(<?php echo $result['id'] ?>)"><i class='bx bx-trash'></i></a>
