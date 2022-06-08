@@ -25,7 +25,7 @@ $pdf->setPrintFooter(false);
 $pdf->setFont('thsarabunnew001', '', 16);
 $pdf->AddPage();
 $dateNow = date('d-m-Y');
-
+$row = count($res['asset_name']);
 
 
 $html = '<p style="text-align:center; font-size:large;">แบบบันทึกการยืมพัสดุ
@@ -43,7 +43,7 @@ $html = '<p style="text-align:center; font-size:large;">แบบบันทึ
 <span style="text-align:left;">กำหนดระยะเวลาคืนพัสดุ ภายใน ' . DateThai($res['return_date']) . ' </span> <br />
 <b style="text-align:left;">รายละเอียดพัสดุที่ขอยืม</b> <br />
 <span style="text-align:left;">ชื่อพัสดุ ' . $res['asset_name'] . '</span><br />
-<span style="text-align:left;">ชนิด ' . $res['unit_name'] . ' เครื่อง จำนวน '.count($res['asset_name']).' เครื่อง </span> <br>
+<span style="text-align:left;">ชนิด ' . $res['unit_name'] . ' เครื่อง จำนวน '.$row.' เครื่อง </span> <br>
 
 <span style="text-align:left;">ชื่อทางการค้า(ยี่ห้อ) - </span><br />
 <span style="text-align:left;">หมายเลขพัสดุ ' . $res['assets_number'] . ' </span><br />

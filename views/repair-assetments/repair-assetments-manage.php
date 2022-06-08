@@ -108,7 +108,9 @@ function DateThai($strDate)
     })
 
     function deleteRepair(repair_id) {
-        $.ajax({
+        var result = confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่");
+        if(result){
+            $.ajax({
             url: '../../assets/db/repair-assetments/delete-repair-assetment.php',
             type: 'POST',
             data: {
@@ -118,5 +120,6 @@ function DateThai($strDate)
                 window.location.href = "./repair-assetments-manage.php"
             }
         })
+        }
     }
 </script>
