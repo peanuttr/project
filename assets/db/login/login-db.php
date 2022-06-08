@@ -15,7 +15,13 @@ if (isset($_POST['submit'])) {
         $_SESSION['firstName'] = $res['staff_firstname'];
         $_SESSION['userid'] = $res['id'];
         sleep(3);
-        header('location: ../../../../../project/views/dashboard/dashboard.php');
+        if($res['permission'] != "staff"){
+            header('location: ../../../../../project/views/dashboard/dashboard.php');
+        }
+        else{
+            header('location: ../../../../../project/views/asset-detail/asset-management.php');
+        }
+        
     } else {
         sleep(3);
         header('location: ../../../../../project/views/login/login.php');
