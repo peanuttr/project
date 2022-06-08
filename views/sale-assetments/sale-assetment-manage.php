@@ -8,6 +8,7 @@ include_once "../layout/masterpage.php";
             <thead>
                 <tr>
                     <th>เลขที่แจ้งจำหน่าย</th>
+                    <th>ครุภัณฑ์ทีจำหน่าย</th>
                     <th>ผู้แจ้งจำหน่าย</th>
                     <th>รายละเอียด</th>
                     <th>วันที่แจ้งจำหน่าย</th>
@@ -26,7 +27,21 @@ include_once "../layout/masterpage.php";
                 ?>
                     <tr>
                         <td><?php echo "SELLING_" . $result['id']; ?></td>
-                        <td><?php echo $result['staff_firstname']." ".$result['staff_lastname']; ?></td>
+                        <td>
+                            <?php
+                            $stmt2 = $db->sqlQuery("SELECT ds.*,a.asset_name FROM detail_sells as ds
+                                                    JOIN assets as a ON a.id = ds.asset_id
+                                                    WHERE ds.sell_id = " . $result['id']);
+                            $stmt2->execute();
+                            while ($res = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+                                echo $res['asset_name'];
+                                echo "</br>";
+                            ?>
+                            <?php
+                            }
+                            ?>
+                        </td>
+                        <td><?php echo $result['staff_firstname'] . " " . $result['staff_lastname']; ?></td>
                         <td><?php echo $result['detail']; ?></td>
                         <td><?php echo $result['selling_date']; ?></td>
                         <td><?php
@@ -36,7 +51,7 @@ include_once "../layout/masterpage.php";
                                 echo "ดำเนินการจำหน่าย";
                             } else if ($result['status'] == 3) {
                                 echo "จำหน่ายสำเร็จ";
-                            }else if ($result['status'] == 0) {
+                            } else if ($result['status'] == 0) {
                                 echo "ไม่อนุมัติ";
                             }
                             ?>
@@ -65,7 +80,7 @@ include_once "../layout/masterpage.php";
         });
     })
 
-    function deleteSell(sell_id){
+    function deleteSell(sell_id) {
         $.ajax({
             url: '../../assets/db/selling/delete-sell-assetment.php',
             type: 'POST',

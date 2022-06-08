@@ -8,6 +8,7 @@ include_once "../layout/masterpage.php";
             <thead>
                 <tr>
                     <th>เลขที่ใบแจ้งซ่อม</th>
+                    <th>ครุภัณฑ์ที่แจ้งซ่อม</th>
                     <th>ผู้แจ้งซ่อม</th>
                     <th>รายละเอียด</th>
                     <th>วันที่แจ้งซ่อม</th>
@@ -26,20 +27,31 @@ include_once "../layout/masterpage.php";
                 ?>
                     <tr>
                         <td><?php echo "REPAIR_" . $result['id']; ?></td>
+                        <td>
+                            <?php
+                            $stmt2 = $db->sqlQuery("SELECT drn.*,a.asset_name FROM detail_repair_notice as drn
+                                                    JOIN assets as a ON a.id = drn.asset_id
+                                                    WHERE drn.repair_id = " . $result['id']);
+                            $stmt2->execute();
+                            while ($res = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+                                echo $res['asset_name'];
+                                echo "</br>";
+                            ?>
+                            <?php
+                            }
+                            ?>
+                        </td>
                         <td><?php echo $result['personnel_firstname'] . " " . $result['personnel_lastname']; ?></td>
                         <td><?php echo $result['detail']; ?></td>
                         <td><?php echo $result['date_notice']; ?></td>
                         <td><?php
                             if ($result['status'] == 1) {
                                 echo "แจ้งซ่อม";
-                            } 
-                            else if ($result['status'] == 2) {
+                            } else if ($result['status'] == 2) {
                                 echo "ดำเนินการซ่อม";
-                            } 
-                            else if ($result['status'] == 3) {
+                            } else if ($result['status'] == 3) {
                                 echo "ซ่อมสำเร็จ";
-                            }
-                            else if ($result['status'] == 0) {
+                            } else if ($result['status'] == 0) {
                                 echo "ไม่อนุมัติ";
                             }
                             ?>
@@ -53,9 +65,9 @@ include_once "../layout/masterpage.php";
                                 <a class="btn btn-danger btn-sm text-white" onclick="deleteRepair(<?php echo $result['id'] ?>)">ลบ</a>
                             <?php
                             }
-                            if($result['status'] == 2 || $result['status'] == 0){
+                            if ($result['status'] == 2 || $result['status'] == 0) {
                             ?>
-                            <!-- <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf.php?id=<?php echo $result['id']; ?>">บันทึกเอกสาร</a> -->
+                                <!-- <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf.php?id=<?php echo $result['id']; ?>">บันทึกเอกสาร</a> -->
                             <?php
                             }
                             ?>
