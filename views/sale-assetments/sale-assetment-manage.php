@@ -103,7 +103,9 @@ function DateThai($strDate)
     })
 
     function deleteSell(sell_id) {
-        $.ajax({
+        var result = confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่");
+        if(result){
+            $.ajax({
             url: '../../assets/db/selling/delete-sell-assetment.php',
             type: 'POST',
             data: {
@@ -113,5 +115,6 @@ function DateThai($strDate)
                 window.location.href = "./sale-assetment-manage.php"
             }
         })
+        }
     }
 </script>

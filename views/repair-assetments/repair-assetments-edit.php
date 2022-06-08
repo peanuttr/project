@@ -120,34 +120,34 @@ foreach ($stmt->fetchAll() as $res) {
                 </div>
             </div>
 
-            <div class="row flex justify-content-center mt-2">
+            <!-- <div class="row flex justify-content-center mt-2">
                 <div class="col-6 d-flex justify-content-center">
                     <?php
-                    if ($response[0]['repair_by'] == 0) {
+                    // if ($response[0]['repair_by'] == 0) {
                     ?>
                         <input type="radio" name="repairBy" value="0" checked> <label for="">ดำเนินการซ่อมด้วยตัวเอง</label>
                     <?php
-                    } else {
+                    // } else {
                     ?>
                         <input type="radio" name="repairBy" value="0" > <label for="">ดำเนินการซ่อมด้วยตัวเอง</label>
                     <?php
-                    }
+                    // }
                     ?>
                 </div>
                 <div class="col-6 d-flex justify-content-center">
                     <?php
-                    if ($response[0]['repair_by'] == 1) {
+                    // if ($response[0]['repair_by'] == 1) {
                     ?>
                         <input type="radio" name="repairBy" value="1" checked> <label for="">ส่งซ่อม</label>
                     <?php
-                    } else {
+                    // } else {
                     ?>
                         <input type="radio" name="repairBy" value="1"> <label for="">ส่งซ่อม</label>
                     <?php
-                    }
+                    // }
                     ?>
                 </div>
-            </div>
+            </div> -->
 
             <!-- <div class="row mt-3">
                 <div class="col-12">
