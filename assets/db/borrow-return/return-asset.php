@@ -18,5 +18,5 @@ if (isset($_POST['submit'])) {
         $stmt = $db->sqlQuery("UPDATE `assets` set `status`='อยู่ในคลัง' WHERE `id`='" . $resp['id'] . "'");
         $stmt->execute();
     }
-    header("location: ../../../../../project/views/borrow-return/return-asset.php");
+    header("location: ../../../../../project/views/borrow-return/borrow-return-management.php");
 }

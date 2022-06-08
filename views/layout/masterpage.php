@@ -97,6 +97,7 @@ if (empty($_SESSION['username'])) {
           <?php
           if ($_SESSION['status'] == "staff") {
           ?>
+            <li><a href="../borrow-return/borrow-return-management.php">รายการยืมครุภัณฑ์</a></li>
             <li><a href="../borrow-return/borrow-return-add.php">ยืมครุภัณฑ์</a></li>
             <li><a href="../borrow-return/return-asset.php">คืนครุภัณฑ์</a></li>
           <?php
@@ -149,6 +150,7 @@ if (empty($_SESSION['username'])) {
           }
           if ($_SESSION['status'] == "staff") {
           ?>
+            <li><a href="../repair-assetments/repair-assetments-manage.php">รายการแจ้งซ่อม</a></li>
             <li><a href="../repair-assetments/repair-assetments-add.php">แจ้งซ่อมครุภัณฑ์</a></li>
           <?php
           }

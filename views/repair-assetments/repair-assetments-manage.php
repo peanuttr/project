@@ -57,7 +57,6 @@ include_once "../layout/masterpage.php";
                             ?>
                         </td>
                         <td>
-                            <a class="btn btn-primary btn-sm text-white" href="./detail-repair-asset.php?id=<?php echo $result['id'] ?>">รายละเอียด</a>
                             <?php
                             if ($result['status'] == 1) {
                             ?>
@@ -67,10 +66,11 @@ include_once "../layout/masterpage.php";
                             }
                             if ($result['status'] == 1 && $_SESSION['status'] == "staff") {
                             ?>
-                                <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf-repair.php?id=<?php echo $result['id']; ?>">บันทึกเอกสาร</a>
+                                <a class="btn btn-primary btn-sm text-white" href="../../assets/db/report/report-pdf-repair.php?id=<?php echo $result['id']; ?>"><i class="bi bi-printer-fill"></i></a>
                             <?php
                             }
                             ?>
+                            <a class="btn btn-primary btn-sm text-white" href="./detail-repair-asset.php?id=<?php echo $result['id'] ?>"><i class="bi bi-info-square-fill"></i></a>
                         </td>
                     </tr>
                 <?php

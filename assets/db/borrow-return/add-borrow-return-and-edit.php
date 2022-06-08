@@ -38,6 +38,6 @@ if (isset($_POST['submit'])) {
         }
         // $message = "บันทึกข้อมูลการยืมครุภัณฑ์เรียบร้อย";
         // echo "<script type='text/javascript'>alert('$message');</script>";
-        header("location: ../../../../../project/views/borrow-return/borrow-return-add.php");
+        header("location: ../../../../../project/views/borrow-return/borrow-return-management.php");
     }
 }
