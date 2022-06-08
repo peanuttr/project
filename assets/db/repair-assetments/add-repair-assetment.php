@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     $newDate = "$day-$month-$year";
     $newFormatDate = date("Y-m-d", strtotime($newDate));
     $image = array();
-    $repair_by = $_POST['repairBy'];
+   // $repair_by = $_POST['repairBy'];
 
 
     if (isset($_FILES['image'])) {

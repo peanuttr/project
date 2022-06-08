@@ -53,7 +53,7 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $result['status'] ?></td>
                         <td>
                             <?php
-                            if ($result['status'] == 'รออนุมัติ' && $_SESSION['status'] != "staff") {
+                            if ($result['status'] == 'รออนุมัติ' && $_SESSION['status'] == "staff") {
                             ?>
                                 <a class='btn btn-sm btn-warning text-white' href='./edit-borrow.php?id=<?php echo $result['id'] ?>'>
                                     <i class='bx bx-edit'></i>
