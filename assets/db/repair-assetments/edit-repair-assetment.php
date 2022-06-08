@@ -12,7 +12,7 @@ if(isset($_POST['id'])){
     $stmt->execute();
     if($status == 0){
         foreach( $assets as $res){
-            $stmt = $db->sqlQuery("UPDATE `assets` SET `status`='อยู่ในตลัง' WHERE  `id`='$res->id'");
+            $stmt = $db->sqlQuery("UPDATE `assets` SET `status`='อยู่ในคลัง' WHERE  `id`='$res->id'");
             $stmt->execute();
         }
     }
