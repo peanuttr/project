@@ -24,7 +24,10 @@ $pdf->setPrintFooter(false);
 $pdf->setFont('thsarabunnew001', '', 16);
 $pdf->AddPage();
 $dateNow = date('d-m-Y');
-$row = count($res['asset_name']);
+$stmt = $db->sqlQuery("SELECT count(id) FROM detail_repair_notice WHERE repair_id = ".$_id);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_BOTH);
+// $row = count($res['asset_name']);
 
 
 $html = '<p style="text-align:center; font-size:large;">แบบบันทึกการแจ้งซ่อม</p>
@@ -41,7 +44,7 @@ $html = '<p style="text-align:center; font-size:large;">แบบบันทึ
 <span style="text-align:left;">กำหนดระยะเวลาคืนพัสดุ ภายใน ................................ </span> <br />
 <b style="text-align:left;">รายละเอียดพัสดุที่แจ้งซ่อม</b> <br />
 <span style="text-align:left;">ชื่อพัสดุ ' . $res['asset_name'] . '</span><br />
-<span style="text-align:left;">ชนิด ' . $res['unit_name'] . ' เครื่อง จำนวน '.$row.' เครื่อง </span> <br>
+<span style="text-align:left;">ชนิด ' . $res['unit_name'] . ' เครื่อง จำนวน '.$row[0].' เครื่อง </span> <br>
 
 <span style="text-align:left;">ชื่อทางการค้า(ยี่ห้อ) - </span><br />
 <span style="text-align:left;">หมายเลขพัสดุ ' . $res['assets_number'] . ' </span><br />
