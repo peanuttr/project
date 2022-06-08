@@ -28,6 +28,26 @@ $dateNow = date('d-m-Y');
 $stmt = $db->sqlQuery("SELECT count(id) FROM detail_borrow_and_return WHERE borrow_and_return_id = ".$_id);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_BOTH);
+$assetsName = null ;
+$assetsNumber = null ;
+$assetsUnit = null ;
+
+$stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,s.staff_lastname,p.personnel_firstname,p.personnel_lastname,pl.placename,p.job_title,a.asset_name,a.assets_number,br.borrow_date,br.return_date,br.detail,d.department_name,u.unit_name
+                FROM `detail_borrow_and_return` AS brd
+                            JOIN `borrow_and_return` as br ON brd.borrow_and_return_id = br.id
+                            JOIN `staffs` as s ON br.staff_id = s.id 
+                            JOIN `personnels` as p ON br.personel_id = p.id 
+                            JOIN `place` as pl ON brd.place_id = pl.id 
+                            JOIN `assets` as a ON brd.asset_id = a.id
+                            JOIN `department` as d ON d.id = p.department_id
+                            JOIN `unit` as u ON u.id = a.unit_id
+                            WHERE brd.borrow_and_return_id = " . $_id);
+$stmt->execute();
+while( $resp = $stmt->fetch(PDO::FETCH_ASSOC)){
+    $assetsName .=$resp['asset_name']." ,";
+    $assetsNumber .=$resp['assets_number']." ,";
+    $assetsUnit .=$resp['unit_name']." ,";
+}
 // $row = count($res['asset_name']);
 
 
@@ -45,11 +65,11 @@ $html = '<p style="text-align:center; font-size:large;">แบบบันทึ
 <span style="text-align:left;">โดยขอยืมพัดุเป็นระยะเวลา ' . DateThai($res['borrow_date']) . ' (วัน/เดือน/ปี) </span><br />
 <span style="text-align:left;">กำหนดระยะเวลาคืนพัสดุ ภายใน ' . DateThai($res['return_date']) . ' </span> <br />
 <b style="text-align:left;">รายละเอียดพัสดุที่ขอยืม</b> <br />
-<span style="text-align:left;">ชื่อพัสดุ ' . $res['asset_name'] . '</span><br />
-<span style="text-align:left;">ชนิด ' . $res['unit_name'] . ' เครื่อง จำนวน '.$row[0].' เครื่อง </span> <br>
+<span style="text-align:left;">ชื่อพัสดุ ' . $assetsName . '</span><br />
+<span style="text-align:left;">ชนิด ' . $assetsUnit . ' เครื่อง จำนวน '.$row[0].' เครื่อง </span> <br>
 
 <span style="text-align:left;">ชื่อทางการค้า(ยี่ห้อ) - </span><br />
-<span style="text-align:left;">หมายเลขพัสดุ ' . $res['assets_number'] . ' </span><br />
+<span style="text-align:left;">หมายเลขพัสดุ ' . $assetsNumber . ' </span><br />
 <span style="text-align:left;">คุณลักษณะ ' . $res['detail'] . '</span><br />
 </p>
 <span style="text-align:center;">(ลงชื่อ) ........................ ชื่อผู้ยืม </span><br />

@@ -27,6 +27,24 @@ $dateNow = date('d-m-Y');
 $stmt = $db->sqlQuery("SELECT count(id) FROM detail_repair_notice WHERE repair_id = ".$_id);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_BOTH);
+$assetsName = null ;
+$assetsNumber = null ;
+$assetsUnit = null ;
+$stmt = $db->sqlQuery("SELECT brd.*,p.personnel_firstname,p.personnel_lastname,p.job_title,a.asset_name,a.assets_number,br.date_notice,br.detail,d.department_name,u.unit_name
+                FROM `detail_repair_notice` AS brd
+                            JOIN `repair_notice` as br ON brd.repair_id = br.id
+                            JOIN `personnels` as p ON br.personel_id = p.id 
+                            JOIN `assets` as a ON brd.asset_id = a.id
+                            JOIN `department` as d ON d.id = p.department_id
+                            JOIN `unit` as u ON u.id = a.unit_id
+                            WHERE br.id = " . $_id);
+$stmt->execute();
+
+while($resp = $stmt->fetch(PDO::FETCH_ASSOC)){
+    $assetsName .=$resp['asset_name']." ,";
+    $assetsNumber .=$resp['assets_number']." ,";
+    $assetsUnit .=$resp['unit_name']." ,";
+}
 // $row = count($res['asset_name']);
 
 
@@ -43,11 +61,11 @@ $html = '<p style="text-align:center; font-size:large;">แบบบันทึ
 <span style="text-align:left;">โดยขอยืมพัสดุที่แจ้งซ่อมเป็นระยะเวลา ' . DateThai($res['date_notice']) . ' (วัน/เดือน/ปี) </span><br />
 <span style="text-align:left;">กำหนดระยะเวลาคืนพัสดุ ภายใน ................................ </span> <br />
 <b style="text-align:left;">รายละเอียดพัสดุที่แจ้งซ่อม</b> <br />
-<span style="text-align:left;">ชื่อพัสดุ ' . $res['asset_name'] . '</span><br />
-<span style="text-align:left;">ชนิด ' . $res['unit_name'] . ' เครื่อง จำนวน '.$row[0].' เครื่อง </span> <br>
+<span style="text-align:left;">ชื่อพัสดุ ' . $assetsName . '</span><br />
+<span style="text-align:left;">ชนิด ' . $assetsUnit . ' เครื่อง จำนวน '.$row[0].' เครื่อง </span> <br>
 
 <span style="text-align:left;">ชื่อทางการค้า(ยี่ห้อ) - </span><br />
-<span style="text-align:left;">หมายเลขพัสดุ ' . $res['assets_number'] . ' </span><br />
+<span style="text-align:left;">หมายเลขพัสดุ ' . $assetsNumber . ' </span><br />
 <span style="text-align:left;">คุณลักษณะ ' . $res['detail'] . '</span><br />
 </p>
 <span style="text-align:center;">(ลงชื่อ) ........................ ชื่อผู้แจ้งซ่อม </span><br />
