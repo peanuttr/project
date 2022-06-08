@@ -123,7 +123,8 @@ if (isset($_POST['submit'])) {
     //     echo $resp[0]['img'];
     // }
 
-    $stmt = $db->sqlQuery("INSERT INTO `repair_notice`( `detail`, `date_notice`, `status`, `personel_id`,`repair_by`) VALUES ('$detail', '$newFormatDate','1', '$p_id','$repair_by')");
+    $stmt = $db->sqlQuery("INSERT INTO `repair_notice`( `detail`, `date_notice`, `status`, `personel_id`) VALUES ('$detail', '$newFormatDate','1', '$p_id')");
+    // $stmt = $db->sqlQuery("INSERT INTO `repair_notice`( `detail`, `date_notice`, `status`, `personel_id`,`repair_by`) VALUES ('$detail', '$newFormatDate','1', '$p_id','$repair_by')");
     if($stmt->execute()){
         $stmt = $db->sqlQuery("SELECT * FROM `repair_notice` ORDER BY `id` DESC LIMIT 1");
         $stmt->execute();

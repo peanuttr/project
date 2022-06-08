@@ -65,7 +65,8 @@ if (isset($_POST['submit'])) {
         array_push($assets[$i], $image[$i]);
     }
 
-    $stmt = $db->sqlQuery("UPDATE `repair_notice` SET `detail` = '$detail', `date_notice` = '$newFormatDate', `status` = '1', `personel_id` = '$p_id',`repair_by`='$repair_by' WHERE  `id`='$_id'");
+    $stmt = $db->sqlQuery("UPDATE `repair_notice` SET `detail` = '$detail', `date_notice` = '$newFormatDate', `status` = '1', `personel_id` = '$p_id' WHERE  `id`='$_id'");
+    // $stmt = $db->sqlQuery("UPDATE `repair_notice` SET `detail` = '$detail', `date_notice` = '$newFormatDate', `status` = '1', `personel_id` = '$p_id',`repair_by`='$repair_by' WHERE  `id`='$_id'");
     if ($stmt->execute()) {
         foreach ($assets as $resp) {
             $stmt = $db->sqlQuery("UPDATE `detail_repair_notice` SET `asset_id` = '$resp[id]' , `image`=$resp[0]['img'] WHERE  `repair_id`='$_id'");

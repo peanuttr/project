@@ -99,14 +99,14 @@ foreach ($stmt->fetchAll() as $res) {
                 </div>
             </div>
 
-            <div class="row flex justify-content-center mt-2" >
+            <!-- <div class="row flex justify-content-center mt-2" >
                 <div class="col-6 d-flex justify-content-center">
                     <input type="radio" name="repairBy" value="0"> <label for="">ดำเนินการซ่อมด้วยตัวเอง</label>
                 </div>
                 <div class="col-6 d-flex justify-content-center">
                     <input type="radio" name="repairBy" value="1"> <label for="">ส่งซ่อม</label>
                 </div>
-            </div>
+            </div> -->
 
             <!-- <div class="row mt-3">
                 <div class="col-12">

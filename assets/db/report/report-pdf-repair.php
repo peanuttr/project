@@ -5,12 +5,10 @@ session_start();
 $db = new db();
 
 $_id = $_GET['id'];
-$stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,s.staff_lastname,p.personnel_firstname,p.personnel_lastname,pl.placename,p.job_title,a.asset_name,a.assets_number,br.borrow_date,br.return_date,br.detail,d.department_name,u.unit_name
-                FROM `detail_borrow_and_return` AS brd
-                            JOIN `borrow_and_return` as br ON brd.borrow_and_return_id = br.id
-                            JOIN `staffs` as s ON br.staff_id = s.id 
+$stmt = $db->sqlQuery("SELECT brd.*,p.personnel_firstname,p.personnel_lastname,p.job_title,a.asset_name,a.assets_number,br.borrow_date,br.return_date,br.detail,d.department_name,u.unit_name
+                FROM `detail_repair_notice` AS brd
+                            JOIN `repair_notice` as br ON brd.repair_id = br.id
                             JOIN `personnels` as p ON br.personel_id = p.id 
-                            JOIN `place` as pl ON brd.place_id = pl.id 
                             JOIN `assets` as a ON brd.asset_id = a.id
                             JOIN `department` as d ON d.id = p.department_id
                             JOIN `unit` as u ON u.id = a.unit_id
@@ -28,8 +26,7 @@ $dateNow = date('d-m-Y');
 
 
 
-$html = '<p style="text-align:center; font-size:large;">แบบบันทึกการยืมพัสดุ
-</p>
+$html = '<p style="text-align:center; font-size:large;">แบบบันทึกการแจ้งซ่อม</p>
 <p style="text-align:right;">เขียนที่ คณะอุตสาหกรรมเกษตร <br /> ' . DateThai($dateNow) . '</p>
 <p style="text-align:left;">เรื่อง ขอยืมครุภัณฑ์ <br /> เรียน คณบดีคณะอุตสาหกรรมเกษตร</p>
 <p style="text-align:center; text-indent: 5vh;">ข้าพเจ้า ' . $res['personnel_firstname'] . ' ' . $res['personnel_lastname'] . ' ตำแหน่ง ' . $res['job_title'] . '<br />
@@ -49,7 +46,7 @@ $html = '<p style="text-align:center; font-size:large;">แบบบันทึ
 <span style="text-align:left;">หมายเลขพัสดุ ' . $res['assets_number'] . ' </span><br />
 <span style="text-align:left;">คุณลักษณะ ' . $res['detail'] . '</span><br />
 </p>
-<span style="text-align:center;">(ลงชื่อ) ........................ ชื่อผู้ยืม </span><br />
+<span style="text-align:center;">(ลงชื่อ) ........................ ชื่อผู้แจ้งซ่อม </span><br />
 <span style="text-align:center;">( ' . $res['personnel_firstname'] . ' ' . $res['personnel_lastname'] . ' )</span><br />
 <b style="text-align:right;">หัวหน้าส่วนงาน</b> <br />
 <span style="text-align:right;"> ........ อนุญาต ....... ไม่อนุญาต</p>
@@ -57,7 +54,7 @@ $html = '<p style="text-align:center; font-size:large;">แบบบันทึ
 <span style="text-indent: 10px;">'.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.'( ........................ )</span><br />
 (ตำแหน่ง) ........................ <br />
 ' . DateThai($dateNow) . '</span><br />
-<span style="text-align:right;">(ลงชื่อ)  ........................  ผู้ให้ยืมพัสดุ <br />
+<span style="text-align:right;">(ลงชื่อ)  ........................  ผู้อนุญาต <br />
 ( ........................ )'.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.'<br />
 ' . DateThai($dateNow) . '</span>
 ';
