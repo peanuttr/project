@@ -138,6 +138,7 @@ if (empty($_SESSION['username'])) {
           <?php
           if ($_SESSION['status'] == "staff") {
           ?>
+          <li><a href="../sale-assetments/sale-assetment-manage.php">รายการจำหน่ายครุภัณฑ์</a></li>
             <li><a href="../sale-assetments/sale-assetment-add.php">จำหน่ายครุภัณฑ์</a></li>
           <?php
           }
