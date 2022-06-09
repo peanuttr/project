@@ -118,7 +118,7 @@ function DateThai($strDate)
                 url: '../../assets/db/repair-assetments/delete-repair-assetment.php',
                 type: 'POST',
                 data: {
-                    id: repair_id
+                    id: repair_id,
                 },
                 success: function(data) {
                     window.location.href = "./repair-assetments-manage.php"

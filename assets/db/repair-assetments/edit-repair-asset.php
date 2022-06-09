@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     $year = substr($date, 6) - 543;
     $newDate = "$day-$month-$year";
     $newFormatDate = date("Y-m-d", strtotime($newDate));
-    $repair_by = $_POST['repairBy'];
+    // $repair_by = $_POST['repairBy'];
 
     // echo $repair_by."<br>";
     // echo $_id."<br>";
