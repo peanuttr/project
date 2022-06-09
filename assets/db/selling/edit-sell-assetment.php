@@ -24,7 +24,7 @@ if(isset($_POST['id'])){
     }
     else if($status == 3 ){
         foreach( $assets as $res){
-            $stmt = $db->sqlQuery("UPDATE `assets` SET `status`='อยู่ในตลัง' WHERE  `id`='$res->id'");
+            $stmt = $db->sqlQuery("UPDATE `assets` SET `status`='จำหน่ายสำเร็จ' WHERE  `id`='$res->id'");
             $stmt->execute();
         }
     }
