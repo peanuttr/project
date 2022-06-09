@@ -26,7 +26,7 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $number ?></td>
                         <td><?php echo $result['placename']; ?></td>
                         <td>
-                            <a href='./place-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-success'>
+                            <a href='./place-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-warning'>
                                 <i class='bx bx-edit'></i>
                             </a> /
                             <a class='del btn btn-sm btn-danger' onclick="removePlace('<?php echo $result['id']; ?>')">

@@ -28,7 +28,7 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $result['department_number']; ?></td>
                         <td><?php echo $result['department_name']; ?></td>
                         <td>
-                            <a href='./department-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-success'>
+                            <a href='./department-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-warning'>
                                 <i class='bx bx-edit'></i>
                             </a> /
                             <a class='del btn btn-sm btn-danger' onclick="removeUser('<?php echo $result['id']; ?>')">

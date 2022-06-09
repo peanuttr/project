@@ -38,7 +38,7 @@ include_once "../layout/masterpage.php";
                         }
                         ?>
                         <td>
-                            <a href='./user-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-success'>
+                            <a href='./user-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-warning'>
                                 <i class='bx bx-edit'></i>
                             </a> /
                             <a class='del btn btn-sm btn-danger' onclick="removeUser('<?php echo $result['id']; ?>')">

@@ -28,7 +28,7 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $result['money_source_number']; ?></td>
                         <td><?php echo $result['money_source_name']; ?></td>
                         <td>
-                            <a href='./money-source-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-success'>
+                            <a href='./money-source-edit.php?id=<?php echo $result['id']; ?>' class='btn btn-sm btn-warning'>
                                 <i class='bx bx-edit'></i>
                             </a> /
                             <a class='del btn btn-sm btn-danger' onclick="removeUser('<?php echo $result['id']; ?>')">
@@ -57,13 +57,13 @@ include_once "../layout/masterpage.php";
         var result = confirm("คุณต้องการจะลบข้อมูลนี้ใช่หรือไม่");
         if (result) {
             $.ajax({
-                url: '../../assets/db/unit/del-unit.php',
+                url: '../../assets/db/money-source/del-money-source.php',
                 type: 'POST',
                 data: {
                     id: id
                 },
                 success: function(data) {
-                    window.location.href = "./unit-management.php";
+                    window.location.href = "./money-source-management.php";
                 }
             })
         }
