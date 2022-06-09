@@ -29,7 +29,8 @@ $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_n
                         JOIN `assets_types` as t ON a.assets_types_id = t.id 
                         JOIN `unit` as u ON a.unit_id = u.id 
                         JOIN `department` as d ON a.department_id = d.id 
-                        JOIN `money_source` as m ON a.money_source_id = m.id");
+                        JOIN `money_source` as m ON a.money_source_id = m.id
+                        WHERE a.status = 'รออนุมัติการยืม'");
 $stmt->execute();
 
 foreach ($stmt->fetchAll() as $res) {
@@ -68,7 +69,7 @@ foreach ($stmt->fetchAll() as $res) {
                             <div class="col-12">
                                 <label>รหัสครุภัณฑ์</label>
                                 <input type="hidden" name="assets_id[]" id="assets-id" value="<?php echo $response[0]['assets_id']; ?>">
-                                <input type="search" list="asset-number" id="assets-number" class="form-control" name="assets_number[]" value="<?php echo $response[0]['assets_number']; ?>" />
+                                <input type="search" list="asset-number" id="assets-number" class="form-control" name="assets_number[]" value="<?php echo $response[0]['assets_number']; ?>" disabled />
                                 <datalist id="asset-number">
                                     <?php
                                     for ($i = 0; $i < count($assets); $i++) {
@@ -213,7 +214,7 @@ function DateThai($strDate)
             <?php
             $i = 0;
             ?>
-            $("#dynamic_field").append('<tr id="row' + (i + 1) + '"><td><div class="col-12"><input type="hidden" name="assets_id[]" id="assets-id' + (i + 1) + '" class="hiddenbox" value="<?php echo $response[($i + 1)]['assets_id']; ?>"><input type="search" list="asset-number" id="assets-number' + (i + 1) + '" name="assets_number[]" class="form-control mt-2 mb-2 searchbox" value="<?php echo $response[($i + 1)]['assets_number']; ?>"></div></td><td><div class="col-12"><input type="text" id="assets-name' + (i + 1) + '" name="assets_name[]" class="form-control mt-2 mb-2 resultbox" value="<?php echo $response[($i + 1)]['asset_name']; ?>"></div></td><td><div class="col-12"><a class="btn btn-danger btn-sm mt-2 mb-2 btn_remove" style="color:#fff;" id="' + (i + 1) + '"><i class="bi bi-x-circle"></i></a></div></td>');
+            $("#dynamic_field").append('<tr id="row' + (i + 1) + '"><td><div class="col-12"><input type="hidden" name="assets_id[]" id="assets-id' + (i + 1) + '" class="hiddenbox" value="<?php echo $response[($i + 1)]['assets_id']; ?>"><input type="search" list="asset-number" id="assets-number' + (i + 1) + '" name="assets_number[]" class="form-control mt-2 mb-2 searchbox" value="<?php echo $response[($i + 1)]['assets_number']; ?>" disabled></div></td><td><div class="col-12"><input type="text" id="assets-name' + (i + 1) + '" name="assets_name[]" class="form-control mt-2 mb-2 resultbox" value="<?php echo $response[($i + 1)]['asset_name']; ?>" ></div></td><td><div class="col-12"><a class="btn btn-danger btn-sm mt-2 mb-2 btn_remove" style="color:#fff;" id="' + (i + 1) + '"><i class="bi bi-x-circle"></i></a></div></td>');
             <?php
             $i++;
             ?>

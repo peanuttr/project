@@ -26,18 +26,17 @@ if (empty($_SESSION['username'])) {
       <!-- <i class='bx bxl-c-plus-plus'></i> -->
       <!-- <div class="logo_name"></div> -->
       <?php
-      if($_SESSION['status'] == "admin" || $_SESSION['status'] == "executive"){
+      if ($_SESSION['status'] == "admin" || $_SESSION['status'] == "executive") {
       ?>
-      <a href="../dashboard/dashboard.php" class="logo">
-        <img class="banner" src="../../assets/image/logo.png">
-      </a>
+        <a href="../dashboard/dashboard.php" class="logo">
+          <img class="banner" src="../../assets/image/logo.png">
+        </a>
       <?php
-      }
-      else{
+      } else {
       ?>
-      <a href="../asset-detail/asset-management.php" class="logo">
-        <img class="banner" src="../../assets/image/logo.png">
-      </a>
+        <a href="../asset-detail/asset-management.php" class="logo">
+          <img class="banner" src="../../assets/image/logo.png">
+        </a>
       <?php
       }
       ?>
@@ -138,6 +137,7 @@ if (empty($_SESSION['username'])) {
           <?php
           if ($_SESSION['status'] == "staff") {
           ?>
+            <li><a href="../sale-assetments/sale-assetment-manage.php">รายการจำหน่ายครุภัณฑ์</a></li>
             <li><a href="../sale-assetments/sale-assetment-add.php">จำหน่ายครุภัณฑ์</a></li>
           <?php
           }
