@@ -55,9 +55,9 @@ foreach ($stmt->fetchAll() as $res) {
                         $stmt->execute();
 
                         foreach ($stmt->fetchAll() as $res) {
-                            if ($res['id'] != $response['staff_id']) {
+                            if($res['id'] != $response[0]['staff_id']){
                         ?>
-                                <option value="<?php echo $res['id']; ?>"><?php echo $res[0]['staff_firstname']; ?></option>
+                            <option value="<?php echo $res['id']; ?>"><?php echo $res['staff_firstname']; ?></option>
                         <?php
                             }
                         }

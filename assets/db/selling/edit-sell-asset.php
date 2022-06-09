@@ -21,6 +21,7 @@ if(isset($_POST['submit'])){
     if($stmt->execute()){
         foreach ($assets as $resp) {
             $stmt = $db->sqlQuery("UPDATE `detail_sells` SET `asset_id` = '$resp[id]' WHERE  `sell_id`='$_id'");
+            $stmt->execute();
         }
         header("location: ../../../../../project/views/sale-assetments/sale-assetment-manage.php");
     }
