@@ -28,7 +28,8 @@ if (isset($_POST['submit'])) {
     $stmt = $db->sqlQuery("UPDATE `borrow_and_return` SET  `borrow_date`='$newFormatBorrowDate', `return_date`='$newFormatReturnDate', `staff_id`='$staffId', `personel_id`='$personnelId', `detail`='$detail' WHERE id = '$_id'");
     if ($stmt->execute()) {
         foreach ($assets as $resp) {
-            $stmt = $db->sqlQuery("UPDATE `detail_borrow_and_return` SET `asset_id` = '$resp[id]', `place_id`='$placeId' WHERE  `sell_id`='$_id'");
+            $stmt = $db->sqlQuery("UPDATE `detail_borrow_and_return` SET `asset_id` = '$resp[id]', `place_id`='$placeId' WHERE  `borrow_and_return_id`='$_id'");
+            $stmt->execute();
         }
         header("location: ../../../../../project/views/borrow-return/borrow-return-management.php");
     }
