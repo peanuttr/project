@@ -21,6 +21,12 @@ $db = new db();
             </div>
             <div class='row flex justify-content-center' style='margin-bottom: 5px'>
                 <div class='col-6 width-50 flex justify-center'>
+                    <label>ยืนยันรหัสผ่าน</label>
+                    <input type='password' name='confirmPassword' class='form-control' placeholder='รหัสผ่าน'>
+                </div>
+            </div>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
                     <label>ชื่อ</label>
                     <input type='text' name='fisrtname' class='form-control' placeholder='ชื่อ'>
                 </div>

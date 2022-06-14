@@ -10,15 +10,25 @@ if (is_null($_POST['id'])) {
     $email = $_POST['email'];
     $permission = $_POST['permission'];
     $department_id = $_POST['department_id'];
+    $confirmPassword = $_POST['confirmPassword'];
 
-    // echo "username:$username";
-    // echo "password:$password";
-    // echo "fisrtname:$fisrtname";
-    // echo "lastname:$lastname";
-    // echo "telephone:$telephone";
-    // echo "email:$email";
-    // echo "permission:$permission";
-    // echo "department_id:$department_id";
+    $stmt = $db->sqlQuery("SELECT username FROM `staffs` ");
+    $stmt->execute();
+    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if($username == $result['username']) {
+            echo ("<script LANGUAGE='JavaScript'>
+    window.alert('ชื่อผู้ใช้มีอยู่ในระบบแล้ว');
+    javascript:history.back();
+    </script>");
+        }
+    }
+
+    if($password != $confirmPassword) {
+        echo ("<script LANGUAGE='JavaScript'>
+    window.alert('รหัสผ่านไม่ตรงกัน');
+    javascript:history.back();
+    </script>");
+    }
 
     // $stmt = $db->connect()->prepare("INSERT INTO `staffs`(`username`, `password`, `staff_firstname`, `staff_lastname`, `permission`, `telephone`, `email`, `department_id`) VALUES ('$username','$password','$fisrtname','$lastname','$permission','$telephone','$email','$department_id')");
     // if ($stmt->execute()) {
