@@ -171,7 +171,7 @@ if (isset($_GET['id'])) {
                     <div class='col-4 width-50 flex justify-center'>
                         <label>สถานะ</label>
                         <?php
-                        $status = ["อยู่ในคลัง", "ถูกยืม", "อยู่ระหว่างซ่อม", "จำหน่าย"];
+                        $status = ["อยู่ภายในอาคาร", "อยู่ในคลัง", "ถูกยืม", "อยู่ระหว่างซ่อม", "จำหน่าย"];
                         echo " <select class='form-control' name='status'>";
                         echo " <option selected> " . $res['status'] . " </option> ";
                         for ($i = 0; $i < count($status); $i++) {

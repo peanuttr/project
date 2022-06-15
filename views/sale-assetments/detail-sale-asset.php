@@ -40,7 +40,7 @@ if (isset($_GET['id'])) {
             ?>
             <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">วันที่แจ้ง :</div>
-                <div class="col-md-6"><?php echo $response['selling_date']; ?></div>
+                <div class="col-md-6"><?php echo DateThai($response['selling_date']); ?></div>
             </div>
             <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">รายละเอียด :</div>
@@ -92,6 +92,24 @@ if (isset($_GET['id'])) {
     </div>
 <?php
 }
+?>
+
+<?php
+function DateThai($strDate)
+{
+    $strYear = date("Y", strtotime($strDate)) + 543;
+
+    $strMonth = date("n", strtotime($strDate));
+
+    $strDay = date("j", strtotime($strDate));
+
+    $strMonthCut = array("", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.");
+
+    $strMonthThai = $strMonthCut[$strMonth];
+
+    return "$strDay $strMonthThai $strYear";
+}
+
 ?>
 <script>
     function updateStatus(repair_id, status, assets) {

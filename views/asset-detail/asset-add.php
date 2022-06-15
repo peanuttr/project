@@ -157,6 +157,7 @@ foreach ($stmt->fetchAll() as $res) {
                         <label>สถานะ</label>
                         <select class='form-control' name='status'>
                             <option selected>เลือก สถานะ </option>
+                            <option value="อยู่ภายในอาคาร">อยู่ภายในอาคาร </option>
                             <option value="อยู่ในคลัง">อยู่ในคลัง </option>
                             <option value="ถูกยืม">ถูกยืม</option>
                             <option value="อยู่ระหว่างซ่อม">อยู่ระหว่างซ่อม</option>

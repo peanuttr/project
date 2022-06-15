@@ -83,7 +83,7 @@ include_once "../layout/masterpage.php";
 <?php
 function DateThai($strDate)
 {
-    $strYear = date("Y", strtotime($strDate));
+    $strYear = date("Y", strtotime($strDate)) + 543;
 
     $strMonth = date("n", strtotime($strDate));
 
