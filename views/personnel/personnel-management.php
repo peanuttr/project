@@ -17,7 +17,7 @@ include_once "../layout/masterpage.php";
                     <th>ตำแหน่ง</th>
                     <th>หน่วยงาน</th>
                     <th>สถานะ</th>
-                    <th>action</th>
+                    <th>การดำเนินการ</th>
                 </tr>
             </thead>
             <tbody>

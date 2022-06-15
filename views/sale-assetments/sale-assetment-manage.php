@@ -13,7 +13,7 @@ include_once "../layout/masterpage.php";
                     <th>รายละเอียด</th>
                     <th>วันที่แจ้งจำหน่าย</th>
                     <th>สถานะแจ้งจำหน่าย</th>
-                    <th>Action</th>
+                    <th>การดำเนินการ</th>
                 </tr>
             </thead>
             <tbody>

@@ -15,7 +15,7 @@ include_once "../layout/masterpage.php";
                     <th>สถานะ</th>
                     <th>QR-CODE</th>
                     <th>รูปภาพ</th>
-                    <th>action</th>
+                    <th>การดำเนินการ</th>
                 </tr>
             </thead>
             <tbody>

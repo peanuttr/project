@@ -10,7 +10,7 @@ include_once "../layout/masterpage.php";
                 <tr>
                     <th>ลำดับ</th>
                     <th>ชื่อหน่วยนับ</th>
-                    <th>action</th>
+                    <th>การดำเนินการ</th>
                 </tr>
             </thead>
             <tbody>

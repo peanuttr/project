@@ -11,7 +11,7 @@ include_once "../layout/masterpage.php";
                     <th>ลำดับ</th>
                     <!-- <th>รหัสประเภทครุภัณฑ์</th> -->
                     <th>ชื่อประเภทครุภัณฑ์</th>
-                    <th>action</th>
+                    <th>การดำเนินการ</th>
                 </tr>
             </thead>
             <tbody>

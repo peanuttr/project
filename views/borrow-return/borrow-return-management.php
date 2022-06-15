@@ -15,7 +15,7 @@ include_once "../layout/masterpage.php";
                     <th>วันที่ยืม</th>
                     <th>วันที่คืน</th>
                     <th>สถานะ</th>
-                    <th>action</th>
+                    <th>การดำเนินการ</th>
                 </tr>
             </thead>
             <tbody>

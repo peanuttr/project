@@ -11,7 +11,7 @@ include_once "../layout/masterpage.php";
                     <th>ลำดับ</th>
                     <th>รหัสแหล่งเงิน</th>
                     <th>ชื่อแหล่งเงิน</th>
-                    <th>action</th>
+                    <th>การดำเนินการ</th>
                 </tr>
             </thead>
             <tbody>

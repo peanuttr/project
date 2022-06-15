@@ -13,7 +13,7 @@ include_once "../layout/masterpage.php";
                     <th>นามสกุล</th>
                     <th>หน่วยงาน</th>
                     <th>สิทธิ์การใช้งาน</th>
-                    <th>action</th>
+                    <th>การดำเนินการ</th>
                 </tr>
             </thead>
             <tbody>
