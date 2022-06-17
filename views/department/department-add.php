@@ -6,7 +6,7 @@ $db = new db();
 <div class="home-section">
     <div class="home-content">
         <h1 style="padding-top: 1%;">เพิ่มข้อมูลหน่วยงาน</h1>
-        <a class='button-17'> <span>เพิ่่มข้อมูลจาก csv</span> </a>
+        <a class='button-17' href="./department-add-csv.php"> <span>เพิ่่มข้อมูลจาก csv</span> </a>
         <form method="post" action="../../assets/db/department/add-department-and-edit.php">
             <div class='row flex justify-content-center'>
                 <div class='col-6 width-50 flex justify-center'>

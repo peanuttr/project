@@ -44,7 +44,7 @@ include_once "../layout/masterpage.php";
                             <a href='./asset-edit.php?id=<?php echo $result['id'] ?>' class='btn btn-sm btn-warning text-white'>
                                 <i class='bx bx-edit'></i>
                             </a>
-                            <a href='./asset-detail.php?id=<?php echo $result['id'] ?>' class='btn btn-sm btn-primary'>รายละเอียด</a>
+                            <a href='./asset-detail.php?id=<?php echo $result['id'] ?>' class='btn btn-sm btn-primary'>?>"><i class="bi bi-info-square-fill"></a>
                                 <a class='del btn btn-sm btn-danger' onclick="removeAsset('<?php echo $result['id'] ?>')">
                                     <i class='bx bx-trash'></i>
                                 </a>

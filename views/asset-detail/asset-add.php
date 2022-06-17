@@ -13,7 +13,7 @@ foreach ($stmt->fetchAll() as $res) {
 <div class="home-section">
     <div class="home-content">
         <h1 style="padding-top: 0.5%">เพิ่มข้อมูลครุภัณฑ์</h1>
-        <a class='button-17'> <span>เพิ่่มข้อมูลจาก csv</span> </a>
+        <a class='button-17' href="./asset-add-csv.php"> <span>เพิ่่มข้อมูลจาก csv</span> </a>
 
         <form method="post" action="../../assets/db/asset-detail/add-asset-detail-and-edit.php" enctype="multipart/form-data">
             <div class="form-insert-asset">
