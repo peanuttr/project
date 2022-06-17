@@ -21,12 +21,6 @@ $db = new db();
                         <input type='text' name='moneySourceName' class='form-control' placeholder='ชื่อแหล่งเงิน' required>
                     </div>
                 </div>
-                <!-- <div class="row flex justify-content-center">
-                    <div class="col-5 width-50 flex justify-center">
-                        <label for="">upload csv</label>
-                        <input type="file" name="upload" id="upload">
-                    </div>
-                </div> -->
                 <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
                     <div class='col-1 d-flex justify-content-start'>
                         <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
