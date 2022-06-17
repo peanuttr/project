@@ -16,12 +16,12 @@ if (isset($_GET['id'])) {
         <form action='../../assets/db/assetment-type/add-assetment-type-and-edit.php' method='post'>
             <input type="hidden" name='id' value=<?php echo $_id; ?>>
             <div class="container">
-                <!-- <div class='row flex justify-content-center'>
+                <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>รหัสประเภทครุภัณฑ์</label>
                         <input type='text' name='assetmentTypeNumber' class='form-control' placeholder='รหัสประเภทครุภัณฑ์' value=<?php echo $res['assets_types_number']; ?>>
                     </div>
-                </div> -->
+                </div>
                 <div class='row flex justify-content-center'>
                     <div class='col-6 width-50 flex justify-center'>
                         <label>ชื่อประเภทครุภัณฑ์</label>
