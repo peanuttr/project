@@ -44,10 +44,27 @@ if (isset($_FILES['upload'])) {
 
         echo "nofac " . $facultyNumber . " facname " . $facultyName . " dep id " . $department_id . " moneyid " .  $money_source_id . " yearbud " .  $year_of_budget . " assnumber " . $assets_number . " assname " . $assets_name . " unit " .  $unit_id . " dateadmit" .  $date_admit . " value " . $value_assets . " deliveryno " . $delivery_number . " " .  $seller . " " .  $serial_number . " " .  $type . " <br>";
 
-        $stmt = $db->sqlQuery("INSERT INTO `assets`(`faculty_number`,`faculty_name`,`assets_number`, `asset_name`, `year_of_budget`, `value_asset`, `seller_name`, `number_delivery`, `serial_number`, `date_admit`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`) 
-        VALUES ('$facultyNumber','$facultyName','$assets_number','$assets_name','$year_of_budget','$value_assets','$seller','$delivery_number','$serial_number','$newDateAdmit','$assets_types_id','$unit_id','$department_id','$money_source_id')");
-        $stmt->execute();
-        if ($stmt) {
+        $stmt = $db->sqlQuery("INSERT INTO `assets`(`faculty_number`,`faculty_name`,`assets_number`, `asset_name`, `year_of_budget`, `value_asset`, `seller_name`, `number_delivery`, `serial_number`, `date_admit`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`, `status`) 
+        VALUES ('$facultyNumber','$facultyName','$assets_number','$assets_name','$year_of_budget','$value_assets','$seller','$delivery_number','$serial_number','$newDateAdmit','$assets_types_id','$unit_id','$department_id','$money_source_id','อยู่ภายในอาคาร')");
+        // $stmt->execute();
+        // if ($stmt) {
+        //     header("location: ../../../../../project/views/asset-detail/asset-management.php");
+        // }
+        if ($stmt->execute()) {
+            //   echo "<script type='text/javascript'>alert('$image');</script>";
+            $stmt = $db->sqlQuery("SELECT `id` FROM `assets` ORDER BY `id` DESC LIMIT 1");
+            $stmt->execute();
+            $res = $stmt->fetch(PDO::FETCH_ASSOC);
+            $path = "http://localhost/project/views/asset-detail/asset-detail.php?id=" . $res['id'];
+            // $path = "https://php-assets.herokuapp.com/views/asset-detail/asset-detail.php?id=" . $res['id'];
+            QRcode::png(
+                $path,
+                $_SERVER['DOCUMENT_ROOT'] . "/project/assets/qrcode/" . $assets_number . ".png",
+                QR_ECLEVEL_M,
+                1
+            );
+            $stmt = $db->sqlQuery("UPDATE `assets` SET `qr-code`='" . $assets_number . ".png' WHERE `id` = ".$res['id']);
+            $stmt->execute();
             header("location: ../../../../../project/views/asset-detail/asset-management.php");
         }
     }

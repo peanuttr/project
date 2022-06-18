@@ -93,8 +93,8 @@ $db = new db();
             $stmt = $db->sqlQuery("SELECT `id` FROM `assets` ORDER BY `id` DESC LIMIT 1");
             $stmt->execute();
             $res = $stmt->fetch(PDO::FETCH_ASSOC);
-            // $path = "http://localhost/project/views/asset-detail/asset-detail.php?id=" . $res['id'];
-            $path = "https://php-assets.herokuapp.com/views/asset-detail/asset-detail.php?id=" . $res['id'];
+            $path = "http://localhost/project/views/asset-detail/asset-detail.php?id=" . $res['id'];
+            // $path = "https://php-assets.herokuapp.com/views/asset-detail/asset-detail.php?id=" . $res['id'];
             QRcode::png(
                 $path,
                 $_SERVER['DOCUMENT_ROOT'] . "/project/assets/qrcode/" . $assets_number . ".png",
