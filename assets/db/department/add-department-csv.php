@@ -1,21 +1,19 @@
 <?php
 require "../../config/db.php";
 $db = new db();
-if (is_null($_POST['id'])) {
-    $departmentName = $_POST['departmentName'];
-    $departmentNumber = $_POST['departmentNumber'];
-
-    $stmt = $db->sqlQuery("INSERT INTO `department`(`department_name`, `department_number`) VALUES ('$departmentName', '$departmentNumber')");
-    if ($stmt->execute()) {
-        header("location: ../../../../../project/views/department/department-management.php");
-    }
-} else {
-    $_id = $_POST['id'];
-    $departmentNameEdit = $_POST['departmentName'];
-    $departmentNumberEdit = $_POST['departmentNumber'];
-
-    $stmt = $db->sqlQuery("UPDATE `department` SET `department_name`= '$departmentNameEdit', `department_number` = '$departmentNumberEdit' WHERE `id`= '$_id'");
-    if ($stmt->execute()) {
-        header("location: ../../../../../project/views/department/department-management.php");
+if(isset($_POST['submit'])){
+    echo 'Hello';
+    if (isset($_FILES['upload'])) {
+        $file = $_FILES['upload']['tmp_name'];
+        $file_open = fopen($file, "r");
+        while (($csv = fgetcsv($file_open, ",")) !== false) {
+            $departmentNumber = $csv[0];
+            $departmentName = $csv[1];
+            echo 'No:'. $departmentNumber." Name:".$departmentName;
+            // $stmt = $db->sqlQuery("INSERT INTO `department`(`department_number`,`department_name`) VALUES ('$departmentNumber','$departmentName')");
+            // $stmt->execute();
+        }
+        // header("location: ../../../../../project/views/assetments-type/assetments-type-management.php");
     }
 }
+
