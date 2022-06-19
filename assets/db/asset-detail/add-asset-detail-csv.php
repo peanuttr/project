@@ -22,7 +22,7 @@ if (isset($_FILES['upload'])) {
         $type = $csv[23];
         $newDateAdmit = date("Y-m-d", strtotime($date_admit));
 
-        $stmt = $db->sqlQuery("SELECT * FROM `money_source` WHERE `money_source_number` = '$money'");
+        $stmt = $db->sqlQuery("SELECT * FROM `money_source` WHERE `money_source_number` LIKE '%$money%'");
         $stmt->execute();
         $resmonmey = $stmt->fetch(PDO::FETCH_ASSOC);
         $money_source_id = $resmonmey['id'];
@@ -32,7 +32,7 @@ if (isset($_FILES['upload'])) {
         $resunit = $stmt->fetch(PDO::FETCH_ASSOC);
         $unit_id = $resunit['id'];
 
-        $stmt = $db->sqlQuery("SELECT * FROM `department` WHERE `department_number` = '$dep'");
+        $stmt = $db->sqlQuery("SELECT * FROM `department` WHERE `department_number` LIKE '%$dep%'");
         $stmt->execute();
         $resdep = $stmt->fetch(PDO::FETCH_ASSOC);
         $department_id = $resdep['id'];
@@ -42,10 +42,18 @@ if (isset($_FILES['upload'])) {
         $restype = $stmt->fetch(PDO::FETCH_ASSOC);
         $assets_types_id = $restype['id'];
 
-        echo "nofac " . $facultyNumber . " facname " . $facultyName . " dep id " . $department_id . " moneyid " .  $money_source_id . " yearbud " .  $year_of_budget . " assnumber " . $assets_number . " assname " . $assets_name . " unit " .  $unit_id . " dateadmit" .  $date_admit . " value " . $value_assets . " deliveryno " . $delivery_number . " " .  $seller . " " .  $serial_number . " " .  $type . " <br>";
+        $stmt = $db->sqlQuery("SELECT * FROM `place` WHERE `placename` LIKE '%อยู่ภายในคณะ%'");
+        $stmt->execute();
+        $resplace = $stmt->fetch(PDO::FETCH_ASSOC);
+        $place_id = $resplace['id'];
 
-        $stmt = $db->sqlQuery("INSERT INTO `assets`(`faculty_number`,`faculty_name`,`assets_number`, `asset_name`, `year_of_budget`, `value_asset`, `seller_name`, `number_delivery`, `serial_number`, `date_admit`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`, `status`) 
-        VALUES ('$facultyNumber','$facultyName','$assets_number','$assets_name','$year_of_budget','$value_assets','$seller','$delivery_number','$serial_number','$newDateAdmit','$assets_types_id','$unit_id','$department_id','$money_source_id','อยู่ภายในอาคาร')");
+        // echo "nofac " . $facultyNumber . " facname " . $facultyName . " dep id " . $department_id . " money id " .  $money_source_id . " yearbud " .  $year_of_budget . " assnumber " . $assets_number . " assname " . $assets_name . " unit " .  $unit_id . " dateadmit" .  $date_admit . " value " . $value_assets . " deliveryno " . $delivery_number . " " .  $seller . " " .  $serial_number . " " .  $type . " <br>";
+
+        // echo "number ยาว ". strlen($facultyNumber);
+        // echo "number ยาว ". strlen('30800');
+
+        $stmt = $db->sqlQuery("INSERT INTO `assets`(`faculty_number`,`faculty_name`,`assets_number`, `asset_name`, `year_of_budget`, `value_asset`, `seller_name`, `number_delivery`, `serial_number`, `date_admit`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`, `status`, place_id) 
+        VALUES ('30800', 'คณะอุตสาหกรรมเกษตร','$assets_number','$assets_name','$year_of_budget','$value_assets','$seller','$delivery_number','$serial_number','$newDateAdmit','$assets_types_id','$unit_id','$department_id','$money_source_id','รอการแก้ไข','$place_id')");
         // $stmt->execute();
         // if ($stmt) {
         //     header("location: ../../../../../project/views/asset-detail/asset-management.php");

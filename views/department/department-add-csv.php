@@ -6,7 +6,7 @@ $db = new db();
 <div class="home-section">
     <div class="home-content">
         <h1 style="padding-top: 1%;">เพิ่มข้อมูลหน่วยงาน</h1>
-        <form method="post" action="../../assets/db/department/add-department-csv.php">
+        <form method="post" action="../../assets/db/department/add-department-csv.php"  enctype="multipart/form-data">
         <div class="row flex justify-content-center">
                     <div class="col-5 width-50 d-flex justify-content-end">
                         <label for="">upload csv</label>

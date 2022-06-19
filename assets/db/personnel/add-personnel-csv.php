@@ -8,8 +8,8 @@ if (isset($_FILES['upload'])) {
     while (($csv = fgetcsv($file_open, ",")) !== false) {
         $dep = $csv[0];
         $jobTitle = $csv[1];
-        $fisrtname = $csv[3];
-        $lastname = $csv[4];
+        $fisrtname = $csv[2];
+        $lastname = $csv[3];
         $stmt = $db->sqlQuery("SELECT * FROM department WHERE `department_name` LIKE '%$dep%'");
         $stmt->execute();
         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {

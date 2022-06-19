@@ -8,7 +8,7 @@ if (isset($_FILES['upload'])) {
         $assetmentTypeNumber = $csv[0];
         $assetmentTypeName = $csv[1];
         // echo 'No:'. $assetmentTypeNumber." Name:".$assetmentTypeName;
-        $stmt = $db->sqlQuery("INSERT INTO `assets_types`(`assets_types_name`) VALUES ('$assetmentTypeName')");
+        $stmt = $db->sqlQuery("INSERT INTO `assets_types`(`assets_types_number`,`assets_types_name`) VALUES ('$assetmentTypeNumber','$assetmentTypeName')");
         $stmt->execute();
     }
     header("location: ../../../../../project/views/assetments-type/assetments-type-management.php");
