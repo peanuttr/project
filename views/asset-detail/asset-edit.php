@@ -15,12 +15,7 @@ if (isset($_GET['id'])) {
     JOIN `staffs` as s ON a.staff_id = s.id
     WHERE a.id = $_id");
     $stmt->execute();
-    if($stmt){
-        $res = $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-    else{
-        echo "Error";
-    }
+    $res = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>
 <div class="home-section">
