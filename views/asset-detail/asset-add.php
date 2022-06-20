@@ -171,16 +171,16 @@ foreach ($stmt->fetchAll() as $res) {
                     <div class='col-4 width-50 flex justify-center'>
                         <label>ผู้นำเข้าคลัง</label>
                         <?php
-                        $stmt = $db->sqlQuery("SELECT * FROM staffs");
+                        $stmt = $db->sqlQuery("SELECT * FROM personnels");
                         $stmt->execute();
                         $output = " ";
                         $output .= "<select class='form-control' name='staffId'>";
                         $output .= "<option selected>เลือกผู้นำเข้าคลัง </option>";
                         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            $staffId = $result['id'];
-                            $staffFirstName = $result['staff_firstname'];
-                            $staffLastName = $result['staff_lastname'];
-                            $output .= "<option value='$staffId'>$staffFirstName $staffLastName</option>";
+                            $personnelId = $result['id'];
+                            $personnelFirstName = $result['personnel_firstname'];
+                            $personnelLastName = $result['personnel_lastname'];
+                            $output .= "<option value='$personnelId'>$personnelFirstName $personnelLastName</option>";
                         }
                         $output .= "</select>";
                         echo $output;
@@ -214,12 +214,6 @@ foreach ($stmt->fetchAll() as $res) {
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row flex justify-content-center">
-                    <div class="col-5 width-50 flex justify-center">
-                        <label for="">upload csv</label>
-                        <input type="file" name="upload" id="upload">
-                    </div>
-                </div> -->
                 <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
                     <div class='col-1 d-flex justify-content-start' style=''>
                         <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
