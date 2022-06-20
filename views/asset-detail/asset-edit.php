@@ -5,17 +5,55 @@ include_once "../layout/masterpage.php";
 if (isset($_GET['id'])) {
     $_id = $_GET['id'];
     $db = new db();
-    $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name,p.placename,pe.personnel_firstname,pe.personnel_lastname,s.staff_firstname,s.staff_lastname FROM `assets` AS a 
+    // $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name,p.placename,pe.personnel_firstname,pe.personnel_lastname,s.staff_firstname,s.staff_lastname FROM `assets` AS a 
+    // JOIN `assets_types` as t ON a.assets_types_id = t.id 
+    // JOIN `unit` as u ON a.unit_id = u.id 
+    // JOIN `department` as d ON a.department_id = d.id 
+    // JOIN `money_source` as m ON a.money_source_id = m.id
+    // JOIN `place` as p ON a.place_id = p.id
+    // JOIN `personnels` as pe ON a.personnel_id = pe.id
+    // JOIN `staffs` as s ON a.staff_id = s.id
+    // WHERE a.id = $_id");
+    // $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name,p.placename,pe.personnel_firstname,pe.personnel_lastname,s.personnel_firstname,s.personnel_lastname FROM `assets` AS a 
+    // JOIN `assets_types` as t ON a.assets_types_id = t.id 
+    // JOIN `unit` as u ON a.unit_id = u.id 
+    // JOIN `department` as d ON a.department_id = d.id 
+    // JOIN `money_source` as m ON a.money_source_id = m.id
+    // JOIN `place` as p ON a.place_id = p.id
+    // JOIN `personnels` as pe ON a.importer_id = pe.id
+    // JOIN `personnels` as s ON a.exporter_id = s.id
+    // WHERE a.id = $_id");
+    $sql = "SELECT a.* FROM `assets` AS a 
+    WHERE a.id = $_id";
+    $stmt = $db->sqlQuery($sql);
+    $stmt->execute();
+    $resp = $stmt->fetch(PDO::FETCH_ASSOC);
+    $sql = "SELECT a.*,t.assets_types_name,u.unit_name,d.department_number,d.department_name,m.money_source_number,m.money_source_name,p.placename ";
+            $from = " FROM `assets` AS a 
     JOIN `assets_types` as t ON a.assets_types_id = t.id 
     JOIN `unit` as u ON a.unit_id = u.id 
     JOIN `department` as d ON a.department_id = d.id 
     JOIN `money_source` as m ON a.money_source_id = m.id
-    JOIN `place` as p ON a.place_id = p.id
-    JOIN `personnels` as pe ON a.personnel_id = pe.id
-    JOIN `staffs` as s ON a.staff_id = s.id
-    WHERE a.id = $_id");
-    $stmt->execute();
-    $res = $stmt->fetch(PDO::FETCH_ASSOC);
+    JOIN `place` as p ON a.place_id = p.id";
+            $where = " WHERE a.id = $_id";
+            $haveIm = false;
+            $haveEx = false;
+            if ($resp['importer_id']){
+                // $sql .= ",im.personnel_firstname AS importer_fname,im.personnel_lastname AS importer_lname ";
+                $sql .= " ,im.id AS im_id,CONCAT(im.personnel_firstname,' ',im.personnel_lastname) AS importer_name";
+                $from .= " JOIN `personnels` as im ON im.id = a.importer_id ";
+                $haveIm = true;
+            }
+            if ($resp['exporter_id']){
+                // $sql .= ",ex.personnel_firstname AS exporter_fname,ex.personnel_lastname AS exporter_lname";
+                $sql .=" ,ex.id AS ex_id,CONCAT(ex.personnel_firstname,' ',ex.personnel_lastname) AS exporter_name";
+                $from .= " JOIN `personnels` as ex ON ex.id = a.exporter_id ";
+                $haveEx = true;
+            }
+            // echo $sql.$from.$where;
+            $stmt = $db->sqlQuery($sql.$from.$where);
+            $stmt->execute();
+            $res = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 ?>
 <div class="home-section">
@@ -187,15 +225,20 @@ if (isset($_GET['id'])) {
                     <div class='col-4 width-50 flex justify-center'>
                         <label>ผู้นำเข้าคลัง</label>
                         <?php
-                        $stmt = $db->sqlQuery("SELECT * FROM staffs");
+                        $stmt = $db->sqlQuery("SELECT * FROM personnels");
                         $stmt->execute();
                         echo "<select class='form-control' name='staffId'>";
-                        echo "<option value=" . $res['staff_id'] . " selected> " . $res['staff_firstname'] . " " . $res['staff_lastname'] . "</option>";
+                        if($haveIm){
+                            echo "<option value=" . $res['im_id'] . " selected> " . $res['importer_name']."</option>";
+                        }
+                        else{
+                            echo "<option selected>เลือกผู้นำเข้าคลัง </option>";
+                        }
                         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             $staffId = $result['id'];
-                            $staffName = $result['staff_firstname'];
-                            $staffLastName = $result['staff_lastname'];
-                            if (strcmp($res['staff_firstname'], $staffName) == 0) {
+                            $staffName = $result['personnel_firstname'];
+                            $staffLastName = $result['personnel_lastname'];
+                            if (strcmp($res['importer_name'], $staffName." ".$staffLastName) == 0) {
                             } else {
                                 echo "<option value='$staffId'>$staffName $staffLastName</option>";
                             }
@@ -209,12 +252,17 @@ if (isset($_GET['id'])) {
                         $stmt = $db->sqlQuery("SELECT * FROM personnels");
                         $stmt->execute();
                         echo "<select class='form-control' name='personnelId'>";
-                        echo "<option value=" . $res['personnel_id'] . " selected> " . $res['personnel_firstname'] . " " . $res['personnel_lastname'] . "</option>";
+                        if($haveEx){
+                            echo "<option value=" . $res['ex_id'] . " selected> " . $res['exporter_name']. "</option>";
+                        }
+                        else{
+                            echo "<option selected>เลือกผู้เบิก </option>";
+                        }
                         while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             $personnelId = $result['id'];
                             $personnelName = $result['personnel_firstname'];
                             $personnelLastName = $result['personnel_lastname'];
-                            if (strcmp($res['personnel_firstname'], $personnelName) == 0) {
+                            if (strcmp($res['exporter_name'], $personnelName." ".$personnelLastName) == 0) {
                             } else {
                                 echo "<option value='$personnelId'>$personnelName $personnelLastName</option>";
                             }
@@ -228,7 +276,7 @@ if (isset($_GET['id'])) {
                         <div class="form-group">
                             <label for="exampleFormControlFile1">รูปภาพ</label>
                             <input type="file" class="form-control-file" name="image" onchange="readURL(this);">
-                            <img id="preview" src="<?php echo "../../assets/uploads/", $res['image'] ?>" width="50px" height="auto">
+                            <img id="preview" src="<?php echo "../../assets/uploads/". $res['image'] ?>" width="50px" height="auto">
                         </div>
                     </div>
                 </div>

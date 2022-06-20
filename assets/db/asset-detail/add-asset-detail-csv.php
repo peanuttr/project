@@ -16,6 +16,8 @@ if (isset($_FILES['upload'])) {
         $unit = $csv[11];
         $date_admit = $csv[12];
         $value_assets = $csv[13];
+        $importer = $csv[14];
+        $exporter = $csv[15];
         $delivery_number = $csv[17];
         $seller = $csv[20];
         $serial_number = $csv[21];
@@ -47,13 +49,40 @@ if (isset($_FILES['upload'])) {
         $resplace = $stmt->fetch(PDO::FETCH_ASSOC);
         $place_id = $resplace['id'];
 
-        // echo "nofac " . $facultyNumber . " facname " . $facultyName . " dep id " . $department_id . " money id " .  $money_source_id . " yearbud " .  $year_of_budget . " assnumber " . $assets_number . " assname " . $assets_name . " unit " .  $unit_id . " dateadmit" .  $date_admit . " value " . $value_assets . " deliveryno " . $delivery_number . " " .  $seller . " " .  $serial_number . " " .  $type . " <br>";
+        $sql = "INSERT INTO `assets`(`faculty_number`,`faculty_name`,`assets_number`, `asset_name`, `year_of_budget`, `value_asset`, 
+        `seller_name`, `number_delivery`, `serial_number`, `date_admit`, `assets_types_id`, `unit_id`, `department_id`, 
+        `money_source_id`, `status`, `place_id`";
+        $values = ") VALUES ('30800', 'คณะอุตสาหกรรมเกษตร','$assets_number','$assets_name','$year_of_budget',
+        '$value_assets','$seller','$delivery_number','$serial_number',
+        '$newDateAdmit','$assets_types_id','$unit_id','$department_id','$money_source_id','รอการแก้ไข','$place_id'";
 
-        // echo "number ยาว ". strlen($facultyNumber);
-        // echo "number ยาว ". strlen('30800');
+        $stmt = $db->sqlQuery("SELECT * FROM `personnels` WHERE CONCAT(personnel_firstname,' ',personnel_lastname) LIKE '%$importer%'");
+        $stmt->execute();
+        $resimporter = $stmt->fetch(PDO::FETCH_ASSOC);
+        $importer_id = NULL;
+        if($resimporter){
+            $importer_id = $resimporter['id'];
+            $sql .= ", `importer_id`";
+            $values .= ",'$importer_id'";
+        }
 
-        $stmt = $db->sqlQuery("INSERT INTO `assets`(`faculty_number`,`faculty_name`,`assets_number`, `asset_name`, `year_of_budget`, `value_asset`, `seller_name`, `number_delivery`, `serial_number`, `date_admit`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`, `status`, `place_id`) 
-        VALUES ('30800', 'คณะอุตสาหกรรมเกษตร','$assets_number','$assets_name','$year_of_budget','$value_assets','$seller','$delivery_number','$serial_number','$newDateAdmit','$assets_types_id','$unit_id','$department_id','$money_source_id','รอการแก้ไข','$place_id')");
+        $stmt = $db->sqlQuery("SELECT * FROM `personnels` WHERE CONCAT(personnel_firstname,' ',personnel_lastname) LIKE '%$exporter%'");
+        $stmt->execute();
+        $resexporter = $stmt->fetch(PDO::FETCH_ASSOC);
+        $exporter_id = NULL;
+        if($resexporter){
+            $exporter_id = $resexporter['id'];
+            $sql .= ", `exporter_id`";
+            $values .= ",'$exporter_id'";
+
+        }
+
+        // echo $sql.$values.")";
+        
+
+        // echo "nofac " . $facultyNumber . " facname " . $facultyName . " dep id " . $department_id . " money id " .  $money_source_id . " yearbud " .  $year_of_budget . " assnumber " . $assets_number . " assname " . $assets_name . " unit " .  $unit_id . " dateadmit" .  $date_admit . " value " . $value_assets . " deliveryno " . $delivery_number . " " .  $seller . " " .  $serial_number . " " .  $type . " นำเข้า".$importer_id." เบิก".$exporter_id." <br>";
+
+        $stmt = $db->sqlQuery($sql.$values.")");
         $stmt->execute();
         if ($stmt) {
             header("location: ../../../../../project/views/asset-detail/asset-management.php");

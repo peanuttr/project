@@ -155,7 +155,7 @@ $db = new db();
             $target_file = $target_dir . basename($_FILES["image"]["name"]);
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-            $check = getimagesize($_FILES["image"]["tmp_name"]);
+            $check = @getimagesize($_FILES["image"]["tmp_name"]);
             if ($check !== false) {
                 echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
@@ -163,7 +163,7 @@ $db = new db();
                 echo "File is not an image.";
                 $uploadOk = 0;
             }
-            if ($_FILES["fileToUpload"]["size"] > 500000) {
+            if ($_FILES["image"]["size"] > 500000) {
                 echo "Sorry, your file is too large.";
                 $uploadOk = 0;
             }
@@ -190,8 +190,8 @@ $db = new db();
 
         $stmt = $db->sqlQuery("UPDATE `assets` SET `assets_number`='$assets_number',`asset_name`='$name',`detail`='$detail',`feature`='$feature',`year_of_budget`='$year_of_budget',
         `value_asset`='$value_assets',`seller_name`='$seller',`status`='$status',`number_delivery`='$delivery_number',`serial_number`='$serial_number',
-        `date_admit`='$newFormatDateAdmit',`expiration_date`='$newFormatExpirationDate',`date_pickup`='$date_pickup',`date_delivery`='$date_delivery',`place_id`='$placeId',`assets_types_id`='$assets_types_id',`unit_id`='$unit_id',
-        `department_id`='$department_id',`money_source_id`='$money_source_id',`image` ='$image',`personnel_id`='$personnelId',`staff_id`='$staffId'  WHERE `id` = '$_id'");
+        `date_admit`='$newFormatDateAdmit',`expiration_date`='$newFormatExpirationDate',`date_pickup`='$newFormatDatePickup',`date_delivery`='$newFormatDateDelivery',`place_id`='$placeId',`assets_types_id`='$assets_types_id',`unit_id`='$unit_id',
+        `department_id`='$department_id',`money_source_id`='$money_source_id',`image` ='$image',`exporter_id`='$personnelId',`importer_id`='$staffId'  WHERE `id` = '$_id'");
         if ($stmt->execute()) {
             header("location: ../../../../../project/views/asset-detail/asset-management.php");
         }

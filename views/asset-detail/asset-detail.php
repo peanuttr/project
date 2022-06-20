@@ -13,24 +13,58 @@ if (isset($_GET['id'])) {
     //             JOIN `money_source` as m ON a.money_source_id = m.id
     //             JOIN `place` as p ON a.place_id = p.id
     //             WHERE a.id = "  . $_id);
-    $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,d.department_number,m.money_source_name,m.money_source_number,
-                p.placename,pe.personnel_firstname,pe.personnel_lastname,s.staff_firstname,s.staff_lastname FROM `assets` AS a 
-                JOIN `assets_types` as t ON a.assets_types_id = t.id 
-                JOIN `unit` as u ON a.unit_id = u.id 
-                JOIN `department` as d ON a.department_id = d.id 
-                JOIN `money_source` as m ON a.money_source_id = m.id
-                JOIN `place` as p ON a.place_id = p.id
-                JOIN `personnels` as pe ON a.personnel_id = pe.id
-                JOIN `staffs` as s ON a.staff_id = s.id
-                WHERE a.id = "  . $_id);
+    // $sql = "SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name,p.placename,pe.personnel_firstname,pe.personnel_lastname,s.personnel_firstname,s.personnel_lastname FROM `assets` AS a 
+    // JOIN `assets_types` as t ON a.assets_types_id = t.id 
+    // JOIN `unit` as u ON a.unit_id = u.id 
+    // JOIN `department` as d ON a.department_id = d.id 
+    // JOIN `money_source` as m ON a.money_source_id = m.id
+    // JOIN `place` as p ON a.place_id = p.id
+    // JOIN `personnels` as pe ON a.importer_id = pe.id
+    // JOIN `personnels` as s ON a.exporter_id = s.id
+    // WHERE a.id = $_id";
+    // $sql = "SELECT a.*,t.assets_types_name,u.unit_name,d.department_number,d.department_name,m.money_source_number,m.money_source_name,p.placename FROM `assets` AS a 
+    // JOIN `assets_types` as t ON a.assets_types_id = t.id 
+    // JOIN `unit` as u ON a.unit_id = u.id 
+    // JOIN `department` as d ON a.department_id = d.id 
+    // JOIN `money_source` as m ON a.money_source_id = m.id
+    // JOIN `place` as p ON a.place_id = p.id
+    // WHERE a.id = $_id";
+    $sql = "SELECT a.* FROM `assets` AS a 
+    WHERE a.id = $_id";
+    $stmt = $db->sqlQuery($sql);
     $stmt->execute();
 ?>
     <div class="home-section">
         <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:93%; width:auto">
             <h1 style="padding-left: 10%;">รายละเอียดครุภัณฑ์</h1>
             <?php
+            $resp = $stmt->fetch(PDO::FETCH_ASSOC);
+            $sql = "SELECT a.*,t.assets_types_name,u.unit_name,d.department_number,d.department_name,m.money_source_number,m.money_source_name,p.placename ";
+            $from = " FROM `assets` AS a 
+    JOIN `assets_types` as t ON a.assets_types_id = t.id 
+    JOIN `unit` as u ON a.unit_id = u.id 
+    JOIN `department` as d ON a.department_id = d.id 
+    JOIN `money_source` as m ON a.money_source_id = m.id
+    JOIN `place` as p ON a.place_id = p.id";
+            $where = " WHERE a.id = $_id";
+            $haveIm = false;
+            $haveEx = false;
+            if ($resp['importer_id']){
+                // $sql .= ",im.personnel_firstname AS importer_fname,im.personnel_lastname AS importer_lname ";
+                $sql .= ",CONCAT(im.personnel_firstname,' ',im.personnel_lastname) AS importer_name";
+                $from .= " JOIN `personnels` as im ON im.id = a.importer_id ";
+                $haveIm = true;
+            }
+            if ($resp['exporter_id']){
+                // $sql .= ",ex.personnel_firstname AS exporter_fname,ex.personnel_lastname AS exporter_lname";
+                $sql .=",CONCAT(ex.personnel_firstname,' ',ex.personnel_lastname) AS exporter_name";
+                $from .= " JOIN `personnels` as ex ON ex.id = a.exporter_id ";
+                $haveEx = true;
+            }
+            // echo $sql.$from.$where;
+            $stmt = $db->sqlQuery($sql.$from.$where);
             $stmt->execute();
-            while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
             ?>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">รหัสคณะ : </div>
@@ -102,11 +136,11 @@ if (isset($_GET['id'])) {
                 </div>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">ผู้เบิก :</div>
-                    <div class="col-md-6"><?php echo $res['staff_firstname'], ' ', $res['staff_lastname']; ?></div>
+                    <div class="col-md-6"><?php echo $haveEx ? $res['exporter_name'] : "-" ?></div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">ผู้นำเข้าคลัง :</div>
-                    <div class="col-md-6"><?php echo $res['personnel_firstname'], ' ', $res['personnel_lastname']; ?></div>
+                    <div class="col-md-6"><?php echo $haveIm ? $res['importer_name'] : "-" ?></div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">วันที่เบิก :</div>
@@ -137,13 +171,13 @@ if (isset($_GET['id'])) {
                     <?php
                     } else {
                     ?>
-                        <div class="col-md-6"><img src="<?php echo "../../assets/qrcode/".$res['qr-code']; ?>" width="140px" alt=""></div>
+                        <div class="col-md-6"><img src="<?php echo "../../assets/qrcode/" . $res['qr-code']; ?>" width="140px" alt=""></div>
                     <?php
                     }
                     ?>
                 </div>
             <?php
-            }
+                }
             ?>
             <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
                 <div class='col-1 d-flex justify-content-center'>
