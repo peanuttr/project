@@ -52,7 +52,7 @@ if (isset($_FILES['upload'])) {
         // echo "number ยาว ". strlen($facultyNumber);
         // echo "number ยาว ". strlen('30800');
 
-        $stmt = $db->sqlQuery("INSERT INTO `assets`(`faculty_number`,`faculty_name`,`assets_number`, `asset_name`, `year_of_budget`, `value_asset`, `seller_name`, `number_delivery`, `serial_number`, `date_admit`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`, `status`, place_id) 
+        $stmt = $db->sqlQuery("INSERT INTO `assets`(`faculty_number`,`faculty_name`,`assets_number`, `asset_name`, `year_of_budget`, `value_asset`, `seller_name`, `number_delivery`, `serial_number`, `date_admit`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`, `status`, `place_id`) 
         VALUES ('30800', 'คณะอุตสาหกรรมเกษตร','$assets_number','$assets_name','$year_of_budget','$value_assets','$seller','$delivery_number','$serial_number','$newDateAdmit','$assets_types_id','$unit_id','$department_id','$money_source_id','รอการแก้ไข','$place_id')");
         // $stmt->execute();
         // if ($stmt) {
