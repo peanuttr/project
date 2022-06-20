@@ -5,24 +5,24 @@ include_once "../layout/masterpage.php";
 $db = new db();
 if (isset($_GET['id'])) {
     $_id = $_GET['id'];
-    $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,d.department_number,m.money_source_name,m.money_source_number,
-                p.placename FROM `assets` AS a 
-                JOIN `assets_types` as t ON a.assets_types_id = t.id 
-                JOIN `unit` as u ON a.unit_id = u.id 
-                JOIN `department` as d ON a.department_id = d.id 
-                JOIN `money_source` as m ON a.money_source_id = m.id
-                JOIN `place` as p ON a.place_id = p.id
-                WHERE a.id = "  . $_id);
     // $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,d.department_number,m.money_source_name,m.money_source_number,
-    //             p.placename,pe.personnel_firstname,pe.personnel_lastname,s.staff_firstname,s.staff_lastname FROM `assets` AS a 
+    //             p.placename FROM `assets` AS a 
     //             JOIN `assets_types` as t ON a.assets_types_id = t.id 
     //             JOIN `unit` as u ON a.unit_id = u.id 
     //             JOIN `department` as d ON a.department_id = d.id 
     //             JOIN `money_source` as m ON a.money_source_id = m.id
     //             JOIN `place` as p ON a.place_id = p.id
-    //             JOIN `personnels` as pe ON a.personnel_id = pe.id
-    //             JOIN `staffs` as s ON a.staff_id = s.id
     //             WHERE a.id = "  . $_id);
+    $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,d.department_number,m.money_source_name,m.money_source_number,
+                p.placename,pe.personnel_firstname,pe.personnel_lastname,s.staff_firstname,s.staff_lastname FROM `assets` AS a 
+                JOIN `assets_types` as t ON a.assets_types_id = t.id 
+                JOIN `unit` as u ON a.unit_id = u.id 
+                JOIN `department` as d ON a.department_id = d.id 
+                JOIN `money_source` as m ON a.money_source_id = m.id
+                JOIN `place` as p ON a.place_id = p.id
+                JOIN `personnels` as pe ON a.personnel_id = pe.id
+                JOIN `staffs` as s ON a.staff_id = s.id
+                WHERE a.id = "  . $_id);
     $stmt->execute();
 ?>
     <div class="home-section">
@@ -100,14 +100,14 @@ if (isset($_GET['id'])) {
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">รหัสการส่งสินค้า :</div>
                     <div class="col-md-6"><?php echo $res['number_delivery']; ?></div>
                 </div>
-                <!-- <div class="row form-group">
+                <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">ผู้เบิก :</div>
                     <div class="col-md-6"><?php echo $res['staff_firstname'], ' ', $res['staff_lastname']; ?></div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">ผู้นำเข้าคลัง :</div>
                     <div class="col-md-6"><?php echo $res['personnel_firstname'], ' ', $res['personnel_lastname']; ?></div>
-                </div> -->
+                </div>
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end font-weight-bold">วันที่เบิก :</div>
                     <div class="col-md-6"><?php echo DateThai($res['date_pickup']); ?></div>

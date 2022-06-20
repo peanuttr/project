@@ -54,26 +54,40 @@ if (isset($_FILES['upload'])) {
 
         $stmt = $db->sqlQuery("INSERT INTO `assets`(`faculty_number`,`faculty_name`,`assets_number`, `asset_name`, `year_of_budget`, `value_asset`, `seller_name`, `number_delivery`, `serial_number`, `date_admit`, `assets_types_id`, `unit_id`, `department_id`, `money_source_id`, `status`, `place_id`) 
         VALUES ('30800', 'คณะอุตสาหกรรมเกษตร','$assets_number','$assets_name','$year_of_budget','$value_assets','$seller','$delivery_number','$serial_number','$newDateAdmit','$assets_types_id','$unit_id','$department_id','$money_source_id','รอการแก้ไข','$place_id')");
-        // $stmt->execute();
-        // if ($stmt) {
-        //     header("location: ../../../../../project/views/asset-detail/asset-management.php");
-        // }
-        if ($stmt->execute()) {
-            //   echo "<script type='text/javascript'>alert('$image');</script>";
-            $stmt = $db->sqlQuery("SELECT `id` FROM `assets` ORDER BY `id` DESC LIMIT 1");
-            $stmt->execute();
-            $res = $stmt->fetch(PDO::FETCH_ASSOC);
-            $path = "http://localhost/project/views/asset-detail/asset-detail.php?id=" . $res['id'];
-            // $path = "https://php-assets.herokuapp.com/views/asset-detail/asset-detail.php?id=" . $res['id'];
-            QRcode::png(
-                $path,
-                $_SERVER['DOCUMENT_ROOT'] . "/project/assets/qrcode/" . $assets_number . ".png",
-                QR_ECLEVEL_M,
-                1
-            );
-            $stmt = $db->sqlQuery("UPDATE `assets` SET `qr-code`='" . $assets_number . ".png' WHERE `id` = ".$res['id']);
-            $stmt->execute();
+        $stmt->execute();
+        if ($stmt) {
             header("location: ../../../../../project/views/asset-detail/asset-management.php");
         }
+        // if ($stmt->execute()) {
+        //     //   echo "<script type='text/javascript'>alert('$image');</script>";
+        //     $stmt = $db->sqlQuery("SELECT `id` FROM `assets` ORDER BY `id` DESC LIMIT 1");
+        //     $stmt->execute();
+        //     $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        //     $path = "http://localhost/project/views/asset-detail/asset-detail.php?id=" . $res['id'];
+        //     // $path = "https://php-assets.herokuapp.com/views/asset-detail/asset-detail.php?id=" . $res['id'];
+        //     QRcode::png(
+        //         $path,
+        //         $_SERVER['DOCUMENT_ROOT'] . "/project/assets/qrcode/" . $assets_number . ".png",
+        //         QR_ECLEVEL_M,
+        //         1
+        //     );
+        //     $stmt = $db->sqlQuery("UPDATE `assets` SET `qr-code`='" . $assets_number . ".png' WHERE `id` = ".$res['id']);
+        //     $stmt->execute();
+        //     header("location: ../../../../../project/views/asset-detail/asset-management.php");
+        // }
     }
+    // $stmt = $db->sqlQuery("SELECT `id`,`assets_number` FROM `assets` ");
+    // $stmt->execute();
+    // $res = $stmt->fetch(PDO::FETCH_ASSOC);
+    // foreach ($res as $resp) {
+    //     $path = "http://localhost/project/views/asset-detail/asset-detail.php?id=" . $resp['id'];
+    //     QRcode::png(
+    //         $path,
+    //         $_SERVER['DOCUMENT_ROOT'] . "/project/assets/qrcode/" . $resp['assets_number'] . ".png",
+    //         QR_ECLEVEL_M,
+    //         1
+    //     );
+    //     $stmt = $db->sqlQuery("UPDATE `assets` SET `qr-code`='" . $resp['assets_number'] . ".png' WHERE `id` = " . $resp['id']);
+    //     $stmt->execute();
+    // }
 }
