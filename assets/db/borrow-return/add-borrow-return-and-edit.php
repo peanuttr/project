@@ -23,8 +23,22 @@ if (isset($_POST['submit'])) {
     $newReturnDate = "$returnDay-$returnMonth-$returnYear";
     $newFormatBorrowDate = date("Y-m-d", strtotime($newBorrowDate));
     $newFormatReturnDate = date("Y-m-d", strtotime($newReturnDate));
+    $currentYear = date("Y") + 543;
+    $newCurrentYear = substr($currentYear, 2) . "0";
 
-    $stmt = $db->sqlQuery("INSERT INTO `borrow_and_return`(`borrow_date`, `return_date`, `staff_id`, `personel_id`, `detail`, `status`) VALUES ('$newFormatBorrowDate', '$newFormatReturnDate', '$staffId', '$personnelId', '$detail', 'รออนุมัติ')");
+    $stmt = $db->sqlQuery(("SELECT id FROM `borrow_and_return` ORDER BY `id` DESC LIMIT 1"));
+    $stmt->execute();
+    $result = $stmt->fetch((PDO::FETCH_ASSOC));
+    $newFormatCurrentYear = $newCurrentYear. ($result['id'] + 1) ;
+
+    if($newReturnDate < $newBorrowDate) {
+        echo ("<script LANGUAGE='JavaScript'>
+    window.alert('วันที่คืนห้ามน้อยกว่าวันที่ยืม');
+    javascript:history.back();
+    </script>");
+    }
+
+    $stmt = $db->sqlQuery("INSERT INTO `borrow_and_return`(`number_borrow`, `borrow_date`, `return_date`, `staff_id`, `personel_id`, `detail`, `status`) VALUES ('$newFormatCurrentYear', '$newFormatBorrowDate', '$newFormatReturnDate', '$staffId', '$personnelId', '$detail', 'รออนุมัติ')");
 
     if ($stmt->execute()) {
         $stmt = $db->sqlQuery("SELECT * FROM `borrow_and_return` ORDER BY `id` DESC LIMIT 1");

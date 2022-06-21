@@ -26,11 +26,10 @@ include_once "../layout/masterpage.php";
                 JOIN personnels as p ON p.id = br.personel_id
                 JOIN staffs as s ON s.id = br.staff_id");
                 $stmt->execute();
-                $number = 1;
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                     <tr>
-                        <td><?php echo "BORROW_", $number ?></td>
+                        <td><?php echo $result['number_borrow']; ?></td>
                         <td>
                             <?php
                             $stmt2 = $db->sqlQuery("SELECT dbr.*,a.asset_name FROM detail_borrow_and_return as dbr
@@ -78,7 +77,6 @@ include_once "../layout/masterpage.php";
                         </td>
                     </tr>
                 <?php
-                    $number += 1;
                 }
                 ?>
             </tbody>
