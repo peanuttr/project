@@ -24,7 +24,7 @@ include_once "../layout/masterpage.php";
                 $db = new db();
                 $stmt = $db->sqlQuery("SELECT br.*,p.personnel_firstname, s.staff_firstname FROM borrow_and_return as br
                 JOIN personnels as p ON p.id = br.personel_id
-                JOIN staffs as s ON s.id = br.staff_id");
+                JOIN staffs as s ON s.id = br.staff_id ORDER BY br.id DESC");
                 $stmt->execute();
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>

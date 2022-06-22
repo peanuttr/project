@@ -27,73 +27,92 @@ if (isset($_GET['id'])) {
     <div class="home-section">
         <div class="home-content">
             <h1 style="padding-left: 10%;">รายละเอียดการแจ้งซ่อม</h1>
+            <table id="myTable">
+                <thead>
+                    <th>เลขครุภัณฑ์</th>
+                    <th>ชื่อครุภัณฑ์</th>
+                    <th>สถานะ</th>
+                </thead>
+                <tbody>
+                    <?php
+                    $stmt->execute();
+                    while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        array_push($assets, ['id' => $res['assets_id']]);
+                    ?>
+                        <!-- <div class="row form-group">
+                            <div class="col-md-5 d-flex justify-content-end">เลขครุภัณฑ์ : </div>
+                            <div class="col-md-6"><?php echo $res['assets_number']; ?></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-5 d-flex justify-content-end">ชื่อครุภัณฑ์ :</div>
+                            <div class="col-md-6"><?php echo $res['asset_name']; ?></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-5 d-flex justify-content-end">สถานะ :</div>
+                            <div class="col-md-6"><?php echo $res['status']; ?></div>
+                        </div> -->
+                        <tr>
+                            <td><?php echo $res['assets_number']; ?></td>
+                            <td><?php echo $res['asset_name']; ?></< /td>
+                            <td><?php echo $res['status']; ?></< /td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-5 d-flex justify-content-end">วันที่แจ้งซ่อม :</div>
+            <div class="col-md-6"><?php echo DateThai($response['date_notice']); ?></div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-5 d-flex justify-content-end">รายละเอียด :</div>
+            <div class="col-md-6"><?php echo $response['detail']; ?></div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-5 d-flex justify-content-end">สถานะ :</div>
+            <div class="col-md-6"><?php
+                                    if ($response['status'] == 1) {
+                                        echo "แจ้งซ่อม";
+                                    } else if ($response['status'] == 2) {
+                                        echo "ดำเนินการซ่อม";
+                                    } else if ($response['status'] == 3) {
+                                        echo "ซ่อมสำเร็จ";
+                                    }
+                                    ?></div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-5 d-flex justify-content-end">ชื่อ-นามสกุลผู้แจ้งซ่อม :</div>
+            <div class="col-md-6"><?php echo $response['personnel_firstname'] . " " . $response['personnel_lastname']; ?></div>
+        </div>
+        <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
+            <div class='col-1 d-flex justify-content-start'>
+                <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
+            </div>
             <?php
-            $stmt->execute();
-            while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                array_push($assets, ['id' => $res['assets_id']]);
+            if ($response['status'] == 1) {
             ?>
-                <div class="row form-group">
-                    <div class="col-md-5 d-flex justify-content-end">เลขครุภัณฑ์ : </div>
-                    <div class="col-md-6"><?php echo $res['assets_number']; ?></div>
+                <div class='col-1 d-flex justity-content-end'>
+                    <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",2,<?php echo json_encode($assets) ?>)'><span>อนุมัติ</span><a>
                 </div>
-                <div class="row form-group">
-                    <div class="col-md-5 d-flex justify-content-end">ชื่อครุภัณฑ์ :</div>
-                    <div class="col-md-6"><?php echo $res['asset_name']; ?></div>
+                <div class='col-1 d-flex justity-content-end'>
+                    <a class='btn btn-sm btn-danger' onclick='updateStatus("<?php echo $_id ?>",0,<?php echo json_encode($assets) ?>)'><span>ไม่อนุมัติ</span><a>
                 </div>
             <?php
             }
             ?>
-            <div class="row form-group">
-                <div class="col-md-5 d-flex justify-content-end">วันที่แจ้งซ่อม :</div>
-                <div class="col-md-6"><?php echo DateThai($response['date_notice']); ?></div>
-            </div>
-            <div class="row form-group">
-                <div class="col-md-5 d-flex justify-content-end">รายละเอียด :</div>
-                <div class="col-md-6"><?php echo $response['detail']; ?></div>
-            </div>
-            <div class="row form-group">
-                <div class="col-md-5 d-flex justify-content-end">สถานะ :</div>
-                <div class="col-md-6"><?php
-                                        if ($response['status'] == 1) {
-                                            echo "แจ้งซ่อม";
-                                        } else if ($response['status'] == 2) {
-                                            echo "ดำเนินการซ่อม";
-                                        } else if ($response['status'] == 3) {
-                                            echo "ซ่อมสำเร็จ";
-                                        }
-                                        ?></div>
-            </div>
-            <div class="row form-group">
-                <div class="col-md-5 d-flex justify-content-end">ชื่อ-นามสกุลผู้แจ้งซ่อม :</div>
-                <div class="col-md-6"><?php echo $response['personnel_firstname'] . " " . $response['personnel_lastname']; ?></div>
-            </div>
-            <div class='row flex justify-content-center mt-2' style="padding-top: 20px">
-                <div class='col-1 d-flex justify-content-start'>
-                    <a class='btn btn-sm btn-danger' href="javascript:history.back()"> <span>กลับ</span> </a>
+            <?php
+            if ($response['status'] == 2) {
+            ?>
+                <div class='col-1 d-flex justity-content-end'>
+                    <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",3,<?php echo json_encode($assets) ?>)'><span>ซ่อมสำเร็จ</span><a>
                 </div>
-                <?php
-                if ($response['status'] == 1) {
-                ?>
-                    <div class='col-1 d-flex justity-content-end'>
-                        <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",2,<?php echo json_encode($assets) ?>)'><span>อนุมัติ</span><a>
-                    </div>
-                    <div class='col-1 d-flex justity-content-end'>
-                        <a class='btn btn-sm btn-danger' onclick='updateStatus("<?php echo $_id ?>",0,<?php echo json_encode($assets) ?>)'><span>ไม่อนุมัติ</span><a>
-                    </div>
-                <?php
-                }
-                ?>
-                <?php
-                if ($response['status'] == 2) {
-                ?>
-                    <div class='col-1 d-flex justity-content-end'>
-                        <a class='btn btn-sm btn-success' onclick='updateStatus("<?php echo $_id ?>",3,<?php echo json_encode($assets) ?>)'><span>ซ่อมสำเร็จ</span><a>
-                    </div>
-                <?php
-                }
-                ?>
-            </div>
+            <?php
+            }
+            ?>
         </div>
+    </div>
     </div>
 <?php
 }
@@ -113,9 +132,18 @@ function DateThai($strDate)
 
     return "$strDay $strMonthThai $strYear";
 }
-
 ?>
 <script>
+    $(document).ready(function() {
+        var table = $('#myTable').DataTable({
+            "lengthMenu": [5, 10]
+        });
+        //     $('#myTable tbody').on('click', 'tr', function () {
+        //     var data = table.row( this ).data();
+        //     alert( 'You clicked on '+data[1]+'\'s row' );
+        // } );
+    });
+
     function updateStatus(repair_id, status, assets) {
         console.log(assets);
         // window.location.href = '../../assets/db/repair-assetments/edit-repair-assetment.php?assets='+JSON.stringify(assets)

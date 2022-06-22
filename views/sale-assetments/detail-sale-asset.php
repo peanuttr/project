@@ -22,12 +22,20 @@ if (isset($_GET['id'])) {
     <div class="home-section">
         <div class="home-content">
             <h1 style="padding-left: 10%;">รายละเอียดการจำหน่าย</h1>
-            <?php
-            $stmt->execute();
-            while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                array_push($assets, ['id' => $res['assets_id']]);
-            ?>
-                <div class="row form-group">
+            <div class="row form-group">
+                <table id="myTable">
+                    <thead>
+                        <th>เลขครุภัณฑ์</th>
+                        <th>ชื่อครุภัณฑ์</th>
+                        <th>สถานะ</th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $stmt->execute();
+                        while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            array_push($assets, ['id' => $res['assets_id']]);
+                        ?>
+                            <!-- <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end">เลขครุภัณฑ์ : </div>
                     <div class="col-md-6"><?php echo $res['assets_number']; ?></div>
                 </div>
@@ -35,9 +43,21 @@ if (isset($_GET['id'])) {
                     <div class="col-md-5 d-flex justify-content-end">ชื่อครุภัณฑ์ :</div>
                     <div class="col-md-6"><?php echo $res['asset_name']; ?></div>
                 </div>
-            <?php
-            }
-            ?>
+                <div class="row form-group">
+                    <div class="col-md-5 d-flex justify-content-end">สถานะ :</div>
+                    <div class="col-md-6"><?php echo $res['status']; ?></div>
+                </div> -->
+                            <tr>
+                                <td><?php echo $res['assets_number']; ?></td>
+                                <td><?php echo $res['asset_name']; ?></< /td>
+                                <td><?php echo $res['status']; ?></< /td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
             <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">วันที่แจ้ง :</div>
                 <div class="col-md-6"><?php echo DateThai($response['selling_date']); ?></div>
@@ -112,6 +132,15 @@ function DateThai($strDate)
 
 ?>
 <script>
+    $(document).ready(function() {
+        var table = $('#myTable').DataTable({
+            "lengthMenu": [5, 10]
+        });
+        //     $('#myTable tbody').on('click', 'tr', function () {
+        //     var data = table.row( this ).data();
+        //     alert( 'You clicked on '+data[1]+'\'s row' );
+        // } );
+    });
     function updateStatus(repair_id, status, assets) {
         console.log(assets);
         // window.location.href = '../../assets/db/repair-assetments/edit-repair-assetment.php?assets='+JSON.stringify(assets)

@@ -21,7 +21,7 @@ include_once "../layout/masterpage.php";
                 require "../../assets/config/db.php";
                 $db = new db();
                 $stmt = $db->sqlQuery("SELECT r.*,p.personnel_firstname,p.personnel_lastname FROM repair_notice as r 
-                JOIN personnels as p ON p.id = r.personel_id ORDER BY r.id ASC ");
+                JOIN personnels as p ON p.id = r.personel_id ORDER BY r.id DESC ");
                 $stmt->execute();
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>

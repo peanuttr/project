@@ -29,11 +29,19 @@ if (isset($_GET['id'])) {
     <div class="home-section">
         <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:95%; width:auto">
             <h1 style="padding-left: 10%; padding-bottom: 2%">รายละเอียดการยืม - คืนครุภัณฑ์</h1>
-            <?php
-            $stmt->execute();
-            while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            ?>
-                <div class="row form-group">
+            <div class="row form-group">
+                <table id="myTable">
+                    <thead>
+                        <th>เลขครุภัณฑ์</th>
+                        <th>ชื่อครุภัณฑ์</th>
+                        <th>สถานะ</th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $stmt->execute();
+                        while ($res = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        ?>
+                            <!-- <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end">เลขครุภัณฑ์ : </div>
                     <div class="col-md-6"><?php echo $res['assets_number']; ?></div>
                 </div>
@@ -44,13 +52,21 @@ if (isset($_GET['id'])) {
                 <div class="row form-group">
                     <div class="col-md-5 d-flex justify-content-end">สถานะ :</div>
                     <div class="col-md-6"><?php echo $res['status']; ?></div>
-                </div>
-            <?php
-                $assetId[$index] = $res['asset_id'];
-                array_push($_SESSION['asset_id'], $assetId[$index]);
-                $index += 1;
-            }
-            ?>
+                </div> -->
+                            <tr>
+                                <td><?php echo $res['assets_number']; ?></td>
+                                <td><?php echo $res['asset_name']; ?></< /td>
+                                <td><?php echo $res['status']; ?></< /td>
+                            </tr>
+                        <?php
+                            $assetId[$index] = $res['asset_id'];
+                            array_push($_SESSION['asset_id'], $assetId[$index]);
+                            $index += 1;
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
             <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">วันที่ยืม :</div>
                 <div class="col-md-6"><?php echo DateThai($response['borrow_date']) ?></div>
@@ -87,7 +103,7 @@ if (isset($_GET['id'])) {
                     echo "<div class='col-1 d-flex justity-content-end'>";
                     echo "<a class='btn btn-sm btn-danger text-white' onclick='rejectBorrow($response[borrow_and_return_id])'>ไม่อนุมัติ</a>";
                     echo "</div>";
-                } 
+                }
                 ?>
             </div>
         </div>
@@ -114,6 +130,15 @@ function DateThai($strDate)
 ?>
 
 <script>
+    $(document).ready(function() {
+        var table = $('#myTable').DataTable({
+            "lengthMenu": [5, 10]
+        });
+        //     $('#myTable tbody').on('click', 'tr', function () {
+        //     var data = table.row( this ).data();
+        //     alert( 'You clicked on '+data[1]+'\'s row' );
+        // } );
+    });
     function approveBorrow(id) {
         $.ajax({
             url: '../../assets/db/borrow-return/approve-borrow-return.php',

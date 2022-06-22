@@ -21,7 +21,7 @@ include_once "../layout/masterpage.php";
                 require "../../assets/config/db.php";
                 $db = new db();
                 $stmt = $db->sqlQuery("SELECT se.*,st.staff_firstname,st.staff_lastname FROM sells as se
-                JOIN staffs as st ON st.id = se.staff_id ORDER BY se.id ASC ");
+                JOIN staffs as st ON st.id = se.staff_id ORDER BY se.id DESC ");
                 $stmt->execute();
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
