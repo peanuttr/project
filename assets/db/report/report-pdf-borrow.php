@@ -32,7 +32,7 @@ $assetsName = null ;
 $assetsNumber = null ;
 $assetsUnit = null ;
 
-$stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,s.staff_lastname,p.personnel_firstname,p.personnel_lastname,pl.placename,p.job_title,a.asset_name,a.assets_number,br.borrow_date,br.return_date,br.detail,d.department_name,u.unit_name
+$stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,s.staff_lastname,p.personnel_firstname,p.personnel_lastname,pl.placename,p.job_title,a.asset_name,a.assets_number,br.number_borrow,br.borrow_date,br.return_date,br.detail,d.department_name,u.unit_name
                 FROM `detail_borrow_and_return` AS brd
                             JOIN `borrow_and_return` as br ON brd.borrow_and_return_id = br.id
                             JOIN `staffs` as s ON br.staff_id = s.id 
@@ -51,8 +51,8 @@ while( $resp = $stmt->fetch(PDO::FETCH_ASSOC)){
 // $row = count($res['asset_name']);
 
 
-$html = '<p style="text-align:center; font-size:large;">แบบบันทึกการยืมพัสดุ
-</p>
+$html = '<p style="text-align:right; font-size:large; top:0;">'.$res['number_borrow'].'</p>
+<p style="text-align:center; font-size:large;">แบบบันทึกการยืมพัสดุ</p>
 <p style="text-align:right;">เขียนที่ คณะอุตสาหกรรมเกษตร <br /> ' . DateThai($dateNow) . '</p>
 <p style="text-align:left;">เรื่อง ขอยืมครุภัณฑ์ <br /> เรียน คณบดีคณะอุตสาหกรรมเกษตร</p>
 <p style="text-align:center; text-indent: 5vh;">ข้าพเจ้า ' . $res['personnel_firstname'] . ' ' . $res['personnel_lastname'] . ' ตำแหน่ง ' . $res['job_title'] . '<br />

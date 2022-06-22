@@ -30,7 +30,7 @@ $row = $stmt->fetch(PDO::FETCH_BOTH);
 $assetsName = null ;
 $assetsNumber = null ;
 $assetsUnit = null ;
-$stmt = $db->sqlQuery("SELECT brd.*,p.personnel_firstname,p.personnel_lastname,p.job_title,a.asset_name,a.assets_number,br.date_notice,br.detail,d.department_name,u.unit_name
+$stmt = $db->sqlQuery("SELECT brd.*,p.personnel_firstname,p.personnel_lastname,p.job_title,a.asset_name,a.assets_number,br.number_repair,br.date_notice,br.detail,d.department_name,u.unit_name
                 FROM `detail_repair_notice` AS brd
                             JOIN `repair_notice` as br ON brd.repair_id = br.id
                             JOIN `personnels` as p ON br.personel_id = p.id 
@@ -48,7 +48,8 @@ while($resp = $stmt->fetch(PDO::FETCH_ASSOC)){
 // $row = count($res['asset_name']);
 
 
-$html = '<p style="text-align:center; font-size:large;">แบบบันทึกการแจ้งซ่อม</p>
+$html = '<p style="text-align:right; font-size:large; top:0;">'.$res['number_repair'].'</p>
+<p style="text-align:center; font-size:large;">แบบบันทึกการแจ้งซ่อม</p>
 <p style="text-align:right;">เขียนที่ คณะอุตสาหกรรมเกษตร <br /> ' . DateThai($dateNow) . '</p>
 <p style="text-align:left;">เรื่อง ขอแจ้งซ่อมครุภัณฑ์ <br /> เรียน คณบดีคณะอุตสาหกรรมเกษตร</p>
 <p style="text-align:center; text-indent: 5vh;">ข้าพเจ้า ' . $res['personnel_firstname'] . ' ' . $res['personnel_lastname'] . ' ตำแหน่ง ' . $res['job_title'] . '<br />

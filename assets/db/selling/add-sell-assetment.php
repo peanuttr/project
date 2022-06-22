@@ -15,8 +15,15 @@ if(isset($_POST['submit'])){
     $year = substr($date, 6) - 543;
     $newDate = "$day-$month-$year";
     $newFormatDate = date("Y-m-d", strtotime($newDate));
+    $currentYear = date("Y") + 543;
+    $newCurrentYear = substr($currentYear, 2) . "0";
 
-    $stmt = $db->sqlQuery("INSERT INTO `sells`( `detail`, `selling_date`, `status`, `staff_id`) VALUES ('$detail', '$newFormatDate','1', '$s_id')");
+    $stmt = $db->sqlQuery(("SELECT id FROM `sells` ORDER BY `id` DESC LIMIT 1"));
+    $stmt->execute();
+    $result = $stmt->fetch((PDO::FETCH_ASSOC));
+    $newFormatCurrentYear = $newCurrentYear. ($result['id'] + 1) ;
+
+    $stmt = $db->sqlQuery("INSERT INTO `sells`( `number_sell`, `detail`, `selling_date`, `status`, `staff_id`) VALUES ('$newFormatCurrentYear','$detail', '$newFormatDate','1', '$s_id')");
     if($stmt->execute()){
         $stmt = $db->sqlQuery("SELECT * FROM `sells` ORDER BY `id` DESC LIMIT 1");
         $stmt->execute();

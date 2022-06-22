@@ -17,6 +17,13 @@ if (isset($_POST['submit'])) {
     $newFormatDate = date("Y-m-d", strtotime($newDate));
     $image = array();
    // $repair_by = $_POST['repairBy'];
+   $currentYear = date("Y") + 543;
+    $newCurrentYear = substr($currentYear, 2) . "0";
+
+    $stmt = $db->sqlQuery(("SELECT id FROM `repair_notice` ORDER BY `id` DESC LIMIT 1"));
+    $stmt->execute();
+    $result = $stmt->fetch((PDO::FETCH_ASSOC));
+    $newFormatCurrentYear = $newCurrentYear. ($result['id'] + 1) ;
 
 
     if (isset($_FILES['image'])) {
@@ -123,7 +130,7 @@ if (isset($_POST['submit'])) {
     //     echo $resp[0]['img'];
     // }
 
-    $stmt = $db->sqlQuery("INSERT INTO `repair_notice`( `detail`, `date_notice`, `status`, `personel_id`) VALUES ('$detail', '$newFormatDate','1', '$p_id')");
+    $stmt = $db->sqlQuery("INSERT INTO `repair_notice`( `number_repair`,`detail`, `date_notice`, `status`, `personel_id`) VALUES ('$newFormatCurrentYear','$detail', '$newFormatDate','1', '$p_id')");
     // $stmt = $db->sqlQuery("INSERT INTO `repair_notice`( `detail`, `date_notice`, `status`, `personel_id`,`repair_by`) VALUES ('$detail', '$newFormatDate','1', '$p_id','$repair_by')");
     if($stmt->execute()){
         $stmt = $db->sqlQuery("SELECT * FROM `repair_notice` ORDER BY `id` DESC LIMIT 1");
