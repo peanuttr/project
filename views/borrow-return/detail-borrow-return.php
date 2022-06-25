@@ -29,7 +29,7 @@ if (isset($_GET['id'])) {
     <div class="home-section">
         <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:95%; width:auto">
             <h1 style="padding-left: 10%; padding-bottom: 2%">รายละเอียดการยืม - คืนครุภัณฑ์</h1>
-            <div class="row form-group">
+            <div class="row form-group d-flex justify-content-center">
                 <table id="myTable">
                     <thead>
                         <th>เลขครุภัณฑ์</th>
@@ -130,15 +130,15 @@ function DateThai($strDate)
 ?>
 
 <script>
-    $(document).ready(function() {
-        var table = $('#myTable').DataTable({
-            "lengthMenu": [5, 10]
-        });
-        //     $('#myTable tbody').on('click', 'tr', function () {
-        //     var data = table.row( this ).data();
-        //     alert( 'You clicked on '+data[1]+'\'s row' );
-        // } );
-    });
+    // $(document).ready(function() {
+    //     var table = $('#myTable').DataTable({
+    //         "lengthMenu": [5, 10]
+    //     });
+    //     //     $('#myTable tbody').on('click', 'tr', function () {
+    //     //     var data = table.row( this ).data();
+    //     //     alert( 'You clicked on '+data[1]+'\'s row' );
+    //     // } );
+    // });
     function approveBorrow(id) {
         $.ajax({
             url: '../../assets/db/borrow-return/approve-borrow-return.php',
