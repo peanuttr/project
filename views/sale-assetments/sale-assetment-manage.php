@@ -117,7 +117,8 @@ function DateThai($strDate)
                     id: sell_id
                 },
                 success: function(data) {
-                    window.location.href = "./sale-assetment-manage.php"
+                    
+                    data ? alert('ไม่สามารถลบข้อมูลได้') : window.location.href = "./sale-assetment-manage.php";
                 }
             })
         }

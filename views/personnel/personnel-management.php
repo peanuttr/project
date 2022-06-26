@@ -74,7 +74,7 @@ include_once "../layout/masterpage.php";
                     id: id
                 },
                 success: function(data) {
-                    window.location.href = "./personnel-management.php";
+                    data ? alert('ไม่สามารถลบข้อมูลได้') : window.location.href = "./personnel-management.php";
                 }
             })
         }
