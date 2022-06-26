@@ -29,7 +29,7 @@ if (isset($_GET['id'])) {
     <div class="home-section">
         <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:95%; width:auto">
             <h1 style="padding-left: 10%; padding-bottom: 2%">รายละเอียดการยืม - คืนครุภัณฑ์</h1>
-            <div class="row form-group d-flex justify-content-center">
+            <div class="ml-auto mr-auto w-50 row form-group" >
                 <table id="myTable">
                     <thead>
                         <th>เลขครุภัณฑ์</th>

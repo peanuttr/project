@@ -27,7 +27,7 @@ if (isset($_GET['id'])) {
     <div class="home-section">
         <div class="home-content">
             <h1 style="padding-left: 10%;">รายละเอียดการแจ้งซ่อม</h1>
-            <div class="row form-group d-flex justify-content-center">
+            <div class="ml-auto mr-auto w-50 row form-group">
             <table id="myTable">
                 <thead>
                     <th>เลขครุภัณฑ์</th>
