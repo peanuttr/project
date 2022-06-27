@@ -5,7 +5,7 @@ session_start();
 $db = new db();
 
 $_id = $_GET['id'];
-$stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,s.staff_lastname,p.personnel_firstname,p.personnel_lastname,pl.placename,p.job_title,a.asset_name,a.assets_number,br.borrow_date,br.return_date,br.detail,d.department_name,u.unit_name
+$stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,s.staff_lastname,p.personnel_firstname,p.personnel_lastname,pl.placename,p.job_title,a.asset_name,a.assets_number,br.number_borrow,br.borrow_date,br.return_date,br.detail,d.department_name,u.unit_name
                 FROM `detail_borrow_and_return` AS brd
                             JOIN `borrow_and_return` as br ON brd.borrow_and_return_id = br.id
                             JOIN `staffs` as s ON br.staff_id = s.id 
