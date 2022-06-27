@@ -63,7 +63,7 @@ include_once "../layout/masterpage.php";
                     id: id
                 },
                 success: function(data) {
-                    data ? alert('ไม่สามารถลบข้อมูลได้') : window.location.href = "./money-source-management.php";
+                    data.substr(0,6) == "<br />" ? alert('ไม่สามารถลบข้อมูลได้') : window.location.href = "./money-source-management.php";
                 }
             })
         }

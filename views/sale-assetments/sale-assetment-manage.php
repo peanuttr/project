@@ -118,7 +118,7 @@ function DateThai($strDate)
                 },
                 success: function(data) {
                     
-                    data ? alert('ไม่สามารถลบข้อมูลได้') : window.location.href = "./sale-assetment-manage.php";
+                    data.substr(0,6) == "<br />" ? alert('ไม่สามารถลบข้อมูลได้') : window.location.href = "./sale-assetment-manage.php";
                 }
             })
         }

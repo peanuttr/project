@@ -61,7 +61,7 @@ include_once "../layout/masterpage.php";
                     id: id
                 },
                 success: function(data) {
-                    window.location.href = "./unit-management.php";
+                    data.substr(0,6) == "<br />" ? alert('ไม่สามารถลบข้อมูลได้') : window.location.href = "./unit-management.php";
                 }
             })
         }

@@ -62,7 +62,7 @@ include_once "../layout/masterpage.php";
                 },
                 success: function(data) {
                     // console.log(data);
-                    data ? alert('ไม่สามารถลบข้อมูลได้') : window.location.href = "./place-management.php";
+                    data.substr(0,6) == "<br />" ? alert('ไม่สามารถลบข้อมูลได้') : window.location.href = "./place-management.php";
                     // window.location.href = "./place-management.php";
                 }
             })
