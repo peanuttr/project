@@ -55,8 +55,8 @@ if (isset($_GET['id'])) {
                 </div> -->
                             <tr>
                                 <td><?php echo $res['assets_number']; ?></td>
-                                <td><?php echo $res['asset_name']; ?></< /td>
-                                <td><?php echo $res['status']; ?></< /td>
+                                <td><?php echo $res['asset_name']; ?></td>
+                                <td><?php echo $res['status']; ?></td>
                             </tr>
                         <?php
                             $assetId[$index] = $res['asset_id'];
