@@ -5,14 +5,7 @@ session_start();
 $db = new db();
 
 $_id = $_GET['id'];
-$stmt = $db->sqlQuery("SELECT brd.*,p.personnel_firstname,p.personnel_lastname,p.job_title,a.asset_name,a.assets_number,br.number_repair,,br.date_notice,br.detail,d.department_name,u.unit_name
-                FROM `detail_repair_notice` AS brd
-                            JOIN `repair_notice` as br ON brd.repair_id = br.id
-                            JOIN `personnels` as p ON br.personel_id = p.id 
-                            JOIN `assets` as a ON brd.asset_id = a.id
-                            JOIN `department` as d ON d.id = p.department_id
-                            JOIN `unit` as u ON u.id = a.unit_id
-                            WHERE br.id = " . $_id);
+$stmt = $db->sqlQuery("SELECT brd.*,p.personnel_firstname,p.personnel_lastname,p.job_title,a.asset_name,a.assets_number,br.number_repair,br.date_notice,br.detail,d.department_name,u.unit_name FROM `detail_repair_notice` AS brd JOIN `repair_notice` as br ON brd.repair_id = br.id JOIN `personnels` as p ON br.personel_id = p.id JOIN `assets` as a ON brd.asset_id = a.id JOIN `department` as d ON d.id = p.department_id JOIN `unit` as u ON u.id = a.unit_id WHERE br.id = " . $_id);
 $stmt->execute();
 $res = $stmt->fetch(PDO::FETCH_ASSOC);
 // print_r($res);

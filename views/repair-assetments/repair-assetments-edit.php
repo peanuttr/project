@@ -8,7 +8,7 @@ $countId = null;
 
 if (isset($_GET['id'])) {
     $_id = $_GET['id'];
-    $stmt = $db->sqlQuery("SELECT a.id AS assets_id,a.assets_number,a.asset_name,r.date_notice,r.detail,r.status,r.personel_id,p.personnel_firstname,p.personnel_lastname,dr.image,r.repair_by
+    $stmt = $db->sqlQuery("SELECT a.id AS assets_id,a.assets_number,a.asset_name,r.date_notice,r.detail,r.status,r.personel_id,p.personnel_firstname,p.personnel_lastname,dr.image
     FROM `detail_repair_notice` AS dr 
     JOIN `assets` AS a ON dr.asset_id = a.id 
     JOIN `repair_notice` AS r ON dr.repair_id = r.id 
