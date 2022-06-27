@@ -26,7 +26,7 @@ include_once "../layout/masterpage.php";
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                     <tr>
-                        <td><?php echo "SELLING_" . $result['id']; ?></td>
+                        <td><?php echo $result['number_sell']; ?></td>
                         <td>
                             <?php
                             $stmt2 = $db->sqlQuery("SELECT ds.*,a.asset_name FROM detail_sells as ds
@@ -100,10 +100,7 @@ function DateThai($strDate)
     $(document).ready(function() {
         var table = $('#myTable').DataTable({
             "lengthMenu": [5, 10],
-            columnDefs: [{
-                type: 'natural',
-                targets: 0
-            }]
+            order: [[0, 'desc']]
         });
     })
 

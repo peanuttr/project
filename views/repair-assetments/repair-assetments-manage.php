@@ -104,10 +104,7 @@ function DateThai($strDate)
     $(document).ready(function() {
         var table = $('#myTable').DataTable({
             "lengthMenu": [5, 10],
-            columnDefs: [{
-                type: 'natural',
-                targets: 0
-            }]
+            order: [[0, 'desc']]
         });
     })
 

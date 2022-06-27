@@ -2,7 +2,7 @@
 include_once "../layout/masterpage.php";
 require "../../assets/config/db.php";
 $db = new db();
-$stmt = $db->sqlQuery("SELECT id  FROM borrow_and_return");
+$stmt = $db->sqlQuery("SELECT id  FROM borrow_and_return ORDER BY id ASC" );
 $stmt->execute();
 $idBorrow = $stmt->fetchAll();
 // print_r($idBorrow);
@@ -57,7 +57,7 @@ for($i = 0 ; $i < count($idBorrow); $i++){
                 <?php
                 $stmt = $db->sqlQuery("SELECT br.*,p.personnel_firstname, s.staff_firstname FROM borrow_and_return as br
                 JOIN personnels as p ON p.id = br.personel_id
-                JOIN staffs as s ON s.id = br.staff_id ORDER BY br.id DESC");
+                JOIN staffs as s ON s.id = br.staff_id ORDER BY br.id ASC");
                 $stmt->execute();
                 $i = 0;
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -151,7 +151,8 @@ function DateThai($strDate)
 <script>
     $(document).ready(function() {
         var table = $('#myTable').DataTable({
-            "lengthMenu": [5, 10]
+            "lengthMenu": [5, 10],
+            order: [[0, 'desc']]
         });
     });
 

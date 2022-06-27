@@ -34,7 +34,7 @@ foreach ($stmt->fetchAll() as $res) {
 <div class="home-section">
     <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:90%;">
         <h1 style="padding-top: 1%;">เพิ่มข้อมูลการคืนครุภัณฑ์</h1>
-        <form method="GET" action="">
+        <!-- <form method="GET" action="">
             <div class="row">
                 <div class="col-3">
                     <label>รหัสการยืม</label>
@@ -57,7 +57,7 @@ foreach ($stmt->fetchAll() as $res) {
                     <button class="btn btn-success btn-sm" type="submit" name="submit">ยืนยัน</button>
                 </div>
             </div>
-        </form>
+        </form> -->
         <form action="../../assets/db/borrow-return/return-asset.php" method="POST">
             <div class="row">
                 <div class="col-4">
