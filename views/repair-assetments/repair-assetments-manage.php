@@ -121,7 +121,7 @@ function DateThai($strDate)
                     id: repair_id,
                 },
                 success: function(data) {
-                    window.location.href = "./repair-assetments-manage.php"
+                    data ? alert('ไม่สามารถลบข้อมูลได้') : window.location.href = "./repair-assetments-manage.php";
                 }
             })
         }

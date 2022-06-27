@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
     <div class="home-section">
         <div class="home-content">
             <h1 style="padding-left: 10%;">รายละเอียดการจำหน่าย</h1>
-            <div class="row form-group">
+            <div class="ml-auto mr-auto w-50 row form-group">
                 <table id="myTable">
                     <thead>
                         <th>เลขครุภัณฑ์</th>
@@ -132,15 +132,15 @@ function DateThai($strDate)
 
 ?>
 <script>
-    $(document).ready(function() {
-        var table = $('#myTable').DataTable({
-            "lengthMenu": [5, 10]
-        });
-        //     $('#myTable tbody').on('click', 'tr', function () {
-        //     var data = table.row( this ).data();
-        //     alert( 'You clicked on '+data[1]+'\'s row' );
-        // } );
-    });
+    // $(document).ready(function() {
+    //     var table = $('#myTable').DataTable({
+    //         "lengthMenu": [5, 10]
+    //     });
+    //     //     $('#myTable tbody').on('click', 'tr', function () {
+    //     //     var data = table.row( this ).data();
+    //     //     alert( 'You clicked on '+data[1]+'\'s row' );
+    //     // } );
+    // });
     function updateStatus(repair_id, status, assets) {
         console.log(assets);
         // window.location.href = '../../assets/db/repair-assetments/edit-repair-assetment.php?assets='+JSON.stringify(assets)

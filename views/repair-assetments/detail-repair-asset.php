@@ -27,6 +27,7 @@ if (isset($_GET['id'])) {
     <div class="home-section">
         <div class="home-content">
             <h1 style="padding-left: 10%;">รายละเอียดการแจ้งซ่อม</h1>
+            <div class="ml-auto mr-auto w-50 row form-group">
             <table id="myTable">
                 <thead>
                     <th>เลขครุภัณฑ์</th>
@@ -134,15 +135,15 @@ function DateThai($strDate)
 }
 ?>
 <script>
-    $(document).ready(function() {
-        var table = $('#myTable').DataTable({
-            "lengthMenu": [5, 10]
-        });
-        //     $('#myTable tbody').on('click', 'tr', function () {
-        //     var data = table.row( this ).data();
-        //     alert( 'You clicked on '+data[1]+'\'s row' );
-        // } );
-    });
+    // $(document).ready(function() {
+    //     var table = $('#myTable').DataTable({
+    //         "lengthMenu": [5, 10]
+    //     });
+    //     //     $('#myTable tbody').on('click', 'tr', function () {
+    //     //     var data = table.row( this ).data();
+    //     //     alert( 'You clicked on '+data[1]+'\'s row' );
+    //     // } );
+    // });
 
     function updateStatus(repair_id, status, assets) {
         console.log(assets);

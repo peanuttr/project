@@ -1,5 +1,40 @@
 <?php
 include_once "../layout/masterpage.php";
+require "../../assets/config/db.php";
+$db = new db();
+$stmt = $db->sqlQuery("SELECT id  FROM borrow_and_return");
+$stmt->execute();
+$idBorrow = $stmt->fetchAll();
+// print_r($idBorrow);
+$countAll = array();
+$countReturn = array();
+$status = array();
+for($i = 0 ; $i < count($idBorrow); $i++){
+    // echo $idBorrow[$i]['id']."<br>";
+
+    $stmt = $db->sqlQuery("SELECT COUNT(*) AS countById FROM `detail_borrow_and_return` WHERE `borrow_and_return_id` = ".$idBorrow[$i]['id']);
+    $stmt->execute();
+    while($res = $stmt->fetch(PDO::FETCH_ASSOC)){
+        array_push($countAll,$res['countById']);
+    }
+    $stmt = $db->sqlQuery("SELECT COUNT(*) AS countByStatus FROM `detail_borrow_and_return` WHERE `borrow_and_return_id` = ".$idBorrow[$i]['id']." AND `status` LIKE '%คืนแล้ว%' ");
+    $stmt->execute();
+    while($res = $stmt->fetch(PDO::FETCH_ASSOC)){
+        array_push($countReturn,$res['countByStatus']);
+    }
+
+    if($countAll[$i] == $countReturn[$i]){
+        array_push($status,'คืนครุภัณฑ์ครบแล้ว');
+    }
+    else if($countAll[$i] > $countReturn[$i]){
+        array_push($status,'คืนครุภัณฑ์ไม่ครบ');
+    }
+}
+// print_r($countAll);
+// echo "<br>";
+// print_r($countReturn);
+// echo "<br>";
+// print_r($status);
 ?>
 <div class="home-section">
     <div class="home-content">
@@ -20,13 +55,16 @@ include_once "../layout/masterpage.php";
             </thead>
             <tbody>
                 <?php
-                require "../../assets/config/db.php";
-                $db = new db();
                 $stmt = $db->sqlQuery("SELECT br.*,p.personnel_firstname, s.staff_firstname FROM borrow_and_return as br
                 JOIN personnels as p ON p.id = br.personel_id
                 JOIN staffs as s ON s.id = br.staff_id ORDER BY br.id DESC");
                 $stmt->execute();
+                $i = 0;
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    // $stmt = $db->sqlQuery("SELECT COUNT(borrow_and_return_id) as countBorrow FROM `detail_borrow_and_return` WHERE borrow_and_return_id = ".$result['id']." AND status LIKE '%คืนแล้ว%'");
+                    // $stmt->execute();
+                    // $contBorrow = $stmt->fetch(PDO::FETCH_ASSOC);
+                    // echo $contBorrow;
                 ?>
                     <tr>
                         <td><?php echo $result['number_borrow']; ?></td>
@@ -49,7 +87,14 @@ include_once "../layout/masterpage.php";
                         <td><?php echo $result['detail']; ?></td>
                         <td><?php echo DateThai($result['borrow_date']) ?></td>
                         <td><?php echo DateThai($result['return_date']) ?></td>
-                        <td><?php echo $result['status'] ?></td>
+                        <!-- <td><?php echo $result['status'] ?></td> -->
+                        <td><?php if($result['status'] == 'อนุมัติ'){
+                            echo $status[$i];
+                        }
+                        else{
+                            echo  $result['status'];
+                        }
+                        ?></td>
                         <td>
                             <?php
                             if ($result['status'] == 'รออนุมัติ' && $_SESSION['status'] == "staff") {
@@ -77,6 +122,7 @@ include_once "../layout/masterpage.php";
                         </td>
                     </tr>
                 <?php
+                $i++;
                 }
                 ?>
             </tbody>
@@ -132,7 +178,7 @@ function DateThai($strDate)
                     id: id
                 },
                 success: function(data) {
-                    window.location.href = "./borrow-return-management.php";
+                    data ? alert('ไม่สามารถลบข้อมูลได้') : window.location.href = "./borrow-return-management.php";
                 }
             })
         }
