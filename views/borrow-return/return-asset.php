@@ -2,13 +2,26 @@
 include_once "../layout/masterpage.php";
 require "../../assets/config/db.php";
 $db = new db();
+// if(isset($_GET['submit'])) {
+//     echo $_GET['number_borrow'];
+// }
+// $numberBorrow = "";
 
-$stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name FROM `assets` AS a 
-                        JOIN `assets_types` as t ON a.assets_types_id = t.id 
-                        JOIN `unit` as u ON a.unit_id = u.id 
-                        JOIN `department` as d ON a.department_id = d.id 
-                        JOIN `money_source` as m ON a.money_source_id = m.id 
-                        WHERE a.status = 'ถูกยืม'");
+// $sql = "SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name FROM `assets` AS a 
+// JOIN `assets_types` as t ON a.assets_types_id = t.id 
+// JOIN `unit` as u ON a.unit_id = u.id 
+// JOIN `department` as d ON a.department_id = d.id 
+// JOIN `money_source` as m ON a.money_source_id = m.id 
+// WHERE a.status = 'ถูกยืม'"
+
+$sql = "SELECT a.*,t.assets_types_name,u.unit_name,d.department_name,m.money_source_name FROM `assets` AS a 
+JOIN `assets_types` as t ON a.assets_types_id = t.id 
+JOIN `unit` as u ON a.unit_id = u.id 
+JOIN `department` as d ON a.department_id = d.id 
+JOIN `money_source` as m ON a.money_source_id = m.id 
+WHERE a.status = 'ถูกยืม'";
+
+$stmt = $db->sqlQuery($sql);
 $stmt->execute();
 
 $assets = array();
@@ -21,9 +34,33 @@ foreach ($stmt->fetchAll() as $res) {
 <div class="home-section">
     <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:90%;">
         <h1 style="padding-top: 1%;">เพิ่มข้อมูลการคืนครุภัณฑ์</h1>
+        <form method="GET" action="">
+            <div class="row">
+                <div class="col-3">
+                    <label>รหัสการยืม</label>
+                    <?php
+                    $stmt = $db->sqlQuery("SELECT number_borrow FROM borrow_and_return");
+                    $stmt->execute();
+                    $output = " ";
+                    $output .= "<select class='form-control' name='number_borrow' id='number_borrow'>";
+                    $output .= "<option selected> เลือกรหัสารยืม </option>";
+                    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        $personnelId = $result['number_borrow'];
+                        $personnelName = $result['number_borrow'];
+                        $output .= "<option value='$personnelId'>$personnelName $personnelLastName</option>";
+                    }
+                    $output .= "</select>";
+                    echo $output;
+                    ?>
+                </div>
+                <div class="col-1 mt-4">
+                    <button class="btn btn-success btn-sm" type="submit" name="submit">ยืนยัน</button>
+                </div>
+            </div>
+        </form>
         <form action="../../assets/db/borrow-return/return-asset.php" method="POST">
             <div class="row">
-                <div class="col-5">
+                <div class="col-4">
                     <label>ชื่อผู้คืน</label>
                     <?php
                     $stmt = $db->sqlQuery("SELECT * FROM personnels");
@@ -41,7 +78,7 @@ foreach ($stmt->fetchAll() as $res) {
                     echo $output;
                     ?>
                 </div>
-                <div class="col-5">
+                <div class="col-4">
                     <div>
                         <label>ชื่อเจ้าหน้าที่</label>
                     </div>
@@ -107,6 +144,8 @@ foreach ($stmt->fetchAll() as $res) {
         </form>
     </div>
 </div>
+<?php
+?>
 <script>
     $(document).ready(function() {
         var i = 0;
