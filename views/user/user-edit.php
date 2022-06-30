@@ -30,6 +30,12 @@ if (isset($_GET['id'])) {
             </div>
             <div class='row flex justify-content-center' style='margin-bottom: 5px'>
                 <div class='col-6 width-50 flex justify-center'>
+                    <label>ยืนยันรหัสผ่าน</label>
+                    <input type='password' name='confirmPassword' class='form-control' placeholder='ยืนยันรหัสผ่าน' value=<?php echo $res['password']; ?>>
+                </div>
+            </div>
+            <div class='row flex justify-content-center' style='margin-bottom: 5px'>
+                <div class='col-6 width-50 flex justify-center'>
                     <label>ชื่อ</label>
                     <input type='text' name='fisrtname' class='form-control' placeholder='ชื่อ' value=<?php echo $res['staff_firstname']; ?>>
                 </div>

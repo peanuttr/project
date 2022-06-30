@@ -54,6 +54,7 @@ if($flag){
     $email = $_POST['email'];
     $permission = $_POST['permission'];
     $department_id = $_POST['department_id'];
+    $confirmPassword = $_POST['confirmPassword'];
 
     $stmt = $db->sqlQuery("SELECT username FROM `staffs` WHERE `username` = '$username' LIMIT 1");
     $stmt->execute();
