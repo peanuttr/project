@@ -25,22 +25,13 @@ if (isset($_POST['submit'])) {
     $newFormatReturnDate = date("Y-m-d", strtotime($newReturnDate));
     $currentYear = date("Y") + 543;
     $newCurrentYear = substr($currentYear, 2) . "0";
-    $statusBorrow = true;
 
     $stmt = $db->sqlQuery(("SELECT id FROM `borrow_and_return` ORDER BY `id` DESC LIMIT 1"));
     $stmt->execute();
     $result = $stmt->fetch((PDO::FETCH_ASSOC));
     $newFormatCurrentYear = $newCurrentYear. ($result['id'] + 1) ;
 
-    if($borrowDay > $returnDay || $borrowMonth > $returnMonth || $borrowYear > $returnYear) {
-        echo ("<script LANGUAGE='JavaScript'>
-    window.alert('วันที่คืนห้ามน้อยกว่าวันที่ยืม');
-    window.location.href='../../../../../project/views/borrow-return/borrow-return-add.php';
-    </script>");
-    $statusBorrow = false;
-    }
-
-    if($statusBorrow == true) {
+    if($borrowDay < $returnDay && $borrowMonth <= $returnMonth && $borrowYear <= $returnYear) {
         $stmt = $db->sqlQuery("INSERT INTO `borrow_and_return`(`number_borrow`, `borrow_date`, `return_date`, `staff_id`, `personel_id`, `detail`, `status`) VALUES ('$newFormatCurrentYear', '$newFormatBorrowDate', '$newFormatReturnDate', '$staffId', '$personnelId', '$detail', 'รออนุมัติ')");
 
         if ($stmt->execute()) {
@@ -57,5 +48,45 @@ if (isset($_POST['submit'])) {
             // echo "<script type='text/javascript'>alert('$message');</script>";
             header("location: ../../../../../project/views/borrow-return/borrow-return-management.php");
         }
+    } else if($borrowDay > $returnDay && $borrowMonth < $returnMonth && $borrowYear <= $returnYear) {
+        $stmt = $db->sqlQuery("INSERT INTO `borrow_and_return`(`number_borrow`, `borrow_date`, `return_date`, `staff_id`, `personel_id`, `detail`, `status`) VALUES ('$newFormatCurrentYear', '$newFormatBorrowDate', '$newFormatReturnDate', '$staffId', '$personnelId', '$detail', 'รออนุมัติ')");
+
+        if ($stmt->execute()) {
+            $stmt = $db->sqlQuery("SELECT * FROM `borrow_and_return` ORDER BY `id` DESC LIMIT 1");
+            $stmt->execute();
+            $res = $stmt->fetch(PDO::FETCH_ASSOC);
+            foreach ($assets as $resp) {
+                $stmt = $db->sqlQuery("INSERT INTO `detail_borrow_and_return`(`asset_id`, `borrow_and_return_id`, `place_id`, `status`) VALUES ('" . $resp['id'] . "','" . $res['id'] . "', '$placeId', 'รออนุมัติ')");
+                $stmt->execute();
+                $stmt = $db->sqlQuery("UPDATE `assets` set `place_id`='$placeId', `status`='รออนุมัติการยืม' WHERE `id`='". $resp['id'] ."'");
+                $stmt->execute();
+            }
+            // $message = "บันทึกข้อมูลการยืมครุภัณฑ์เรียบร้อย";
+            // echo "<script type='text/javascript'>alert('$message');</script>";
+            header("location: ../../../../../project/views/borrow-return/borrow-return-management.php");
+        }
+    } else if($borrowDay >= $returnDay && $borrowMonth >= $returnMonth && $borrowYear < $returnYear) {
+        $stmt = $db->sqlQuery("INSERT INTO `borrow_and_return`(`number_borrow`, `borrow_date`, `return_date`, `staff_id`, `personel_id`, `detail`, `status`) VALUES ('$newFormatCurrentYear', '$newFormatBorrowDate', '$newFormatReturnDate', '$staffId', '$personnelId', '$detail', 'รออนุมัติ')");
+
+        if ($stmt->execute()) {
+            $stmt = $db->sqlQuery("SELECT * FROM `borrow_and_return` ORDER BY `id` DESC LIMIT 1");
+            $stmt->execute();
+            $res = $stmt->fetch(PDO::FETCH_ASSOC);
+            foreach ($assets as $resp) {
+                $stmt = $db->sqlQuery("INSERT INTO `detail_borrow_and_return`(`asset_id`, `borrow_and_return_id`, `place_id`, `status`) VALUES ('" . $resp['id'] . "','" . $res['id'] . "', '$placeId', 'รออนุมัติ')");
+                $stmt->execute();
+                $stmt = $db->sqlQuery("UPDATE `assets` set `place_id`='$placeId', `status`='รออนุมัติการยืม' WHERE `id`='". $resp['id'] ."'");
+                $stmt->execute();
+            }
+            // $message = "บันทึกข้อมูลการยืมครุภัณฑ์เรียบร้อย";
+            // echo "<script type='text/javascript'>alert('$message');</script>";
+            header("location: ../../../../../project/views/borrow-return/borrow-return-management.php");
+        }
+    } else {
+        echo ("<script LANGUAGE='JavaScript'>
+    window.alert('วันที่คืนห้ามน้อยกว่าวันที่ยืม');
+    window.location.href='../../../../../project/views/borrow-return/borrow-return-add.php';
+    </script>");
     }
+    
 }

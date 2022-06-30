@@ -81,8 +81,8 @@ include_once "../layout/masterpage.php";
                     id: id
                 },
                 success: function(data,textStatus) {
-                    // console.log(data.substr(0,6));
-                    // console.log(textStatus);
+                    console.log(data.substr(0,6));
+                    console.log(textStatus);
                     data.substr(0,6) == "<br />" ? alert('ไม่สามารถลบข้อมูลได้') :window.location.href = "./asset-management.php";
                 }
             })

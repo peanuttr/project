@@ -99,9 +99,9 @@ for($i = 0 ; $i < count($idBorrow); $i++){
                             <?php
                             if ($result['status'] == 'รออนุมัติ' && $_SESSION['status'] == "staff") {
                             ?>
-                                <a class='btn btn-sm btn-warning text-white' href='./edit-borrow.php?id=<?php echo $result['id'] ?>'>
+                                <!-- <a class='btn btn-sm btn-warning text-white' href='./edit-borrow.php?id=<?php echo $result['id'] ?>'>
                                     <i class='bx bx-edit'></i>
-                                </a>
+                                </a> -->
                                 <a class='del btn btn-sm btn-danger' onclick="removeBorrow('<?php echo $result['id']; ?>')">
                                     <i class='bx bx-trash'></i>
                                 </a>

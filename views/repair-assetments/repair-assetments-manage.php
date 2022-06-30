@@ -60,7 +60,7 @@ include_once "../layout/masterpage.php";
                             <?php
                             if ($result['status'] == 1 && $_SESSION['status'] == "staff") {
                             ?>
-                                <a class="btn btn-sm btn-warning text-white" href="./repair-assetments-edit.php?id=<?php echo $result['id'] ?>"><i class='bx bx-edit'></i></a>
+                                <!-- <a class="btn btn-sm btn-warning text-white" href="./repair-assetments-edit.php?id=<?php echo $result['id'] ?>"><i class='bx bx-edit'></i></a> -->
                                 <a class="btn btn-danger btn-sm text-white" onclick="deleteRepair(<?php echo $result['id'] ?>)"><i class='bx bx-trash'></i></a>
                             <?php
                             }
