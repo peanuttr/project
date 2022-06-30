@@ -55,12 +55,36 @@ if($flag){
     $permission = $_POST['permission'];
     $department_id = $_POST['department_id'];
 
+    $stmt = $db->sqlQuery("SELECT username FROM `staffs` WHERE `username` = '$username' LIMIT 1");
+    $stmt->execute();
+    $flag = true;
+    while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if($username == $result['username']) {
+            echo ("<script LANGUAGE='JavaScript'>
+    window.alert('ชื่อผู้ใช้มีอยู่ในระบบแล้ว');
+    javascript:history.back();
+    </script>");
+    $flag = false;
+        }
+    }
+
+    if($password != $confirmPassword) {
+        echo ("<script LANGUAGE='JavaScript'>
+    window.alert('รหัสผ่านไม่ตรงกัน');
+    javascript:history.back();
+    </script>");
+    $flag = false;
+    }
+
     // $stmt = $db->connect()->prepare("UPDATE `staffs` SET `username`= '$username', `password`= '$password', `staff_firstname`= '$fname', `staff_lastname`= '$lname', `permission`= '$permission', `telephone`= '$telephone',`email`= '$email',`department_id`= '$department_id' WHERE `id`= '$_id'");
     // if ($stmt->execute()) {
     //     header("location: ../../../../../project/views/user/user-management.php");
     // }
-    $data =  $db->sqlQuery("UPDATE `staffs` SET `username`= '$username', `password`= '$password', `staff_firstname`= '$fname', `staff_lastname`= '$lname', `permission`= '$permission', `telephone`= '$telephone',`email`= '$email',`department_id`= '$department_id' WHERE `id`= '$_id'");
-    if ($data->execute()) {
-        header("location: ../../../../../project/views/user/user-management.php");
+    if($flag){
+        $data =  $db->sqlQuery("UPDATE `staffs` SET `username`= '$username', `password`= '$password', `staff_firstname`= '$fname', `staff_lastname`= '$lname', `permission`= '$permission', `telephone`= '$telephone',`email`= '$email',`department_id`= '$department_id' WHERE `id`= '$_id'");
+        if ($data->execute()) {
+            header("location: ../../../../../project/views/user/user-management.php");
+        }
     }
+
 }
