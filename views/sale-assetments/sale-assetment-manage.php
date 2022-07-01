@@ -26,7 +26,7 @@ include_once "../layout/masterpage.php";
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                     <tr>
-                        <td><?php echo $result['number_sell']; ?></td>
+                        <td><?php echo  'SELL_'.$result['number_sell']; ?></td>
                         <td>
                             <?php
                             $stmt2 = $db->sqlQuery("SELECT ds.*,a.asset_name FROM detail_sells as ds
@@ -60,7 +60,7 @@ include_once "../layout/masterpage.php";
                             <?php
                             if ($result['status'] == 1 && $_SESSION['status'] == "staff") {
                             ?>
-                                <!-- <a class="btn btn-sm btn-warning text-white" href="./sale-assetment-edit.php?id=<?php echo $result['id'] ?>"><i class='bx bx-edit'></i></a> -->
+                                <a class="btn btn-sm btn-warning text-white" href="./sale-assetment-edit.php?id=<?php echo $result['id'] ?>"><i class='bx bx-edit'></i></a>
                                 <a class="btn btn-danger btn-sm text-white" onclick="deleteSell(<?php echo $result['id'] ?>)"><i class='bx bx-trash'></i></a>
                             <?php
                             }

@@ -19,10 +19,10 @@ if(isset($_POST['submit'])){
 
     $stmt = $db->sqlQuery("UPDATE `sells` SET  `detail`='$detail', `selling_date`='$newFormatDate', `status`='1', `staff_id`='$s_id' WHERE id = '$_id'");
     if($stmt->execute()){
-        foreach ($assets as $resp) {
-            $stmt = $db->sqlQuery("UPDATE `detail_sells` SET `asset_id` = '$resp[id]' WHERE  `sell_id`='$_id'");
-            $stmt->execute();
-        }
+        // foreach ($assets as $resp) {
+        //     $stmt = $db->sqlQuery("UPDATE `detail_sells` SET `asset_id` = '$resp[id]' WHERE  `sell_id`='$_id'");
+        //     $stmt->execute();
+        // }
         header("location: ../../../../../project/views/sale-assetments/sale-assetment-manage.php");
     }
 }

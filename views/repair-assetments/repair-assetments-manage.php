@@ -26,7 +26,7 @@ include_once "../layout/masterpage.php";
                 while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 ?>
                     <tr>
-                        <td><?php echo "REPAIR_" . $result['id']; ?></td>
+                        <td><?php echo 'REPAIR_'.$result['number_repair']; ?></td>
                         <td>
                             <?php
                             $stmt2 = $db->sqlQuery("SELECT drn.*,a.asset_name FROM detail_repair_notice as drn
@@ -60,7 +60,7 @@ include_once "../layout/masterpage.php";
                             <?php
                             if ($result['status'] == 1 && $_SESSION['status'] == "staff") {
                             ?>
-                                <!-- <a class="btn btn-sm btn-warning text-white" href="./repair-assetments-edit.php?id=<?php echo $result['id'] ?>"><i class='bx bx-edit'></i></a> -->
+                                <a class="btn btn-sm btn-warning text-white" href="./repair-assetments-edit.php?id=<?php echo $result['id'] ?>"><i class='bx bx-edit'></i></a>
                                 <a class="btn btn-danger btn-sm text-white" onclick="deleteRepair(<?php echo $result['id'] ?>)"><i class='bx bx-trash'></i></a>
                             <?php
                             }

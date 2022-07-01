@@ -50,7 +50,13 @@ if (isset($_GET['id'])) {
                             <tr>
                                 <td><?php echo $res['assets_number']; ?></td>
                                 <td><?php echo $res['asset_name']; ?></< /td>
-                                <td><?php echo $res['status']; ?></< /td>
+                                <td><?php if ($res['status'] == 1) {
+                                            echo "แจ้งจำหน่าย";
+                                        } else if ($res['status'] == 2) {
+                                            echo "ดำเนินการตำหน่าย";
+                                        } else if ($res['status'] == 3) {
+                                            echo "จำหน่ายสำเร็จ";
+                                        } ?></< /td>
                             </tr>
                         <?php
                         }
@@ -66,7 +72,7 @@ if (isset($_GET['id'])) {
                 <div class="col-md-5 d-flex justify-content-end">รายละเอียด :</div>
                 <div class="col-md-6"><?php echo $response['detail']; ?></div>
             </div>
-            <div class="row form-group">
+            <!-- <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">สถานะ :</div>
                 <div class="col-md-6"><?php
                                         if ($response['status'] == 1) {
@@ -76,8 +82,9 @@ if (isset($_GET['id'])) {
                                         } else if ($response['status'] == 3) {
                                             echo "จำหน่ายสำเร็จ";
                                         }
-                                        ?></div>
-            </div>
+                                        ?>
+                                        </div>
+            </div> -->
             <div class="row form-group">
                 <div class="col-md-5 d-flex justify-content-end">ชื่อ-นามสกุลผู้แจ้ง :</div>
                 <div class="col-md-6"><?php echo $response['staff_firstname'] . " " . $response['staff_lastname']; ?></div>

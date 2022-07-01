@@ -43,15 +43,19 @@ $stmt = $db->sqlQuery("SELECT brd.*,s.staff_firstname,s.staff_lastname,p.personn
                             JOIN `unit` as u ON u.id = a.unit_id
                             WHERE brd.borrow_and_return_id = " . $_id);
 $stmt->execute();
+$detail = null;
 while( $resp = $stmt->fetch(PDO::FETCH_ASSOC)){
-    $assetsName .=$resp['asset_name']." ,";
-    $assetsNumber .=$resp['assets_number']." ,";
-    $assetsUnit .=$resp['unit_name']." ,";
+    // $assetsName .=$resp['asset_name']." ,";
+    // $assetsNumber .=$resp['assets_number']." ,";
+    // $assetsUnit .=$resp['unit_name']." ,";
+    $detail .= '<span style="text-align:left;">ชื่อพัสดุ : '.$resp['asset_name'] . '</span><br />'
+    .'<span style="text-align:left;">ชนิด : '.$resp['unit_name']. ' จำนวน 1 '.$resp['unit_name'].'</span><br />'
+    .'<span style="text-align:left;">หมายเลขพัสดุ : '.$resp['assets_number'].'</span><br />';
 }
 // $row = count($res['asset_name']);
 
 
-$html = '<p style="text-align:right; font-size:large; top:0;">'.$res['number_borrow'].'</p>
+$html = '<p style="text-align:right; font-size:medium; top:0;">BORROW_'.$res['number_borrow'].'</p>
 <p style="text-align:center; font-size:large;">แบบบันทึกการยืมพัสดุ</p>
 <p style="text-align:right;">เขียนที่ คณะอุตสาหกรรมเกษตร <br /> ' . DateThai($dateNow) . '</p>
 <p style="text-align:left;">เรื่อง ขอยืมครุภัณฑ์ <br /> เรียน คณบดีคณะอุตสาหกรรมเกษตร</p>
@@ -64,13 +68,14 @@ $html = '<p style="text-align:right; font-size:large; top:0;">'.$res['number_bor
 <span style="text-align:left;">เพื่อใช้ในกิจการดังนี้ ' . $res['detail'] . '</span><br />
 <span style="text-align:left;">โดยขอยืมพัดุเป็นระยะเวลา ' . DateThai($res['borrow_date']) . ' (วัน/เดือน/ปี) </span><br />
 <span style="text-align:left;">กำหนดระยะเวลาคืนพัสดุ ภายใน ' . DateThai($res['return_date']) . ' </span> <br />
-<b style="text-align:left;">รายละเอียดพัสดุที่ขอยืม</b> <br />
-<span style="text-align:left;">ชื่อพัสดุ ' . $assetsName . '</span><br />
-<span style="text-align:left;">ชนิด ' . $assetsUnit . ' เครื่อง จำนวน '.$row[0].' เครื่อง </span> <br>
+<b style="text-align:left;">รายละเอียดพัสดุที่ขอยืม</b> <br />'
+.$detail.
+// <span style="text-align:left;">ชื่อพัสดุ ' . $assetsName . '</span><br />
+// <span style="text-align:left;">ชนิด ' . $assetsUnit . ' เครื่อง จำนวน '.$row[0].' เครื่อง </span> <br>
 
-<span style="text-align:left;">ชื่อทางการค้า(ยี่ห้อ) - </span><br />
-<span style="text-align:left;">หมายเลขพัสดุ ' . $assetsNumber . ' </span><br />
-<span style="text-align:left;">คุณลักษณะ ' . $res['detail'] . '</span><br />
+// <span style="text-align:left;">ชื่อทางการค้า(ยี่ห้อ) - </span><br />
+// <span style="text-align:left;">หมายเลขพัสดุ ' . $assetsNumber . ' </span><br />
+'<span style="text-align:left;">คุณลักษณะ ' . $res['detail'] . '</span><br />
 </p>
 <span style="text-align:center;">(ลงชื่อ) ........................ ชื่อผู้ยืม </span><br />
 <span style="text-align:center;">( ' . $res['personnel_firstname'] . ' ' . $res['personnel_lastname'] . ' )</span><br />

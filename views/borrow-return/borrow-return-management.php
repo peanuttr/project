@@ -67,7 +67,7 @@ for($i = 0 ; $i < count($idBorrow); $i++){
                     // echo $contBorrow;
                 ?>
                     <tr>
-                        <td><?php echo $result['number_borrow']; ?></td>
+                        <td><?php echo  'BORROW_'.$result['number_borrow']; ?></td>
                         <td>
                             <?php
                             $stmt2 = $db->sqlQuery("SELECT dbr.*,a.asset_name FROM detail_borrow_and_return as dbr

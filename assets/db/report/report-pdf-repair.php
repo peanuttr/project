@@ -33,15 +33,22 @@ $stmt = $db->sqlQuery("SELECT brd.*,p.personnel_firstname,p.personnel_lastname,p
                             WHERE br.id = " . $_id);
 $stmt->execute();
 
+$detail = null;
 while($resp = $stmt->fetch(PDO::FETCH_ASSOC)){
-    $assetsName .=$resp['asset_name']." ,";
-    $assetsNumber .=$resp['assets_number']." ,";
-    $assetsUnit .=$resp['unit_name']." ,";
+    // $assetsName .=$resp['asset_name']." ,";
+    // $assetsNumber .=$resp['assets_number']." ,";
+    // $assetsUnit .=$resp['unit_name']." ,";
+
+    $detail .= '<span style="text-align:left;">ชื่อพัสดุ : '.$resp['asset_name'] . '</span><br />'
+    .'<span style="text-align:left;">ชนิด : '.$resp['unit_name']. ' จำนวน 1 '.$resp['unit_name'].'</span><br />'
+    .'<span style="text-align:left;">หมายเลขพัสดุ : '.$resp['assets_number'].'</span><br />';
+    // $assetsNumber .= "<span style='text-align:left;'>หมายเลขพัสดุ : ".$resp['assets_number'] . " จำนวน 1 เครื่อง</span><br />";
+    // $assetsUnit .="<span style='text-align:left;'>ชนิด : ".$resp['unit_name']."'</span><br />";
 }
 // $row = count($res['asset_name']);
 
 
-$html = '<p style="text-align:right; font-size:large; top:0;">'.$res['number_repair'].'</p>
+$html = '<p style="text-align:right; font-size:medium; top:0;">REPAIR_'.$res['number_repair'].'</p>
 <p style="text-align:center; font-size:large;">แบบบันทึกการแจ้งซ่อม</p>
 <p style="text-align:right;">เขียนที่ คณะอุตสาหกรรมเกษตร <br /> ' . DateThai($dateNow) . '</p>
 <p style="text-align:left;">เรื่อง ขอแจ้งซ่อมครุภัณฑ์ <br /> เรียน คณบดีคณะอุตสาหกรรมเกษตร</p>
@@ -54,13 +61,14 @@ $html = '<p style="text-align:right; font-size:large; top:0;">'.$res['number_rep
 <span style="text-align:left;">เพื่อใช้ในกิจการดังนี้ ' . $res['detail'] . '</span><br />
 <span style="text-align:left;">โดยขอยืมพัสดุที่แจ้งซ่อมเป็นระยะเวลา ' . DateThai($res['date_notice']) . ' (วัน/เดือน/ปี) </span><br />
 <span style="text-align:left;">กำหนดระยะเวลาคืนพัสดุ ภายใน ................................ </span> <br />
-<b style="text-align:left;">รายละเอียดพัสดุที่แจ้งซ่อม</b> <br />
-<span style="text-align:left;">ชื่อพัสดุ ' . $assetsName . '</span><br />
-<span style="text-align:left;">ชนิด ' . $assetsUnit . ' เครื่อง จำนวน '.$row[0].' เครื่อง </span> <br>
+<b style="text-align:left;">รายละเอียดพัสดุที่แจ้งซ่อม</b> <br />'
+.$detail.
+// <span style="text-align:left;">ชื่อพัสดุ ' . $assetsName . '</span><br />
+// <span style="text-align:left;">ชนิด ' . $assetsUnit . ' เครื่อง จำนวน '.$row[0].' เครื่อง </span> <br>
 
-<span style="text-align:left;">ชื่อทางการค้า(ยี่ห้อ) - </span><br />
-<span style="text-align:left;">หมายเลขพัสดุ ' . $assetsNumber . ' </span><br />
-<span style="text-align:left;">คุณลักษณะ ' . $res['detail'] . '</span><br />
+// <span style="text-align:left;">ชื่อทางการค้า(ยี่ห้อ) - </span><br />
+// <span style="text-align:left;">หมายเลขพัสดุ ' . $assetsNumber . ' </span><br />
+'<span style="text-align:left;">คุณลักษณะ ' . $res['detail'] . '</span><br />
 </p>
 <span style="text-align:center;">(ลงชื่อ) ........................ ชื่อผู้แจ้งซ่อม </span><br />
 <span style="text-align:center;">( ' . $res['personnel_firstname'] . ' ' . $res['personnel_lastname'] . ' )</span><br />

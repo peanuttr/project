@@ -66,7 +66,7 @@ foreach ($stmt->fetchAll() as $res) {
                 </div>
                 <div class="col-2">
                     <label>วันที่แจ้ง</label>
-                    <input type="text" data-provide="datepicker" data-date-language="th-th" id="reportDate" name="date" class="form-control" placeholder="วว/ดด/ปปปป" value="<?php echo $response[0]['selling_date']; ?>">
+                    <input type="text" data-provide="datepicker" data-date-language="th-th" id="reportDate" name="date" class="form-control" placeholder="วว/ดด/ปปปป" value="<?php echo DateThai($response[0]['selling_date']); ?>">
                 </div>
                 <table width="100%" id="dynamic_field">
                     <tr>
@@ -89,14 +89,14 @@ foreach ($stmt->fetchAll() as $res) {
                         <td>
                             <div class="col-12">
                                 <label>ชื่อครุภัณฑ์</label>
-                                <input type="text" id="assets-name" class="form-control" name="assets_name[]" value="<?php echo $response[0]['asset_name']; ?>" />
+                                <input type="text" id="assets-name" class="form-control" name="assets_name[]" disabled value="<?php echo $response[0]['asset_name']; ?>" />
                             </div>
                         </td>
-                        <td>
+                        <!-- <td>
                             <div class="col-12 d-flex mt-5 mb-3">
                                 <a class="btn btn-primary btn-sm" id="addMore"><i class="bi bi-plus-circle" style="color: #fff;"></i></a>
                             </div>
-                        </td>
+                        </td> -->
                     </tr>
                 </table>
             </div>
@@ -125,6 +125,20 @@ foreach ($stmt->fetchAll() as $res) {
         </form>
     </div>
 </div>
+<?php
+function DateThai($strDate)
+{
+    $strYear = date("Y", strtotime($strDate)) + 543;
+
+    $strMonth = date("m", strtotime($strDate));
+
+    $strDay = date("d", strtotime($strDate));
+
+    $newdate = "$strDay-$strMonth-$strYear";
+
+    return $newdate;
+}
+?>
 <script>
     $(document).ready(function() {
         var i = 0;
@@ -153,18 +167,19 @@ foreach ($stmt->fetchAll() as $res) {
             })
         })
 
-        var countId = <?php echo count($response); ?>;
-        console.log(<?php echo $response[1]['assets_number']; ?>);
-        console.log(<?php echo $response[0]['assets_number']; ?>);
-        for (var i = 0; i < countId - 1; i++) {
+        // var countId = <?php echo count($response); ?>;
+        // console.log(<?php echo $response[1]['assets_number']; ?>);
+        // console.log(<?php echo $response[0]['assets_number']; ?>);
+        // for (var i = 0; i < countId - 1; i++) {
             <?php
-            $i = 0;
+for($i = 0; $i < count($response) - 1 ; $i++)
+{
             ?>
-            $("#dynamic_field").append('<tr id="row' + (i + 1) + '"><td><div class="col-12"><input type="hidden" name="assets_id[]" id="assets-id' + (i + 1) + '" class="hiddenbox" value="<?php echo $response[($i + 1)]['assets_id']; ?>"><input type="search" list="asset-number" id="assets-number' + (i + 1) + '" name="assets_number[]" class="form-control mt-2 mb-2 searchbox" value="<?php echo $response[($i + 1)]['assets_number']; ?>" disabled></div></td><td><div class="col-12"><input type="text" id="assets-name' + (i + 1) + '" name="assets_name[]" class="form-control mt-2 mb-2 resultbox" value="<?php echo $response[($i + 1)]['asset_name']; ?>"></div></td><td><div class="col-12"><a class="btn btn-danger btn-sm mt-2 mb-2 btn_remove" style="color:#fff;" id="' + (i + 1) + '"><i class="bi bi-x-circle"></i></a></div></td>');
+            $("#dynamic_field").append('<tr id="row' + (i + 1) + '"><td><div class="col-12"><input type="hidden" name="assets_id[]" id="assets-id' + (i + 1) + '" class="hiddenbox" value="<?php echo $response[($i + 1)]['assets_id']; ?>"><input type="search" list="asset-number" id="assets-number' + (i + 1) + '" name="assets_number[]" class="form-control mt-2 mb-2 searchbox" value="<?php echo $response[($i + 1)]['assets_number']; ?>" disabled></div></td><td><div class="col-12"><input type="text" id="assets-name' + (i + 1) + '" name="assets_name[]" class="form-control mt-2 mb-2 resultbox" value="<?php echo $response[($i + 1)]['asset_name']; ?>" disabled></div></td>');
             <?php
-            $i++;
+}
             ?>
-        }
+        // }
 
         $("#addMore").click(function() {
             i++;

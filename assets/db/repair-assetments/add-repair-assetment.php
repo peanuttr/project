@@ -4,9 +4,24 @@ $db = new db();
 
 if (isset($_POST['submit'])) {
     $assets = array();
-    for ($i = 0; $i < count($_POST['assets_number']); $i++) {
-        array_push($assets, ['id' => $_POST['assets_id'][$i], 'assets_number' => $_POST['assets_number'][$i], 'assets_name' => $_POST['assets_name'][$i]]);
+    print_r(array_count_values( $_POST['assets_id']));
+    $dup = array_count_values( $_POST['assets_id']);
+    $flag = true;
+    foreach($dup as $key => $value){
+        echo $dup[$key];
+        if($dup[$key] > 1){
+            $flag = false;
+            echo "<script>alert('ห้ามเลือกครุภัณฑ์ซ้ำ')
+            javascript:history.back()</script>";
+            break;
+        }
     }
+    if($flag){
+    for ($i = 0; $i < count($_POST['assets_number']); $i++) {
+            array_push($assets, ['id' => $_POST['assets_id'][$i], 'assets_number' => $_POST['assets_number'][$i], 'assets_name' => $_POST['assets_name'][$i]]);
+        }
+    }
+    // print_r($assets);
     $date = $_POST['date'];
     $p_id = $_POST['personnel_id'];
     $detail = $_POST['detail'];
@@ -129,20 +144,21 @@ if (isset($_POST['submit'])) {
     // foreach ($assets as $resp) {
     //     echo $resp[0]['img'];
     // }
-
-    $stmt = $db->sqlQuery("INSERT INTO `repair_notice`( `number_repair`,`detail`, `date_notice`, `status`, `personel_id`) VALUES ('$newFormatCurrentYear','$detail', '$newFormatDate','1', '$p_id')");
-    // $stmt = $db->sqlQuery("INSERT INTO `repair_notice`( `detail`, `date_notice`, `status`, `personel_id`,`repair_by`) VALUES ('$detail', '$newFormatDate','1', '$p_id','$repair_by')");
-    if($stmt->execute()){
-        $stmt = $db->sqlQuery("SELECT * FROM `repair_notice` ORDER BY `id` DESC LIMIT 1");
-        $stmt->execute();
-        $res = $stmt->fetch(PDO::FETCH_ASSOC);
-        foreach($assets as $resp){
-            $stmt = $db->sqlQuery("INSERT INTO `detail_repair_notice`(`asset_id`,`repair_id`,`image`) VALUES ('".$resp['id']."','".$res['id']."','".$resp[0]['img']."')");
+    if($flag){
+        $stmt = $db->sqlQuery("INSERT INTO `repair_notice`( `number_repair`,`detail`, `date_notice`, `status`, `personel_id`) VALUES ('$newFormatCurrentYear','$detail', '$newFormatDate','1', '$p_id')");
+        // $stmt = $db->sqlQuery("INSERT INTO `repair_notice`( `detail`, `date_notice`, `status`, `personel_id`,`repair_by`) VALUES ('$detail', '$newFormatDate','1', '$p_id','$repair_by')");
+        if($stmt->execute()){
+            $stmt = $db->sqlQuery("SELECT * FROM `repair_notice` ORDER BY `id` DESC LIMIT 1");
             $stmt->execute();
-            $stmt = $db->sqlQuery("UPDATE `assets` SET `status`='แจ้งซ่อม' WHERE  `id`=".$resp['id']);
-            $stmt->execute();
-            
+            $res = $stmt->fetch(PDO::FETCH_ASSOC);
+            foreach($assets as $resp){
+                $stmt = $db->sqlQuery("INSERT INTO `detail_repair_notice`(`asset_id`,`repair_id`,`image`) VALUES ('".$resp['id']."','".$res['id']."','".$resp[0]['img']."')");
+                $stmt->execute();
+                $stmt = $db->sqlQuery("UPDATE `assets` SET `status`='แจ้งซ่อม' WHERE  `id`=".$resp['id']);
+                $stmt->execute();
+                
+            }
+            header("location: ../../../../../project/views/repair-assetments/repair-assetments-manage.php");
         }
-        header("location: ../../../../../project/views/repair-assetments/repair-assetments-manage.php");
     }
 }
