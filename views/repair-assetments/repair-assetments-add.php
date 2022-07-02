@@ -8,7 +8,12 @@ $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_n
                         JOIN `assets_types` as t ON a.assets_types_id = t.id 
                         JOIN `unit` as u ON a.unit_id = u.id 
                         JOIN `department` as d ON a.department_id = d.id 
-                        JOIN `money_source` as m ON a.money_source_id = m.id 
+                        JOIN `money_source` as m ON a.money_source_id = m.id
+                        WHERE `status` NOT LIKE '%แจ้งซ่อม%' 
+                        AND `status` NOT LIKE '%ดำเนินการซ่อม%' 
+                        AND `status` NOT LIKE '%แจ้งจำหน่าย%' 
+                        AND `status` NOT LIKE '%ดำเนินการจำหน่าย%' 
+                        AND `status` NOT LIKE '%จำหน่ายสำเร็จ%' 
                         LIMIT 100");
 $stmt->execute();
 
