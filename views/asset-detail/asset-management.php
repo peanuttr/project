@@ -9,13 +9,13 @@ include_once "../layout/masterpage.php";
             <thead>
                 <tr>
                     <th>ลำดับ</th>
-                    <th>เลขครุภัณฑ์</th>
-                    <th>ชื่อครุภัณฑ์</th>
-                    <th>ที่อยู่</th>
-                    <th>สถานะ</th>
-                    <th>QR-CODE</th>
-                    <th>รูปภาพ</th>
-                    <th>การดำเนินการ</th>
+                    <th width="25%">เลขครุภัณฑ์</th>
+                    <th width="25%">ชื่อครุภัณฑ์</th>
+                    <th width="11%">ที่อยู่</th>
+                    <th width="11%">สถานะ</th>
+                    <th width="11%">QR-CODE</th>
+                    <th >รูปภาพ</th>
+                    <th width="15%">การดำเนินการ</th>
                 </tr>
             </thead>
             <tbody>

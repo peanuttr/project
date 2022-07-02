@@ -18,13 +18,8 @@ if (isset($_GET['name'])) {
             $num = $res;
         }
 
-        $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_number,d.department_name,m.money_source_number,m.money_source_name,p.placename,s.staff_firstname FROM `assets` AS a 
-    JOIN `assets_types` as t ON a.assets_types_id = t.id 
-    JOIN `unit` as u ON a.unit_id = u.id 
-    JOIN `department` as d ON a.department_id = d.id 
-    JOIN `money_source` as m ON a.money_source_id = m.id
-    JOIN `place` as p ON a.place_id = p.id
-    JOIN `staffs` as s ON s.id = a.staff_id");
+        $stmt = $db->sqlQuery("SELECT a.*,t.assets_types_name,u.unit_name,d.department_number,d.department_name,m.money_source_number,m.money_source_name,p.placename,CONCAT(s.personnel_firstname,' ',s.personnel_lastname) AS importer_name,CONCAT(ss.personnel_firstname,' ',ss.personnel_lastname) AS exporter_name FROM `assets` AS a JOIN `assets_types` as t ON a.assets_types_id = t.id JOIN `unit` as u ON a.unit_id = u.id JOIN `department` as d ON a.department_id = d.id JOIN `money_source` as m ON a.money_source_id = m.id JOIN `place` as p ON a.place_id = p.id JOIN `personnels` as s ON s.id = a.`importer_id` JOIN `personnels` as ss ON ss.id = a.`exporter_id`;
+        ");
         $stmt->execute();
 
 ?>
@@ -80,7 +75,7 @@ if (isset($_GET['name'])) {
                             <td align="center" valign="middle"><?php echo $result['unit_name']; ?></td>
                             <td align="center" valign="middle"><?php echo $result['date_admit']; ?></td>
                             <td align="center" valign="middle"><?php echo $result['value_asset']; ?></td>
-                            <td align="center" valign="middle"><?php echo $result['staff_firstname']; ?></td>
+                            <td align="center" valign="middle"><?php echo $result['importer_name']; ?></td>
                             <td align="center" valign="middle"><?php echo $result['number_delivery']; ?></td>
                             <td align="center" valign="middle"><?php echo $result['date_delivery']; ?></td>
                             <td align="center" valign="middle"><?php echo $result['seller_name']; ?></td>
