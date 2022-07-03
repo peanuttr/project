@@ -83,7 +83,7 @@ foreach ($stmt->fetchAll() as $res) {
                         <label>ชื่อเจ้าหน้าที่</label>
                     </div>
                     <?php
-                    $stmt = $db->sqlQuery("SELECT * FROM staffs");
+                    $stmt = $db->sqlQuery("SELECT * FROM staffs WHERE permission LIKE '%staff%'");
                     $stmt->execute();
                     $output = " ";
                     $output .= "<select class='form-control' name='staffId'>";
