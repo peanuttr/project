@@ -84,7 +84,7 @@ $db = new db();
         }
         $stmt = $db->sqlQuery("INSERT INTO `assets`(`faculty_number`, `faculty_name`, `assets_number`, `asset_name`, `detail`, `feature`, `year_of_budget`, `value_asset`, 
         `seller_name`, `status`, `number_delivery`, `serial_number`, `date_admit`, `expiration_date`, `date_pickup`, `date_delivery`, `assets_types_id`, `unit_id`, 
-        `department_id`, `money_source_id`,`image`, `place_id`, `personnel_id`, `staff_id`) 
+        `department_id`, `money_source_id`,`image`, `place_id`, `importer_id`, `exporter_id`) 
         VALUES ('30800', 'คณะอุตสาหกรรมเกษตร', '$assets_number', '$name', '$detail', '$feature', '$year_of_budget', '$value_assets', '$seller', '$status', '$delivery_number', 
         '$serial_number','$newFormatDateAdmit','$newFormatExpirationDate', '$newFormatDatePickup', '$newFormatDateDelivery', '$assets_types_id','$unit_id','$department_id',
         '$money_source_id','$image', '$placeId', '$personnelId', '$staffId')");
