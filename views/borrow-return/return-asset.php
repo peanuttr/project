@@ -34,31 +34,31 @@ foreach ($stmt->fetchAll() as $res) {
 <div class="home-section">
     <div class="home-content" style="overflow-y: auto; overflow-x: hidden; height:90%;">
         <h1 style="padding-top: 1%;">เพิ่มข้อมูลการคืนครุภัณฑ์</h1>
-        <!-- <form method="GET" action="">
+        <form action="../../assets/db/borrow-return/return-asset.php" method="POST">
             <div class="row">
                 <div class="col-3">
                     <label>รหัสการยืม</label>
                     <?php
-                    $stmt = $db->sqlQuery("SELECT number_borrow FROM borrow_and_return");
+                    $stmt = $db->sqlQuery("SELECT number_borrow FROM borrow_and_return WHERE status = 'อนุมัติ'");
                     $stmt->execute();
                     $output = " ";
-                    $output .= "<select class='form-control' name='number_borrow' id='number_borrow'>";
-                    $output .= "<option selected> เลือกรหัสารยืม </option>";
+                    $output .= "<input class='form-control' list='number_borrow' name='numberBorrow' placeholder='เลือกรหัสการยืม'>";
+                    $output .= "<datalist id='number_borrow'>";
                     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        $personnelId = $result['number_borrow'];
-                        $personnelName = $result['number_borrow'];
-                        $output .= "<option value='$personnelId'>$personnelName $personnelLastName</option>";
+                        $numberBorrow = $result['number_borrow'];
+                        $output .= "<option value='$numberBorrow'>$numberBorrow </option>";
                     }
-                    $output .= "</select>";
+                    $output .= "</datalist>";
                     echo $output;
                     ?>
                 </div>
-                <div class="col-1 mt-4">
-                    <button class="btn btn-success btn-sm" type="submit" name="submit">ยืนยัน</button>
+                <div class="col-3">
+                    <div>
+                        <label>วันที่คืนครุภัณฑ์</label>
+                        <input type="text" id="returnDate" name="returnDate" class="form-control" placeholder="วว / ดด / ปป">
+                    </div>
                 </div>
             </div>
-        </form> -->
-        <form action="../../assets/db/borrow-return/return-asset.php" method="POST">
             <div class="row">
                 <div class="col-4">
                     <label>ชื่อผู้คืน</label>
