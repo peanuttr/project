@@ -19,12 +19,10 @@ if (isset($_POST['submit'])) {
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $borrowId = $result['id'];
     }
-
-    print_r(array_count_values($_POST['assets_id']));
+    
     $dup = array_count_values($_POST['assets_id']);
     $flag = true;
     foreach ($dup as $key => $value) {
-        echo $dup[$key];
         if ($dup[$key] > 1) {
             $flag = false;
             echo "<script>alert('ห้ามเลือกครุภัณฑ์ซ้ำ');
@@ -33,11 +31,7 @@ if (isset($_POST['submit'])) {
             break;
         }
     }
-    if ($flag) {
-        for ($i = 0; $i < count($_POST['assets_number']); $i++) {
-            array_push($assets, ['id' => $_POST['assets_id'][$i], 'assets_number' => $_POST['assets_number'][$i], 'assets_name' => $_POST['assets_name'][$i]]);
-        }
-    }
+
     if ($flag) {
         for ($i = 0; $i < count($_POST['assets_number']); $i++) {
             array_push($assets, ['id' => $_POST['assets_id'][$i], 'assets_number' => $_POST['assets_number'][$i], 'assets_name' => $_POST['assets_name'][$i]]);
@@ -52,6 +46,6 @@ if (isset($_POST['submit'])) {
             $stmt = $db->sqlQuery("UPDATE `assets` set `status`='อยู่ในคลัง' WHERE `id`='" . $resp['id'] . "'");
             $stmt->execute();
         }
-        header("location: ../../../../../project/views/borrow-return/borrow-return-management.php");
+         header("location: ../../../../../project/views/borrow-return/borrow-return-management.php");
     }
 }
