@@ -46,7 +46,7 @@ foreach ($stmt->fetchAll() as $res) {
                     $output .= "<datalist id='number_borrow'>";
                     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         $numberBorrow = $result['number_borrow'];
-                        $output .= "<option value='$numberBorrow'>$numberBorrow </option>";
+                        $output .= "<option value='$numberBorrow'> BORROW_$numberBorrow </option>";
                     }
                     $output .= "</datalist>";
                     echo $output;
