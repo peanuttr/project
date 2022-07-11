@@ -83,17 +83,17 @@ if (isset($_GET['id'])) {
                     </div>
                     <div class='col-3 width-50 flex justify-center'>
                         <label>วันที่ส่งของ</label>
-                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="dateDelivery" class="form-control" placeholder="dd-mm-yyyy" value=<?php echo DateThai($res['date_delivery']); ?>>
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="dateDelivery" class="form-control" placeholder="dd-mm-yyyy" value=<?php echo $res['date_delivery'] ? DateThai($res['date_delivery']) : null; ?>>
                         <label>วันหมดประกัน</label>
-                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="expirationDate" class="form-control" placeholder="dd-mm-yyyy" value=<?php echo DateThai($res['expiration_date']); ?>>
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="expirationDate" class="form-control" placeholder="dd-mm-yyyy" value=<?php echo $res['expiration_date'] ? DateThai($res['expiration_date']) : null; ?>>
                         <label>มูลค่าครุภัณฑ์</label>
                         <input type="text" name="assetValue" class="form-control" placeholder="มูลค่าครุภัณฑ์" value=<?php echo $res['value_asset']; ?>>
                     </div>
                     <div class='col-3 width-50 flex justify-center'>
                         <label>วันที่รับเข้าคลัง</label>
-                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="dateAdmit" class="form-control" placeholder="dd-mm-yyyy" value=<?php echo DateThai($res['date_admit']); ?>>
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="dateAdmit" class="form-control" placeholder="dd-mm-yyyy" value=<?php echo $res['date_admit'] ? DateThai($res['date_admit']) : null; ?>>
                         <label>วันที่เบิก</label>
-                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="datePickup" class="form-control" placeholder="dd-mm-yyyy" value=<?php echo DateThai($res['date_pickup']); ?>>
+                        <input type="text" data-provide="datepicker" data-date-language="th-th" name="datePickup" class="form-control" placeholder="dd-mm-yyyy" value=<?php echo $res['date_pickup'] ? DateThai($res['date_pickup']) : null; ?>>
                         <label>เลขที่ใบส่งของ</label>
                         <input type="text" name="deliveryNumber" class="form-control" placeholder="เลขที่ใบส่งของ" value=<?php echo $res['number_delivery']; ?>>
                     </div>
