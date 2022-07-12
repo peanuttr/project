@@ -247,7 +247,7 @@ if (isset($_GET['name'])) {
             <strong>รายงานการแจ้งซ่อม วันที่ <?php echo date("d/m/Y"); ?> ทั้งหมด <?php echo number_format($num); ?> รายการ</strong><br>
             <br>
             <div id="SiXhEaD_Excel" align=center x:publishsource="Excel">
-                <h3>รายการที่แจ้งซ่อมหรือดำเดินการซ่อม</h3>
+                <h3>รายการที่แจ้งซ่อมหรือดำเนินการซ่อม</h3>
                 <table x:str border=1 cellpadding=0 cellspacing=1 width=100% style="border-collapse:collapse">
                     <tr>
                     <td width="200" align="center" valign="middle"><strong>เลขที่การแจ้งซ่อม</strong></td>
